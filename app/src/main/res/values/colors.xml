@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#14668c</color>
+
+    <color name="titulos">#666464</color>
+    <color name="blanco">#ffff</color>
+    <color name="dane">#14668c</color>
+    <color name="dane_claro">#757575</color>
+    <color name="gris_claro">#FBFBFB</color>
+    <color name="raton">#6D6D6D</color>
+    <color name="negro">#000</color>
+
+    <color name="amarillo">#D3B200</color>
+
+    <color name="rojo">#CF0202</color>
+    <color name="verde">#196500</color>
+    <color name="poligono_touch">#50A3E8FF</color>
+    <color name="poligono_touch_boundary">#56D5FF</color>
+
+    <color name="poligono_cerrado">#508BECC1</color>
+    <color name="poligono_cerrado_boundary">#28C27D</color>
+    <color name="poligono_cerrado_seleccionado">#C22851</color>
+
+    <color  name="transparent">#00000000</color>
+</resources>
