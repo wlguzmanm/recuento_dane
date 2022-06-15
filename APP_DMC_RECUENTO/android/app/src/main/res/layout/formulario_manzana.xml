@@ -1,0 +1,971 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@color/blanco"
+    tools:context="co.gov.dane.recuento.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/atras"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                app:srcCompat="@drawable/ic_arrow_back"/>
+            <TextView
+                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:textColor="@color/dane"
+                android:fontFamily="sans-serif"
+                android:text="Formulario Unidad de Cobertura" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Formulario para el registro del conteo de unidades económicas." />
+
+    </LinearLayout>
+
+
+    <ScrollView
+            android:id="@+id/scroll"
+            style="@style/scrollbar_shape_style"
+            android:paddingRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/gris_claro"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/preguntas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Botones  -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/eliminar_formulario"
+                        style="@style/btn_secundario"
+                        android:padding="5dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_margin="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:tint="@color/dane"
+                            app:srcCompat="@drawable/ic_delete"/>
+                        <TextView
+                            android:layout_margin="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/dane"
+                            android:text="Eliminar"
+                            style="@style/titulo_negrita"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/finalizar_formulario"
+                        style="@style/btn_success"
+                        android:padding="5dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="5dp">
+
+                        <ImageView
+                            android:layout_margin="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:tint="@color/verde"
+                            app:srcCompat="@drawable/ic_success_form"/>
+                        <TextView
+                            android:layout_margin="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/verde"
+                            android:text="Finalizar"
+                            style="@style/titulo_negrita"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/habilitar_formulario"
+                        style="@style/btn_success"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:clickable="false"
+                            app:srcCompat="@android:drawable/ic_menu_edit" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Habilitar Edición"
+                            android:textColor="@color/verde"
+                            style="@style/titulo_negrita"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <!-- Preguntas  -->
+
+                <!-- Pregunta 1 -->
+                <LinearLayout
+                    android:background="@color/gris_claro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:background="@drawable/border"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="10dp" >
+
+                        <!-- Preguntas Label 1  -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/text_pregunta1"
+                                style="@style/TextAppearance.AppCompat.Title"
+                                android:textColor="@color/dane"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginTop="10dp"/>
+                        </LinearLayout>
+
+                        <!-- Pregunta Departamento  -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta1_1" />
+
+                                <EditText
+                                    android:id="@+id/DPTO"
+                                    android:background="@drawable/edit_text_design"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:ems="20"
+                                    android:clickable="false"
+                                    android:inputType="text"
+                                    android:enabled="false"
+                                    android:backgroundTintMode="src_in"
+                                    android:backgroundTint="@color/gris_oscuro"
+                                    style="@style/label_disable"   />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Pregunta Municipio  -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta1_2"  />
+
+                                <EditText
+                                    android:id="@+id/MPIO"
+                                    android:background="@drawable/edit_text_design"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:ems="20"
+                                    android:clickable="false"
+                                    android:inputType="text"
+                                    android:enabled="false"
+                                    android:backgroundTintMode="src_in"
+                                    android:backgroundTint="@color/gris_oscuro"
+                                    style="@style/label_disable" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Pregunta 2 -->
+                <LinearLayout
+                    android:background="@color/gris_claro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:background="@drawable/border"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="10dp" >
+                        <!-- Preguntas Label 2  -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/text_pregunta2"
+                                style="@style/TextAppearance.AppCompat.Title"
+                                android:textColor="@color/dane"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginTop="10dp"/>
+                        </LinearLayout>
+
+                        <!-- Pregunta Pregunta 2  -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta2_1" />
+                                <EditText
+                                    android:id="@+id/CLASE"
+                                    android:background="@drawable/edit_text_design"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:ems="20"
+                                    android:clickable="false"
+                                    android:inputType="text"
+                                    android:enabled="false"
+                                    android:backgroundTintMode="src_in"
+                                    android:backgroundTint="@color/gris_oscuro"
+                                    style="@style/label_disable"   />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta2_2" />
+                                <EditText
+                                    android:id="@+id/COM_LOC"
+                                    android:background="@drawable/edit_text_design"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:ems="20"
+                                    android:clickable="false"
+                                    android:inputType="text"
+                                    android:enabled="false"
+                                    android:backgroundTintMode="src_in"
+                                    android:backgroundTint="@color/gris_oscuro"
+                                    style="@style/label_disable"   />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta2_3" />
+                                <EditText
+                                    android:id="@+id/C_POB"
+                                    android:background="@drawable/edit_text_design"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:ems="20"
+                                    android:clickable="false"
+                                    android:inputType="text"
+                                    android:enabled="false"
+                                    android:backgroundTintMode="src_in"
+                                    android:backgroundTint="@color/gris_oscuro"
+                                    style="@style/label_disable"  />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta2_4" />
+                                <RadioGroup
+                                    android:id="@+id/TERRITORIO_ETNICO"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    app:useMaterialThemeColors="true">
+                                    <RadioButton
+                                        android:id="@+id/id_pregunta2_4_si"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="27dp"
+                                        android:layout_gravity="top"
+                                        android:text="@string/text_pregunta2_4_Si" />
+                                    <RadioButton
+                                        android:id="@+id/id_pregunta2_4_no"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="27dp"
+                                        android:layout_gravity="top"
+                                        android:text="@string/text_pregunta2_4_No" />
+                                </RadioGroup>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta2_5" />
+                                <RadioGroup
+                                    android:id="@+id/SEL_TERR_ETNICO"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    app:useMaterialThemeColors="true">
+                                    <RadioButton
+                                        android:id="@+id/id_pregunta2_5_1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="27dp"
+                                        android:layout_gravity="top"
+                                        android:text="@string/text_pregunta2_5_1" />
+                                    <RadioButton
+                                        android:id="@+id/id_pregunta2_5_2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="27dp"
+                                        android:layout_gravity="top"
+                                        android:text="@string/text_pregunta2_5_2" />
+                                </RadioGroup>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta2_6" />
+                                <Spinner
+                                    android:id="@+id/COD_RESG_ETNICO"
+                                    style="@style/Widget.AppCompat.Spinner"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:background="@drawable/borde_spinner"
+                                    android:dropDownWidth="wrap_content"
+                                    android:dropDownVerticalOffset="30dp"
+                                    android:entries="@array/dir_a"
+                                    android:hapticFeedbackEnabled="false"
+                                    android:popupBackground="@android:color/white"
+                                    android:popupElevation="0dp"
+                                    android:singleLine="true"
+                                    android:spinnerMode="dialog"
+                                    android:stateListAnimator="@drawable/spinner_sla"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta2_7" />
+                                <Spinner
+                                    android:id="@+id/Recuento	Wilhelm Guzman	Subproducto (Desarrollo"
+                                    style="@style/Widget.AppCompat.Spinner"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:background="@drawable/borde_spinner"
+                                    android:dropDownWidth="wrap_content"
+                                    android:dropDownVerticalOffset="30dp"
+                                    android:entries="@array/dir_a"
+                                    android:hapticFeedbackEnabled="false"
+                                    android:popupBackground="@android:color/white"
+                                    android:popupElevation="0dp"
+                                    android:singleLine="true"
+                                    android:spinnerMode="dialog"
+                                    android:stateListAnimator="@drawable/spinner_sla"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Pregunta 3 -->
+                <LinearLayout
+                    android:background="@color/gris_claro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:background="@drawable/border"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="10dp" >
+                        <!-- Preguntas Label 3  -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/text_pregunta3"
+                                style="@style/TextAppearance.AppCompat.Title"
+                                android:textColor="@color/dane"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginTop="10dp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta3_1" />
+                                <EditText
+                                    android:id="@+id/areaCoordOperativa"
+                                    android:background="@drawable/edit_text_design"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:ems="20"
+                                    android:clickable="false"
+                                    android:inputType="text"
+                                    android:enabled="false"
+                                    android:backgroundTintMode="src_in"
+                                    android:backgroundTint="@color/gris_oscuro"
+                                    style="@style/label_disable"   />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta3_2" />
+                                <EditText
+                                    android:id="@+id/areaOperativa"
+                                    android:background="@drawable/edit_text_design"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:ems="20"
+                                    android:clickable="false"
+                                    android:inputType="text"
+                                    android:enabled="false"
+                                    android:backgroundTintMode="src_in"
+                                    android:backgroundTint="@color/gris_oscuro"
+                                    style="@style/label_disable"   />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Pregunta 4 -->
+                <LinearLayout
+                    android:background="@color/gris_claro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:background="@drawable/border"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="10dp" >
+                        <!-- Preguntas Label 4  -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/text_pregunta4"
+                                style="@style/TextAppearance.AppCompat.Title"
+                                android:textColor="@color/dane"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginTop="10dp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta4_1" />
+                                <EditText
+                                    android:id="@+id/codunidadCobertura"
+                                    android:background="@drawable/edit_text_design"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:ems="20"
+                                    android:clickable="false"
+                                    android:inputType="text"
+                                    android:enabled="false"
+                                    android:backgroundTintMode="src_in"
+                                    android:backgroundTint="@color/gris_oscuro"
+                                    style="@style/label_disable"   />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta4_2" />
+                                <EditText
+                                    android:id="@+id/codACER"
+                                    android:background="@drawable/edit_text_design"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:ems="20"
+                                    android:clickable="false"
+                                    android:inputType="text"
+                                    android:enabled="false"
+                                    android:backgroundTintMode="src_in"
+                                    android:backgroundTint="@color/gris_oscuro"
+                                    style="@style/label_disable"   />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Pregunta 5 -->
+                <LinearLayout
+                    android:background="@color/gris_claro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:background="@drawable/border"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="10dp" >
+                        <!-- Preguntas Label 5  -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/text_pregunta5"
+                                style="@style/TextAppearance.AppCompat.Title"
+                                android:textColor="@color/dane"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginTop="10dp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta5_1" />
+                                <EditText
+                                    android:id="@+id/barrioNovedad"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/edit_text_design"
+                                    android:maxLength="100"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:inputType="text"
+                                    />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta5_2" />
+                                <RadioGroup
+                                    android:id="@+id/radio_pregunta5_2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    app:useMaterialThemeColors="true">
+                                    <RadioButton
+                                        android:id="@+id/id_pregunta5_2_si"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="27dp"
+                                        android:layout_gravity="top"
+                                        android:text="@string/text_pregunta5_2_Si" />
+                                    <RadioButton
+                                        android:id="@+id/id_pregunta5_2_no"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="27dp"
+                                        android:layout_gravity="top"
+                                        android:text="@string/text_pregunta5_2_No" />
+                                </RadioGroup>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linearTipoNovedad"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta5_3" />
+                                <RadioGroup
+                                    android:id="@+id/radio_pregunta5_3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    app:useMaterialThemeColors="true">
+                                    <RadioButton
+                                        android:id="@+id/id_pregunta5_3_1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="27dp"
+                                        android:layout_gravity="top"
+                                        android:text="@string/text_pregunta5_3_1" />
+                                    <RadioButton
+                                        android:id="@+id/id_pregunta5_3_2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="27dp"
+                                        android:layout_gravity="top"
+                                        android:text="@string/text_pregunta5_3_2" />
+                                    <RadioButton
+                                        android:id="@+id/id_pregunta5_3_3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="27dp"
+                                        android:layout_gravity="top"
+                                        android:text="@string/text_pregunta5_3_3" />
+                                    <RadioButton
+                                        android:id="@+id/id_pregunta5_3_4"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="27dp"
+                                        android:layout_gravity="top"
+                                        android:text="@string/text_pregunta5_3_4" />
+                                    <RadioButton
+                                        android:id="@+id/id_pregunta5_3_5"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="27dp"
+                                        android:layout_gravity="top"
+                                        android:text="@string/text_pregunta5_3_5" />
+                                    <RadioButton
+                                        android:id="@+id/id_pregunta5_3_6"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="27dp"
+                                        android:layout_gravity="top"
+                                        android:text="@string/text_pregunta5_3_6" />
+                                    <RadioButton
+                                        android:id="@+id/id_pregunta5_3_7"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="27dp"
+                                        android:layout_gravity="top"
+                                        android:text="@string/text_pregunta5_3_7" />
+                                </RadioGroup>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            <!-- Boton Edificaciones  -->
+            <LinearLayout
+                android:id="@+id/linearExisteUnidades"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/titulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dane"
+                    android:text="Listado de edificaciones" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="A continuación se enlistan las edificaciones para esta manzana" />
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/add_grupo"
+                        style="@style/btn_secundario"
+                        android:padding="5dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_margin="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:tint="@color/dane"
+                            app:srcCompat="@drawable/ic_add"/>
+                        <TextView
+                            android:layout_margin="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/dane"
+                            android:text="Adicionar Edificación" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="vertical" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+    <!-- Boton Guardar  -->
+    <LinearLayout
+        style="@style/btn_rojo"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/guardar_formulario_manzana">
+        <ImageView
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            app:srcCompat="@drawable/ic_save"/>
+        <TextView
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blanco"
+            style="@style/titulo_negrita"
+            android:text="Guardar" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,2006 @@
+[
+    {
+      "clase": "0111",
+      "descripcion": "Cultivo de cereales"
+    },
+    {
+      "clase": "0112",
+      "descripcion": "Cultivo de arroz"
+    },
+    {
+      "clase": "0113",
+      "descripcion": "Cultivo de hortalizas"
+    },
+    {
+      "clase": "0114",
+      "descripcion": "Cultivo de tabaco"
+    },
+    {
+      "clase": "0115",
+      "descripcion": "Cultivo de plantas textiles"
+    },
+    {
+      "clase": "0119",
+      "descripcion": "Otros cultivos transitorios n.c.p."
+    },
+    {
+      "clase": "0121",
+      "descripcion": "Cultivo de frutas tropicales y subtropicales"
+    },
+    {
+      "clase": "0122",
+      "descripcion": "Cultivo de plátano y banano"
+    },
+    {
+      "clase": "0123",
+      "descripcion": "Cultivo de café"
+    },
+    {
+      "clase": "0124",
+      "descripcion": "Cultivo de caña de azúcar"
+    },
+    {
+      "clase": "0125",
+      "descripcion": "Cultivo de flor de corte"
+    },
+    {
+      "clase": "0126",
+      "descripcion": "Cultivo de palma para aceite (palma africana) y otros frutos oleaginosos"
+    },
+    {
+      "clase": "0127",
+      "descripcion": "Cultivo de plantas con las que se preparan bebidas"
+    },
+    {
+      "clase": "0128",
+      "descripcion": "Cultivo de especias y de plantas aromáticas y medicinales"
+    },
+    {
+      "clase": "0129",
+      "descripcion": "Otros cultivos permanentes n.c.p."
+    },
+    {
+      "clase": "0130",
+      "descripcion": "Propagación de plantas (actividades de los viveros)"
+    },
+    {
+      "clase": "0141",
+      "descripcion": "Cría de ganado bovino y bufalino"
+    },
+    {
+      "clase": "0142",
+      "descripcion": "Cría de caballos y otros equinos"
+    },
+    {
+      "clase": "0143",
+      "descripcion": "Cría de ovejas y cabras"
+    },
+    {
+      "clase": "0144",
+      "descripcion": "Cría de ganado porcino"
+    },
+    {
+      "clase": "0145",
+      "descripcion": "Cría de aves de corral"
+    },
+    {
+      "clase": "0149",
+      "descripcion": "Cría de otros animales n.c.p."
+    },
+    {
+      "clase": "0150",
+      "descripcion": "Explotación mixta (agrícola y pecuaria)"
+    },
+    {
+      "clase": "0161",
+      "descripcion": "Actividades de apoyo a la agricultura"
+    },
+    {
+      "clase": "0162",
+      "descripcion": "Actividades de apoyo a la ganadería"
+    },
+    {
+      "clase": "0163",
+      "descripcion": "Actividades posteriores a la cosecha"
+    },
+    {
+      "clase": "0164",
+      "descripcion": "Tratamiento de semillas para propagación"
+    },
+    {
+      "clase": "0170",
+      "descripcion": "Caza ordinaria y mediante trampas y actividades de servicios conexas"
+    },
+    {
+      "clase": "0210",
+      "descripcion": "Silvicultura y otras actividades forestales"
+    },
+    {
+      "clase": "0220",
+      "descripcion": "Extracción de madera"
+    },
+    {
+      "clase": "0230",
+      "descripcion": "Recolección de productos forestales diferentes a la madera"
+    },
+    {
+      "clase": "0240",
+      "descripcion": "Servicios de apoyo a la silvicultura"
+    },
+    {
+      "clase": "0311",
+      "descripcion": "Pesca marítima"
+    },
+    {
+      "clase": "0312",
+      "descripcion": "Pesca de agua dulce"
+    },
+    {
+      "clase": "0321",
+      "descripcion": "Acuicultura marítima"
+    },
+    {
+      "clase": "0322",
+      "descripcion": "Acuicultura de agua dulce"
+    },
+    {
+      "clase": "0510",
+      "descripcion": "Extracción de hulla (carbón de piedra)"
+    },
+    {
+      "clase": "0520",
+      "descripcion": "Extracción de carbón lignito"
+    },
+    {
+      "clase": "0610",
+      "descripcion": "Extracción de petróleo crudo"
+    },
+    {
+      "clase": "0620",
+      "descripcion": "Extracción de gas natural"
+    },
+    {
+      "clase": "0710",
+      "descripcion": "Extracción de minerales de hierro"
+    },
+    {
+      "clase": "0721",
+      "descripcion": "Extracción de minerales de uranio y de torio"
+    },
+    {
+      "clase": "0722",
+      "descripcion": "Extracción de oro y otros metales preciosos"
+    },
+    {
+      "clase": "0723",
+      "descripcion": "Extracción de minerales de níquel"
+    },
+    {
+      "clase": "0729",
+      "descripcion": "Extracción de otros minerales metalíferos no ferrosos n.c.p."
+    },
+    {
+      "clase": "0811",
+      "descripcion": "Extracción de piedra"
+    },
+    {
+      "clase": "0812",
+      "descripcion": "Extracción de arcillas de uso industrial"
+    },
+    {
+      "clase": "0820",
+      "descripcion": "Extracción de esmeraldas"
+    },
+    {
+      "clase": "0891",
+      "descripcion": "Extracción de minerales para la fabricación de abonos y productos químicos"
+    },
+    {
+      "clase": "0892",
+      "descripcion": "Extracción de halita (sal)"
+    },
+    {
+      "clase": "0899",
+      "descripcion": "Extracción de otros minerales no metálicos n.c.p."
+    },
+    {
+      "clase": "0910",
+      "descripcion": "Actividades de apoyo para la extracción de petróleo y de gas natural"
+    },
+    {
+      "clase": "0990",
+      "descripcion": "Actividades de apoyo para otras actividades de explotación de minas y canteras"
+    },
+    {
+      "clase": 1011,
+      "descripcion": "Procesamiento y conservación de carne y productos cárnicos"
+    },
+    {
+      "clase": 1012,
+      "descripcion": "Procesamiento y conservación de pescados"
+    },
+    {
+      "clase": 1020,
+      "descripcion": "Procesamiento y conservación de frutas"
+    },
+    {
+      "clase": 1030,
+      "descripcion": "Elaboración de aceites y grasas de origen vegetal y animal"
+    },
+    {
+      "clase": 1040,
+      "descripcion": "Elaboración de productos lácteos"
+    },
+    {
+      "clase": 1051,
+      "descripcion": "Elaboración de productos de molinería"
+    },
+    {
+      "clase": 1052,
+      "descripcion": "Elaboración de almidones y productos derivados del almidón"
+    },
+    {
+      "clase": 1061,
+      "descripcion": "Trilla de café"
+    },
+    {
+      "clase": 1062,
+      "descripcion": "Descafeinado"
+    },
+    {
+      "clase": 1063,
+      "descripcion": "Otros derivados del café"
+    },
+    {
+      "clase": 1071,
+      "descripcion": "Elaboración y refinación de azúcar"
+    },
+    {
+      "clase": 1072,
+      "descripcion": "Elaboración de panela"
+    },
+    {
+      "clase": 1081,
+      "descripcion": "Elaboración de productos de panadería"
+    },
+    {
+      "clase": 1082,
+      "descripcion": "Elaboración de cacao"
+    },
+    {
+      "clase": 1083,
+      "descripcion": "Elaboración de macarrones"
+    },
+    {
+      "clase": 1084,
+      "descripcion": "Elaboración de comidas y platos preparados"
+    },
+    {
+      "clase": 1089,
+      "descripcion": "Elaboración de otros productos alimenticios n.c.p."
+    },
+    {
+      "clase": 1090,
+      "descripcion": "Elaboración de alimentos preparados para animales"
+    },
+    {
+      "clase": 1101,
+      "descripcion": "Destilación"
+    },
+    {
+      "clase": 1102,
+      "descripcion": "Elaboración de bebidas fermentadas no destiladas"
+    },
+    {
+      "clase": 1103,
+      "descripcion": "Producción de malta"
+    },
+    {
+      "clase": 1104,
+      "descripcion": "Elaboración de bebidas no alcohólicas"
+    },
+    {
+      "clase": 1200,
+      "descripcion": "Elaboración de productos de tabaco"
+    },
+    {
+      "clase": 1311,
+      "descripcion": "Preparación e hilatura de fibras textiles"
+    },
+    {
+      "clase": 1312,
+      "descripcion": "Tejeduria de productos textiles"
+    },
+    {
+      "clase": 1313,
+      "descripcion": "Acabado de productos textiles"
+    },
+    {
+      "clase": 1391,
+      "descripcion": "Fabricación de tejidos de punto y ganchillo"
+    },
+    {
+      "clase": 1392,
+      "descripcion": "Confección de artículos con materiales textiles"
+    },
+    {
+      "clase": 1393,
+      "descripcion": "Fabricación de tapetes y alfombras para pisos"
+    },
+    {
+      "clase": 1394,
+      "descripcion": "Fabricación de cuerdas"
+    },
+    {
+      "clase": 1399,
+      "descripcion": "Fabricación de otros artículos textiles n.c.p."
+    },
+    {
+      "clase": 1410,
+      "descripcion": "Confección de prendas de vestir"
+    },
+    {
+      "clase": 1420,
+      "descripcion": "Fabricación de artículos de piel"
+    },
+    {
+      "clase": 1430,
+      "descripcion": "Fabricación de artículos de punto y ganchillo"
+    },
+    {
+      "clase": 1511,
+      "descripcion": "Curtido y recurtido de cueros; recurtido y teñido de pieles"
+    },
+    {
+      "clase": 1512,
+      "descripcion": "Fabricación de artículos de viaje"
+    },
+    {
+      "clase": 1513,
+      "descripcion": "Fabricación de artículos de viaje"
+    },
+    {
+      "clase": 1521,
+      "descripcion": "Fabricación de calzado de cuero y piel"
+    },
+    {
+      "clase": 1522,
+      "descripcion": "Fabricación de otros tipos de calzado"
+    },
+    {
+      "clase": 1523,
+      "descripcion": "Fabricación de partes del calzado"
+    },
+    {
+      "clase": 1610,
+      "descripcion": "Aserrado"
+    },
+    {
+      "clase": 1620,
+      "descripcion": "Fabricación de hojas de madera para enchapado; Fabricación de tableros contrachapados"
+    },
+    {
+      "clase": 1630,
+      "descripcion": "Fabricación de partes y piezas de madera"
+    },
+    {
+      "clase": 1640,
+      "descripcion": "Fabricación de recipientes de madera"
+    },
+    {
+      "clase": 1690,
+      "descripcion": "Fabricación de otros productos de madera; fabricación de artículos de corcho"
+    },
+    {
+      "clase": 1701,
+      "descripcion": "Fabricación de pulpas (pastas) celulósicas; papel y cartón"
+    },
+    {
+      "clase": 1702,
+      "descripcion": "Fabricación de papel y cartón ondulado (corrugado); fabricación de envases"
+    },
+    {
+      "clase": 1709,
+      "descripcion": "Fabricación de otros artículos de papel y cartón"
+    },
+    {
+      "clase": 1811,
+      "descripcion": "Actividades de impresión"
+    },
+    {
+      "clase": 1812,
+      "descripcion": "Actividades de servicios relacionados con la impresión"
+    },
+    {
+      "clase": 1820,
+      "descripcion": "Producción de copias a partir de grabaciones originales"
+    },
+    {
+      "clase": 1910,
+      "descripcion": "Fabricación de productos de hornos de coque"
+    },
+    {
+      "clase": 1921,
+      "descripcion": "Fabricación de productos de la refinación del petróleo"
+    },
+    {
+      "clase": 1922,
+      "descripcion": "Actividad de mezcla de combustibles"
+    },
+    {
+      "clase": 2011,
+      "descripcion": "Fabricación de sustancias y productos químicos básicos"
+    },
+    {
+      "clase": 2012,
+      "descripcion": "Fabricación de abonos y compuestos inorgánicos nitrogenados"
+    },
+    {
+      "clase": 2013,
+      "descripcion": "Fabricación de plásticos en formas primarias"
+    },
+    {
+      "clase": 2014,
+      "descripcion": "Fabricación de caucho sintético en formas primarias"
+    },
+    {
+      "clase": 2021,
+      "descripcion": "Fabricación de plaguicidas y otros productos químicos de uso agropecuario"
+    },
+    {
+      "clase": 2022,
+      "descripcion": "Fabricación de pinturas"
+    },
+    {
+      "clase": 2023,
+      "descripcion": "Fabricación de jabones y detergentes"
+    },
+    {
+      "clase": 2029,
+      "descripcion": "Fabricación de otros productos químicos n.c.p."
+    },
+    {
+      "clase": 2030,
+      "descripcion": "Fabricación de fibras sintéticas y artificiales"
+    },
+    {
+      "clase": 2100,
+      "descripcion": "Fabricación de productos farmacéuticos"
+    },
+    {
+      "clase": 2211,
+      "descripcion": "Fabricación de llantas y neumáticos de caucho"
+    },
+    {
+      "clase": 2212,
+      "descripcion": "Reencauche de llantas usadas"
+    },
+    {
+      "clase": 2219,
+      "descripcion": "Fabricación de formas básicas de caucho y otros productos de caucho n.c.p."
+    },
+    {
+      "clase": 2221,
+      "descripcion": "Fabricación de formas básicas de plástico"
+    },
+    {
+      "clase": 2229,
+      "descripcion": "Fabricación de artículos de plástico n.c.p."
+    },
+    {
+      "clase": 2310,
+      "descripcion": "Fabricación de vidrio y productos de vidrio"
+    },
+    {
+      "clase": 2391,
+      "descripcion": "Fabricación de productos refractarios"
+    },
+    {
+      "clase": 2392,
+      "descripcion": "Fabricación de materiales de arcilla para la construcción"
+    },
+    {
+      "clase": 2393,
+      "descripcion": "Fabricación de otros productos de cerámica y porcelana"
+    },
+    {
+      "clase": 2394,
+      "descripcion": "Fabricación de cemento"
+    },
+    {
+      "clase": 2395,
+      "descripcion": "Fabricación de artículos de hormigón"
+    },
+    {
+      "clase": 2396,
+      "descripcion": "Corte"
+    },
+    {
+      "clase": 2399,
+      "descripcion": "Fabricación de otros productos minerales no metálicos n.c.p."
+    },
+    {
+      "clase": 2410,
+      "descripcion": "Industrias básicas de hierro y de acero"
+    },
+    {
+      "clase": 2421,
+      "descripcion": "Industrias básicas de metales preciosos"
+    },
+    {
+      "clase": 2429,
+      "descripcion": "Industrias básicas de otros metales no ferrosos"
+    },
+    {
+      "clase": 2431,
+      "descripcion": "Fundición de hierro y de acero"
+    },
+    {
+      "clase": 2432,
+      "descripcion": "Fundición de metales no ferrosos"
+    },
+    {
+      "clase": 2511,
+      "descripcion": "Fabricación de productos metálicos para uso estructural"
+    },
+    {
+      "clase": 2512,
+      "descripcion": "Fabricación de tanques"
+    },
+    {
+      "clase": 2513,
+      "descripcion": "Fabricación de generadores de vapor"
+    },
+    {
+      "clase": 2520,
+      "descripcion": "Fabricación de armas y municiones"
+    },
+    {
+      "clase": 2591,
+      "descripcion": "Forja"
+    },
+    {
+      "clase": 2592,
+      "descripcion": "Tratamiento y revestimiento de metales; mecanizado"
+    },
+    {
+      "clase": 2593,
+      "descripcion": "Fabricación de artículos de cuchilleria"
+    },
+    {
+      "clase": 2599,
+      "descripcion": "Fabricación de otros productos elaborados de metal n.c.p."
+    },
+    {
+      "clase": 2610,
+      "descripcion": "Fabricación de componentes y tableros electrónicos"
+    },
+    {
+      "clase": 2620,
+      "descripcion": "Fabricación de computadoras y equipo periférico"
+    },
+    {
+      "clase": 2630,
+      "descripcion": "Fabricación de equipos de comunicación"
+    },
+    {
+      "clase": 2640,
+      "descripcion": "Fabricación de aparatos electrónicos de consumo"
+    },
+    {
+      "clase": 2651,
+      "descripcion": "Fabricación de equipo de medición"
+    },
+    {
+      "clase": 2652,
+      "descripcion": "Fabricación de relojes"
+    },
+    {
+      "clase": 2660,
+      "descripcion": "Fabricación de equipo de irradiación y equipo electrónico de uso médico y terapéutico"
+    },
+    {
+      "clase": 2670,
+      "descripcion": "Fabricación de instrumentos ópticos y equipo fotográfico"
+    },
+    {
+      "clase": 2680,
+      "descripcion": "Fabricación de medios magnéticos y ópticos para almacenamiento de datos"
+    },
+    {
+      "clase": 2711,
+      "descripcion": "Fabricación de motores"
+    },
+    {
+      "clase": 2712,
+      "descripcion": "Fabricación de aparatos de distribución y control de la energía eléctrica"
+    },
+    {
+      "clase": 2720,
+      "descripcion": "Fabricación de pilas"
+    },
+    {
+      "clase": 2731,
+      "descripcion": "Fabricación de hilos y cableseléctricos y de fibra óptica"
+    },
+    {
+      "clase": 2732,
+      "descripcion": "Fabricación de dispositivos de cableado"
+    },
+    {
+      "clase": 2740,
+      "descripcion": "Fabricación de equiposeléctricos de iluminación"
+    },
+    {
+      "clase": 2750,
+      "descripcion": "Fabricación de aparatos de uso doméstico"
+    },
+    {
+      "clase": 2790,
+      "descripcion": "Fabricación de otros tipos de equipoeléctrico n.c.p."
+    },
+    {
+      "clase": 2811,
+      "descripcion": "Fabricación de motores"
+    },
+    {
+      "clase": 2812,
+      "descripcion": "Fabricación de equipos de potencia hidráulica y neumática"
+    },
+    {
+      "clase": 2813,
+      "descripcion": "Fabricación de otras bombas"
+    },
+    {
+      "clase": 2814,
+      "descripcion": "Fabricación de cojinetes"
+    },
+    {
+      "clase": 2815,
+      "descripcion": "Fabricación de hornos"
+    },
+    {
+      "clase": 2816,
+      "descripcion": "Fabricación de equipo de elevación y manipulación"
+    },
+    {
+      "clase": 2817,
+      "descripcion": "Fabricación de maquinaria y equipo de oficina"
+    },
+    {
+      "clase": 2818,
+      "descripcion": "Fabricación de herramientas manuales con motor"
+    },
+    {
+      "clase": 2819,
+      "descripcion": "Fabricación de otros tipos de maquinaria y equipo de uso general n.c.p."
+    },
+    {
+      "clase": 2821,
+      "descripcion": "Fabricación de maquinaria agropecuaria y forestal"
+    },
+    {
+      "clase": 2822,
+      "descripcion": "Fabricación de máquinas formadoras de metal y de máquinas herramienta"
+    },
+    {
+      "clase": 2823,
+      "descripcion": "Fabricación de maquinaria para la metalurgia"
+    },
+    {
+      "clase": 2824,
+      "descripcion": "Fabricación de maquinaria para explotación de minas y canteras y para obras de construcción"
+    },
+    {
+      "clase": 2825,
+      "descripcion": "Fabricación de maquinaria para la elaboración de alimentos"
+    },
+    {
+      "clase": 2826,
+      "descripcion": "Fabricación de maquinaria para la elaboración de productos textiles"
+    },
+    {
+      "clase": 2829,
+      "descripcion": "Fabricación de otros tipos de maquinaria y equipo de uso especial n.c.p."
+    },
+    {
+      "clase": 2910,
+      "descripcion": "Fabricación de vehículos automotores y sus motores"
+    },
+    {
+      "clase": 2920,
+      "descripcion": "Fabricación de carrocerías para vehículos automotores; fabricación de remolques y semirremolques"
+    },
+    {
+      "clase": 2930,
+      "descripcion": "Fabricación de partes"
+    },
+    {
+      "clase": 3011,
+      "descripcion": "Construcción de barcos y de estructuras flotantes"
+    },
+    {
+      "clase": 3012,
+      "descripcion": "Construcción de embarcaciones de recreo y deporte"
+    },
+    {
+      "clase": 3020,
+      "descripcion": "Fabricación de locomotoras y de material rodante para ferrocarriles"
+    },
+    {
+      "clase": 3030,
+      "descripcion": "Fabricación de aeronaves"
+    },
+    {
+      "clase": 3040,
+      "descripcion": "Fabricación de vehículos militares de combate"
+    },
+    {
+      "clase": 3091,
+      "descripcion": "Fabricación de motocicletas"
+    },
+    {
+      "clase": 3092,
+      "descripcion": "Fabricación de bicicletas y de sillas de ruedas para personas con discapacidad"
+    },
+    {
+      "clase": 3099,
+      "descripcion": "Fabricación de otros tipos de equipo de transporte n.c.p."
+    },
+    {
+      "clase": 3110,
+      "descripcion": "Fabricación de muebles"
+    },
+    {
+      "clase": 3120,
+      "descripcion": "Fabricación de colchones y somieres"
+    },
+    {
+      "clase": 3210,
+      "descripcion": "Fabricación de joyas"
+    },
+    {
+      "clase": 3220,
+      "descripcion": "Fabricación de instrumentos musicales"
+    },
+    {
+      "clase": 3230,
+      "descripcion": "Fabricación de artículos y equipo para la práctica del deporte"
+    },
+    {
+      "clase": 3240,
+      "descripcion": "Fabricación de juegos"
+    },
+    {
+      "clase": 3250,
+      "descripcion": "Fabricación de instrumentos"
+    },
+    {
+      "clase": 3290,
+      "descripcion": "Otras industrias manufactureras n.c.p."
+    },
+    {
+      "clase": 3311,
+      "descripcion": "Mantenimiento y reparación especializado de productos elaborados en metal"
+    },
+    {
+      "clase": 3312,
+      "descripcion": "Mantenimiento y reparación especializado de maquinaria y equipo"
+    },
+    {
+      "clase": 3313,
+      "descripcion": "Mantenimiento y reparación especializado de equipo electrónico y óptico"
+    },
+    {
+      "clase": 3314,
+      "descripcion": "Mantenimiento y reparación especializado de equipoeléctrico"
+    },
+    {
+      "clase": 3315,
+      "descripcion": "Mantenimiento y reparación especializado de equipo de transporte"
+    },
+    {
+      "clase": 3319,
+      "descripcion": "Mantenimiento y reparación de otros tipos de equipos y sus componentes n.c.p."
+    },
+    {
+      "clase": 3320,
+      "descripcion": "Instalación especializada de maquinaria y equipo industrial"
+    },
+    {
+      "clase": 3511,
+      "descripcion": "Generación de energíaeléctrica"
+    },
+    {
+      "clase": 3512,
+      "descripcion": "Transmisión de energíaeléctrica"
+    },
+    {
+      "clase": 3513,
+      "descripcion": "Distribución de energíaeléctrica"
+    },
+    {
+      "clase": 3514,
+      "descripcion": "Comercialización de energíaeléctrica"
+    },
+    {
+      "clase": 3520,
+      "descripcion": "Fabricación de gas; distribución de combustibles gaseosos por tuberías"
+    },
+    {
+      "clase": 3530,
+      "descripcion": "Suministro de vapor y aire condicionado"
+    },
+    {
+      "clase": 3600,
+      "descripcion": "Captación; tratamiento y distribución de agua"
+    },
+    {
+      "clase": 3700,
+      "descripcion": "Evacuación y tratamiento de aguas residuales"
+    },
+    {
+      "clase": 3811,
+      "descripcion": "Recolección de desechos no peligrosos"
+    },
+    {
+      "clase": 3812,
+      "descripcion": "Recolección de desechos peligrosos"
+    },
+    {
+      "clase": 3821,
+      "descripcion": "Tratamiento y disposición de desechos no peligrosos"
+    },
+    {
+      "clase": 3822,
+      "descripcion": "Tratamiento y disposición de desechos peligrosos"
+    },
+    {
+      "clase": 3830,
+      "descripcion": "Recuperación de materiales"
+    },
+    {
+      "clase": 3900,
+      "descripcion": "Actividades de saneamiento ambiental y otros servicios de gestión de desechos"
+    },
+    {
+      "clase": 4111,
+      "descripcion": "Construcción de edificios residenciales"
+    },
+    {
+      "clase": 4112,
+      "descripcion": "Construcción de edificios no residenciales"
+    },
+    {
+      "clase": 4210,
+      "descripcion": "Construcción de carreteras y vías de ferrocarril"
+    },
+    {
+      "clase": 4220,
+      "descripcion": "Construcción de proyectos de servicio público"
+    },
+    {
+      "clase": 4290,
+      "descripcion": "Construcción de otras obras de ingeniería civil"
+    },
+    {
+      "clase": 4311,
+      "descripcion": "Demolición"
+    },
+    {
+      "clase": 4312,
+      "descripcion": "Preparación del terreno"
+    },
+    {
+      "clase": 4321,
+      "descripcion": "Instalacioneseléctricas"
+    },
+    {
+      "clase": 4322,
+      "descripcion": "Instalaciones de fontanería"
+    },
+    {
+      "clase": 4329,
+      "descripcion": "Otras instalaciones especializadas"
+    },
+    {
+      "clase": 4330,
+      "descripcion": "Terminación y acabado de edificios y obras de ingeniería civil"
+    },
+    {
+      "clase": 4390,
+      "descripcion": "Otras actividades especializadas para la construcción de edificios y obras de ingeniería civil"
+    },
+    {
+      "clase": 4511,
+      "descripcion": "Comercio de vehículos automotores nuevos"
+    },
+    {
+      "clase": 4512,
+      "descripcion": "Comercio de vehículos automotores usados"
+    },
+    {
+      "clase": 4520,
+      "descripcion": "Mantenimiento y reparación de vehículos automotores"
+    },
+    {
+      "clase": 4530,
+      "descripcion": "Comercio de partes"
+    },
+    {
+      "clase": 4541,
+      "descripcion": "Comercio de motocicletas y de sus partes"
+    },
+    {
+      "clase": 4542,
+      "descripcion": "Mantenimiento y reparación de motocicletas y de sus partes y piezas"
+    },
+    {
+      "clase": 4610,
+      "descripcion": "Comercio al por mayor a cambio de una retribución o por contrata"
+    },
+    {
+      "clase": 4620,
+      "descripcion": "Comercio al por mayor de materias primas"
+    },
+    {
+      "clase": 4631,
+      "descripcion": "Comercio al por mayor de productos alimenticios"
+    },
+    {
+      "clase": 4632,
+      "descripcion": "Comercio al por mayor de bebidas y tabaco"
+    },
+    {
+      "clase": 4641,
+      "descripcion": "Comercio al por mayor de productos textiles; productos confeccionados para uso doméstico"
+    },
+    {
+      "clase": 4642,
+      "descripcion": "Comercio al por mayor de prendas de vestir"
+    },
+    {
+      "clase": 4643,
+      "descripcion": "Comercio al por mayor de calzado"
+    },
+    {
+      "clase": 4644,
+      "descripcion": "Comercio al por mayor de aparatos y equipo de uso doméstico"
+    },
+    {
+      "clase": 4645,
+      "descripcion": "Comercio al por mayor de productos farmacéuticos"
+    },
+    {
+      "clase": 4649,
+      "descripcion": "Comercio al por mayor de otros utensilios domésticos n.c.p."
+    },
+    {
+      "clase": 4651,
+      "descripcion": "Comercio al por mayor de computadores"
+    },
+    {
+      "clase": 4652,
+      "descripcion": "Comercio al por mayor de equipo"
+    },
+    {
+      "clase": 4653,
+      "descripcion": "Comercio al por mayor de maquinaria y equipo agropecuarios"
+    },
+    {
+      "clase": 4659,
+      "descripcion": "Comercio al por mayor de otros tipos de maquinaria y equipo n.c.p."
+    },
+    {
+      "clase": 4661,
+      "descripcion": "Comercio al por mayor de combustibles sólidos"
+    },
+    {
+      "clase": 4662,
+      "descripcion": "Comercio al por mayor de metales y productos metalíferos"
+    },
+    {
+      "clase": 4663,
+      "descripcion": "Comercio al por mayor de materiales de construcción"
+    },
+    {
+      "clase": 4664,
+      "descripcion": "Comercio al por mayor de productos químicos básicos"
+    },
+    {
+      "clase": 4665,
+      "descripcion": "Comercio al por mayor de desperdicios"
+    },
+    {
+      "clase": 4669,
+      "descripcion": "Comercio al por mayor de otros productos n.c.p."
+    },
+    {
+      "clase": 4690,
+      "descripcion": "Comercio al por mayor no especializado"
+    },
+    {
+      "clase": 4711,
+      "descripcion": "Comercio al por menor en establecimientos no especializados con surtido compuesto principalmente por alimentos"
+    },
+    {
+      "clase": 4719,
+      "descripcion": "Comercio al por menor en establecimientos no especializados"
+    },
+    {
+      "clase": 4721,
+      "descripcion": "Comercio al por menor de productos agrícolas para el consumo en establecimientos especializados"
+    },
+    {
+      "clase": 4722,
+      "descripcion": "Comercio al por menor de leche"
+    },
+    {
+      "clase": 4723,
+      "descripcion": "Comercio al por menor de carnes (incluye aves de corral)"
+    },
+    {
+      "clase": 4724,
+      "descripcion": "Comercio al por menor de bebidas y productos del tabaco"
+    },
+    {
+      "clase": 4729,
+      "descripcion": "Comercio al por menor de otros productos alimenticios n.c.p."
+    },
+    {
+      "clase": 4731,
+      "descripcion": "Comercio al por menor de combustible automotriz"
+    },
+    {
+      "clase": 4732,
+      "descripcion": "Comercio al por menor de lubricantes (aceites"
+    },
+    {
+      "clase": 4741,
+      "descripcion": "Comercio al por menor de computadores"
+    },
+    {
+      "clase": 4742,
+      "descripcion": "Comercio al por menor de equipos y aparatos de sonido y de video"
+    },
+    {
+      "clase": 4751,
+      "descripcion": "Comercio al por menor de productos textiles en establecimientos especializados"
+    },
+    {
+      "clase": 4752,
+      "descripcion": "Comercio al por menor de artículos de ferretería"
+    },
+    {
+      "clase": 4753,
+      "descripcion": "Comercio al por menor de tapices"
+    },
+    {
+      "clase": 4754,
+      "descripcion": "Comercio al por menor de electrodomésticos y gasodomesticos de uso doméstico"
+    },
+    {
+      "clase": 4755,
+      "descripcion": "Comercio al por menor de artículos y utensilios de uso doméstico"
+    },
+    {
+      "clase": 4759,
+      "descripcion": "Comercio al por menor de otros artículos domésticos en establecimientos especializados"
+    },
+    {
+      "clase": 4761,
+      "descripcion": "Comercio al por menor de libros"
+    },
+    {
+      "clase": 4762,
+      "descripcion": "Comercio al por menor de artículos deportivos"
+    },
+    {
+      "clase": 4769,
+      "descripcion": "Comercio al por menor de otros artículos culturales y de entretenimiento n.c.p. en establecimientos especializados"
+    },
+    {
+      "clase": 4771,
+      "descripcion": "Comercio al por menor de prendas de vestir y sus accesorios (incluye artículos de piel) en establecimientos especializados"
+    },
+    {
+      "clase": 4772,
+      "descripcion": "Comercio al por menor de todo tipo de calzado y artículos de cuero y sucedíneos del cuero en establecimientos especializados."
+    },
+    {
+      "clase": 4773,
+      "descripcion": "Comercio al por menor de productos farmacéuticos y medicinales"
+    },
+    {
+      "clase": 4774,
+      "descripcion": "Comercio al por menor de otros productos nuevos en establecimientos especializados"
+    },
+    {
+      "clase": 4775,
+      "descripcion": "Comercio al por menor de artículos de segunda mano"
+    },
+    {
+      "clase": 4781,
+      "descripcion": "Comercio al por menor de alimentos"
+    },
+    {
+      "clase": 4782,
+      "descripcion": "Comercio al por menor de productos textiles"
+    },
+    {
+      "clase": 4789,
+      "descripcion": "Comercio al por menor de otros productos"
+    },
+    {
+      "clase": 4791,
+      "descripcion": "Comercio al por menor realizado a través de Internet"
+    },
+    {
+      "clase": 4792,
+      "descripcion": "Comercio al por menor realizado a través de casas de venta o por correo"
+    },
+    {
+      "clase": 4799,
+      "descripcion": "Otros tipos de comercio al por menor no realizado en establecimientos"
+    },
+    {
+      "clase": 4911,
+      "descripcion": "Transporte férreo de pasajeros"
+    },
+    {
+      "clase": 4912,
+      "descripcion": "Transporte férreo de carga"
+    },
+    {
+      "clase": 4921,
+      "descripcion": "Transporte de pasajeros"
+    },
+    {
+      "clase": 4922,
+      "descripcion": "Transporte mixto"
+    },
+    {
+      "clase": 4923,
+      "descripcion": "Transporte de carga por carretera"
+    },
+    {
+      "clase": 4930,
+      "descripcion": "Transporte por tuberías"
+    },
+    {
+      "clase": 5011,
+      "descripcion": "Transporte de pasajeros marítimo y de cabotaje"
+    },
+    {
+      "clase": 5012,
+      "descripcion": "Transporte de carga marítimo y de cabotaje"
+    },
+    {
+      "clase": 5021,
+      "descripcion": "Transporte fluvial de pasajeros"
+    },
+    {
+      "clase": 5022,
+      "descripcion": "Transporte fluvial de carga"
+    },
+    {
+      "clase": 5111,
+      "descripcion": "Transporte aéreo nacional de pasajeros"
+    },
+    {
+      "clase": 5112,
+      "descripcion": "Transporte aéreo internacional de pasajeros"
+    },
+    {
+      "clase": 5121,
+      "descripcion": "Transporte aéreo nacional de carga"
+    },
+    {
+      "clase": 5122,
+      "descripcion": "Transporte aéreo internacional de carga"
+    },
+    {
+      "clase": 5210,
+      "descripcion": "Almacenamiento y depósito"
+    },
+    {
+      "clase": 5221,
+      "descripcion": "Actividades de estaciones"
+    },
+    {
+      "clase": 5222,
+      "descripcion": "Actividades de puertos y servicios complementarios para el transporte acuático"
+    },
+    {
+      "clase": 5223,
+      "descripcion": "Actividades de aeropuertos"
+    },
+    {
+      "clase": 5224,
+      "descripcion": "Manipulación de carga"
+    },
+    {
+      "clase": 5229,
+      "descripcion": "Otras actividades complementarias al transporte"
+    },
+    {
+      "clase": 5310,
+      "descripcion": "Actividades postales nacionales"
+    },
+    {
+      "clase": 5320,
+      "descripcion": "Actividades de mensajería"
+    },
+    {
+      "clase": 5511,
+      "descripcion": "Alojamiento en hoteles"
+    },
+    {
+      "clase": 5512,
+      "descripcion": "Alojamiento en apartahoteles"
+    },
+    {
+      "clase": 5513,
+      "descripcion": "Alojamiento en centros vacacionales"
+    },
+    {
+      "clase": 5514,
+      "descripcion": "Alojamiento rural"
+    },
+    {
+      "clase": 5519,
+      "descripcion": "Otros tipos de alojamientos para visitantes"
+    },
+    {
+      "clase": 5520,
+      "descripcion": "Actividades de zonas de camping y parques para vehículos recreacionales"
+    },
+    {
+      "clase": 5530,
+      "descripcion": "Servicios por horas"
+    },
+    {
+      "clase": 5590,
+      "descripcion": "Otros tipos de alojamiento n.c.p."
+    },
+    {
+      "clase": 5611,
+      "descripcion": "Expendio a la mesa de comidas preparadas"
+    },
+    {
+      "clase": 5612,
+      "descripcion": "Expendio por autoservicio de comidas preparadas"
+    },
+    {
+      "clase": 5613,
+      "descripcion": "Expendio de comidas preparadas en cafeterías"
+    },
+    {
+      "clase": 5619,
+      "descripcion": "Otros tipos de expendio de comidas preparadas n.c.p."
+    },
+    {
+      "clase": 5621,
+      "descripcion": "Catering para eventos"
+    },
+    {
+      "clase": 5629,
+      "descripcion": "Actividades de otros servicios de comidas"
+    },
+    {
+      "clase": 5630,
+      "descripcion": "Expendio de bebidas alcohólicas para el consumo dentro del establecimiento"
+    },
+    {
+      "clase": 5811,
+      "descripcion": "Edición de libros"
+    },
+    {
+      "clase": 5812,
+      "descripcion": "Edición de directorios y listas de correo"
+    },
+    {
+      "clase": 5813,
+      "descripcion": "Edición de periódicos"
+    },
+    {
+      "clase": 5819,
+      "descripcion": "Otros trabajos de edición"
+    },
+    {
+      "clase": 5820,
+      "descripcion": "Edición de programas de informática (software)"
+    },
+    {
+      "clase": 5911,
+      "descripcion": "Actividades de producción de películas cinematográficas"
+    },
+    {
+      "clase": 5912,
+      "descripcion": "Actividades de posproducción de películas cinematográficas"
+    },
+    {
+      "clase": 5913,
+      "descripcion": "Actividades de distribución de películas cinematográficas"
+    },
+    {
+      "clase": 5914,
+      "descripcion": "Actividades de exhibición de películas cinematográficas y videos"
+    },
+    {
+      "clase": 5920,
+      "descripcion": "Actividades de grabación de sonido y edición de música"
+    },
+    {
+      "clase": 6010,
+      "descripcion": "Actividades de programación y transmisión en el servicio de radiodifusión sonora"
+    },
+    {
+      "clase": 6020,
+      "descripcion": "Actividades de programación y transmisión de televisión"
+    },
+    {
+      "clase": 6110,
+      "descripcion": "Actividades de telecomunicaciones alámbricas"
+    },
+    {
+      "clase": 6120,
+      "descripcion": "Actividades de telecomunicaciones inalámbricas"
+    },
+    {
+      "clase": 6130,
+      "descripcion": "Actividades de telecomunicación satelital"
+    },
+    {
+      "clase": 6190,
+      "descripcion": "Otras actividades de telecomunicaciones"
+    },
+    {
+      "clase": 6201,
+      "descripcion": "Actividades de desarrollo de sistemas informáticos (planificación"
+    },
+    {
+      "clase": 6202,
+      "descripcion": "Actividades de consultoría informática y actividades de administración de instalaciones informáticas"
+    },
+    {
+      "clase": 6209,
+      "descripcion": "Otras actividades de tecnologías de información y actividades de servicios informáticos"
+    },
+    {
+      "clase": 6311,
+      "descripcion": "Procesamiento de datos"
+    },
+    {
+      "clase": 6312,
+      "descripcion": "Portales web"
+    },
+    {
+      "clase": 6391,
+      "descripcion": "Actividades de agencias de noticias"
+    },
+    {
+      "clase": 6399,
+      "descripcion": "Otras actividades de servicio de información n.c.p."
+    },
+    {
+      "clase": 6411,
+      "descripcion": "Banco central"
+    },
+    {
+      "clase": 6412,
+      "descripcion": "Bancos comerciales"
+    },
+    {
+      "clase": 6421,
+      "descripcion": "Actividades de las corporaciones financieras"
+    },
+    {
+      "clase": 6422,
+      "descripcion": "Actividades de las compañías de financiamiento"
+    },
+    {
+      "clase": 6423,
+      "descripcion": "Banca de segundo piso"
+    },
+    {
+      "clase": 6424,
+      "descripcion": "Actividades de las cooperativas financieras"
+    },
+    {
+      "clase": 6431,
+      "descripcion": "Fideicomisos"
+    },
+    {
+      "clase": 6432,
+      "descripcion": "Fondos de cesantías"
+    },
+    {
+      "clase": 6491,
+      "descripcion": "Leasing financiero (arrendamiento financiero)"
+    },
+    {
+      "clase": 6492,
+      "descripcion": "Actividades financieras de fondos de empleados y otras formas asociativas del sector solidario"
+    },
+    {
+      "clase": 6493,
+      "descripcion": "Actividades de compra de cartera o factoring"
+    },
+    {
+      "clase": 6494,
+      "descripcion": "Otras actividades de distribución de fondos"
+    },
+    {
+      "clase": 6495,
+      "descripcion": "Instituciones especiales oficiales"
+    },
+    {
+      "clase": 6496,
+      "descripcion": "Capitalización"
+    },
+    {
+      "clase": 6499,
+      "descripcion": "Otras actividades de servicio financiero"
+    },
+    {
+      "clase": 6511,
+      "descripcion": "Seguros generales"
+    },
+    {
+      "clase": 6512,
+      "descripcion": "Seguros de vida"
+    },
+    {
+      "clase": 6513,
+      "descripcion": "Reaseguros"
+    },
+    {
+      "clase": 6515,
+      "descripcion": "Seguros de salud"
+    },
+    {
+      "clase": 6521,
+      "descripcion": "Servicios de seguros sociales de salud"
+    },
+    {
+      "clase": 6522,
+      "descripcion": "Servicios de seguros sociales de riesgos profesionales"
+    },
+    {
+      "clase": 6523,
+      "descripcion": "Servicios de seguros sociales en riesgos familia"
+    },
+    {
+      "clase": 6531,
+      "descripcion": "Régimen de prima media con prestación definida (RPM)"
+    },
+    {
+      "clase": 6532,
+      "descripcion": "Régimen de ahorro individual (RAI)"
+    },
+    {
+      "clase": 6611,
+      "descripcion": "Administración de mercados financieros"
+    },
+    {
+      "clase": 6612,
+      "descripcion": "Corretaje de valores y de contratos de productos básicos"
+    },
+    {
+      "clase": 6613,
+      "descripcion": "Otras actividades relacionadas con el mercado de valores"
+    },
+    {
+      "clase": 6614,
+      "descripcion": "Actividades de las casas de cambio"
+    },
+    {
+      "clase": 6615,
+      "descripcion": "Actividades de los profesionales de compra y venta de divisas"
+    },
+    {
+      "clase": 6619,
+      "descripcion": "Otras actividades auxiliares de las actividades de servicios financieros n.c.p."
+    },
+    {
+      "clase": 6621,
+      "descripcion": "Actividades de agentes y corredores de seguros"
+    },
+    {
+      "clase": 6629,
+      "descripcion": "Evaluación de riesgos y daños"
+    },
+    {
+      "clase": 6630,
+      "descripcion": "Actividades de administración de fondos"
+    },
+    {
+      "clase": 6810,
+      "descripcion": "Actividades inmobiliarias realizadas con bienes propios o arrendados"
+    },
+    {
+      "clase": 6820,
+      "descripcion": "Actividades inmobiliarias realizadas a cambio de una retribución o por contrata"
+    },
+    {
+      "clase": 6910,
+      "descripcion": "Actividades jurídicas"
+    },
+    {
+      "clase": 6920,
+      "descripcion": "Actividades de contabilidad"
+    },
+    {
+      "clase": 7011,
+      "descripcion": "Actividades de arquitectura"
+    },
+    {
+      "clase": 7012,
+      "descripcion": "Actividades de ingeniería y otras actividades conexas de consultoría técnica"
+    },
+    {
+      "clase": 7020,
+      "descripcion": "Actividades de consultoría de gestión"
+    },
+    {
+      "clase": 7110,
+      "descripcion": "Actividades de arquitectura e ingeniería y otras actividades conexas de consultoría técnica"
+    },
+    {
+      "clase": 7111,
+      "descripcion": "Actividades de arquitectura"
+    },
+    {
+      "clase": 7112,
+      "descripcion": "Actividades de arquitectura e ingeniería y otras actividades conexas de consultoría técnica"
+    },
+    {
+      "clase": 7120,
+      "descripcion": "Ensayos y análisis técnicos"
+    },
+    {
+      "clase": 7210,
+      "descripcion": "Investigaciones y desarrollo experimental en el campo de las ciencias naturales y la ingeniería"
+    },
+    {
+      "clase": 7220,
+      "descripcion": "Investigaciones y desarrollo experimental en el campo de las ciencias sociales y las humanidades"
+    },
+    {
+      "clase": 7310,
+      "descripcion": "Publicidad"
+    },
+    {
+      "clase": 7320,
+      "descripcion": "Estudios de mercado y realización de encuestas de opinión pública"
+    },
+    {
+      "clase": 7410,
+      "descripcion": "Actividades especializadas de diseño"
+    },
+    {
+      "clase": 7420,
+      "descripcion": "Actividades de fotografía"
+    },
+    {
+      "clase": 7490,
+      "descripcion": "Otras actividades profesionales"
+    },
+    {
+      "clase": 7500,
+      "descripcion": "Actividades veterinarias"
+    },
+    {
+      "clase": 7710,
+      "descripcion": "Alquiler y arrendamiento de vehículos automotores"
+    },
+    {
+      "clase": 7721,
+      "descripcion": "Alquiler y arrendamiento de equipo recreativo y deportivo"
+    },
+    {
+      "clase": 7722,
+      "descripcion": "Alquiler de videos y discos"
+    },
+    {
+      "clase": 7729,
+      "descripcion": "Alquiler y arrendamiento de otros efectos personales y enseres domésticos n.c.p."
+    },
+    {
+      "clase": 7730,
+      "descripcion": "Alquiler y arrendamiento de otros tipos de maquinaria"
+    },
+    {
+      "clase": 7740,
+      "descripcion": "Arrendamiento de propiedad intelectual y productos similares"
+    },
+    {
+      "clase": 7810,
+      "descripcion": "Actividades de agencias de colocación de empleo"
+    },
+    {
+      "clase": 7820,
+      "descripcion": "Actividades de empresas de servicios temporales (relacionados con empleo)"
+    },
+    {
+      "clase": 7830,
+      "descripcion": "Otras actividades de suministro de recurso humano"
+    },
+    {
+      "clase": 7911,
+      "descripcion": "Actividades de las agencias de viajes"
+    },
+    {
+      "clase": 7912,
+      "descripcion": "Actividades de operadores turísticos"
+    },
+    {
+      "clase": 7990,
+      "descripcion": "Otros servicios de reserva y actividades relacionadas"
+    },
+    {
+      "clase": 8010,
+      "descripcion": "Actividades de seguridad privada"
+    },
+    {
+      "clase": 8020,
+      "descripcion": "Actividades de servicios de sistemas de seguridad"
+    },
+    {
+      "clase": 8030,
+      "descripcion": "Actividades de detectives e investigadores privados"
+    },
+    {
+      "clase": 8110,
+      "descripcion": "Actividades combinadas de apoyo a instalaciones"
+    },
+    {
+      "clase": 8121,
+      "descripcion": "Limpieza general interior de edificios"
+    },
+    {
+      "clase": 8129,
+      "descripcion": "Otras actividades de limpieza de edificios e instalaciones industriales"
+    },
+    {
+      "clase": 8130,
+      "descripcion": "Actividades de paisajismo y servicios de mantenimiento conexos"
+    },
+    {
+      "clase": 8211,
+      "descripcion": "Actividades combinadas de servicios administrativos de oficina"
+    },
+    {
+      "clase": 8219,
+      "descripcion": "Fotocopiado"
+    },
+    {
+      "clase": 8220,
+      "descripcion": "Actividades de centros de llamadas (Call center)"
+    },
+    {
+      "clase": 8230,
+      "descripcion": "Organización de convenciones y eventos comerciales"
+    },
+    {
+      "clase": 8291,
+      "descripcion": "Actividades de agencias de cobranza y oficinas de calificación crediticia"
+    },
+    {
+      "clase": 8292,
+      "descripcion": "Actividades de envase y empaque"
+    },
+    {
+      "clase": 8299,
+      "descripcion": "Otras actividades de servicio de apoyo a las empresas n.c.p."
+    },
+    {
+      "clase": 8411,
+      "descripcion": "Actividades legislativas de la administración publica"
+    },
+    {
+      "clase": 8412,
+      "descripcion": "Actividades ejecutivas de la administración publica"
+    },
+    {
+      "clase": 8413,
+      "descripcion": "Regulación de las actividades de organismos que prestan servicios de salud"
+    },
+    {
+      "clase": 8414,
+      "descripcion": "Actividades reguladoras y facilitadoras de la actividad económica"
+    },
+    {
+      "clase": 8415,
+      "descripcion": "Actividades de los otros órganos de control"
+    },
+    {
+      "clase": 8421,
+      "descripcion": "Relaciones exteriores"
+    },
+    {
+      "clase": 8422,
+      "descripcion": "Actividades de defensa"
+    },
+    {
+      "clase": 8423,
+      "descripcion": "Orden público y actividades de seguridad"
+    },
+    {
+      "clase": 8424,
+      "descripcion": "Administración de justicia"
+    },
+    {
+      "clase": 8430,
+      "descripcion": "Actividades de planes de seguridad social de afiliación obligatoria"
+    },
+    {
+      "clase": 8511,
+      "descripcion": "Educación de la primera infancia"
+    },
+    {
+      "clase": 8512,
+      "descripcion": "Educación preescolar"
+    },
+    {
+      "clase": 8513,
+      "descripcion": "Educación básica primaria"
+    },
+    {
+      "clase": 8521,
+      "descripcion": "Educación básica secundaria"
+    },
+    {
+      "clase": 8522,
+      "descripcion": "Educación media académica"
+    },
+    {
+      "clase": 8523,
+      "descripcion": "Educación media técnica y de formación laboral"
+    },
+    {
+      "clase": 8530,
+      "descripcion": "Establecimientos que combinan diferentes niveles de educación"
+    },
+    {
+      "clase": 8541,
+      "descripcion": "Educación técnica profesional"
+    },
+    {
+      "clase": 8542,
+      "descripcion": "Educación tecnológica"
+    },
+    {
+      "clase": 8543,
+      "descripcion": "Educación de instituciones universitarias o de escuelas tecnológicas"
+    },
+    {
+      "clase": 8544,
+      "descripcion": "Educación de universidades"
+    },
+    {
+      "clase": 8551,
+      "descripcion": "Formación académica no formal"
+    },
+    {
+      "clase": 8552,
+      "descripcion": "Enseñanza deportiva y recreativa"
+    },
+    {
+      "clase": 8553,
+      "descripcion": "Enseñanza cultural"
+    },
+    {
+      "clase": 8559,
+      "descripcion": "Otros tipos de educación n.c.p."
+    },
+    {
+      "clase": 8560,
+      "descripcion": "Actividades de apoyo a la educación"
+    },
+    {
+      "clase": 8610,
+      "descripcion": "Actividades de hospitales y clínicas"
+    },
+    {
+      "clase": 8621,
+      "descripcion": "Actividades de la práctica médica"
+    },
+    {
+      "clase": 8622,
+      "descripcion": "Actividades de la práctica odontológica"
+    },
+    {
+      "clase": 8691,
+      "descripcion": "Actividades de apoyo diagnóstico"
+    },
+    {
+      "clase": 8692,
+      "descripcion": "Actividades de apoyo terapéutico"
+    },
+    {
+      "clase": 8699,
+      "descripcion": "Otras actividades de atención de la salud humana"
+    },
+    {
+      "clase": 8710,
+      "descripcion": "Actividades de atención residencial medicalizada de tipo general"
+    },
+    {
+      "clase": 8720,
+      "descripcion": "Actividades de atención residencial"
+    },
+    {
+      "clase": 8730,
+      "descripcion": "Actividades de atención en instituciones para el cuidado de personas mayores y/o discapacitadas"
+    },
+    {
+      "clase": 8790,
+      "descripcion": "Otras actividades de atención en instituciones con alojamiento"
+    },
+    {
+      "clase": 8810,
+      "descripcion": "Actividades de asistencia social sin alojamiento para personas mayores y discapacitadas"
+    },
+    {
+      "clase": 8891,
+      "descripcion": "Actividades de guarderia para niños y niñas"
+    },
+    {
+      "clase": 8899,
+      "descripcion": "Otras actividades de asistencia social n.c.p."
+    },
+    {
+      "clase": 9001,
+      "descripcion": "Creación literaria"
+    },
+    {
+      "clase": 9002,
+      "descripcion": "Creación musical"
+    },
+    {
+      "clase": 9003,
+      "descripcion": "Creación teatral"
+    },
+    {
+      "clase": 9004,
+      "descripcion": "Creación audiovisual"
+    },
+    {
+      "clase": 9005,
+      "descripcion": "Artes plásticas y visuales"
+    },
+    {
+      "clase": 9006,
+      "descripcion": "Actividades teatrales"
+    },
+    {
+      "clase": 9007,
+      "descripcion": "Actividades de espectáculos musicales en vivo"
+    },
+    {
+      "clase": 9008,
+      "descripcion": "Otras actividades de espectáculos en vivo"
+    },
+    {
+      "clase": 9101,
+      "descripcion": "Actividades de bibliotecas y archivos"
+    },
+    {
+      "clase": 9102,
+      "descripcion": "Actividades y funcionamiento de museos"
+    },
+    {
+      "clase": 9103,
+      "descripcion": "Actividades de jardines botánicos"
+    },
+    {
+      "clase": 9200,
+      "descripcion": "Actividades de juegos de azar y apuestas"
+    },
+    {
+      "clase": 9311,
+      "descripcion": "Gestión de instalaciones deportivas"
+    },
+    {
+      "clase": 9312,
+      "descripcion": "Actividades de clubes deportivos"
+    },
+    {
+      "clase": 9319,
+      "descripcion": "Otras actividades deportivas"
+    },
+    {
+      "clase": 9321,
+      "descripcion": "Actividades de parques de atracciones y parques temáticos"
+    },
+    {
+      "clase": 9329,
+      "descripcion": "Otras actividades recreativas y de esparcimiento n.c.p."
+    },
+    {
+      "clase": 9411,
+      "descripcion": "Actividades de asociaciones empresariales y de empleadores"
+    },
+    {
+      "clase": 9412,
+      "descripcion": "Actividades de asociaciones profesionales"
+    },
+    {
+      "clase": 9420,
+      "descripcion": "Actividades de sindicatos de empleados"
+    },
+    {
+      "clase": 9491,
+      "descripcion": "Actividades de asociaciones religiosas"
+    },
+    {
+      "clase": 9492,
+      "descripcion": "Actividades de asociaciones políticas"
+    },
+    {
+      "clase": 9499,
+      "descripcion": "Actividades de otras asociaciones n.c.p."
+    },
+    {
+      "clase": 9511,
+      "descripcion": "Mantenimiento y reparación de computadoras y de equipo periférico"
+    },
+    {
+      "clase": 9512,
+      "descripcion": "Mantenimiento y reparación de equipos de comunicación"
+    },
+    {
+      "clase": 9521,
+      "descripcion": "Mantenimiento y reparación de aparatos  electrónicos de consumo"
+    },
+    {
+      "clase": 9522,
+      "descripcion": "Mantenimiento y reparación de aparatos y equipos domésticos y de jardinería"
+    },
+    {
+      "clase": 9523,
+      "descripcion": "Reparación de calzado y artículos de cuero"
+    },
+    {
+      "clase": 9524,
+      "descripcion": "Reparación de muebles y accesorios para el hogar"
+    },
+    {
+      "clase": 9529,
+      "descripcion": "Mantenimiento y reparación de otros efectos personales y enseres domésticos"
+    },
+    {
+      "clase": 9601,
+      "descripcion": "Lavado y limpieza"
+    },
+    {
+      "clase": 9602,
+      "descripcion": "Peluquería y otros tratamientos de belleza"
+    },
+    {
+      "clase": 9603,
+      "descripcion": "Pompas fúnebres y actividades relacionadas"
+    },
+    {
+      "clase": 9609,
+      "descripcion": "Otras actividades de servicios personales n.c.p."
+    },
+    {
+      "clase": 9700,
+      "descripcion": "Actividades de los hogares individuales como empleadores de personal domestico"
+    },
+    {
+      "clase": 9810,
+      "descripcion": "Actividades no diferenciadas de los hogares individuales como productores de bienes para uso propio"
+    },
+    {
+      "clase": 9820,
+      "descripcion": "Actividades no diferenciadas de los hogares individuales como productores de servicios para uso propio"
+    },
+    {
+      "clase": 9900,
+      "descripcion": "Actividades de organizaciones y entidades extraterritoriales"
+    }
+  ]

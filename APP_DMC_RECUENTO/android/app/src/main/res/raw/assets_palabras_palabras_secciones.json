@@ -1,0 +1,86 @@
+[
+    {
+      "word": "A. Cultivo; cría de animales;  ganadería;  pesca",
+      "section": "A"
+    },
+    {
+      "word": "B. Explotación ; extracción ; minería",
+      "section": "B"
+    },
+    {
+      "word": "C. Fabricación ; elaboración ; transformación ; reconstrucción de productos ; mantenimiento y reparación de maquinaria",
+      "section": "C"
+    },
+    {
+      "word": "D. Energía ; electricidad",
+      "section": "D"
+    },
+    {
+      "word": "E. Acueducto ; aseo publico",
+      "section": "E"
+    },
+    {
+      "word": "F. Construcción",
+      "section": "F"
+    },
+    {
+      "word": "G. Comercio ; venta de productos ; reparación de vehículos",
+      "section": "G"
+    },
+    {
+      "word": "H. Transporte ; almacenamiento ; puertos marítimos ; aeropuertos ; terminales de carga y de pasajeros ; parqueaderos ; aduanas ; correo ; mensajería",
+      "section": "H"
+    },
+    {
+      "word": "I. Hoteles ; centros vacacionales ; moteles ; restaurantes ; cafeterías ; bares ; expendios de comida",
+      "section": "I"
+    },
+    {
+      "word": "J. Telecomunicaciones ; producción de películas ; televisión ; informática",
+      "section": "J"
+    },
+    {
+      "word": "K. Servicios financieros ; cooperativas ; seguros generales ; aseguradoras",
+      "section": "K"
+    },
+    {
+      "word": "L. Inmobiliarias",
+      "section": "L"
+    },
+    {
+      "word": "M. Servicios profesionales ; científicos y técnicos ; publicidad ; asesorías ; estudios de mercado ; veterinarias",
+      "section": "M"
+    },
+    {
+      "word": "N. Alquileres de bienes ; seguridad privada ; limpieza ; apoyo a las empresas ; call center ; agencias de empleo ; agencias de viajes",
+      "section": "N"
+    },
+    {
+      "word": "O. Administración pública ; gobierno ; defensa ; seguridad social",
+      "section": "O"
+    },
+    {
+      "word": "P. Educación",
+      "section": "P"
+    },
+    {
+      "word": "Q. Servicio de salud ; hospitales ; centros de salud ; asistencia social",
+      "section": "Q"
+    },
+    {
+      "word": "R. Actividad literaria ; musical ; teatral ; audiovisual ; cinema ; artística ; cultural ; bibliotecas ; museos ; actividades deportivas ; gimnasios ; esparcimiento ; parques de diversiones ; juegos de azar",
+      "section": "R"
+    },
+    {
+      "word": "S. Servicios personales ; iglesias ; partidos políticos ; lavanderías ; peluquerías ; centros estéticos ; tatuajes ; funerarias ; baños turcos ; masajes ; prostíbulos ; espiritismo ; agencias matrimoniales ; mantenimiento y reparación de aparatos domésticos",
+      "section": "S"
+    },
+    {
+      "word": "T. Hogar",
+      "section": "T"
+    },
+    {
+      "word": "U. Organizaciones internacionales",
+      "section": "U"
+    }
+  ]

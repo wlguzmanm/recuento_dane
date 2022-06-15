@@ -1,0 +1,279 @@
+<resources>
+    <string name="app_name">Re-Cuento</string>
+    <string name="version_app">Versión 1.0.0</string>
+    <string name="copyright_app">© 2022 - DANE, Colombia</string>
+
+
+    <string-array name="presencia_unidades_economicas">
+        <item>Si</item>
+        <item>No</item>
+        <item>No se logró realizar el conteo</item>
+    </string-array>
+
+    <string-array name="Novedades_cartograficas">
+        <item>Ninguna</item>
+        <item>División</item>
+        <item>Nueva</item>
+        <item>Unión</item>
+    </string-array>
+
+
+    <string-array name="codigo_supervisor">
+        <item>Supervisor 1</item>
+        <item>Supervisor 2</item>
+        <item>Supervisor 3</item>
+        <item>Supervisor 4</item>
+        <item>Supervisor 5</item>
+    </string-array>
+
+    <string-array name="codigo_enumerador">
+        <item>Enumerador 1</item>
+        <item>Enumerador 2</item>
+        <item>Enumerador 3</item>
+        <item>Enumerador 4</item>
+        <item>Enumerador 5</item>
+        <item>Enumerador 6</item>
+        <item>Enumerador 7</item>
+        <item>Enumerador 8</item>
+    </string-array>
+
+    <string-array name="departamento">
+        <item>BOYACÁ</item>
+    </string-array>
+
+
+    <string-array name="municipio">
+        <item>SOGAMOSO</item>
+    </string-array>
+
+    <string-array name="clase">
+        <item>Clase 1 (Cabecera Municipal)</item>
+        <item>Clase 2 (Centro Poblado)</item>
+        <item>Clase 3 (Corredor Económico)</item>
+    </string-array>
+
+
+    <string-array name="centro_poblado">
+        <item>MORCÁ</item>
+        <item>VANEGAS</item>
+        <item>ALCAPARRAL</item>
+        <item>MILAGRO Y PLAYITA</item>
+    </string-array>
+
+
+    <string-array name="sector_urbano">
+        <item>157592002050060001</item>
+    </string-array>
+
+    <string-array name="seccion_urbana">
+        <item>15759200205006000101</item>
+    </string-array>
+
+    <string-array name="manzana">
+        <item>1575920020500600010101</item>
+        <item>1575920020500600010102</item>
+        <item>1575920020500600010103</item>
+        <item>1575920020500600010104</item>
+        <item>1575920020500600010105</item>
+        <item>1575920020500600010106</item>
+        <item>1575920020500600010107</item>
+    </string-array>
+
+    <string-array name="area_trabajo">
+        <item>Barrio</item>
+        <item>Corregimiento</item>
+        <item>Vereda</item>
+        <item>Ranchería</item>
+        <item>Comunidad</item>
+    </string-array>
+
+
+    <string-array name="dir_a">
+        <item>Sin Vía</item>
+        <item>(AU) Autopista</item>
+        <item>(AV) Avenida</item>
+        <item>(AC) Avenida Calle</item>
+        <item>(BL) Boulevard</item>
+        <item>(CL) Calle</item>
+        <item>(CAM) Camino</item>
+        <item>(KR) Carrera</item>
+        <item>(CT) Carretera</item>
+        <item>(CQ) Circular</item>
+        <item>(CV) Circunvalar</item>
+        <item>(DG) Diagonal</item>
+        <item>(PRJ) Paraje</item>
+        <item>(PJ) Pasaje</item>
+        <item>(PS) Paseo</item>
+        <item>(TV) Transversal</item>
+        <item>(TC) Troncal</item>
+        <item>(VT) Variante</item>
+    </string-array>
+
+    <string-array name="sufijo">
+        <item>Sin sufijo</item>
+        <item>BIS</item>
+    </string-array>
+
+    <string-array name="cuadrante">
+        <item>Sin Cuadrante</item>
+        <item>ESTE</item>
+        <item>NORTE</item>
+        <item>OESTE</item>
+        <item>SUR</item>
+    </string-array>
+
+    <string-array name="complemento">
+        <item>Sin Complemento</item>
+        <item>(AD) Administración</item>
+        <item>(AE) Aeropuerto</item>
+        <item>(AGN) Agencia</item>
+        <item>(AG) Agrupación</item>
+        <item>(ALM) Almacén</item>
+        <item>(AL) Altillo</item>
+        <item>(APTDO) Apartado</item>
+        <item>(AS) Apartamento Sótano</item>
+        <item>(ASN) Asentamiento</item>
+        <item>(BR) Barrio</item>
+        <item>(BQ) Bloque</item>
+        <item>(BG) Bodega</item>
+        <item>(CA) Casa</item>
+        <item>(CAS) Caserio</item>
+        <item>(CU) Célula</item>
+        <item>(CC) Centro Comercial</item>
+    </string-array>
+
+
+    <string-array name="estado_unidad">
+        <item>Ocupado</item>
+        <item>Desocupado</item>
+        <item>Obra</item>
+    </string-array>
+
+    <string-array name="unidad_observacion">
+        <item>Establecimiento Fijo</item>
+        <item>Establecimiento Semifijo</item>
+        <item>Puesto Móvil</item>
+        <item>Vivienda con actividad económica</item>
+    </string-array>
+
+    <string-array name="unidad_observacion_1">
+        <item>Establecimiento Fijo</item>
+        <item>Establecimiento Semifijo</item>
+    </string-array>
+
+    <string-array name="unidad_observacion_2">
+        <item>Obra de edificación</item>
+    </string-array>
+
+
+    <string-array name="sector_economico">
+        <item>Comercio</item>
+        <item>Industria</item>
+        <item>Servicios</item>
+        <item>Transporte</item>
+        <item>Construcción</item>
+    </string-array>
+
+    <string-array name="sector_economico1">
+        <item>No aplica</item>
+    </string-array>
+
+    <string-array name="sector_economico2">
+        <item>Construcción</item>
+    </string-array>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="text_pregunta1">1. Departamento y Municipio</string>
+    <string name="text_pregunta1_1">Departamento</string>
+    <string name="text_pregunta1_2">Nombre del municipio o área no municipalizada y código</string>
+
+    <string name="text_pregunta2">2. Clase</string>
+    <string name="text_pregunta2_1">Clase</string>
+    <string name="text_pregunta2_2">Nombre de la localidad o comuna</string>
+    <string name="text_pregunta2_3">Nombre del centro poblado</string>
+    <string name="text_pregunta2_4">¿La unidad económica se encuentra al interior de un territorio étnico?</string>
+    <string name="text_pregunta2_4_Si">Si</string>
+    <string name="text_pregunta2_4_No">No</string>
+
+    <string name="text_pregunta2_5">Seleccione el territorio étnico</string>
+    <string name="text_pregunta2_5_1">Resguardo indígena</string>
+    <string name="text_pregunta2_5_2">Tierras de comunidad negra</string>
+    <string name="text_pregunta2_6">Seleccione el resguardo indígena</string>
+    <string name="text_pregunta2_7">Seleccione el territorio de la tierra de comunidad negra</string>
+
+    <string name="text_pregunta3">3. Área de coordinacion operativa y área operativa</string>
+    <string name="text_pregunta3_1">Área de coordinación operativa</string>
+    <string name="text_pregunta3_2">Área Operativa</string>
+
+    <string name="text_pregunta4">4. Unidad de Cobertura</string>
+    <string name="text_pregunta4_1">Código de Unidad Cobertura</string>
+    <string name="text_pregunta4_2">Código de ACER</string>
+
+    <string name="text_pregunta5">5. Dirección - Novedad.</string>
+    <string name="text_pregunta5_1">Nombre del barrio, vereda o corregimiento municial (si aplica)</string>
+    <string name="text_pregunta5_2">¿Existe presencia de alguna unidad de observacion en esta unidad de cobertura?</string>
+    <string name="text_pregunta5_2_Si">Si</string>
+    <string name="text_pregunta5_2_No">No</string>
+    <string name="text_pregunta5_3">Seleccione el tipo de novedad</string>
+    <string name="text_pregunta5_3_1">Parque</string>
+    <string name="text_pregunta5_3_2">Zona Verde</string>
+    <string name="text_pregunta5_3_3">Área Sin Desarrollar</string>
+    <string name="text_pregunta5_3_4">Uso Residencial</string>
+    <string name="text_pregunta5_3_5">Uso Institucional</string>
+    <string name="text_pregunta5_3_6">Orden Público</string>
+    <string name="text_pregunta5_3_7">Otros Motivos</string>
+
+    <string name="text_pregunta6">6. Dirección</string>
+    <string name="text_pregunta6_1">¿Obtiene dirección de unidad previa?</string>
+    <string name="text_pregunta6_2">Seleccione el tipo de dirección: </string>
+    <string name="text_pregunta6_3">¿Presenta novedades cartográficas?</string>
+
+    <string name="text_pregunta6_normalizador">Normalizador de Dirección</string>
+    <string name="text_pregunta6_1.0">6.1 Normalizador de Dirección</string>
+    <string name="text_pregunta6_1_1">Via Principal:</string>
+    <string name="text_pregunta6_1_2">Seleccione el tipo de vía Principal - VIP:</string>
+    <string name="text_pregunta6_1_3">Escriba el nombre común de vía principal:</string>
+    <string name="text_pregunta6_1_4">Escriba el número de vía principal:</string>
+    <string name="text_pregunta6_1_5">Escriba la letra, letra-letra o letra número que acompaña la vía principal:</string>
+    <string name="text_pregunta6_1_6">Seleccione sufijo de la vía principal:</string>
+    <string name="text_pregunta6_1_7">Escriba la letra, letra-letra o número-letra que acompaña el sufijo de VP: </string>
+    <string name="text_pregunta6_1_8">Seleccione el cuadrante de la vía principal:</string>
+
+    <string name="text_pregunta6_2_1">Via generadora:</string>
+    <string name="text_pregunta6_2_2">Escriba el número de la vía generadora:</string>
+    <string name="text_pregunta6_2_3">Escriba la letra, letra-letra o letra - número que acompaña la via generadora:</string>
+    <string name="text_pregunta6_2_4">Selecione sufijo de la vía generadora:</string>
+    <string name="text_pregunta6_2_5">Escriba la letra, letra-letrao número-letra que acompaña el sufijo de VG:</string>
+    <string name="text_pregunta6_2_6">Ingrese el úmero de la placa:</string>
+    <string name="text_pregunta6_2_7">Seleccione el cuadrante de la vía generadora:</string>
+    <string name="text_pregunta6_2_8">¿Desea añadir el complemento de la dirección?</string>
+    <string name="text_pregunta6_2_8_Si">Si</string>
+    <string name="text_pregunta6_2_8_No">No</string>
+
+    <string name="text_pregunta6_3_1">Complemento</string>
+    <string name="text_pregunta6_3_2">Seleccione el complemento de la dirección:</string>
+    <string name="text_pregunta6_3_3">Escriba el texto que acompaña el complemento:</string>
+    <string name="text_pregunta6_3_4">Dirección Completa</string>
+
+    <string name="text_pregunta7">7. Cantidad de unidades según</string>
+    <string name="text_pregunta7_1">Seleccione el estado de la unidad de observación:</string>
+    <string name="text_pregunta7_2">Seleccione el tipo de unidad de observación:</string>
+    <string name="text_pregunta7_3">Tipo de vendedor de calle:</string>
+    <string name="text_pregunta7_4">Seleccione el sector económico de la unidad:</string>
+    <string name="text_pregunta7_5">Nombre de la unidad de oservación:</string>
+    <string name="text_pregunta7_6">Observacion para la unidad:</string>
+
+
+
+
+    <string name="text_pregunta7_7">Clase</string>
+
+
+</resources>

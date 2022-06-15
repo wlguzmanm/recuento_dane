@@ -1,0 +1,2486 @@
+[
+  {
+    "palabras": "abogado servicios juridicos",
+    "ciiu": 6910
+  },
+  {
+    "palabras": "cultivo trigo",
+    "ciiu": "0111"
+  },
+  {
+    "palabras": "venta productos belleza",
+    "ciiu": 4645
+  },
+  {
+    "palabras": "montallantas",
+    "ciiu": 4520
+  },
+  {
+    "palabras": "deposito de cerveza",
+    "ciiu": 4632
+  },
+  {
+    "palabras": "chatarrerias",
+    "ciiu": 4665
+  },
+  {
+    "palabras": "tiendas de barrio",
+    "ciiu": 4711
+  },
+  {
+    "palabras": "surtifruver venta de frutas",
+    "ciiu": 4721
+  },
+  {
+    "palabras": "licoreras ventas",
+    "ciiu": 4724
+  },
+  {
+    "palabras": "cigarrerias ventas",
+    "ciiu": 4724
+  },
+  {
+    "palabras": "marqueterias servicio",
+    "ciiu": 4752
+  },
+  {
+    "palabras": "droguerias medicamentos",
+    "ciiu": 4773
+  },
+  {
+    "palabras": "tienda naturista",
+    "ciiu": 4773
+  },
+  {
+    "palabras": "perfumerias ventas",
+    "ciiu": 4773
+  },
+  {
+    "palabras": "floristerias",
+    "ciiu": 4774
+  },
+  {
+    "palabras": "joyerias ventas",
+    "ciiu": 4774
+  },
+  {
+    "palabras": "galerias de arte",
+    "ciiu": 4774
+  },
+  {
+    "palabras": "moteles servicios",
+    "ciiu": 5530
+  },
+  {
+    "palabras": "asadero de pollos",
+    "ciiu": 5611
+  },
+  {
+    "palabras": "casas de cambio",
+    "ciiu": 6614
+  },
+  {
+    "palabras": "alquiler de lavadoras",
+    "ciiu": 7729
+  },
+  {
+    "palabras": "agencias de empleo",
+    "ciiu": 7810
+  },
+  {
+    "palabras": "jardines infantiles",
+    "ciiu": 8891
+  },
+  {
+    "palabras": "jardin infancia",
+    "ciiu": 8511
+  },
+  {
+    "palabras": "SERVICIO DE MANICURE Y PEDICURE A DOMICILIO",
+    "ciiu": 9602
+  },
+  {
+    "palabras": "SERVICIOS MEDICOS DE URGENCIAS SIN INTERNACION",
+    "ciiu": 8621
+  },
+  {
+    "palabras": "SERVICIO DE SEGURIDAD NACIONAL",
+    "ciiu": 8422
+  },
+  {
+    "palabras": "ADMINISTRACION DE CENTRO COMERCIAL",
+    "ciiu": 6820
+  },
+  {
+    "palabras": "TRANSPORTE INFORMAL DE PASAJEROS EN MOTOTOCICLETA",
+    "ciiu": 4921
+  },
+  {
+    "palabras": "ENSEñANZA DE LA EDUCACION PRIMARIA Y SECUNDARIA",
+    "ciiu": 8530
+  },
+  {
+    "palabras": "RECOLECTANDO CAFE EN DIFERENTES FINCAS",
+    "ciiu": "0123"
+  },
+  {
+    "palabras": "SERVICIO DE REPARACION EN VIVIENDAS",
+    "ciiu": 4111
+  },
+  {
+    "palabras": "CULTIVO Y VENTA DE CAFE",
+    "ciiu": "0123"
+  },
+  {
+    "palabras": "TRANSPORTE INTERMUNICIPAL DE PASAJEROS",
+    "ciiu": 4921
+  },
+  {
+    "palabras": "PREPARACION Y VENTA DE COMIDAS A LA MESA",
+    "ciiu": 5611
+  },
+  {
+    "palabras": "RECOLECTA CAFE EN DIFERENTES FINCAS",
+    "ciiu": "0123"
+  },
+  {
+    "palabras": "TRANSPORTE INFORMAL DE PASAJEROS EN MOTO",
+    "ciiu": 4921
+  },
+  {
+    "palabras": "ADMINISTRACION DE RECURSOS MUNICIPALES",
+    "ciiu": 8412
+  },
+  {
+    "palabras": "CONSTRUCION DE CASAS",
+    "ciiu": 4111
+  },
+  {
+    "palabras": "EXTRACCION DE CARBON MINERAL",
+    "ciiu": "0510"
+  },
+  {
+    "palabras": "ELABORACION DE COMIDAS CORRIENTES",
+    "ciiu": 5619
+  },
+  {
+    "palabras": "CONSTRUCCION DE EDIFICIOS",
+    "ciiu": 4112
+  },
+  {
+    "palabras": "COMERCIO DE ROPA UNISEX AL POR MENOR",
+    "ciiu": 4771
+  },
+  {
+    "palabras": "PRESTACION DE SERVICIOS DE SALUD EN CLINICA",
+    "ciiu": 8610
+  },
+  {
+    "palabras": "PREPARACION Y VENTA DE COMIDAS CORRIENTES",
+    "ciiu": 5619
+  },
+  {
+    "palabras": "EXPLOTACION Y EXPORTACION DE CARBON MINERAL A CIELO ABIERTO",
+    "ciiu": "0510"
+  },
+  {
+    "palabras": "TRANSPORTE DE MERCANCIA A NIVEL NACIONAL",
+    "ciiu": 4923
+  },
+  {
+    "palabras": "VENTA DE VIVERES AL POR MENOR EN TIENDA",
+    "ciiu": 4711
+  },
+  {
+    "palabras": "SERVICIOS MEDICOS Y HOSPITALARIOS",
+    "ciiu": 8610
+  },
+  {
+    "palabras": "SERVICIO DE CAFE INTERNET",
+    "ciiu": 6190
+  },
+  {
+    "palabras": "HOGAR PARTICULAR",
+    "ciiu": 8121
+  },
+  {
+    "palabras": "SERVICIO Y REPARACION DE ELECTRODOMESTICOS",
+    "ciiu": 9522
+  },
+  {
+    "palabras": "PRODUCCION DE PLATANO",
+    "ciiu": "0122"
+  },
+  {
+    "palabras": "VENTA DE ROPA AL DETAL",
+    "ciiu": 4771
+  },
+  {
+    "palabras": "COMERCIALIZACION DE PRODUCTOS PARA LA CANASTA FAMILIAR AL POR MENOR",
+    "ciiu": 4711
+  },
+  {
+    "palabras": "CONSTRUCCION Y MEJORAMIENTO DE VIVIENDAS",
+    "ciiu": 4111
+  },
+  {
+    "palabras": "CONSULTAS MEDICAS EXTERNAS",
+    "ciiu": 8521
+  },
+  {
+    "palabras": "A LA PESCA ARTESANAL",
+    "ciiu": "0311"
+  },
+  {
+    "palabras": "VENTA DE ABARROTES AL DETAL",
+    "ciiu": 4711
+  },
+  {
+    "palabras": "SERVICIO DE EDUCACION FORMAL CICLO COMPLETO",
+    "ciiu": 8530
+  },
+  {
+    "palabras": "EDUCACION FORMAL CICLO COMPLETO",
+    "ciiu": 8530
+  },
+  {
+    "palabras": "TRANSPORTE INTERVEREDAL DE PASAJEROS EN MOTO",
+    "ciiu": 4921
+  },
+  {
+    "palabras": "FABRICACION DE COCINAS  INTEGRALES",
+    "ciiu": 3110
+  },
+  {
+    "palabras": "MANTENIMIENTO Y REPARACION DE MOTOCICLETAS",
+    "ciiu": 4542
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE INTERDEPARTAMENTAL DE CARGA",
+    "ciiu": 4923
+  },
+  {
+    "palabras": "TRANSPORTE TERRESTRE DE PASAJEROS",
+    "ciiu": 4921
+  },
+  {
+    "palabras": "SERVICIOS MEDICOS Y URGENCIA CON HOSPITALIZACION",
+    "ciiu": 8610
+  },
+  {
+    "palabras": "SERVICIOS DE TRANSPORTE DE PASAJEROS EN MOTO",
+    "ciiu": 4921
+  },
+  {
+    "palabras": "COMERCIO AL POR MENOR DE ROPA POR CATALOGO",
+    "ciiu": 4792
+  },
+  {
+    "palabras": "PREPARACION DE  TINTOS",
+    "ciiu": 5619
+  },
+  {
+    "palabras": "SERVICIO DE ASEO POR DIAS A HOGARES",
+    "ciiu": 8121
+  },
+  {
+    "palabras": "COMERCIALIZACION DE VIVERES Y ABARROTES AL POR MENOR",
+    "ciiu": 4711
+  },
+  {
+    "palabras": "ELABORACION DE TINTO",
+    "ciiu": 5519
+  },
+  {
+    "palabras": "PREPARACION Y VENTA DE PIZZAS",
+    "ciiu": 5619
+  },
+  {
+    "palabras": "PRESTAR DINERO AL INTERES",
+    "ciiu": 6499
+  },
+  {
+    "palabras": "SERVICIO DE EDUCACION EN PREESCOLAR Y BASICA PRIMARIA",
+    "ciiu": 8530
+  },
+  {
+    "palabras": "VENTA DE ROPA INTERIOR AL POR MENOR",
+    "ciiu": 4771
+  },
+  {
+    "palabras": "CRIA Y LEVANTE DE POLLO",
+    "ciiu": "0145"
+  },
+  {
+    "palabras": "PREPARACION DE ALIMENTOS SERVIDOS A LA MESA",
+    "ciiu": 5611
+  },
+  {
+    "palabras": "REFORMA DE VIVIENDAS",
+    "ciiu": 4111
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE DE PASAJERO EN MOTO",
+    "ciiu": 4921
+  },
+  {
+    "palabras": "SERVICIOS DE SALUD PUBLICA",
+    "ciiu": 8610
+  },
+  {
+    "palabras": "TRANSPORTE ESPECIAL DE PASAJEROS",
+    "ciiu": 4921
+  },
+  {
+    "palabras": "PREPARACION Y VENTA DE EMPANADAS DE FORMA AMBULANTE",
+    "ciiu": 5619
+  },
+  {
+    "palabras": "SERVICIO ASEO DE CASAS",
+    "ciiu": 8121
+  },
+  {
+    "palabras": "SERVICIO DE REPARACION Y MANTENIMIENTO AUTOMOTRIZ",
+    "ciiu": 4520
+  },
+  {
+    "palabras": "SERVICIO DE ESTUDIOS DIRIGIDOS",
+    "ciiu": 8559
+  },
+  {
+    "palabras": "SERVICIO DE EDUCACION EN PREESCOLAR BASICA PRIMARIA SECUNDARIA Y MEDIA",
+    "ciiu": 8530
+  },
+  {
+    "palabras": "SERVICIO DE ATENCION MEDICA SIN HOSPITALIZACION",
+    "ciiu": 8621
+  },
+  {
+    "palabras": "SERVICIO DE ATENCION MEDICA CON HOSPITALIZACION",
+    "ciiu": 8610
+  },
+  {
+    "palabras": "PRODUCCION DE BEBIDAS REFRESCANTES",
+    "ciiu": 1104
+  },
+  {
+    "palabras": "ELABORACION DE COMIDA RAPIDA",
+    "ciiu": 5619
+  },
+  {
+    "palabras": "ADMINISTRACION DE RECURSOS DEL MUNICIPIO",
+    "ciiu": 8412
+  },
+  {
+    "palabras": "ADMINISTRACION DE LOS RECURSOS PUBLICOS DEPARTAMENTALES",
+    "ciiu": 8412
+  },
+  {
+    "palabras": "TRANSPORTE INTERMUNICIPAL DE PASAJEROS EN BUS",
+    "ciiu": 4921
+  },
+  {
+    "palabras": "SERVICIO DE SALON DE BELLEZA",
+    "ciiu": 9602
+  },
+  {
+    "palabras": "PRODUCCION DE YUCA",
+    "ciiu": "0113"
+  },
+  {
+    "palabras": "PREPARACION DE COMIDA",
+    "ciiu": 5611
+  },
+  {
+    "palabras": "ELABORACION DE COMIDAS RAPIDAS SERVIDAS A LA MESA",
+    "ciiu": 5611
+  },
+  {
+    "palabras": "TRANSPORTE PUBLICO DE PASAJEROS EN MOTO",
+    "ciiu": 4921
+  },
+  {
+    "palabras": "TRANSPORTE PUBLICO DE PASAJEROS A NIVEL INTERMUNICIPAL",
+    "ciiu": 4921
+  },
+  {
+    "palabras": "SERVICIO DE TELEFONIA CELULAR",
+    "ciiu": 6110
+  },
+  {
+    "palabras": "CONSTRUCCION Y REFORMAS DE VIVIENDAS",
+    "ciiu": 4111
+  },
+  {
+    "palabras": "CONSTRUCCION DE TORRE DE APARTAMENTOS",
+    "ciiu": 4111
+  },
+  {
+    "palabras": "TRANSPORTE DE ALIMENTOS",
+    "ciiu": 4923
+  },
+  {
+    "palabras": "SERVICIO DE MANTENIMIENTO Y REPARACION DE MOTOS",
+    "ciiu": 4542
+  },
+  {
+    "palabras": "SERVICIO DE CUIDADO DE NIñO",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "SERVICIO DE CORTE Y TINTURA DE CABELLO",
+    "ciiu": 9602
+  },
+  {
+    "palabras": "REPARACION MECANICA DE AUTOS",
+    "ciiu": 4520
+  },
+  {
+    "palabras": "CONFECCION DE PRENDAS DE VESTIR SOBRE MEDIDAS",
+    "ciiu": 1410
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE ESPECIAL",
+    "ciiu": 4921
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE DE MATERIALES  PARA CONSTRUCCION",
+    "ciiu": 4923
+  },
+  {
+    "palabras": "COMERCIO AL POR MENOR DE ROPA Y CALZADO",
+    "ciiu": 4771
+  },
+  {
+    "palabras": "SERVICIO DE CUIDADO DE NIñOS A DIFERENTES HOGARES",
+    "ciiu": 9700
+  },
+  {
+    "palabras": "COMERCIO AL POR MENOR DE PAN",
+    "ciiu": 4729
+  },
+  {
+    "palabras": "VENTA DE PRODUCTOS  DE BELLEZA POR CATALOGO AL DETAL",
+    "ciiu": 4792
+  },
+  {
+    "palabras": "TRANSPORTE INDIVIDUAL DE PASAJEROS",
+    "ciiu": 4921
+  },
+  {
+    "palabras": "SERVICIO DE CORTE DE CABELLO UNISEX",
+    "ciiu": 9602
+  },
+  {
+    "palabras": "PRODUCCION LECHERA",
+    "ciiu": "0141"
+  },
+  {
+    "palabras": "PREPARAR FRITOS DE MAIZ",
+    "ciiu": 5619
+  },
+  {
+    "palabras": "SERVICIOS DE EDUCACION PRESCOLAR PRIMARIA Y SECUNDARIA",
+    "ciiu": 8530
+  },
+  {
+    "palabras": "SERVICIO DE HACER ASEO POR DIAS A DIFERENTES HOGARES",
+    "ciiu": 8121
+  },
+  {
+    "palabras": "SERVICIO DE CUIDADO DE VEHICULOS",
+    "ciiu": 5221
+  },
+  {
+    "palabras": "PREPARACION DE FRITANGA PARA CONSUMO INMEDIATO",
+    "ciiu": 5619
+  },
+  {
+    "palabras": "COMERCIO AL POR MENOR DE PERFUMES",
+    "ciiu": 4773
+  },
+  {
+    "palabras": "SERVICIOS DE AYUDANTE DE CONSTRUCCION",
+    "ciiu": 4112
+  },
+  {
+    "palabras": "SERVICIO DE URGENCIAS MEDICAS",
+    "ciiu": 8610
+  },
+  {
+    "palabras": "RECOLECCION DE CAFE EN DIFERENTES FINCAS",
+    "ciiu": "0123"
+  },
+  {
+    "palabras": "VENTA DE ARTICULOS MISCELANEOS AL POR MENOR",
+    "ciiu": 4719
+  },
+  {
+    "palabras": "SERVICIO DE LAVADO DE AUTOMOVILES",
+    "ciiu": 4520
+  },
+  {
+    "palabras": "VENTA AL POR MENOR DE REPUESTOS PARA MOTOS",
+    "ciiu": 4542
+  },
+  {
+    "palabras": "VENTA DE CASAS POR COMISION",
+    "ciiu": 6820
+  },
+  {
+    "palabras": "escuelas modelaje ropa",
+    "ciiu": 8559
+  },
+  {
+    "palabras": "institutos idiomas",
+    "ciiu": 8559
+  },
+  {
+    "palabras": "cirujanos consultorios",
+    "ciiu": 8621
+  },
+  {
+    "palabras": "consultorios cirujanos dentales",
+    "ciiu": 8622
+  },
+  {
+    "palabras": "servicios adopcion",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "periodistas independientes",
+    "ciiu": 9001
+  },
+  {
+    "palabras": "compañias teatro danza",
+    "ciiu": 9006
+  },
+  {
+    "palabras": "compaÑias teatro",
+    "ciiu": 9006
+  },
+  {
+    "palabras": "teatros comunitarios",
+    "ciiu": 9006
+  },
+  {
+    "palabras": "bibliotecas",
+    "ciiu": 9101
+  },
+  {
+    "palabras": "biblioteca",
+    "ciiu": 9101
+  },
+  {
+    "palabras": "bibliotecas archivos",
+    "ciiu": 9101
+  },
+  {
+    "palabras": "bibliotecas circulacion",
+    "ciiu": 9101
+  },
+  {
+    "palabras": "bibliotecas moviles",
+    "ciiu": 9101
+  },
+  {
+    "palabras": "bibliotecas prestan libros",
+    "ciiu": 9101
+  },
+  {
+    "palabras": "bibliotecas publicas",
+    "ciiu": 9101
+  },
+  {
+    "palabras": "bibliotecas referencia",
+    "ciiu": 9101
+  },
+  {
+    "palabras": "cinematecas bibliotecas",
+    "ciiu": 9101
+  },
+  {
+    "palabras": "museos arte",
+    "ciiu": 9102
+  },
+  {
+    "palabras": "museos historicos",
+    "ciiu": 9102
+  },
+  {
+    "palabras": "casinos",
+    "ciiu": 9200
+  },
+  {
+    "palabras": "pistas patinaje hielo",
+    "ciiu": 9311
+  },
+  {
+    "palabras": "clubes deportivos",
+    "ciiu": 9312
+  },
+  {
+    "palabras": "parques tematicos",
+    "ciiu": 9321
+  },
+  {
+    "palabras": "asociaciones dietistas",
+    "ciiu": 9412
+  },
+  {
+    "palabras": "sindicatos empleados",
+    "ciiu": 9420
+  },
+  {
+    "palabras": "clubes sociales",
+    "ciiu": 9499
+  },
+  {
+    "palabras": "organizaciones jovenes",
+    "ciiu": 9499
+  },
+  {
+    "palabras": "servicio lavado alfombras",
+    "ciiu": 9601
+  },
+  {
+    "palabras": "tintorerias auto servicio",
+    "ciiu": 9601
+  },
+  {
+    "palabras": "funerarias",
+    "ciiu": 9603
+  },
+  {
+    "palabras": "fabricacion papel lija",
+    "ciiu": 2399
+  },
+  {
+    "palabras": "fabricacion hierro lingotes",
+    "ciiu": 2410
+  },
+  {
+    "palabras": "fundicion refinacion primaria oro",
+    "ciiu": 2421
+  },
+  {
+    "palabras": "fabricacion barras varillas angulos perfiles",
+    "ciiu": 2429
+  },
+  {
+    "palabras": "fabricacion uniones metalicas tuberia",
+    "ciiu": 2431
+  },
+  {
+    "palabras": "fundicion metales ferrosos",
+    "ciiu": 2432
+  },
+  {
+    "palabras": "fabricacion fusiles",
+    "ciiu": 2520
+  },
+  {
+    "palabras": "recubrimiento metales",
+    "ciiu": 2591
+  },
+  {
+    "palabras": "talleres soldadura autogena",
+    "ciiu": 2592
+  },
+  {
+    "palabras": "fabricacion cuchillos mesa",
+    "ciiu": 2593
+  },
+  {
+    "palabras": "fabricacion guadañas",
+    "ciiu": 2593
+  },
+  {
+    "palabras": "fabricacion cadenas",
+    "ciiu": 2599
+  },
+  {
+    "palabras": "fabricacion resistencias electricas",
+    "ciiu": 2610
+  },
+  {
+    "palabras": "fabricacion alarmas autos",
+    "ciiu": 2630
+  },
+  {
+    "palabras": "fabricacion telefonos celulares",
+    "ciiu": 2630
+  },
+  {
+    "palabras": "fabricacion aparatos electronicos consumo",
+    "ciiu": 2640
+  },
+  {
+    "palabras": "fabricacion microfonos",
+    "ciiu": 2640
+  },
+  {
+    "palabras": "fabricacion barometros",
+    "ciiu": 2651
+  },
+  {
+    "palabras": "fabricacion contadores agua",
+    "ciiu": 2651
+  },
+  {
+    "palabras": "fabricacion relojes alarma",
+    "ciiu": 2652
+  },
+  {
+    "palabras": "fabricacion lentes fotograficos",
+    "ciiu": 2670
+  },
+  {
+    "palabras": "fabricacion lupas",
+    "ciiu": 2670
+  },
+  {
+    "palabras": "fabricacion conectores soldadura",
+    "ciiu": 2712
+  },
+  {
+    "palabras": "fabricacion interruptores seguridad",
+    "ciiu": 2712
+  },
+  {
+    "palabras": "fabricacion cables energia electrica",
+    "ciiu": 2731
+  },
+  {
+    "palabras": "fabricacion avisos luminosos",
+    "ciiu": 2740
+  },
+  {
+    "palabras": "fabricacion faroles sellados",
+    "ciiu": 2740
+  },
+  {
+    "palabras": "fabricacion lamparas electricas",
+    "ciiu": 2740
+  },
+  {
+    "palabras": "fabricacion linternas",
+    "ciiu": 2740
+  },
+  {
+    "palabras": "fabricacion calentadores piscinas",
+    "ciiu": 2750
+  },
+  {
+    "palabras": "fabricacion cocinas electricas",
+    "ciiu": 2750
+  },
+  {
+    "palabras": "fabricacion estufas cocinas gas domesticas",
+    "ciiu": 2750
+  },
+  {
+    "palabras": "fabricacion conductos electricos",
+    "ciiu": 2790
+  },
+  {
+    "palabras": "fabricacion motores gasolina",
+    "ciiu": 2811
+  },
+  {
+    "palabras": "fabricacion manguera hidraulicas caucho",
+    "ciiu": 2812
+  },
+  {
+    "palabras": "fabricacion bombas vacio",
+    "ciiu": 2813
+  },
+  {
+    "palabras": "fabricacion duchas plasticas",
+    "ciiu": 2813
+  },
+  {
+    "palabras": "fabricacion hidrantes",
+    "ciiu": 2813
+  },
+  {
+    "palabras": "fabricacion cojinetes lisos",
+    "ciiu": 2814
+  },
+  {
+    "palabras": "fabricacion gatos hidraulicos",
+    "ciiu": 2816
+  },
+  {
+    "palabras": "fabricacion cargadores toners",
+    "ciiu": 2817
+  },
+  {
+    "palabras": "fabricacion taladros manuales motorizados",
+    "ciiu": 2818
+  },
+  {
+    "palabras": "fabricacion cuartos frios",
+    "ciiu": 2819
+  },
+  {
+    "palabras": "fabricacion extinguidores incendios",
+    "ciiu": 2819
+  },
+  {
+    "palabras": "fabricacion filtros aire",
+    "ciiu": 2819
+  },
+  {
+    "palabras": "fabricacion incubadoras electricas",
+    "ciiu": 2821
+  },
+  {
+    "palabras": "fabricacion maquinaria martillos forja",
+    "ciiu": 2822
+  },
+  {
+    "palabras": "fabricacion sierras cortar metales",
+    "ciiu": 2822
+  },
+  {
+    "palabras": "fabricacion barrenas mineria",
+    "ciiu": 2824
+  },
+  {
+    "palabras": "fabricacion excavadoras",
+    "ciiu": 2824
+  },
+  {
+    "palabras": "fabricacion hornos panaderia",
+    "ciiu": 2825
+  },
+  {
+    "palabras": "fabricacion maquinaria sombreros",
+    "ciiu": 2826
+  },
+  {
+    "palabras": "fabricacion frotadores zapatas freno",
+    "ciiu": 2930
+  },
+  {
+    "palabras": "fabricacion pisos automotores",
+    "ciiu": 2930
+  },
+  {
+    "palabras": "fabricacion canoas",
+    "ciiu": 3012
+  },
+  {
+    "palabras": "fabricacion embarcaciones",
+    "ciiu": 3012
+  },
+  {
+    "palabras": "fabricacion vagones cisterna",
+    "ciiu": 3020
+  },
+  {
+    "palabras": "fabricacion bicicletas carreras",
+    "ciiu": 3092
+  },
+  {
+    "palabras": "fabricacion sillas ruedas",
+    "ciiu": 3092
+  },
+  {
+    "palabras": "fabricacion carruajes tirados caballos",
+    "ciiu": 3099
+  },
+  {
+    "palabras": "fabricacion baules cedro",
+    "ciiu": 3110
+  },
+  {
+    "palabras": "fabricacion butacos mimbre bambu",
+    "ciiu": 3110
+  },
+  {
+    "palabras": "fabricacion camas metalicas",
+    "ciiu": 3110
+  },
+  {
+    "palabras": "fabricacion casilleros madera",
+    "ciiu": 3110
+  },
+  {
+    "palabras": "fabricacion instrumentos musicales",
+    "ciiu": 3220
+  },
+  {
+    "palabras": "fabricacion flautas",
+    "ciiu": 3220
+  },
+  {
+    "palabras": "fabricacion instrumentos musicales viento",
+    "ciiu": 3220
+  },
+  {
+    "palabras": "fabricacion accesorios instrumentos musicales",
+    "ciiu": 3220
+  },
+  {
+    "palabras": "fabricacion articulos deporte atletismo",
+    "ciiu": 3230
+  },
+  {
+    "palabras": "fabricacion balones futbol",
+    "ciiu": 3230
+  },
+  {
+    "palabras": "fabricacion cebos pesca",
+    "ciiu": 3230
+  },
+  {
+    "palabras": "fabricacion equipo gimnasio",
+    "ciiu": 3230
+  },
+  {
+    "palabras": "fabricacion juegos ajedrez",
+    "ciiu": 3240
+  },
+  {
+    "palabras": "fabricacion calzado ortopedico",
+    "ciiu": 3250
+  },
+  {
+    "palabras": "fabricacion gafas seguridad",
+    "ciiu": 3250
+  },
+  {
+    "palabras": "fabricacion ataudes",
+    "ciiu": 3290
+  },
+  {
+    "palabras": "fabricacion bastones caminar",
+    "ciiu": 3290
+  },
+  {
+    "palabras": "fabricacion cascos seguridad",
+    "ciiu": 3290
+  },
+  {
+    "palabras": "fabricacion cepillos alambre",
+    "ciiu": 3290
+  },
+  {
+    "palabras": "fabricacion escobas",
+    "ciiu": 3290
+  },
+  {
+    "palabras": "fabricacion joyeria falsa fantasia",
+    "ciiu": 3290
+  },
+  {
+    "palabras": "reparacion maquinaria papel",
+    "ciiu": 3312
+  },
+  {
+    "palabras": "reparacion equipos fotografia camaras",
+    "ciiu": 3313
+  },
+  {
+    "palabras": "reparacion redes pesca",
+    "ciiu": 3319
+  },
+  {
+    "palabras": "aparatos electricos instalacion",
+    "ciiu": 3320
+  },
+  {
+    "palabras": "instalacion hornos calderas",
+    "ciiu": 3320
+  },
+  {
+    "palabras": "basureros operacion",
+    "ciiu": 3821
+  },
+  {
+    "palabras": "operacion basureros",
+    "ciiu": 3821
+  },
+  {
+    "palabras": "eliminacion desechos peligrosos",
+    "ciiu": 3822
+  },
+  {
+    "palabras": "hoteles privados",
+    "ciiu": 5511
+  },
+  {
+    "palabras": "clubes nocturnos",
+    "ciiu": 5630
+  },
+  {
+    "palabras": "edicion directorios",
+    "ciiu": 5812
+  },
+  {
+    "palabras": "edicion afiches",
+    "ciiu": 5819
+  },
+  {
+    "palabras": "archivos musica",
+    "ciiu": 5912
+  },
+  {
+    "palabras": "distribucion cintas television",
+    "ciiu": 5913
+  },
+  {
+    "palabras": "edicion canciones",
+    "ciiu": 5920
+  },
+  {
+    "palabras": "edicion partituras",
+    "ciiu": 5920
+  },
+  {
+    "palabras": "servicios configuracion computadores",
+    "ciiu": 6209
+  },
+  {
+    "palabras": "fondos inversion hipotecaria",
+    "ciiu": 6431
+  },
+  {
+    "palabras": "fondos cesantias",
+    "ciiu": 6432
+  },
+  {
+    "palabras": "sociedades cartera inversion",
+    "ciiu": 6493
+  },
+  {
+    "palabras": "planes seguros hipotecarios",
+    "ciiu": 6511
+  },
+  {
+    "palabras": "seguros capitalizacion",
+    "ciiu": 6514
+  },
+  {
+    "palabras": "servicios salud prepagada",
+    "ciiu": 6515
+  },
+  {
+    "palabras": "servicio caja compensacion familiar",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "planes pension",
+    "ciiu": 6531
+  },
+  {
+    "palabras": "agencias corredores bolsa",
+    "ciiu": 6612
+  },
+  {
+    "palabras": "corredores bolsa",
+    "ciiu": 6612
+  },
+  {
+    "palabras": "agencias fiduciarias",
+    "ciiu": 6619
+  },
+  {
+    "palabras": "agencias seguros generales",
+    "ciiu": 6621
+  },
+  {
+    "palabras": "asesores planes seguros",
+    "ciiu": 6621
+  },
+  {
+    "palabras": "asesores arquitectonicos",
+    "ciiu": 7111
+  },
+  {
+    "palabras": "ingenieros consultorios privados",
+    "ciiu": 7112
+  },
+  {
+    "palabras": "servicios asesoria quimica",
+    "ciiu": 7112
+  },
+  {
+    "palabras": "servicios ingenieria mecanica",
+    "ciiu": 7112
+  },
+  {
+    "palabras": "inspeccion tecnica vehiculos",
+    "ciiu": 7120
+  },
+  {
+    "palabras": "laboratorios ensayo alimentos",
+    "ciiu": 7120
+  },
+  {
+    "palabras": "investigacion comercial campo economia",
+    "ciiu": 7220
+  },
+  {
+    "palabras": "publicidad",
+    "ciiu": 7310
+  },
+  {
+    "palabras": "servicio diseño grafico",
+    "ciiu": 7310
+  },
+  {
+    "palabras": "estudios fotograficos",
+    "ciiu": 7420
+  },
+  {
+    "palabras": "alquiler televisores",
+    "ciiu": 7730
+  },
+  {
+    "palabras": "detectives privados",
+    "ciiu": 8030
+  },
+  {
+    "palabras": "cultivo zanahorias",
+    "ciiu": "0113"
+  },
+  {
+    "palabras": "extraccion yeso",
+    "ciiu": "0811"
+  },
+  {
+    "palabras": "extraccion azufre",
+    "ciiu": "0891"
+  },
+  {
+    "palabras": "purificacion sal marina",
+    "ciiu": "0892"
+  },
+  {
+    "palabras": "perforacion contrato obtener petroleo gas",
+    "ciiu": "0910"
+  },
+  {
+    "palabras": "trituracion piedra caliza contrato",
+    "ciiu": "0990"
+  },
+  {
+    "palabras": "procesamiento carne fresca cerdo",
+    "ciiu": 1011
+  },
+  {
+    "palabras": "fabricacion maiz enlatado",
+    "ciiu": 1020
+  },
+  {
+    "palabras": "fabricacion harina maiz",
+    "ciiu": 1051
+  },
+  {
+    "palabras": "molienda arroz",
+    "ciiu": 1051
+  },
+  {
+    "palabras": "fabricacion almidon arroz",
+    "ciiu": 1052
+  },
+  {
+    "palabras": "fabricacion cafe instantaneo",
+    "ciiu": 1063
+  },
+  {
+    "palabras": "ingenios azucar caña",
+    "ciiu": 1071
+  },
+  {
+    "palabras": "fabricacion condimentos",
+    "ciiu": 1089
+  },
+  {
+    "palabras": "fabricacion leche polvo lactantes",
+    "ciiu": 1089
+  },
+  {
+    "palabras": "fabricacion levadura seca",
+    "ciiu": 1089
+  },
+  {
+    "palabras": "fabricacion tejidos anchos lana",
+    "ciiu": 1312
+  },
+  {
+    "palabras": "fabricacion bolsas lona dormir",
+    "ciiu": 1392
+  },
+  {
+    "palabras": "fabricacion carpas lona",
+    "ciiu": 1392
+  },
+  {
+    "palabras": "fabricacion cobijas algodon",
+    "ciiu": 1392
+  },
+  {
+    "palabras": "fabricacion cintas telas tejidas",
+    "ciiu": 1399
+  },
+  {
+    "palabras": "fabricacion entretelas algodon",
+    "ciiu": 1399
+  },
+  {
+    "palabras": "confeccion delantales cuero",
+    "ciiu": 1410
+  },
+  {
+    "palabras": "confeccion jeans niño",
+    "ciiu": 1410
+  },
+  {
+    "palabras": "confeccion overoles trabajo",
+    "ciiu": 1410
+  },
+  {
+    "palabras": "fabrica prendas vestir",
+    "ciiu": 1410
+  },
+  {
+    "palabras": "maquila confeccion ropa",
+    "ciiu": 1410
+  },
+  {
+    "palabras": "fabricacion pisos madera",
+    "ciiu": 1610
+  },
+  {
+    "palabras": "fabricacion madera contrachapada",
+    "ciiu": 1620
+  },
+  {
+    "palabras": "fabricacion marcos madera puertas ventanas",
+    "ciiu": 1630
+  },
+  {
+    "palabras": "fabricacion cajas madera",
+    "ciiu": 1640
+  },
+  {
+    "palabras": "fabricacion canastas mimbre caña",
+    "ciiu": 1690
+  },
+  {
+    "palabras": "fabricacion cucharas madera",
+    "ciiu": 1690
+  },
+  {
+    "palabras": "fabricas papel periodico",
+    "ciiu": 1701
+  },
+  {
+    "palabras": "fabricacion conos carton",
+    "ciiu": 1709
+  },
+  {
+    "palabras": "fabricacion gas coque proceso coquizacion",
+    "ciiu": 1910
+  },
+  {
+    "palabras": "refinacion petroleo crudo",
+    "ciiu": 1921
+  },
+  {
+    "palabras": "fabricacion lactato sodio",
+    "ciiu": 2011
+  },
+  {
+    "palabras": "fabricacion caucho isopreno",
+    "ciiu": 2014
+  },
+  {
+    "palabras": "fabricacion dentifricos",
+    "ciiu": 2023
+  },
+  {
+    "palabras": "fabricacion desodorantes",
+    "ciiu": 2023
+  },
+  {
+    "palabras": "fabricacion esencias",
+    "ciiu": 2029
+  },
+  {
+    "palabras": "fabricacion fibras celulosicas",
+    "ciiu": 2030
+  },
+  {
+    "palabras": "fabricacion biotina",
+    "ciiu": 2100
+  },
+  {
+    "palabras": "fabricacion llantas caucho automoviles",
+    "ciiu": 2211
+  },
+  {
+    "palabras": "fabricacion guantes cirugia",
+    "ciiu": 2219
+  },
+  {
+    "palabras": "fabricacion mangueras jardin caucho",
+    "ciiu": 2219
+  },
+  {
+    "palabras": "fabricacion accesorios caucho electrodomesticos",
+    "ciiu": 2219
+  },
+  {
+    "palabras": "fabricacion peliculas plastico",
+    "ciiu": 2221
+  },
+  {
+    "palabras": "fabricacion caperuzas lamparas",
+    "ciiu": 2229
+  },
+  {
+    "palabras": "fabricacion ceniceros vidrio",
+    "ciiu": 2310
+  },
+  {
+    "palabras": "fabricacion divisiones vidrio baño",
+    "ciiu": 2310
+  },
+  {
+    "palabras": "fabricacion floreros vidrio",
+    "ciiu": 2310
+  },
+  {
+    "palabras": "fabricacion lavaderos fibra vidrio",
+    "ciiu": 2310
+  },
+  {
+    "palabras": "fabricacion tubos gres",
+    "ciiu": 2392
+  },
+  {
+    "palabras": "descontaminacion suelos",
+    "ciiu": 3900
+  },
+  {
+    "palabras": "renovacion viviendas",
+    "ciiu": 4111
+  },
+  {
+    "palabras": "teatros construccion",
+    "ciiu": 4112
+  },
+  {
+    "palabras": "puentes construccion",
+    "ciiu": 4210
+  },
+  {
+    "palabras": "pozos agua profundos",
+    "ciiu": 4220
+  },
+  {
+    "palabras": "subdivision terrenos residenciales",
+    "ciiu": 4290
+  },
+  {
+    "palabras": "demolicion casas contratistas",
+    "ciiu": 4311
+  },
+  {
+    "palabras": "relleno terrenos",
+    "ciiu": 4312
+  },
+  {
+    "palabras": "instalacion telefonica",
+    "ciiu": 4321
+  },
+  {
+    "palabras": "instalacion ventilacion edificios",
+    "ciiu": 4322
+  },
+  {
+    "palabras": "instalacion vidrios ventanas",
+    "ciiu": 4330
+  },
+  {
+    "palabras": "construccion piscinas bajo techo",
+    "ciiu": 4390
+  },
+  {
+    "palabras": "excavacion pozos agua",
+    "ciiu": 4390
+  },
+  {
+    "palabras": "instalacion mantenimiento señales",
+    "ciiu": 4390
+  },
+  {
+    "palabras": "reparacion obras hormigon",
+    "ciiu": 4390
+  },
+  {
+    "palabras": "trabajos fachadas revestidas",
+    "ciiu": 4390
+  },
+  {
+    "palabras": "comercio camionetas nuevas",
+    "ciiu": 4511
+  },
+  {
+    "palabras": "concesionarios vehiculos nuevos",
+    "ciiu": 4511
+  },
+  {
+    "palabras": "servicio lavado automatico carros",
+    "ciiu": 4520
+  },
+  {
+    "palabras": "pollos venta mayor",
+    "ciiu": 4620
+  },
+  {
+    "palabras": "dulces venta mayor",
+    "ciiu": 4631
+  },
+  {
+    "palabras": "pescado curado venta mayor",
+    "ciiu": 4631
+  },
+  {
+    "palabras": "vinos venta mayor",
+    "ciiu": 4632
+  },
+  {
+    "palabras": "peleteros mayor",
+    "ciiu": 4641
+  },
+  {
+    "palabras": "refrigeradores gas venta mayor",
+    "ciiu": 4644
+  },
+  {
+    "palabras": "limpiadores venta mayor",
+    "ciiu": 4645
+  },
+  {
+    "palabras": "medicinas patentadas venta mayor",
+    "ciiu": 4645
+  },
+  {
+    "palabras": "preparaciones cuidado facial venta mayor",
+    "ciiu": 4645
+  },
+  {
+    "palabras": "equipo seguridad venta mayor",
+    "ciiu": 4649
+  },
+  {
+    "palabras": "libros bolsillo venta mayor",
+    "ciiu": 4649
+  },
+  {
+    "palabras": "marcos cuadros venta mayor",
+    "ciiu": 4649
+  },
+  {
+    "palabras": "botes venta mayor",
+    "ciiu": 4659
+  },
+  {
+    "palabras": "lanchas motor venta mayor",
+    "ciiu": 4659
+  },
+  {
+    "palabras": "motores venta mayor",
+    "ciiu": 4659
+  },
+  {
+    "palabras": "muebles cafeteria venta mayor",
+    "ciiu": 4659
+  },
+  {
+    "palabras": "acero fundido venta mayor",
+    "ciiu": 4662
+  },
+  {
+    "palabras": "tuberia acero venta mayor",
+    "ciiu": 4662
+  },
+  {
+    "palabras": "casas moviles venta mayor",
+    "ciiu": 4663
+  },
+  {
+    "palabras": "pinturas venta mayor",
+    "ciiu": 4663
+  },
+  {
+    "palabras": "tubos alcantarillado acueducto venta mayor",
+    "ciiu": 4663
+  },
+  {
+    "palabras": "expendedor gasolina",
+    "ciiu": 4731
+  },
+  {
+    "palabras": "grabadoras venta menor",
+    "ciiu": 4742
+  },
+  {
+    "palabras": "carteras bolsos cuero venta menor",
+    "ciiu": 4771
+  },
+  {
+    "palabras": "tiendas esotericas",
+    "ciiu": 4774
+  },
+  {
+    "palabras": "transporte ferreo pasajeros",
+    "ciiu": 4911
+  },
+  {
+    "palabras": "operadores taxis",
+    "ciiu": 4921
+  },
+  {
+    "palabras": "servicios buses turisticos",
+    "ciiu": 4921
+  },
+  {
+    "palabras": "servicio transporte gas natural tuberias",
+    "ciiu": 4930
+  },
+  {
+    "palabras": "transporte aereo nacional carga",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIOS SOCIALES SIN ALOJAMIENTO",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "A LA PROTECCION Y CUIDADO DEL MENOR",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "CUIDADO DE NIÑOS Y NIÑAS",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "PROTECCION AL MENOR",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "PROTECCION AL MENOR Y A LA FAMILIA",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "PROTECCION AL MENOR Y LA FAMILIA",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "ATENCION Y PROTECCION AL MENOR",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "CUIDADO Y PROTECCION AL MENOR",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "CUIDADDO Y PROTECCION DEL MENOR",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "proteccion menor",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "CUIDADO Y PROTECCION AL MENOR",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "CUIDADO Y PROTECCION DEL MENOR",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "CUIDADO Y PROTECCION DEL MENOR Y LA FAMILIA",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "PROTECCION DEL MENOR",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "PROTECCION Y CUIDADO AL MENOR",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "PROTECCION Y CUIDADO DEL MENOR",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "A LA PROTECCION DEL MENOR",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "A LA PROTECION DEL MENOR",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "AL CUIDADO Y PROTECCION DEL MENOR",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "SERVICIO DE CAJA DE COMPENSACION",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "SERVICIO DE CAJA DE COMPENSACION FAMILIAR",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "SERVICIO DE CAJA DE COMPENSACION FAMILIAR (SALUD EDUCACION RECREACION Y SUBSIDIOS FAMILIAR PARA AFILIADOS )",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "SERVICIO DE CAJA DE COMPESACION FAMILIAR",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "SERVICIOS DE CAJA DE COMPENSACION",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "SERVICIOS DE CAJA DE COMPENSACION FAMILIAR",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "ACTIVIDAD DE CAJA DE COMPENSACION FAMILIAR",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "ACTIVIDADES DE CAJA DE COMPENSACION",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "ACTIVIDADES DE CAJA DE COMPENSACION FAMILIAR",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "ACTIVIDADES DE CAJAS DE COMPENSACION",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "ACTIVIDADES DE CAJAS DE COMPENSACION FAMILIAR",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "ADMINISTRACION DE CAJA COMPENSACION FAMILIAR",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "ADMINISTRACION DE CAJA DE COMPENSACION FAMILIAR",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "CAJA COMPENSACION FAMILIAR",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "CAJA DE COMPENSACION",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "CAJA DE COMPENSACION FAMILIAR",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "CAJA DE COMPENSACION FAMILIAR DEL CAUCA",
+    "ciiu": 6523
+  },
+  {
+    "palabras": "CUIDADO Y ATENCION AL MENOR",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "VENTA DE COMBUSTIBLE AL POR MAYOR",
+    "ciiu": 4661
+  },
+  {
+    "palabras": "VENTA DE COMBUSTIBLES AL POR MAYOR",
+    "ciiu": 4661
+  },
+  {
+    "palabras": "Lavadero de vehiculos",
+    "ciiu": 4520
+  },
+  {
+    "palabras": "Recorte y afeitada de la barba",
+    "ciiu": 9602
+  },
+  {
+    "palabras": "Prostamo de libros",
+    "ciiu": 9101
+  },
+  {
+    "palabras": "Talleres de reparacion de bicicletas",
+    "ciiu": 9529
+  },
+  {
+    "palabras": "Salones para juegos de billar",
+    "ciiu": 9311
+  },
+  {
+    "palabras": "Operacion de juegos de bingo",
+    "ciiu": 9200
+  },
+  {
+    "palabras": "Instalacion deportiva para practicar bolos",
+    "ciiu": 9311
+  },
+  {
+    "palabras": "Cuerpo de bomberos contra incendios",
+    "ciiu": 8423
+  },
+  {
+    "palabras": "Local de servicio de acceso a internet",
+    "ciiu": 6190
+  },
+  {
+    "palabras": "Lubricacion automotriz",
+    "ciiu": 4520
+  },
+  {
+    "palabras": "Canchas para la practica del golf",
+    "ciiu": 9311
+  },
+  {
+    "palabras": "Venta al por menor de carnes",
+    "ciiu": 4723
+  },
+  {
+    "palabras": "Elaboracion de productos de madera",
+    "ciiu": 1630
+  },
+  {
+    "palabras": "Sociedades de intermediacion cambiaria",
+    "ciiu": 6614
+  },
+  {
+    "palabras": "Servicio de acompaoantes",
+    "ciiu": 9609
+  },
+  {
+    "palabras": "Actividades de las casas de empeoo",
+    "ciiu": 6499
+  },
+  {
+    "palabras": "Funcionamiento de maquinas de juegos de azar",
+    "ciiu": 9200
+  },
+  {
+    "palabras": "Servicio de administracion de cementerios",
+    "ciiu": 9603
+  },
+  {
+    "palabras": "Exhibicion de peliculas cinematograficas",
+    "ciiu": 5914
+  },
+  {
+    "palabras": "Atencion medica a los animales",
+    "ciiu": 7500
+  },
+  {
+    "palabras": "Establecimiento de expendio de licor",
+    "ciiu": 5630
+  },
+  {
+    "palabras": "Asociacion de influencia social",
+    "ciiu": 9499
+  },
+  {
+    "palabras": "Produccion de obras teatrales",
+    "ciiu": 9006
+  },
+  {
+    "palabras": "Consultorios de abogados defensores",
+    "ciiu": 6910
+  },
+  {
+    "palabras": "Actividades de la practica odontologica",
+    "ciiu": 8622
+  },
+  {
+    "palabras": "Croa de animales domosticos",
+    "ciiu": "0149"
+  },
+  {
+    "palabras": "Funciones de mosicos en vivo",
+    "ciiu": 9007
+  },
+  {
+    "palabras": "Establecimiento de baile y de expendio de licor",
+    "ciiu": 5630
+  },
+  {
+    "palabras": "Venta al por menor de productos de confiteria",
+    "ciiu": 4729
+  },
+  {
+    "palabras": "Estacion de radio",
+    "ciiu": 6010
+  },
+  {
+    "palabras": "Servicios de policoa nacional",
+    "ciiu": 8423
+  },
+  {
+    "palabras": "Instalacion deportiva para practicar deporte",
+    "ciiu": 9311
+  },
+  {
+    "palabras": "Actividades de fotografoa comercial",
+    "ciiu": 7420
+  },
+  {
+    "palabras": "Servicio de tatuadores",
+    "ciiu": 9609
+  },
+  {
+    "palabras": "Venta al por menos de medicamentos con prescripcion medica",
+    "ciiu": 4773
+  },
+  {
+    "palabras": "Desposte ganado especial",
+    "ciiu": 1011
+  },
+  {
+    "palabras": "Expendio de alimentos en casetas",
+    "ciiu": 5619
+  },
+  {
+    "palabras": "Servicio de pompas fonebres",
+    "ciiu": 9603
+  },
+  {
+    "palabras": "Expendio de helados caseros",
+    "ciiu": 5619
+  },
+  {
+    "palabras": "oficinas inmobiliarias",
+    "ciiu": 6820
+  },
+  {
+    "palabras": "jardines botanicos",
+    "ciiu": 9103
+  },
+  {
+    "palabras": "laboratorios medicos clinicos",
+    "ciiu": 8691
+  },
+  {
+    "palabras": "Planta de beneficio animal",
+    "ciiu": 1011
+  },
+  {
+    "palabras": "mercados pulgas",
+    "ciiu": 4789
+  },
+  {
+    "palabras": "Venta al por menor de abarrotes y voveres",
+    "ciiu": 4711
+  },
+  {
+    "palabras": "Arreglo de prendas de vestir",
+    "ciiu": 9529
+  },
+  {
+    "palabras": "Servicio de notaria",
+    "ciiu": 6910
+  },
+  {
+    "palabras": "Notaria",
+    "ciiu": 6910
+  },
+  {
+    "palabras": "Servicio de profesionales en contaduroa",
+    "ciiu": 6920
+  },
+  {
+    "palabras": "Servicio de investigacion y detectives",
+    "ciiu": 8030
+  },
+  {
+    "palabras": "Venta al por menor de paoales desechables",
+    "ciiu": 4774
+  },
+  {
+    "palabras": "Expendio de alimentos en casetas",
+    "ciiu": 5619
+  },
+  {
+    "palabras": "Funcionamiento de museos tecnologicos",
+    "ciiu": 9102
+  },
+  {
+    "palabras": "Fabricacion de derivados del petroleo",
+    "ciiu": 1921
+  },
+  {
+    "palabras": "Venta al por menor de carnes",
+    "ciiu": 4723
+  },
+  {
+    "palabras": "Tiendas de venta al por menor de articulos sexuales",
+    "ciiu": 4774
+  },
+  {
+    "palabras": "Expendio de bebidas alcoholicas para su consumo",
+    "ciiu": 5630
+  },
+  {
+    "palabras": "Mantenimiento reparacion de vehiculos",
+    "ciiu": 4520
+  },
+  {
+    "palabras": "Mantenimiento reparacion motocicletas",
+    "ciiu": 4542
+  },
+  {
+    "palabras": "Venta al por menor de abarrotes y voveres",
+    "ciiu": 4711
+  },
+  {
+    "palabras": "Servicio de traduccion de idiomas",
+    "ciiu": 7490
+  },
+  {
+    "palabras": "Reconstruccion de zapatos de cuero",
+    "ciiu": 9523
+  },
+  {
+    "palabras": "salones juego bingo",
+    "ciiu": 9200
+  },
+  {
+    "palabras": "sindicatos bomberos",
+    "ciiu": 9420
+  },
+  {
+    "palabras": "funerarios servicios",
+    "ciiu": 9603
+  },
+  {
+    "palabras": "oficinas inmobiliarias",
+    "ciiu": 6820
+  },
+  {
+    "palabras": "camaras fotograficas",
+    "ciiu": 2670
+  },
+  {
+    "palabras": "fabricacion camaras fotograficas",
+    "ciiu": 2670
+  },
+  {
+    "palabras": "farmacias venta menor",
+    "ciiu": 4773
+  },
+  {
+    "palabras": "Farmacia",
+    "ciiu": 4773
+  },
+  {
+    "palabras": "salones juego bingo",
+    "ciiu": 9200
+  },
+  {
+    "palabras": "casinos autonomos",
+    "ciiu": 9200
+  },
+  {
+    "palabras": "casinos embarcaciones navegan rios",
+    "ciiu": 9200
+  },
+  {
+    "palabras": "casinos servicios moviles comida",
+    "ciiu": 5619
+  },
+  {
+    "palabras": "hoteles casinos",
+    "ciiu": 5511
+  },
+  {
+    "palabras": "cerrajeria servicio",
+    "ciiu": 8020
+  },
+  {
+    "palabras": "cinematecas peliculas cinematograficas",
+    "ciiu": 5914
+  },
+  {
+    "palabras": "consultorios juridicos",
+    "ciiu": 6910
+  },
+  {
+    "palabras": "SERVICIO DE CUIDADO DE NIÑOS SIN ALOJAMIENTO",
+    "ciiu": 8899
+  },
+  {
+    "palabras": "ADMINISTRACION DE CONDOMINIO",
+    "ciiu": 6820
+  },
+  {
+    "palabras": "ADMINISTRACION DE LOS RECURSOS DEL MUNICIPIO",
+    "ciiu": 8412
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE CARGA",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE CARGA A NIVEL INTERNACIONAL",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE CARGA A NIVEL NACIONAL",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE CARGA Y DE PACIENTES",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE CARGA Y PASAJEROS",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE CARGA Y PASAJEROS A NIVEL NACIONAL",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE MERCANCIAS A NIVEL INTERNACIONAL",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE PASAJEROS",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE PASAJEROS A NIVEL INTERNACIONAL",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE PASAJEROS A NIVEL NACIONAL",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE PASAJEROS A NIVEL NACIONAL E INTERNACIONAL",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE PASAJEROS EN AVION",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE PASAJEROS NACIONAL E INTERNACIONAL",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE PASAJEROS Y CARGA",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE PASAJEROS Y CARGA A NIVEL NACIONAL E INTERNACIONAL",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE PASAJEROS Y CARGA DEPARTAMENTAL",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE PASAJEROS Y CARGA NACIONAL E INTERNACIONAL",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE PASAJEROS Y DE CARGA",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE PASAJEROS Y DE CARGA NACIONAL E INTERNACIONAL",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO DE PERSONAS",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO INTERNACIONAL",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO NACIONAL E INTERNACIONAL",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "SERVICIO DE TRANSPORTE AEREO NACIONAL INTERNACIONAL",
+    "ciiu": 5121
+  },
+  {
+    "palabras": "Autolavado",
+    "ciiu": 4520
+  },
+  {
+    "palabras": "Barberia",
+    "ciiu": 9602
+  },
+  {
+    "palabras": "Bicicleteria",
+    "ciiu": 9529
+  },
+  {
+    "palabras": "Billares",
+    "ciiu": 9311
+  },
+  {
+    "palabras": "Bingo",
+    "ciiu": 9200
+  },
+  {
+    "palabras": "Bolera",
+    "ciiu": 9311
+  },
+  {
+    "palabras": "Bomberos",
+    "ciiu": 8423
+  },
+  {
+    "palabras": "Cambiadero de aceite",
+    "ciiu": 4520
+  },
+  {
+    "palabras": "Campo de golf",
+    "ciiu": 9311
+  },
+  {
+    "palabras": "Carniceria",
+    "ciiu": 4723
+  },
+  {
+    "palabras": "Carpinteria",
+    "ciiu": 1630
+  },
+  {
+    "palabras": "Casa de cambio",
+    "ciiu": 6614
+  },
+  {
+    "palabras": "Casa de citas",
+    "ciiu": 9609
+  },
+  {
+    "palabras": "Casa de empeño",
+    "ciiu": 6499
+  },
+  {
+    "palabras": "Cinema",
+    "ciiu": 5914
+  },
+  {
+    "palabras": "Clinica veterinaria",
+    "ciiu": 7500
+  },
+  {
+    "palabras": "Club nocturno",
+    "ciiu": 5630
+  },
+  {
+    "palabras": "Club social",
+    "ciiu": 9499
+  },
+  {
+    "palabras": "Compañia de teatro",
+    "ciiu": 9006
+  },
+  {
+    "palabras": "Consultorio juridico",
+    "ciiu": 6910
+  },
+  {
+    "palabras": "Consultorio odontologico",
+    "ciiu": 8622
+  },
+  {
+    "palabras": "Criaderos de perros",
+    "ciiu": "0149"
+  },
+  {
+    "palabras": "Discoteca",
+    "ciiu": 5630
+  },
+  {
+    "palabras": "Disc Jockey",
+    "ciiu": 9007
+  },
+  {
+    "palabras": "Dulceria",
+    "ciiu": 4729
+  },
+  {
+    "palabras": "Ebanisteria",
+    "ciiu": 1630
+  },
+  {
+    "palabras": "Emisora",
+    "ciiu": 6010
+  },
+  {
+    "palabras": "Estacion de policia",
+    "ciiu": 8423
+  },
+  {
+    "palabras": "Estudio fotografico",
+    "ciiu": 7420
+  },
+  {
+    "palabras": "Estudios de tatuajes",
+    "ciiu": 9609
+  },
+  {
+    "palabras": "Frigorifico",
+    "ciiu": 1011
+  },
+  {
+    "palabras": "Fritangueria",
+    "ciiu": 5619
+  },
+  {
+    "palabras": "Heladeria casera",
+    "ciiu": 5619
+  },
+  {
+    "palabras": "jardin botanico",
+    "ciiu": 9103
+  },
+  {
+    "palabras": "Licorera fabrica",
+    "ciiu": 1101
+  },
+  {
+    "palabras": "Licorera venta",
+    "ciiu": 4724
+  },
+  {
+    "palabras": "Llanteria",
+    "ciiu": 4520
+  },
+  {
+    "palabras": "mercado de las pulgas",
+    "ciiu": 4789
+  },
+  {
+    "palabras": "Minimercado",
+    "ciiu": 4711
+  },
+  {
+    "palabras": "Oficina de contadores publicos",
+    "ciiu": 6920
+  },
+  {
+    "palabras": "Oficina de detectives",
+    "ciiu": 8030
+  },
+  {
+    "palabras": "Pañalera",
+    "ciiu": 4774
+  },
+  {
+    "palabras": "Piqueteadero",
+    "ciiu": 5619
+  },
+  {
+    "palabras": "Planetario",
+    "ciiu": 9102
+  },
+  {
+    "palabras": "Remontadora calzado",
+    "ciiu": 9523
+  },
+  {
+    "palabras": "Salsamentaria",
+    "ciiu": 4723
+  },
+  {
+    "palabras": "Sex shop",
+    "ciiu": 4774
+  },
+  {
+    "palabras": "Taberna",
+    "ciiu": 5630
+  },
+  {
+    "palabras": "Taller automotriz",
+    "ciiu": 4520
+  },
+  {
+    "palabras": "Taller de motos",
+    "ciiu": 4542
+  },
+  {
+    "palabras": "Tienda de barrio",
+    "ciiu": 4711
+  },
+  {
+    "palabras": "Zapateria",
+    "ciiu": 9523
+  },
+  {
+    "palabras": "COMERCIO AL POR MAYOR DE CALCOMANIAS PARA MOTOS",
+    "ciiu": 4669
+  },
+  {
+    "palabras": "COMERCIALIZACION DE ELECTRODOMESTICOS AL POR MAYOR",
+    "ciiu": 4644
+  },
+  {
+    "palabras": "COMPRA VENTA DE ELECTRODOMESTICOS AL POR MAYOR",
+    "ciiu": 4644
+  },
+  {
+    "palabras": "COMERCIALIZADORA DE ELECTRODOMESTICOS LINEA BLANCA AL POR MAYOR",
+    "ciiu": 4644
+  },
+  {
+    "palabras": "VENTA DE RELOJES AL POR MENOR",
+    "ciiu": 4774
+  },
+  {
+    "palabras": "Venta de articulos para mascotas al por menor",
+    "ciiu": 4759
+  },
+  {
+    "palabras": "Venta de colchones al por menor",
+    "ciiu": 4754
+  },
+  {
+    "palabras": "Venta de bolsos maletas morrales de material textil al por menor",
+    "ciiu": 4771
+  },
+  {
+    "palabras": "Venta paneles solares",
+    "ciiu": 4659
+  },
+  {
+    "palabras": "Comercialización de accesorios de lujo para vehículos",
+    "ciiu": 4530
+  },
+  {
+    "palabras": "Venta de muñecos al por menor",
+    "ciiu": 4769
+  },
+  {
+    "palabras": "Comercialización de equipos de oficina nuevos",
+    "ciiu": 4659
+  },
+  {
+    "palabras": "Supermercado",
+    "ciiu": 4711
+  },
+  {
+    "palabras": "Tienda de mascotas",
+    "ciiu": 4759
+  },
+  {
+    "palabras": "Servientrega mensajeria",
+    "ciiu": 5320
+  },
+  {
+    "palabras": "Traductores",
+    "ciiu": 7490
+  },
+  {
+    "palabras": "Puesto de chance",
+    "ciiu": 9200
+  },
+  {
+    "palabras": "Puesto de baloto",
+    "ciiu": 9200
+  },
+  {
+    "palabras": "Pizzeria",
+    "ciiu": 5619
+  },
+  {
+    "palabras": "Piñateria",
+    "ciiu": 4769
+  },
+  {
+    "palabras": "Marroquineria",
+    "ciiu": 1512
+  },
+  {
+    "palabras": "Lavadero de motos",
+    "ciiu": 4542
+  },
+  {
+    "palabras": "Fundacion",
+    "ciiu": 9499
+  },
+  {
+    "palabras": "Estadio",
+    "ciiu": 9311
+  },
+  {
+    "palabras": "VENTA DE JUGUETES AL POR MENOR",
+    "ciiu": 4769
+  },
+  {
+    "palabras": "COMPRA Y VENTA DE JUGUETES AL POR MENOR",
+    "ciiu": 4769
+  },
+  {
+    "palabras": "VENTA DE JUGUETERIA AL POR MENOR",
+    "ciiu": 4769
+  },
+  {
+    "palabras": "VENTA DE JUGUETES AL DETAL",
+    "ciiu": 4769
+  },
+  {
+    "palabras": "VENTA DE JUGUETES AL POR MENOR",
+    "ciiu": 4769
+  },
+  {
+    "palabras": "COMERCIO AL POR MENOR DE JUGUETES",
+    "ciiu": 4769
+  },
+  {
+    "palabras": "VENTA AL POR MENOR DE JUGUETERIA",
+    "ciiu": 4769
+  },
+  {
+    "palabras": "calzado reparacion",
+    "ciiu": 9523
+  },
+  {
+    "palabras": "ALCANTARILLADO Y ASEO",
+    "ciiu": 3600
+  },
+  {
+    "palabras": "A LA PRESTACION DEL SERVICIO DE ACUEDUCTO",
+    "ciiu": 3600
+  }
+]

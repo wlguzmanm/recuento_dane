@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+
+    android:fontFamily="@font/roboto">
+
+    <item
+        android:id="@+id/nav_usuario"
+        android:title="Usuario" />
+
+    <item
+        android:id="@+id/nav_user"
+        android:title="getUser" />
+
+    <item android:title="Reportes" >
+        <menu>
+            <item
+                android:id="@+id/nav_resumen"
+                android:icon="?attr/actionModePasteDrawable"
+                android:iconTint="@color/dane"
+                android:title="Resumen PDF" />
+        </menu>
+    </item>
+
+    <item android:title="Herramientas" >
+        <menu>
+            <item
+                android:id="@+id/nav_mapa"
+                android:icon="@drawable/ic_ping"
+                android:iconTint="@color/dane"
+                android:title="Seleccionar Mapa" />
+            <item
+                android:id="@+id/nav_backup"
+                android:icon="@drawable/ic_databse"
+                android:iconTint="@color/dane"
+                android:title="Back-up" />
+
+            <item
+                android:id="@+id/nav_restore"
+                android:icon="@drawable/ic_arrow_back"
+                android:iconTint="@color/dane"
+                android:title="Restore Back-up" />
+
+            <item
+                android:id="@+id/nav_offline"
+                android:icon="@drawable/ic_main_configuracion"
+                android:iconTint="@color/dane"
+                android:title="Configuración Local" />
+        </menu>
+    </item>
+    <item android:title="Otros" >
+        <menu>
+            <!--item
+                android:id="@+id/nav_ayuda"
+                android:icon="@drawable/ic_menu_ayuda"
+                android:title="Ayuda" /-->
+            <item
+                android:id="@+id/nav_acerca"
+                android:icon="@drawable/ic_menu_acerca"
+                android:title="Acerca" />
+
+        </menu>
+    </item>
+</menu>

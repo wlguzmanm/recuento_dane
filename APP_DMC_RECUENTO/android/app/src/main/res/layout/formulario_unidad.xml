@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@color/blanco"
+    tools:context="co.gov.dane.recuento.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/atras"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                app:srcCompat="@drawable/ic_arrow_back"/>
+            <TextView
+                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:textColor="@color/dane"
+                android:fontFamily="sans-serif"
+                android:text="Formulario Unidad Económica" />
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Formulario detallado para la unidad económica." />
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/scroll"
+        style="@style/scrollbar_shape_style"
+        android:paddingRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/gris_claro"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/preguntas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Pregunta 6 -->
+            <LinearLayout
+                android:background="@color/gris_claro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:background="@drawable/border"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="10dp" >
+
+                    <!-- Preguntas Label 1  -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_pregunta6"
+                            style="@style/TextAppearance.AppCompat.Title"
+                            android:textColor="@color/dane"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="10dp"/>
+                    </LinearLayout>
+
+                    <!-- Pregunta unidad previa  -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <TextView
+                                style="@style/titulo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/text_pregunta6_1" />
+
+                            <Spinner
+                                android:id="@+id/id_spinner_pregunta6_"
+                                style="@style/Widget.AppCompat.Spinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/borde_spinner"
+                                android:dropDownWidth="wrap_content"
+                                android:dropDownVerticalOffset="30dp"
+                                android:entries="@array/dir_a"
+                                android:hapticFeedbackEnabled="false"
+                                android:popupBackground="@android:color/white"
+                                android:popupElevation="0dp"
+                                android:singleLine="true"
+                                android:spinnerMode="dialog"
+                                android:stateListAnimator="@drawable/spinner_sla"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Pregunta tipo direccion  -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <TextView
+                                style="@style/titulo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/text_pregunta6_2"  />
+
+                            <Spinner
+                                android:id="@+id/id_spinner_pregunta6_"
+                                style="@style/Widget.AppCompat.Spinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/borde_spinner"
+                                android:dropDownWidth="wrap_content"
+                                android:dropDownVerticalOffset="30dp"
+                                android:entries="@array/dir_a"
+                                android:hapticFeedbackEnabled="false"
+                                android:popupBackground="@android:color/white"
+                                android:popupElevation="0dp"
+                                android:singleLine="true"
+                                android:spinnerMode="dialog"
+                                android:stateListAnimator="@drawable/spinner_sla"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Pregunta novedades  -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:background="@drawable/esquinas_redondeadas"
+                        android:textAlignment="center"
+                        style="@style/btn_success"
+                        android:layout_margin="20dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+                            <TextView
+                                android:id="@+id/label_capitulo1_normalizador_movil"
+                                android:layout_margin="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:textColor="@color/blanco"
+                                android:background="@color/verde"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textAlignment="center"
+                                android:text="@string/text_pregunta6_normalizador"
+                                style="@style/titulo_negrita"/>
+                    </LinearLayout>
+
+                    <!-- Pregunta novedades  -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <TextView
+                                style="@style/titulo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/text_pregunta6_3"  />
+
+                            <Spinner
+                                android:id="@+id/id_spinner_pregunta6_"
+                                style="@style/Widget.AppCompat.Spinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/borde_spinner"
+                                android:dropDownWidth="wrap_content"
+                                android:dropDownVerticalOffset="30dp"
+                                android:entries="@array/dir_a"
+                                android:hapticFeedbackEnabled="false"
+                                android:popupBackground="@android:color/white"
+                                android:popupElevation="0dp"
+                                android:singleLine="true"
+                                android:spinnerMode="dialog"
+                                android:stateListAnimator="@drawable/spinner_sla"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+    <LinearLayout
+        style="@style/btn_rojo"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/guardar_formulario">
+
+        <ImageView
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            app:srcCompat="@drawable/ic_save"/>
+        <TextView
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blanco"
+            android:text="Guardar" />
+    </LinearLayout>
+
+
+</LinearLayout>
