@@ -411,28 +411,34 @@ public class MainActivity extends AppCompatActivity
      */
     private EsquemaManzanaEnvioViewModel getManzana(Manzana manzana){
         EsquemaManzanaEnvioViewModel retorno = new EsquemaManzanaEnvioViewModel();
-        retorno.setAltura(manzana.getAltura());
-        retorno.setBarrio(manzana.getBarrio());
-        retorno.setCentro_poblado(manzana.getCentroPoblado());
+        retorno.setPto_alt_gps(manzana.getAltura());
+        retorno.setPto_lat_gps(manzana.getLatitud());
+        retorno.setPto_lon_gps(manzana.getLongitud());
+        retorno.setPto_pre_gp(manzana.getPrecision());
+        retorno.setDpto(manzana.getDepartamento());
+        retorno.setMpio(manzana.getMunicipio());
         retorno.setClase(manzana.getClase());
-        retorno.setCodigoAG(manzana.getCodigoAG());
-        retorno.setDepartamento(manzana.getDepartamento());
+        retorno.setCom_loc(manzana.getLocalidad());
+        retorno.setC_pob(manzana.getCentro_poblado());
+        retorno.setTerritorio_etnico(manzana.getTerritorioEtnico());
+        retorno.setSel_terr_etnico(manzana.getSelTerritorioEtnico());
+        retorno.setCod_resg_etnico(manzana.getResguardoEtnico());
+        retorno.setCod_comun_etnico(manzana.getComunidadEtnica());
+        retorno.setCo(manzana.getCoordinacionOperativa());
+        retorno.setAo(manzana.getAreaOperativa());
+        retorno.setAg(manzana.getUnidad_cobertura());
+        retorno.setAcer(manzana.getACER());
+        retorno.setDirec_barrio(manzana.getBarrio());
+        retorno.setExiste_unidad(manzana.getExisteUnidad());
+        retorno.setTipo_novedad(manzana.getTipoNovedad());
         retorno.setFechaConteo(manzana.getFecha());
         retorno.setFechaModificacion(manzana.getFechaModificacion());
         retorno.setFinalizado(manzana.getFinalizado());
         retorno.setId_manzana(manzana.getId_manzana());
         retorno.setImei(manzana.getImei());
-        retorno.setLatitud(manzana.getLatitud());
-        retorno.setLongitud(manzana.getLongitud());
         retorno.setManzana(manzana.getManzana());
-        retorno.setMunicipio(manzana.getMunicipio());
-        retorno.setNovedadesCartograficas(manzana.getNovedadesCartografias());
-        retorno.setObservaciones(manzana.getObservaciones());
-        retorno.setPrecision(manzana.getPrecision());
-        retorno.setPresencia_und(manzana.getPresenciaUnidades());
-        retorno.setSeccion_urbana(manzana.getSeccionUrbana());
-        retorno.setSector_urbano(manzana.getSectorUrbano());
         retorno.setSupervisor(manzana.getSupervisor());
+
         return retorno;
     }
 
@@ -462,34 +468,23 @@ public class MainActivity extends AppCompatActivity
      */
     private EsquemaUnidadesEnvioViewModel getUnidadEconomica(UnidadEconomica unidad){
         EsquemaUnidadesEnvioViewModel retorno = new EsquemaUnidadesEnvioViewModel();
-        retorno.setComplemento_direccion(unidad.getComplemento_direccion());
-        retorno.setUnidad_ocupada(unidad.getUnidades_ocupadas());
-        retorno.setEstablecimiento_fijo(unidad.getEstablecimiento_fijo());
-        retorno.setEstablecimiento_semifijo(unidad.getEstablecimiento_semifijo());
-        retorno.setEstado_desocupado(unidad.getEstado_desocupado());
-        retorno.setEstado_obra(unidad.getEstado_obra());
-        retorno.setEstado_ocupado(unidad.getEstado_ocupado());
+
+        retorno.setDirec_previa(unidad.getDirec_previa());
+        retorno.setDirec_p_tipo(unidad.getDirec_p_tipo());
+        retorno.setDirecc(unidad.getDirecc());
+        retorno.setNov_carto(unidad.getNov_carto());
+        retorno.setEstado_unidad_observacion(unidad.getEstado_unidad_observacion());
+        retorno.setTipo_unidad_observacion(unidad.getTipo_unidad_observacion());
+        retorno.setTipo_vendedor(unidad.getTipo_vendedor());
+        retorno.setSector_economico(unidad.getSector_economico());
+        retorno.setUnidad_osbservacion(unidad.getUnidad_osbservacion());
+        retorno.setObservacion(unidad.getObservacion());
+
         retorno.setFecha_modificacion(unidad.getFechaModificacion());
         retorno.setId_edificacion(unidad.getId_edificacion());
         retorno.setId_manzana(unidad.getId_manzana());
         retorno.setId_manzana_edificio_unidad(unidad.getId_manzana()+unidad.getId_edificacion()+unidad.getId_unidad());
         retorno.setId_unidad_economica(unidad.getId_unidad());
-        retorno.setNombre_unidad_observacion(unidad.getNombre_unidad_observacion());
-        retorno.setObra_edificacion(unidad.getObra_edificacion());
-        retorno.setObservaciones_sn(unidad.getObservaciones_sn());
-        retorno.setObservaciones_unidad_observ(unidad.getObservaciones_unidad_observacion());
-        retorno.setPlaca_cuadrante(unidad.getPlaca_cuadrante());
-        retorno.setPuesto_movil(unidad.getPuesto_movil());
-        retorno.setSector_comercio(unidad.getComercio());
-        retorno.setSector_construccion(unidad.getConstruccion());
-        retorno.setSector_industria(unidad.getIndustria());
-        retorno.setSector_no_aplica(unidad.getNo_aplica());
-        retorno.setSector_servicios(unidad.getServicios());
-        retorno.setSector_transporte(unidad.getTransporte());
-        retorno.setTipo_via_principal(unidad.getTipo_via_principal());
-        retorno.setVia_principal(unidad.getVia_principal());
-        retorno.setVia_secundaria(unidad.getVia_secundaria());
-        retorno.setVivienda_actividad_eco(unidad.getVivienda_actividad_economica());
 
         return retorno;
     }

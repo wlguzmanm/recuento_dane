@@ -76,6 +76,17 @@
         <item name="android:background">@drawable/borde_button_secundario</item>
     </style>
 
+    <style name="btn_fondo_secundario" parent="@android:style/Widget.Button">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/ms_white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:background">@drawable/borde_button_fondo_secundario</item>
+    </style>
+
+
 
     <style name="btn_close" parent="@android:style/Widget.Button">
         <item name="android:textSize">15dp</item>

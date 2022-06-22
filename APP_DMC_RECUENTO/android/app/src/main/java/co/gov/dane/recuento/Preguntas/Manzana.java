@@ -12,29 +12,32 @@ public class Manzana {
     private String departamento;
     private String municipio;
     private String clase;
-    private String centro_poblado;
     private String localidad;
-    private String coordinacionOperativa;
-    private String areaOperativa;
-    private String ACER;
-    private String unidad_cobertura;
-    private String sector_urbano;
-    private String seccion_urbana;
+    private String centro_poblado;
+    private String territorioEtnico;
+    private String selTerritorioEtnico;
+    private String resguardoEtnico;
+    private String comunidadEtnica;
+    private String coordinacionOperativa;  //CO
+    private String areaOperativa;       //AO
+    private String unidad_cobertura;    //AG
+    private String ACER;        //ACER
+    private String barrio;
+    private String existeUnidad;
+    private String tipoNovedad;
+
+
     private String manzana;
-    private String presencia_und;
+
     private String latitud;
     private String longitud;
     private String altura;
     private String precision;
-    private String barrio;
-    private String observaciones;
-    private String codigoAG;
-    private String novedadesCartografias;
+
     private String imei;
     private String fechaModificacion;
 
     private Boolean validar;
-
     private String cod_enumerador;
     private String supervisor;
     private String finalizado;
@@ -59,70 +62,6 @@ public class Manzana {
         this.id_manzana=id_manzana;
     }
 
-    public String getFecha(){
-        return fecha;
-    }
-    public void setFecha(String fecha){
-        this.fecha=fecha;
-    }
-
-    public String getDepartamento(){
-        return departamento;
-    }
-    public void setDepartamento(String departamento){
-        this.departamento=departamento;
-    }
-
-    public String getMunicipio(){
-        return municipio;
-    }
-    public void setMunicipio(String municipio){
-        this.municipio=municipio;
-    }
-
-    public String getClase(){
-        return clase;
-    }
-    public void setClase(String clase){
-        this.clase=clase;
-    }
-
-    public String getCentroPoblado(){
-        return centro_poblado;
-    }
-    public void setCentroPoblado(String centro_poblado){
-        this.centro_poblado=centro_poblado;
-    }
-
-    public String getSectorUrbano(){
-        return sector_urbano;
-    }
-
-    public void setSectorUrbano(String sector_urbano){
-        this.sector_urbano=sector_urbano;
-    }
-
-    public String getSeccionUrbana(){
-        return seccion_urbana;
-    }
-    public void setSeccionUrbana(String seccion_urbana){
-        this.seccion_urbana=seccion_urbana;
-    }
-
-    public String getManzana(){
-        return manzana;
-    }
-    public void setManzana(String manzana){
-        this.manzana=manzana;
-    }
-
-    public String getPresenciaUnidades(){
-        return presencia_und;
-    }
-
-    public void setMPresenciaUnidades(String presencia_und){
-        this.presencia_und=presencia_und;
-    }
 
     public String getLatitud(){
         if(latitud==null){
@@ -179,112 +118,12 @@ public class Manzana {
     }
 
 
-    public List<Edificacion> getEdificaciones() {
-        return edificaciones;
-    }
-
-    public void setEdificaciones(List<Edificacion> edificaciones) {
-        this.edificaciones = edificaciones;
-    }
-
-    public String getId_manzana() {
-        return id_manzana;
-    }
-
-    public void setId_manzana(String id_manzana) {
-        this.id_manzana = id_manzana;
-    }
-
-    public String getCod_enumerador() {
-        return cod_enumerador;
-    }
-
-    public void setCod_enumerador(String cod_enumerador) {
-        this.cod_enumerador = cod_enumerador;
-    }
-
-    public String getSupervisor() {
-        return supervisor;
-    }
-
-    public void setSupervisor(String supervisor) {
-        this.supervisor = supervisor;
-    }
-
     public String getFinalizado() {
         if(finalizado==null){
             return "No";
         }else{
             return finalizado;
         }
-    }
-
-    public void setFinalizado(String finalizado) {
-        this.finalizado = finalizado;
-    }
-
-    public String getBarrio() {
-        return barrio;
-    }
-
-    public void setBarrio(String barrio) {
-        this.barrio = barrio;
-    }
-
-    public String getObservaciones() {
-        return observaciones;
-    }
-
-    public void setObservaciones(String observaciones) {
-        this.observaciones = observaciones;
-    }
-
-    public String getCodigoAG() {
-        return codigoAG;
-    }
-
-    public void setCodigoAG(String codigoAG) {
-        this.codigoAG = codigoAG;
-    }
-
-    public String getNovedadesCartografias() {
-        return novedadesCartografias;
-    }
-
-    public void setNovedadesCartografias(String novedadesCartografias) {
-        this.novedadesCartografias = novedadesCartografias;
-    }
-
-    public String getImei() {
-        return imei;
-    }
-
-    public void setImei(String imei) {
-        this.imei = imei;
-    }
-
-    public String getFechaModificacion() {
-        return fechaModificacion;
-    }
-
-    public void setFechaModificacion(String fechaModificacion) {
-        this.fechaModificacion = fechaModificacion;
-    }
-
-    public String getDoble_sincronizado() {
-        return doble_sincronizado;
-    }
-
-    public void setDoble_sincronizado(String doble_sincronizado) {
-        this.doble_sincronizado = doble_sincronizado;
-    }
-
-    public String getSincronizado_nube() {
-        return sincronizado_nube;
-    }
-
-    public void setSincronizado_nube(String sincronizado_nube) {
-        this.sincronizado_nube = sincronizado_nube;
     }
 
     public String getId() {
@@ -295,19 +134,84 @@ public class Manzana {
         this.id = id;
     }
 
-    public String getPendiente_sincronizar() {
-        return pendiente_sincronizar;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setPendiente_sincronizar(String pendiente_sincronizar) {
-        this.pendiente_sincronizar = pendiente_sincronizar;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
+
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
+
+    public String getClase() {
+        return clase;
+    }
+
+    public void setClase(String clase) {
+        this.clase = clase;
+    }
+
     public String getLocalidad() {
         return localidad;
     }
 
     public void setLocalidad(String localidad) {
         this.localidad = localidad;
+    }
+
+    public String getCentro_poblado() {
+        return centro_poblado;
+    }
+
+    public void setCentro_poblado(String centro_poblado) {
+        this.centro_poblado = centro_poblado;
+    }
+
+    public String getTerritorioEtnico() {
+        return territorioEtnico;
+    }
+
+    public void setTerritorioEtnico(String territorioEtnico) {
+        this.territorioEtnico = territorioEtnico;
+    }
+
+    public String getSelTerritorioEtnico() {
+        return selTerritorioEtnico;
+    }
+
+    public void setSelTerritorioEtnico(String selTerritorioEtnico) {
+        this.selTerritorioEtnico = selTerritorioEtnico;
+    }
+
+    public String getResguardoEtnico() {
+        return resguardoEtnico;
+    }
+
+    public void setResguardoEtnico(String resguardoEtnico) {
+        this.resguardoEtnico = resguardoEtnico;
+    }
+
+    public String getComunidadEtnica() {
+        return comunidadEtnica;
+    }
+
+    public void setComunidadEtnica(String comunidadEtnica) {
+        this.comunidadEtnica = comunidadEtnica;
     }
 
     public String getCoordinacionOperativa() {
@@ -326,14 +230,6 @@ public class Manzana {
         this.areaOperativa = areaOperativa;
     }
 
-    public String getACER() {
-        return ACER;
-    }
-
-    public void setACER(String ACER) {
-        this.ACER = ACER;
-    }
-
     public String getUnidad_cobertura() {
         return unidad_cobertura;
     }
@@ -342,4 +238,127 @@ public class Manzana {
         this.unidad_cobertura = unidad_cobertura;
     }
 
+    public String getACER() {
+        return ACER;
+    }
+
+    public void setACER(String ACER) {
+        this.ACER = ACER;
+    }
+
+    public String getBarrio() {
+        return barrio;
+    }
+
+    public void setBarrio(String barrio) {
+        this.barrio = barrio;
+    }
+
+    public String getExisteUnidad() {
+        return existeUnidad;
+    }
+
+    public void setExisteUnidad(String existeUnidad) {
+        this.existeUnidad = existeUnidad;
+    }
+
+    public String getManzana() {
+        return manzana;
+    }
+
+    public void setManzana(String manzana) {
+        this.manzana = manzana;
+    }
+
+    public String getImei() {
+        return imei;
+    }
+
+    public void setImei(String imei) {
+        this.imei = imei;
+    }
+
+    public String getFechaModificacion() {
+        return fechaModificacion;
+    }
+
+    public void setFechaModificacion(String fechaModificacion) {
+        this.fechaModificacion = fechaModificacion;
+    }
+
+    public Boolean getValidar() {
+        return validar;
+    }
+
+    public void setValidar(Boolean validar) {
+        this.validar = validar;
+    }
+
+    public String getCod_enumerador() {
+        return cod_enumerador;
+    }
+
+    public void setCod_enumerador(String cod_enumerador) {
+        this.cod_enumerador = cod_enumerador;
+    }
+
+    public String getSupervisor() {
+        return supervisor;
+    }
+
+    public void setSupervisor(String supervisor) {
+        this.supervisor = supervisor;
+    }
+
+    public void setFinalizado(String finalizado) {
+        this.finalizado = finalizado;
+    }
+
+    public String getDoble_sincronizado() {
+        return doble_sincronizado;
+    }
+
+    public void setDoble_sincronizado(String doble_sincronizado) {
+        this.doble_sincronizado = doble_sincronizado;
+    }
+
+    public String getSincronizado_nube() {
+        return sincronizado_nube;
+    }
+
+    public void setSincronizado_nube(String sincronizado_nube) {
+        this.sincronizado_nube = sincronizado_nube;
+    }
+
+    public String getId_manzana() {
+        return id_manzana;
+    }
+
+    public void setId_manzana(String id_manzana) {
+        this.id_manzana = id_manzana;
+    }
+
+    public String getPendiente_sincronizar() {
+        return pendiente_sincronizar;
+    }
+
+    public void setPendiente_sincronizar(String pendiente_sincronizar) {
+        this.pendiente_sincronizar = pendiente_sincronizar;
+    }
+
+    public List<Edificacion> getEdificaciones() {
+        return edificaciones;
+    }
+
+    public void setEdificaciones(List<Edificacion> edificaciones) {
+        this.edificaciones = edificaciones;
+    }
+
+    public String getTipoNovedad() {
+        return tipoNovedad;
+    }
+
+    public void setTipoNovedad(String tipoNovedad) {
+        this.tipoNovedad = tipoNovedad;
+    }
 }

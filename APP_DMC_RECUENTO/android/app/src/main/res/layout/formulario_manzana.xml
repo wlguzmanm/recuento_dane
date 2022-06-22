@@ -69,7 +69,7 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
                     <LinearLayout
-                        android:id="@+id/eliminar_formulario"
+                        android:id="@+id/linearEliminarFormulario"
                         style="@style/btn_secundario"
                         android:padding="5dp"
                         android:layout_width="0dp"
@@ -94,7 +94,7 @@
                             style="@style/titulo_negrita"/>
                     </LinearLayout>
                     <LinearLayout
-                        android:id="@+id/finalizar_formulario"
+                        android:id="@+id/linearFinalizarFormulario"
                         style="@style/btn_success"
                         android:padding="5dp"
                         android:layout_width="0dp"
@@ -125,7 +125,7 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
                     <LinearLayout
-                        android:id="@+id/habilitar_formulario"
+                        android:id="@+id/linearHabilitarFormulario"
                         style="@style/btn_success"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -160,6 +160,58 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
+                    <!--Respuestas-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="17dp"
+                        android:layout_marginTop="-5dp"
+                        android:orientation="horizontal"
+                        android:layout_gravity="right"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.183"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:ignore="MissingConstraints"
+                        tools:layout_editor_absoluteY="6dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:textColor="@color/dane"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="10dp"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:text="@string/label_datos_gps" />
+                        <EditText
+                            android:id="@+id/latlon"
+                            style="@style/titulo"
+                            android:focusable="false"
+                            android:inputType="none"
+                            android:textColor="@color/verde"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Latitud:0 Longitud:0"
+                            android:background="@drawable/edit_text_design" />
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/fecha_conteo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/dane"
+                        android:gravity="left"
+                        android:layout_gravity="left"
+                        android:layout_marginRight="10dp"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:text="@string/label_fecha" />
+
                     <LinearLayout
                         android:background="@drawable/border"
                         android:layout_width="match_parent"
@@ -167,6 +219,7 @@
                         android:padding="10dp"
                         android:orientation="vertical"
                         android:layout_marginBottom="10dp" >
+
 
                         <!-- Preguntas Label 1  -->
                         <LinearLayout
@@ -199,7 +252,7 @@
                                     android:text="@string/text_pregunta1_1" />
 
                                 <EditText
-                                    android:id="@+id/DPTO"
+                                    android:id="@+id/editDPTO"
                                     android:background="@drawable/edit_text_design"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -232,7 +285,7 @@
                                     android:text="@string/text_pregunta1_2"  />
 
                                 <EditText
-                                    android:id="@+id/MPIO"
+                                    android:id="@+id/editMPIO"
                                     android:background="@drawable/edit_text_design"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -294,7 +347,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_pregunta2_1" />
                                 <EditText
-                                    android:id="@+id/CLASE"
+                                    android:id="@+id/editCLASE"
                                     android:background="@drawable/edit_text_design"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -326,7 +379,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_pregunta2_2" />
                                 <EditText
-                                    android:id="@+id/COM_LOC"
+                                    android:id="@+id/editCOM_LOC"
                                     android:background="@drawable/edit_text_design"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -357,7 +410,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_pregunta2_3" />
                                 <EditText
-                                    android:id="@+id/C_POB"
+                                    android:id="@+id/editC_POB"
                                     android:background="@drawable/edit_text_design"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -388,7 +441,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_pregunta2_4" />
                                 <RadioGroup
-                                    android:id="@+id/TERRITORIO_ETNICO"
+                                    android:id="@+id/radioTERRITORIO_ETNICO"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -414,6 +467,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/linearTerritorioEtnico"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -427,7 +481,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_pregunta2_5" />
                                 <RadioGroup
-                                    android:id="@+id/SEL_TERR_ETNICO"
+                                    android:id="@+id/radioSEL_TERR_ETNICO"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -453,6 +507,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/linearResguardo"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -466,7 +521,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_pregunta2_6" />
                                 <Spinner
-                                    android:id="@+id/COD_RESG_ETNICO"
+                                    android:id="@+id/spinnerCOD_RESG_ETNICO"
                                     style="@style/Widget.AppCompat.Spinner"
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
@@ -490,6 +545,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/linearComunidadNegra"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -503,7 +559,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_pregunta2_7" />
                                 <Spinner
-                                    android:id="@+id/Recuento	Wilhelm Guzman	Subproducto (Desarrollo"
+                                    android:id="@+id/spinnerCOD_COMUN_ETNICO"
                                     style="@style/Widget.AppCompat.Spinner"
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
@@ -575,7 +631,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_pregunta3_1" />
                                 <EditText
-                                    android:id="@+id/areaCoordOperativa"
+                                    android:id="@+id/editCO"
                                     android:background="@drawable/edit_text_design"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -606,7 +662,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_pregunta3_2" />
                                 <EditText
-                                    android:id="@+id/areaOperativa"
+                                    android:id="@+id/editAO"
                                     android:background="@drawable/edit_text_design"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -667,7 +723,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_pregunta4_1" />
                                 <EditText
-                                    android:id="@+id/codunidadCobertura"
+                                    android:id="@+id/editAG"
                                     android:background="@drawable/edit_text_design"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -698,7 +754,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_pregunta4_2" />
                                 <EditText
-                                    android:id="@+id/codACER"
+                                    android:id="@+id/editACER"
                                     android:background="@drawable/edit_text_design"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -759,7 +815,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_pregunta5_1" />
                                 <EditText
-                                    android:id="@+id/barrioNovedad"
+                                    android:id="@+id/editDIREC_BARRIO"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/edit_text_design"
@@ -785,7 +841,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_pregunta5_2" />
                                 <RadioGroup
-                                    android:id="@+id/radio_pregunta5_2"
+                                    android:id="@+id/radioEXISTE_UNIDAD"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -825,7 +881,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_pregunta5_3" />
                                 <RadioGroup
-                                    android:id="@+id/radio_pregunta5_3"
+                                    android:id="@+id/radioTIPO_NOVEDAD"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -884,7 +940,7 @@
 
             <!-- Boton Edificaciones  -->
             <LinearLayout
-                android:id="@+id/linearExisteUnidades"
+                android:id="@+id/linearExisteEdificaciones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -903,13 +959,12 @@
                     android:text="A continuación se enlistan las edificaciones para esta manzana" />
 
                 <LinearLayout
-
+                    android:id="@+id/linearAgregarEdificacion"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/add_grupo"
                         style="@style/btn_secundario"
                         android:padding="5dp"
                         android:layout_width="0dp"
@@ -953,7 +1008,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/guardar_formulario_manzana">
+        android:id="@+id/linearGuardarFormularioManzana">
         <ImageView
             android:layout_margin="5dp"
             android:layout_width="wrap_content"

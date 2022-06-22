@@ -6,26 +6,32 @@ public class EsquemaManzanaEnvioViewModel {
 
     private String id_manzana;
     private String fechaConteo;
-    private String departamento;
-    private String municipio;
+    private String pto_lat_gps;
+    private String pto_lon_gps;
+    private String pto_alt_gps;
+    private String pto_pre_gp;
+    private String dpto;
+    private String mpio;
     private String clase;
-    private String centro_poblado;
-    private String sector_urbano;
-    private String seccion_urbana;
+    private String com_loc;
+    private String c_pob;
+    private String territorio_etnico;
+    private String sel_terr_etnico;
+    private String cod_resg_etnico;
+    private String cod_comun_etnico;
+    private String co;
+    private String ao;
+    private String ag;
+    private String acer;
+    private String direc_barrio;
+    private String existe_unidad;
+    private String tipo_novedad;
     private String manzana;
-    private String latitud;
-    private String altura;
-    private String longitud;
-    private String precision;
-    private String presencia_und;
+
     private String fechaModificacion;
     private String cod_enumerador;
     private String supervisor;
     private String finalizado;
-    private String barrio;
-    private String observaciones;
-    private String codigoAG;
-    private String novedadesCartograficas;
     private String imei;
     private Boolean validar;
     private List<EsquemaEdificacionEnvioViewModel> esquemaEdificacion;
@@ -49,22 +55,6 @@ public class EsquemaManzanaEnvioViewModel {
         this.fechaConteo = fechaConteo;
     }
 
-    public String getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
-    }
-
-    public String getMunicipio() {
-        return municipio;
-    }
-
-    public void setMunicipio(String municipio) {
-        this.municipio = municipio;
-    }
-
     public String getClase() {
         return clase;
     }
@@ -73,28 +63,156 @@ public class EsquemaManzanaEnvioViewModel {
         this.clase = clase;
     }
 
-    public String getCentro_poblado() {
-        return centro_poblado;
+    public String getPto_lat_gps() {
+        return pto_lat_gps;
     }
 
-    public void setCentro_poblado(String centro_poblado) {
-        this.centro_poblado = centro_poblado;
+    public void setPto_lat_gps(String pto_lat_gps) {
+        this.pto_lat_gps = pto_lat_gps;
     }
 
-    public String getSector_urbano() {
-        return sector_urbano;
+    public String getPto_lon_gps() {
+        return pto_lon_gps;
     }
 
-    public void setSector_urbano(String sector_urbano) {
-        this.sector_urbano = sector_urbano;
+    public void setPto_lon_gps(String pto_lon_gps) {
+        this.pto_lon_gps = pto_lon_gps;
     }
 
-    public String getSeccion_urbana() {
-        return seccion_urbana;
+    public String getPto_alt_gps() {
+        return pto_alt_gps;
     }
 
-    public void setSeccion_urbana(String seccion_urbana) {
-        this.seccion_urbana = seccion_urbana;
+    public void setPto_alt_gps(String pto_alt_gps) {
+        this.pto_alt_gps = pto_alt_gps;
+    }
+
+    public String getPto_pre_gp() {
+        return pto_pre_gp;
+    }
+
+    public void setPto_pre_gp(String pto_pre_gp) {
+        this.pto_pre_gp = pto_pre_gp;
+    }
+
+    public String getDpto() {
+        return dpto;
+    }
+
+    public void setDpto(String dpto) {
+        this.dpto = dpto;
+    }
+
+    public String getMpio() {
+        return mpio;
+    }
+
+    public void setMpio(String mpio) {
+        this.mpio = mpio;
+    }
+
+    public String getCom_loc() {
+        return com_loc;
+    }
+
+    public void setCom_loc(String com_loc) {
+        this.com_loc = com_loc;
+    }
+
+    public String getC_pob() {
+        return c_pob;
+    }
+
+    public void setC_pob(String c_pob) {
+        this.c_pob = c_pob;
+    }
+
+    public String getTerritorio_etnico() {
+        return territorio_etnico;
+    }
+
+    public void setTerritorio_etnico(String territorio_etnico) {
+        this.territorio_etnico = territorio_etnico;
+    }
+
+    public String getSel_terr_etnico() {
+        return sel_terr_etnico;
+    }
+
+    public void setSel_terr_etnico(String sel_terr_etnico) {
+        this.sel_terr_etnico = sel_terr_etnico;
+    }
+
+    public String getCod_resg_etnico() {
+        return cod_resg_etnico;
+    }
+
+    public void setCod_resg_etnico(String cod_resg_etnico) {
+        this.cod_resg_etnico = cod_resg_etnico;
+    }
+
+    public String getCod_comun_etnico() {
+        return cod_comun_etnico;
+    }
+
+    public void setCod_comun_etnico(String cod_comun_etnico) {
+        this.cod_comun_etnico = cod_comun_etnico;
+    }
+
+    public String getCo() {
+        return co;
+    }
+
+    public void setCo(String co) {
+        this.co = co;
+    }
+
+    public String getAo() {
+        return ao;
+    }
+
+    public void setAo(String ao) {
+        this.ao = ao;
+    }
+
+    public String getAg() {
+        return ag;
+    }
+
+    public void setAg(String ag) {
+        this.ag = ag;
+    }
+
+    public String getAcer() {
+        return acer;
+    }
+
+    public void setAcer(String acer) {
+        this.acer = acer;
+    }
+
+    public String getDirec_barrio() {
+        return direc_barrio;
+    }
+
+    public void setDirec_barrio(String direc_barrio) {
+        this.direc_barrio = direc_barrio;
+    }
+
+    public String getExiste_unidad() {
+        return existe_unidad;
+    }
+
+    public void setExiste_unidad(String existe_unidad) {
+        this.existe_unidad = existe_unidad;
+    }
+
+    public String getTipo_novedad() {
+        return tipo_novedad;
+    }
+
+    public void setTipo_novedad(String tipo_novedad) {
+        this.tipo_novedad = tipo_novedad;
     }
 
     public String getManzana() {
@@ -103,46 +221,6 @@ public class EsquemaManzanaEnvioViewModel {
 
     public void setManzana(String manzana) {
         this.manzana = manzana;
-    }
-
-    public String getLatitud() {
-        return latitud;
-    }
-
-    public void setLatitud(String latitud) {
-        this.latitud = latitud;
-    }
-
-    public String getAltura() {
-        return altura;
-    }
-
-    public void setAltura(String altura) {
-        this.altura = altura;
-    }
-
-    public String getLongitud() {
-        return longitud;
-    }
-
-    public void setLongitud(String longitud) {
-        this.longitud = longitud;
-    }
-
-    public String getPrecision() {
-        return precision;
-    }
-
-    public void setPrecision(String precision) {
-        this.precision = precision;
-    }
-
-    public String getPresencia_und() {
-        return presencia_und;
-    }
-
-    public void setPresencia_und(String presencia_und) {
-        this.presencia_und = presencia_und;
     }
 
     public String getFechaModificacion() {
@@ -175,38 +253,6 @@ public class EsquemaManzanaEnvioViewModel {
 
     public void setFinalizado(String finalizado) {
         this.finalizado = finalizado;
-    }
-
-    public String getBarrio() {
-        return barrio;
-    }
-
-    public void setBarrio(String barrio) {
-        this.barrio = barrio;
-    }
-
-    public String getObservaciones() {
-        return observaciones;
-    }
-
-    public void setObservaciones(String observaciones) {
-        this.observaciones = observaciones;
-    }
-
-    public String getCodigoAG() {
-        return codigoAG;
-    }
-
-    public void setCodigoAG(String codigoAG) {
-        this.codigoAG = codigoAG;
-    }
-
-    public String getNovedadesCartograficas() {
-        return novedadesCartograficas;
-    }
-
-    public void setNovedadesCartograficas(String novedadesCartograficas) {
-        this.novedadesCartograficas = novedadesCartograficas;
     }
 
     public String getImei() {

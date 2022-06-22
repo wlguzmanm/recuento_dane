@@ -185,11 +185,11 @@ public class SpatiaLite extends SQLiteOpenHelper {
                 manzana.setDepartamento(c.getString(0));
                 manzana.setMunicipio(c.getString(1));
                 manzana.setClase(c.getString(2));
-                manzana.setCentroPoblado(c.getString(3));
+                manzana.setCentro_poblado(c.getString(3));
                 manzana.setLocalidad(c.getString(4));
                 manzana.setCoordinacionOperativa(c.getString(5));
                 manzana.setAreaOperativa(c.getString(6));
-                manzana.setCodigoAG(c.getString(7));
+                manzana.setUnidad_cobertura(c.getString(7));
                 manzana.setACER(c.getString(8));
                 manzana.setUnidad_cobertura(c.getString(9));
                 manzana.setManzana(c.getString(10));

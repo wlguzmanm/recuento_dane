@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import co.gov.dane.recuento.dtos.NormalizadorDireccionDTO;
 import co.gov.dane.recuento.model.ConteoManzana;
 import co.gov.dane.recuento.model.ConteoEdificacion;
 import co.gov.dane.recuento.model.ConteoUnidad;
@@ -32,12 +33,13 @@ import java.util.Map;
 
 public class Database extends SQLiteOpenHelper {
 
-
+    private Context contexto ;
     public static final int DATABASE_VERSION = 17;
     public static final String DATABASE_NAME = "Re_ConteoFormularioV_1_0_0.db";
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        contexto = context;
     }
 
     public Util util=new Util();
@@ -52,20 +54,25 @@ public class Database extends SQLiteOpenHelper {
                 + EsquemaManzana.DEPARTAMENTO + " TEXT, "
                 + EsquemaManzana.MUNICIPIO + " TEXT, "
                 + EsquemaManzana.CLASE + " TEXT, "
+                + EsquemaManzana.LOCALIDAD + " TEXT, "
                 + EsquemaManzana.CENTRO_POBLADO + " TEXT, "
-                + EsquemaManzana.SECTOR_URBANO + " TEXT, "
-                + EsquemaManzana.SECCION_URBANA + " TEXT, "
+                + EsquemaManzana.TERRITORIO_ETNICO + " TEXT, "
+                + EsquemaManzana.SEL_TERR_ETNICO + " TEXT, "
+                + EsquemaManzana.COD_RESG_ETNICO + " TEXT, "
+                + EsquemaManzana.COD_COMUN_ETNICO + " TEXT, "
+                + EsquemaManzana.CO + " TEXT, "
+                + EsquemaManzana.AO + " TEXT, "
+                + EsquemaManzana.AG + " TEXT, "
+                + EsquemaManzana.ACER + " TEXT, "
+                + EsquemaManzana.DIREC_BARRIO + " TEXT ,"
+                + EsquemaManzana.EXISTE_UNIDAD + " TEXT, "
+                + EsquemaManzana.TIPO_NOVEDAD + " TEXT, "
                 + EsquemaManzana.MANZANA + " TEXT, "
-                + EsquemaManzana.EXISTE_UNIDAD_ECONOMICA + " TEXT, "
-                + EsquemaManzana.LATITUD + " TEXT, "
-                + EsquemaManzana.LONGITUD + " TEXT, "
-                + EsquemaManzana.ALTURA + " TEXT ,"
-                + EsquemaManzana.PRECISION + " TEXT ,"
-                + EsquemaManzana.BARRIO + " TEXT ,"
+                + EsquemaManzana.PTO_LAT_GPS + " TEXT, "
+                + EsquemaManzana.PTO_LON_GPS + " TEXT, "
+                + EsquemaManzana.PTO_ALT_GPS + " TEXT ,"
+                + EsquemaManzana.PTO_PRE_GPS + " TEXT ,"
                 + EsquemaManzana.IMEI + " TEXT ,"
-                + EsquemaManzana.OBSERVACIONES + " TEXT ,"
-                + EsquemaManzana.CODIGO_AG + " TEXT ,"
-                + EsquemaManzana.NOVEDADES_CARTOGRAFICAS + " TEXT ,"
                 + EsquemaManzana.ENCUESTADOR + " TEXT ,"
                 + EsquemaManzana.SUPERVISOR + " TEXT ,"
                 + EsquemaManzana.FINALIZADO + " TEXT ,"
@@ -98,29 +105,16 @@ public class Database extends SQLiteOpenHelper {
                 + EsquemaUnidadEconomica.ID_EDIFICACION + " TEXT, "
                 + EsquemaUnidadEconomica.ID_UNIDAD_ECONOMICA + " TEXT, "
                 + EsquemaUnidadEconomica.IMEI + " TEXT ,"
-                + EsquemaUnidadEconomica.TIPO_VIA_PRINCIPAL + " TEXT, "
-                + EsquemaUnidadEconomica.VIA_PRINCIPAL + " TEXT, "
-                + EsquemaUnidadEconomica.VIA_SECUNDARIA + " TEXT, "
-                + EsquemaUnidadEconomica.PLACA_CUADRANTE + " TEXT, "
-                + EsquemaUnidadEconomica.COMPLEMENTO_DIRECCION + " TEXT, "
-                + EsquemaUnidadEconomica.UNIDADES_OCUPADAS + " TEXT, "
-                + EsquemaUnidadEconomica.ESTADO_OCUPADO + " TEXT, "
-                + EsquemaUnidadEconomica.ESTADO_DESOCUPADO + " TEXT, "
-                + EsquemaUnidadEconomica.OBSERVACIONES_SN + " TEXT, "
-                + EsquemaUnidadEconomica.ESTADO_OBRA + " TEXT, "
-                + EsquemaUnidadEconomica.ESTABLECIMIENTO_FIJO + " TEXT, "
-                + EsquemaUnidadEconomica.ESTABLECIMIENTO_SEMIFIJO + " TEXT, "
-                + EsquemaUnidadEconomica.PUESTO_MOVIL + " TEXT, "
-                + EsquemaUnidadEconomica.VIVIENDA_ACTITVIDAD_ECONOMICA + " TEXT, "
-                + EsquemaUnidadEconomica.OBRA_EDIFICACION + " TEXT, "
-                + EsquemaUnidadEconomica.SECTOR_COMERCIO + " TEXT, "
-                + EsquemaUnidadEconomica.SECTOR_INDUSTRIA + " TEXT, "
-                + EsquemaUnidadEconomica.SECTOR_SERVICIOS + " TEXT, "
-                + EsquemaUnidadEconomica.SECTOR_TRANSPORTE + " TEXT, "
-                + EsquemaUnidadEconomica.SECTOR_CONSTRUCCION + " TEXT, "
-                + EsquemaUnidadEconomica.SECTOR_NO_APLICA + " TEXT, "
-                + EsquemaUnidadEconomica.NOMBRE_UNIDAD_OBSERVACION + " TEXT, "
-                + EsquemaUnidadEconomica.OBSERVACIONES_UNIDAD_OBSERVACION + " TEXT, "
+                + EsquemaUnidadEconomica.DIREC_PREVIA + " TEXT, "
+                + EsquemaUnidadEconomica.DIREC_P_TIPO + " TEXT, "
+                + EsquemaUnidadEconomica.DIRECC + " TEXT, "
+                + EsquemaUnidadEconomica.NOV_CARTO + " TEXT, "
+                + EsquemaUnidadEconomica.ESTADO_UNIDAD_OBSERVACION + " TEXT, "
+                + EsquemaUnidadEconomica.TIPO_UNIDAD_OBSERVACION + " TEXT, "
+                + EsquemaUnidadEconomica.TIPO_VENDEDOR + " TEXT, "
+                + EsquemaUnidadEconomica.SECTOR_ECONOMICO + " TEXT, "
+                + EsquemaUnidadEconomica.UNIDAD_OSBSERVACION + " TEXT, "
+                + EsquemaUnidadEconomica.OBSERVACION + " TEXT, "
                 + EsquemaUnidadEconomica.FECHA_MODIFICACION + " TEXT "
                 + ")");
 
@@ -162,8 +156,112 @@ public class Database extends SQLiteOpenHelper {
                 + EsquemaMapaUsuario.ACTIVO + " TEXT "
                 + ")");
 
+        //NORMALIZADOR
+        db.execSQL("CREATE TABLE " + Normalizador.TABLE_NAME + " ("
+                + Normalizador.ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                + Normalizador.ID_MANZANA + " TEXT,"
+                + Normalizador.ID_UNIDAD_ECONOMICA + " TEXT,"
+                + Normalizador.DIREC_VP + " TEXT,"
+                + Normalizador.DIREC_NNOM_VP + " TEXT,"
+                + Normalizador.DIREC_NUM_VP + " TEXT,"
+                + Normalizador.DIREC_LET_VP + " TEXT, "
+                + Normalizador.DIREC_SF_VP + " TEXT, "
+                + Normalizador.DIREC_LET_SVP + " TEXT,"
+                + Normalizador.DIREC_CUAD_VP + " TEXT, "
+                + Normalizador.DIREC_NUM_VG + " TEXT, "
+                + Normalizador.DIREC_LET_VG + " TEXT ,"
+                + Normalizador.DIREC_SF_VG + " TEXT ,"
+                + Normalizador.DIREC_LET_SVG + " TEXT ,"
+                + Normalizador.DIREC_NUM_PLACA + " TEXT ,"
+                + Normalizador.DIREC_CUAD_VG + " TEXT ,"
+                + Normalizador.DIREC_P_COMP + " TEXT ,"
+                + Normalizador.DIREC_COMP + " TEXT ,"
+                + Normalizador.DIREC_TEX_COM + " TEXT ,"
+                + Normalizador.IMEI + " TEXT ,"
+                + Normalizador.USUARIO + " TEXT ,"
+                + Normalizador.FECHA_CREACION + " TEXT"
+                + ")");
 
 
+        db.execSQL("CREATE TABLE " + ResguardoIndigena.TABLE_NAME + " ("
+                + ResguardoIndigena.ID +" INTEGER PRIMARY KEY,"
+                + ResguardoIndigena.TERRITORIO_ETNICO + " TEXT ,"
+                + ResguardoIndigena.COD_RESG_ETNICO + " TEXT ,"
+                + ResguardoIndigena.NOMBRE_RESGUARDO_INDIGENA + " TEXT ,"
+                + ResguardoIndigena.DIV_DPTO + " TEXT ,"
+                + ResguardoIndigena.DIV_NOM_DPTO + " TEXT ,"
+                + ResguardoIndigena.DIV_MPIO + " TEXT ,"
+                + ResguardoIndigena.DIV_NOM_MPIO + " TEXT "
+                + ")");
+
+        db.execSQL("CREATE TABLE " + DatosTierraComunidadNegra.TABLE_NAME + " ("
+                + DatosTierraComunidadNegra.ID +" INTEGER PRIMARY KEY,"
+                + DatosTierraComunidadNegra.TERRITORIO_ETNICO + " TEXT ,"
+                + DatosTierraComunidadNegra.COD_COMUN_ETNICO + " TEXT ,"
+                + DatosTierraComunidadNegra.NOMBRE_TIERRA_COMUNIDAD_NEGRA + " TEXT ,"
+                + DatosTierraComunidadNegra.DIV_DPTO + " TEXT ,"
+                + DatosTierraComunidadNegra.DIV_NOM_DPTO + " TEXT ,"
+                + DatosTierraComunidadNegra.DIV_MPIO + " TEXT ,"
+                + DatosTierraComunidadNegra.DIV_NOM_MPIO + " TEXT "
+                + ")");
+
+
+        db.execSQL("CREATE TABLE " + PuebloIndigena.TABLE_NAME + " ("
+                + PuebloIndigena.ID +" INTEGER PRIMARY KEY,"
+                + PuebloIndigena.CODIGO + " TEXT ,"
+                + PuebloIndigena.NOMBRE + " TEXT "
+                + ")");
+
+        db.execSQL("CREATE TABLE " + Divipola.TABLE_NAME + " ("
+                + Divipola.ID +" INTEGER PRIMARY KEY,"
+                + Divipola.CODIGO_DEPARTAMENTO + " TEXT ,"
+                + Divipola.CODIGO_MUNICIPIO + " TEXT ,"
+                + Divipola.CODIGO_CENTRO_POBLADO + " TEXT ,"
+                + Divipola.DEPARTAMENTO + " TEXT ,"
+                + Divipola.MUNICIPIO + " TEXT ,"
+                + Divipola.CENTRO_POBLADO + " TEXT ,"
+                + Divipola.TIPO_CENTRO_POBLADO + " TEXT ,"
+                + Divipola.LONGITUD + " TEXT ,"
+                + Divipola.LATITUD + " TEXT ,"
+                + Divipola.DISTRITO + " TEXT ,"
+                + Divipola.TIPO_MUNICIPIO + " TEXT ,"
+                + Divipola.AREA_METROPOLITANA + " TEXT "
+                + ")");
+
+        db.execSQL("CREATE TABLE " + ComunasLocalidades.TABLE_NAME + " ("
+                + ComunasLocalidades.ID +" INTEGER PRIMARY KEY,"
+                + ComunasLocalidades.COD_DPTO + " TEXT ,"
+                + ComunasLocalidades.NOM_DPTO + " TEXT ,"
+                + ComunasLocalidades.COD_MPIO + " TEXT ,"
+                + ComunasLocalidades.NOM_MPIO + " TEXT ,"
+                + ComunasLocalidades.COD_CPOB + " TEXT ,"
+                + ComunasLocalidades.COD_LOCALIDAD + " TEXT ,"
+                + ComunasLocalidades.NOM_LOCALIDAD + " TEXT ,"
+                + ComunasLocalidades.TIPO_LOC_COM_CORR + " TEXT "
+                + ")");
+
+        db.execSQL("CREATE TABLE " + CentroPoblado.TABLE_NAME + " ("
+                + CentroPoblado.ID +" INTEGER PRIMARY KEY,"
+                + CentroPoblado.DIV_DPTO + " TEXT ,"
+                + CentroPoblado.DIV_NOM_DPTO + " TEXT ,"
+                + CentroPoblado.DIV_MPIO + " TEXT ,"
+                + CentroPoblado.DIV_NOM_MPIO + " TEXT ,"
+                + CentroPoblado.DIV_CLASE + " TEXT ,"
+                + CentroPoblado.DIV_CPOB + " TEXT ,"
+                + CentroPoblado.DIV_NOM_CPOB + " TEXT "
+                + ")");
+
+
+        //CARGAR DATOS A TABLAS PARAMETRICAS
+        DatabaseCargueInfoTablas cargue = new DatabaseCargueInfoTablas(contexto);
+
+        cargue.cargarIntoTablas(db , "infoCentroPoblado");
+        cargue.cargarIntoTablas(db , "infoTablaComunas");
+        cargue.cargarIntoTablas(db , "infoTablaDivipola");
+        cargue.cargarIntoTablas(db , "infoTablaDivipola2");
+        cargue.cargarIntoTablas(db , "infoTablaPuebloIndigena");
+        cargue.cargarIntoTablas(db , "infoTablaResguardoIndigena");
+        cargue.cargarIntoTablas(db , "infoTablaTierraComunidadNegra");
 
     }
 
@@ -175,6 +273,14 @@ public class Database extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + EsquemaManzana.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + EsquemaAsignacion.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + EsquemaOffline.TABLE_NAME);
+
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Normalizador.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ResguardoIndigena.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DatosTierraComunidadNegra.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + PuebloIndigena.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Divipola.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ComunasLocalidades.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + CentroPoblado.TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 
@@ -191,20 +297,25 @@ public class Database extends SQLiteOpenHelper {
             values.put(EsquemaManzana.DEPARTAMENTO, manzana.getDepartamento());
             values.put(EsquemaManzana.MUNICIPIO, manzana.getMunicipio());
             values.put(EsquemaManzana.CLASE, manzana.getClase());
-            values.put(EsquemaManzana.CENTRO_POBLADO, manzana.getCentroPoblado());
-            values.put(EsquemaManzana.SECTOR_URBANO, manzana.getSectorUrbano());
-            values.put(EsquemaManzana.SECCION_URBANA, manzana.getSeccionUrbana());
+            values.put(EsquemaManzana.CENTRO_POBLADO, manzana.getCentro_poblado());
+            values.put(EsquemaManzana.LOCALIDAD, manzana.getLocalidad());
             values.put(EsquemaManzana.MANZANA, manzana.getManzana());
-            values.put(EsquemaManzana.EXISTE_UNIDAD_ECONOMICA, manzana.getPresenciaUnidades());
-            values.put(EsquemaManzana.LATITUD, manzana.getLatitud());
-            values.put(EsquemaManzana.LONGITUD, manzana.getLongitud());
-            values.put(EsquemaManzana.ALTURA, manzana.getAltura());
-            values.put(EsquemaManzana.PRECISION, manzana.getPrecision());
-            values.put(EsquemaManzana.CODIGO_AG, manzana.getCodigoAG());
+            values.put(EsquemaManzana.TERRITORIO_ETNICO, manzana.getTerritorioEtnico());
+            values.put(EsquemaManzana.SEL_TERR_ETNICO, manzana.getSelTerritorioEtnico());
+            values.put(EsquemaManzana.PTO_LAT_GPS, manzana.getLatitud());
+            values.put(EsquemaManzana.PTO_LON_GPS, manzana.getLongitud());
+            values.put(EsquemaManzana.PTO_ALT_GPS, manzana.getAltura());
+            values.put(EsquemaManzana.PTO_PRE_GPS, manzana.getPrecision());
+            values.put(EsquemaManzana.COD_RESG_ETNICO, manzana.getResguardoEtnico());
+            values.put(EsquemaManzana.COD_COMUN_ETNICO, manzana.getComunidadEtnica());
+            values.put(EsquemaManzana.CO, manzana.getCoordinacionOperativa());
+            values.put(EsquemaManzana.AO, manzana.getAreaOperativa());
+            values.put(EsquemaManzana.AG, manzana.getUnidad_cobertura());
+            values.put(EsquemaManzana.ACER, manzana.getACER());
+            values.put(EsquemaManzana.DIREC_BARRIO, manzana.getBarrio());
+            values.put(EsquemaManzana.EXISTE_UNIDAD, manzana.getExisteUnidad());
+            values.put(EsquemaManzana.TIPO_NOVEDAD, manzana.getTipoNovedad());
             values.put(EsquemaManzana.IMEI, manzana.getImei());
-            values.put(EsquemaManzana.OBSERVACIONES, manzana.getObservaciones());
-            values.put(EsquemaManzana.NOVEDADES_CARTOGRAFICAS, manzana.getNovedadesCartografias());
-            values.put(EsquemaManzana.BARRIO, manzana.getBarrio());
             values.put(EsquemaManzana.FINALIZADO, manzana.getFinalizado());
             values.put(EsquemaManzana.ENCUESTADOR, manzana.getCod_enumerador());
             values.put(EsquemaManzana.SUPERVISOR, manzana.getSupervisor());
@@ -236,29 +347,16 @@ public class Database extends SQLiteOpenHelper {
 
             ContentValues values = new ContentValues();
 
-            values.put(EsquemaUnidadEconomica.TIPO_VIA_PRINCIPAL,unidad.getTipo_via_principal());
-            values.put(EsquemaUnidadEconomica.VIA_PRINCIPAL,unidad.getVia_principal());
-            values.put(EsquemaUnidadEconomica.VIA_SECUNDARIA,unidad.getVia_secundaria());
-            values.put(EsquemaUnidadEconomica.PLACA_CUADRANTE,unidad.getPlaca_cuadrante());
-            values.put(EsquemaUnidadEconomica.COMPLEMENTO_DIRECCION,unidad.getComplemento_direccion());
-            values.put(EsquemaUnidadEconomica.UNIDADES_OCUPADAS,unidad.getUnidades_ocupadas());
-            values.put(EsquemaUnidadEconomica.ESTADO_OCUPADO,unidad.getEstado_ocupado());
-            values.put(EsquemaUnidadEconomica.OBSERVACIONES_SN,unidad.getObservaciones_sn());
-            values.put(EsquemaUnidadEconomica.ESTADO_DESOCUPADO,unidad.getEstado_desocupado());
-            values.put(EsquemaUnidadEconomica.ESTADO_OBRA,unidad.getEstado_obra());
-            values.put(EsquemaUnidadEconomica.ESTABLECIMIENTO_FIJO,unidad.getEstablecimiento_fijo());
-            values.put(EsquemaUnidadEconomica.ESTABLECIMIENTO_SEMIFIJO,unidad.getEstablecimiento_semifijo());
-            values.put(EsquemaUnidadEconomica.PUESTO_MOVIL,unidad.getPuesto_movil());
-            values.put(EsquemaUnidadEconomica.VIVIENDA_ACTITVIDAD_ECONOMICA,unidad.getVivienda_actividad_economica());
-            values.put(EsquemaUnidadEconomica.OBRA_EDIFICACION,unidad.getObra_edificacion());
-            values.put(EsquemaUnidadEconomica.SECTOR_COMERCIO,unidad.getComercio());
-            values.put(EsquemaUnidadEconomica.SECTOR_INDUSTRIA,unidad.getIndustria());
-            values.put(EsquemaUnidadEconomica.SECTOR_SERVICIOS,unidad.getServicios());
-            values.put(EsquemaUnidadEconomica.SECTOR_TRANSPORTE,unidad.getTransporte());
-            values.put(EsquemaUnidadEconomica.SECTOR_CONSTRUCCION,unidad.getConstruccion());
-            values.put(EsquemaUnidadEconomica.SECTOR_NO_APLICA,unidad.getNo_aplica());
-            values.put(EsquemaUnidadEconomica.NOMBRE_UNIDAD_OBSERVACION,unidad.getNombre_unidad_observacion());
-            values.put(EsquemaUnidadEconomica.OBSERVACIONES_UNIDAD_OBSERVACION,unidad.getObservaciones_unidad_observacion());
+            values.put(EsquemaUnidadEconomica.DIREC_PREVIA,unidad.getDirec_previa());
+            values.put(EsquemaUnidadEconomica.DIREC_P_TIPO,unidad.getDirec_p_tipo());
+            values.put(EsquemaUnidadEconomica.DIRECC,unidad.getDirecc());
+            values.put(EsquemaUnidadEconomica.NOV_CARTO,unidad.getNov_carto());
+            values.put(EsquemaUnidadEconomica.ESTADO_UNIDAD_OBSERVACION,unidad.getEstado_unidad_observacion());
+            values.put(EsquemaUnidadEconomica.TIPO_UNIDAD_OBSERVACION,unidad.getTipo_unidad_observacion());
+            values.put(EsquemaUnidadEconomica.TIPO_VENDEDOR,unidad.getTipo_vendedor());
+            values.put(EsquemaUnidadEconomica.SECTOR_ECONOMICO,unidad.getSector_economico());
+            values.put(EsquemaUnidadEconomica.UNIDAD_OSBSERVACION,unidad.getUnidad_osbservacion());
+            values.put(EsquemaUnidadEconomica.OBSERVACION,unidad.getObservacion());
             values.put(EsquemaUnidadEconomica.IMEI, unidad.getImei());
 
             return db.update(EsquemaUnidadEconomica.TABLE_NAME, values,
@@ -646,35 +744,49 @@ public class Database extends SQLiteOpenHelper {
                 index = c.getColumnIndexOrThrow(EsquemaManzana.CLASE);
                 manzana.setClase(c.getString(index));
                 index = c.getColumnIndexOrThrow(EsquemaManzana.CENTRO_POBLADO);
-                manzana.setCentroPoblado(c.getString(index));
-                index = c.getColumnIndexOrThrow(EsquemaManzana.SECTOR_URBANO);
-                manzana.setSectorUrbano(c.getString(index));
-                index = c.getColumnIndexOrThrow(EsquemaManzana.SECCION_URBANA);
-                manzana.setSeccionUrbana(c.getString(index));
+                manzana.setCentro_poblado(c.getString(index));
+                index = c.getColumnIndexOrThrow(EsquemaManzana.LOCALIDAD);
+                manzana.setLocalidad(c.getString(index));
+                index = c.getColumnIndexOrThrow(EsquemaManzana.TERRITORIO_ETNICO);
+                manzana.setTerritorioEtnico(c.getString(index));
+                index = c.getColumnIndexOrThrow(EsquemaManzana.SEL_TERR_ETNICO);
+                manzana.setSelTerritorioEtnico(c.getString(index));
+                index = c.getColumnIndexOrThrow(EsquemaManzana.COD_RESG_ETNICO);
+                manzana.setResguardoEtnico(c.getString(index));
+                index = c.getColumnIndexOrThrow(EsquemaManzana.COD_COMUN_ETNICO);
+                manzana.setComunidadEtnica(c.getString(index));
+                index = c.getColumnIndexOrThrow(EsquemaManzana.CO);
+                manzana.setCoordinacionOperativa(c.getString(index));
+                index = c.getColumnIndexOrThrow(EsquemaManzana.AO);
+                manzana.setAreaOperativa(c.getString(index));
+                index = c.getColumnIndexOrThrow(EsquemaManzana.AG);
+                manzana.setUnidad_cobertura(c.getString(index));
+                index = c.getColumnIndexOrThrow(EsquemaManzana.ACER);
+                manzana.setACER(c.getString(index));
+                index = c.getColumnIndexOrThrow(EsquemaManzana.TIPO_NOVEDAD);
+                manzana.setTipoNovedad(c.getString(index));
+
                 index = c.getColumnIndexOrThrow(EsquemaManzana.MANZANA);
                 manzana.setManzana(c.getString(index));
-                index = c.getColumnIndexOrThrow(EsquemaManzana.EXISTE_UNIDAD_ECONOMICA);
-                manzana.setMPresenciaUnidades(c.getString(index));
-                index = c.getColumnIndexOrThrow(EsquemaManzana.LATITUD);
+                index = c.getColumnIndexOrThrow(EsquemaManzana.EXISTE_UNIDAD);
+                manzana.setExisteUnidad(c.getString(index));
+                index = c.getColumnIndexOrThrow(EsquemaManzana.PTO_LAT_GPS);
                 manzana.setLatitud(c.getString(index));
-                index = c.getColumnIndexOrThrow(EsquemaManzana.LONGITUD);
+                index = c.getColumnIndexOrThrow(EsquemaManzana.PTO_LON_GPS);
                 manzana.setLongitud(c.getString(index));
-                index = c.getColumnIndexOrThrow(EsquemaManzana.ALTURA);
+                index = c.getColumnIndexOrThrow(EsquemaManzana.PTO_ALT_GPS);
                 manzana.setAltura(c.getString(index));
-                index = c.getColumnIndexOrThrow(EsquemaManzana.PRECISION);
+                index = c.getColumnIndexOrThrow(EsquemaManzana.PTO_PRE_GPS);
                 manzana.setPrecision(c.getString(index));
                 index = c.getColumnIndexOrThrow(EsquemaManzana.ID_MANZANA);
                 manzana.setId_manzana(c.getString(index));
                 index = c.getColumnIndexOrThrow(EsquemaManzana.FINALIZADO);
                 manzana.setFinalizado(c.getString(index));
-                index = c.getColumnIndexOrThrow(EsquemaManzana.BARRIO);
+                index = c.getColumnIndexOrThrow(EsquemaManzana.DIREC_BARRIO);
                 manzana.setBarrio(c.getString(index));
-                index = c.getColumnIndexOrThrow(EsquemaManzana.CODIGO_AG);
-                manzana.setCodigoAG(c.getString(index));
-                index = c.getColumnIndexOrThrow(EsquemaManzana.OBSERVACIONES);
-                manzana.setObservaciones(c.getString(index));
-                index = c.getColumnIndexOrThrow(EsquemaManzana.NOVEDADES_CARTOGRAFICAS);
-                manzana.setNovedadesCartografias(c.getString(index));
+
+
+
                 index = c.getColumnIndexOrThrow(EsquemaManzana.ENCUESTADOR);
                 manzana.setCod_enumerador(c.getString(index));
                 index = c.getColumnIndexOrThrow(EsquemaManzana.FECHA_MODIFICACION);
@@ -720,6 +832,7 @@ public class Database extends SQLiteOpenHelper {
         while (c.moveToNext()) {
             int index;
 
+
             index = c.getColumnIndexOrThrow(EsquemaManzana.FECHA_CONTEO);
             manzana.setFecha(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaManzana.DEPARTAMENTO);
@@ -729,35 +842,61 @@ public class Database extends SQLiteOpenHelper {
             index = c.getColumnIndexOrThrow(EsquemaManzana.CLASE);
             manzana.setClase(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaManzana.CENTRO_POBLADO);
-            manzana.setCentroPoblado(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.SECTOR_URBANO);
-            manzana.setSectorUrbano(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.SECCION_URBANA);
-            manzana.setSeccionUrbana(c.getString(index));
+            manzana.setCentro_poblado(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.LOCALIDAD);
+            manzana.setLocalidad(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.TERRITORIO_ETNICO);
+            manzana.setTerritorioEtnico(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.SEL_TERR_ETNICO);
+            manzana.setSelTerritorioEtnico(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.COD_RESG_ETNICO);
+            manzana.setResguardoEtnico(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.COD_COMUN_ETNICO);
+            manzana.setComunidadEtnica(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.CO);
+            manzana.setCoordinacionOperativa(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.AO);
+            manzana.setAreaOperativa(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.AG);
+            manzana.setUnidad_cobertura(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.ACER);
+            manzana.setACER(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.TIPO_NOVEDAD);
+            manzana.setTipoNovedad(c.getString(index));
+
             index = c.getColumnIndexOrThrow(EsquemaManzana.MANZANA);
             manzana.setManzana(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.EXISTE_UNIDAD_ECONOMICA);
-            manzana.setMPresenciaUnidades(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.LATITUD);
+            index = c.getColumnIndexOrThrow(EsquemaManzana.EXISTE_UNIDAD);
+            manzana.setExisteUnidad(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.PTO_LAT_GPS);
             manzana.setLatitud(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.LONGITUD);
+            index = c.getColumnIndexOrThrow(EsquemaManzana.PTO_LON_GPS);
             manzana.setLongitud(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.ALTURA);
+            index = c.getColumnIndexOrThrow(EsquemaManzana.PTO_ALT_GPS);
             manzana.setAltura(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.PRECISION);
+            index = c.getColumnIndexOrThrow(EsquemaManzana.PTO_PRE_GPS);
             manzana.setPrecision(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaManzana.ID_MANZANA);
             manzana.setId_manzana(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaManzana.FINALIZADO);
             manzana.setFinalizado(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.BARRIO);
+            index = c.getColumnIndexOrThrow(EsquemaManzana.DIREC_BARRIO);
             manzana.setBarrio(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.CODIGO_AG);
-            manzana.setCodigoAG(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.OBSERVACIONES);
-            manzana.setObservaciones(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.NOVEDADES_CARTOGRAFICAS);
-            manzana.setNovedadesCartografias(c.getString(index));
+
+
+
+            index = c.getColumnIndexOrThrow(EsquemaManzana.ENCUESTADOR);
+            manzana.setCod_enumerador(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.FECHA_MODIFICACION);
+            manzana.setFechaModificacion(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.IMEI);
+            manzana.setImei(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.SUPERVISOR);
+            manzana.setSupervisor(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.DOBLE_SINCRONIZADO);
+            manzana.setDoble_sincronizado(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.SINCRONIZADO_NUBE);
+            manzana.setSincronizado_nube(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaManzana.PENDIENTE_SINCRONIZAR);
             manzana.setPendiente_sincronizar(c.getString(index));
             encontro = true;
@@ -795,52 +934,27 @@ public class Database extends SQLiteOpenHelper {
         while (c.moveToNext()) {
             int index;
 
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.TIPO_VIA_PRINCIPAL);
-            unidad.setTipo_via_principal(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.VIA_PRINCIPAL);
-            unidad.setVia_principal(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.VIA_SECUNDARIA);
-            unidad.setVia_secundaria(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.PLACA_CUADRANTE);
-            unidad.setPlaca_cuadrante(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.COMPLEMENTO_DIRECCION);
-            unidad.setComplemento_direccion(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.DIREC_PREVIA);
+            unidad.setDirec_previa(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.DIREC_P_TIPO);
+            unidad.setDirec_p_tipo(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.DIRECC);
+            unidad.setDirecc(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.NOV_CARTO);
+            unidad.setNov_carto(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.ESTADO_UNIDAD_OBSERVACION);
+            unidad.setEstado_unidad_observacion(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.TIPO_UNIDAD_OBSERVACION);
+            unidad.setTipo_unidad_observacion(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.TIPO_VENDEDOR);
+            unidad.setTipo_vendedor(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.SECTOR_ECONOMICO);
+            unidad.setSector_economico(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.UNIDAD_OSBSERVACION);
+            unidad.setUnidad_osbservacion(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.OBSERVACION);
+            unidad.setObservacion(c.getString(index));
 
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.UNIDADES_OCUPADAS);
-            unidad.setUnidades_ocupadas(c.getString(index));
-
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.ESTADO_OCUPADO);
-            unidad.setEstado_ocupado(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.ESTADO_DESOCUPADO);
-            unidad.setEstado_desocupado(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.ESTADO_OBRA);
-            unidad.setEstado_obra(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.ESTABLECIMIENTO_FIJO);
-            unidad.setEstablecimiento_fijo(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.ESTABLECIMIENTO_SEMIFIJO);
-            unidad.setEstablecimiento_semifijo(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.PUESTO_MOVIL);
-            unidad.setPuesto_movil(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.VIVIENDA_ACTITVIDAD_ECONOMICA);
-            unidad.setVivienda_actividad_economica(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.OBRA_EDIFICACION);
-            unidad.setObra_edificacion(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.SECTOR_COMERCIO);
-            unidad.setComercio(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.SECTOR_INDUSTRIA);
-            unidad.setIndustria(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.SECTOR_SERVICIOS);
-            unidad.setServicios(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.SECTOR_TRANSPORTE);
-            unidad.setTransporte(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.SECTOR_CONSTRUCCION);
-            unidad.setConstruccion(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.SECTOR_NO_APLICA);
-            unidad.setNo_aplica(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.NOMBRE_UNIDAD_OBSERVACION);
-            unidad.setNombre_unidad_observacion(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.OBSERVACIONES_UNIDAD_OBSERVACION);
-            unidad.setObservaciones_unidad_observacion(c.getString(index));
 
             index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.ID_MANZANA);
             unidad.setId_manzana(c.getString(index));
@@ -848,8 +962,6 @@ public class Database extends SQLiteOpenHelper {
             unidad.setId_edificacion(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.ID_UNIDAD_ECONOMICA);
             unidad.setId_unidad(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.OBSERVACIONES_SN);
-            unidad.setObservaciones_sn(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.FECHA_MODIFICACION);
             unidad.setFechaModificacion(c.getString(index));
 
@@ -1142,35 +1254,49 @@ public class Database extends SQLiteOpenHelper {
             index = c.getColumnIndexOrThrow(EsquemaManzana.CLASE);
             manzana.setClase(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaManzana.CENTRO_POBLADO);
-            manzana.setCentroPoblado(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.SECTOR_URBANO);
-            manzana.setSectorUrbano(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.SECCION_URBANA);
-            manzana.setSeccionUrbana(c.getString(index));
+            manzana.setCentro_poblado(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.LOCALIDAD);
+            manzana.setLocalidad(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.TERRITORIO_ETNICO);
+            manzana.setTerritorioEtnico(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.SEL_TERR_ETNICO);
+            manzana.setSelTerritorioEtnico(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.COD_RESG_ETNICO);
+            manzana.setResguardoEtnico(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.COD_COMUN_ETNICO);
+            manzana.setComunidadEtnica(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.CO);
+            manzana.setCoordinacionOperativa(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.AO);
+            manzana.setAreaOperativa(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.AG);
+            manzana.setUnidad_cobertura(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.ACER);
+            manzana.setACER(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.TIPO_NOVEDAD);
+            manzana.setTipoNovedad(c.getString(index));
+
             index = c.getColumnIndexOrThrow(EsquemaManzana.MANZANA);
             manzana.setManzana(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.EXISTE_UNIDAD_ECONOMICA);
-            manzana.setMPresenciaUnidades(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.LATITUD);
+            index = c.getColumnIndexOrThrow(EsquemaManzana.EXISTE_UNIDAD);
+            manzana.setExisteUnidad(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.PTO_LAT_GPS);
             manzana.setLatitud(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.LONGITUD);
+            index = c.getColumnIndexOrThrow(EsquemaManzana.PTO_LON_GPS);
             manzana.setLongitud(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.ALTURA);
+            index = c.getColumnIndexOrThrow(EsquemaManzana.PTO_ALT_GPS);
             manzana.setAltura(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.PRECISION);
+            index = c.getColumnIndexOrThrow(EsquemaManzana.PTO_PRE_GPS);
             manzana.setPrecision(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaManzana.ID_MANZANA);
             manzana.setId_manzana(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaManzana.FINALIZADO);
             manzana.setFinalizado(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.BARRIO);
+            index = c.getColumnIndexOrThrow(EsquemaManzana.DIREC_BARRIO);
             manzana.setBarrio(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.CODIGO_AG);
-            manzana.setCodigoAG(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.OBSERVACIONES);
-            manzana.setObservaciones(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaManzana.NOVEDADES_CARTOGRAFICAS);
-            manzana.setNovedadesCartografias(c.getString(index));
+
+
+
             index = c.getColumnIndexOrThrow(EsquemaManzana.ENCUESTADOR);
             manzana.setCod_enumerador(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaManzana.FECHA_MODIFICACION);
@@ -1730,27 +1856,32 @@ public class Database extends SQLiteOpenHelper {
      */
     private EsquemaManzanaEnvioViewModel getManzana(Manzana manzana){
         EsquemaManzanaEnvioViewModel retorno = new EsquemaManzanaEnvioViewModel();
-        retorno.setAltura(manzana.getAltura());
-        retorno.setBarrio(manzana.getBarrio());
-        retorno.setCentro_poblado(manzana.getCentroPoblado());
+        retorno.setPto_alt_gps(manzana.getAltura());
+        retorno.setPto_lat_gps(manzana.getLatitud());
+        retorno.setPto_lon_gps(manzana.getLongitud());
+        retorno.setPto_pre_gp(manzana.getPrecision());
+        retorno.setMpio(manzana.getMunicipio());
         retorno.setClase(manzana.getClase());
-        retorno.setCodigoAG(manzana.getCodigoAG());
-        retorno.setDepartamento(manzana.getDepartamento());
+        retorno.setCom_loc(manzana.getLocalidad());
+        retorno.setC_pob(manzana.getCentro_poblado());
+        retorno.setTerritorio_etnico(manzana.getTerritorioEtnico());
+        retorno.setSel_terr_etnico(manzana.getSelTerritorioEtnico());
+        retorno.setCod_resg_etnico(manzana.getResguardoEtnico());
+        retorno.setCod_comun_etnico(manzana.getComunidadEtnica());
+        retorno.setCo(manzana.getCoordinacionOperativa());
+        retorno.setAo(manzana.getAreaOperativa());
+        retorno.setAg(manzana.getUnidad_cobertura());
+        retorno.setAcer(manzana.getACER());
+        retorno.setDirec_barrio(manzana.getBarrio());
+        retorno.setExiste_unidad(manzana.getExisteUnidad());
+        retorno.setTipo_novedad(manzana.getTipoNovedad());
+
         retorno.setFechaConteo(manzana.getFecha());
         retorno.setFechaModificacion(manzana.getFechaModificacion());
         retorno.setFinalizado(manzana.getFinalizado());
         retorno.setId_manzana(manzana.getId_manzana());
         retorno.setImei(manzana.getImei());
-        retorno.setLatitud(manzana.getLatitud());
-        retorno.setLongitud(manzana.getLongitud());
         retorno.setManzana(manzana.getManzana());
-        retorno.setMunicipio(manzana.getMunicipio());
-        retorno.setNovedadesCartograficas(manzana.getNovedadesCartografias());
-        retorno.setObservaciones(manzana.getObservaciones());
-        retorno.setPrecision(manzana.getPrecision());
-        retorno.setPresencia_und(manzana.getPresenciaUnidades());
-        retorno.setSeccion_urbana(manzana.getSeccionUrbana());
-        retorno.setSector_urbano(manzana.getSectorUrbano());
         retorno.setSupervisor(manzana.getSupervisor());
         return retorno;
     }
@@ -1781,34 +1912,20 @@ public class Database extends SQLiteOpenHelper {
      */
     private EsquemaUnidadesEnvioViewModel getUnidadEconomica(UnidadEconomica unidad){
         EsquemaUnidadesEnvioViewModel retorno = new EsquemaUnidadesEnvioViewModel();
-        retorno.setComplemento_direccion(unidad.getComplemento_direccion());
-        retorno.setUnidad_ocupada(unidad.getUnidades_ocupadas());
-        retorno.setEstablecimiento_fijo(unidad.getEstablecimiento_fijo());
-        retorno.setEstablecimiento_semifijo(unidad.getEstablecimiento_semifijo());
-        retorno.setEstado_desocupado(unidad.getEstado_desocupado());
-        retorno.setEstado_obra(unidad.getEstado_obra());
-        retorno.setEstado_ocupado(unidad.getEstado_ocupado());
-        retorno.setFecha_modificacion(unidad.getFechaModificacion());
+        retorno.setDirec_previa(unidad.getDirec_previa());
+        retorno.setDirec_p_tipo(unidad.getDirec_p_tipo());
+        retorno.setDirecc(unidad.getDirecc());
+        retorno.setNov_carto(unidad.getNov_carto());
+        retorno.setEstado_unidad_observacion(unidad.getEstado_unidad_observacion());
+        retorno.setTipo_unidad_observacion(unidad.getTipo_unidad_observacion());
+        retorno.setTipo_vendedor(unidad.getTipo_vendedor());
+        retorno.setSector_economico(unidad.getSector_economico());
+        retorno.setUnidad_osbservacion(unidad.getUnidad_osbservacion());
+        retorno.setObservacion(unidad.getObservacion());
         retorno.setId_edificacion(unidad.getId_edificacion());
         retorno.setId_manzana(unidad.getId_manzana());
-        retorno.setId_manzana_edificio_unidad(unidad.getId_manzana()+unidad.getId_edificacion()+unidad.getId_unidad());
         retorno.setId_unidad_economica(unidad.getId_unidad());
-        retorno.setNombre_unidad_observacion(unidad.getNombre_unidad_observacion());
-        retorno.setObra_edificacion(unidad.getObra_edificacion());
-        retorno.setObservaciones_sn(unidad.getObservaciones_sn());
-        retorno.setObservaciones_unidad_observ(unidad.getObservaciones_unidad_observacion());
-        retorno.setPlaca_cuadrante(unidad.getPlaca_cuadrante());
-        retorno.setPuesto_movil(unidad.getPuesto_movil());
-        retorno.setSector_comercio(unidad.getComercio());
-        retorno.setSector_construccion(unidad.getConstruccion());
-        retorno.setSector_industria(unidad.getIndustria());
-        retorno.setSector_no_aplica(unidad.getNo_aplica());
-        retorno.setSector_servicios(unidad.getServicios());
-        retorno.setSector_transporte(unidad.getTransporte());
-        retorno.setTipo_via_principal(unidad.getTipo_via_principal());
-        retorno.setVia_principal(unidad.getVia_principal());
-        retorno.setVia_secundaria(unidad.getVia_secundaria());
-        retorno.setVivienda_actividad_eco(unidad.getVivienda_actividad_economica());
+        retorno.setId_manzana_edificio_unidad(unidad.getId_manzana()+""+unidad.getId_edificacion()+""+unidad.getId_unidad());
 
         return retorno;
     }
@@ -1875,5 +1992,481 @@ public class Database extends SQLiteOpenHelper {
         }
         return retorno;
     }
+
+
+
+    /**
+     * Metodo de consulta la informacion de los resguardo indigena
+     * @return
+     */
+    public synchronized List<String> getResguardoIndigena(String departamento, String ciudad) {
+        List<String> objeto = new ArrayList<String>();
+        objeto.add("Seleccione...");
+
+        if(Util.stringNullEmptys(departamento) && Util.stringNullEmptys(ciudad)){
+            //Log.d("SQL_departamento:", departamento);
+            //Log.d("SQL_ciudad:", ciudad);
+            try {
+                SQLiteDatabase db = getReadableDatabase();
+                String sql = "SELECT DISTINCT  NOMBRE_RESGUARDO_INDIGENA " +
+                        "FROM DATOS_RESGUARDO_INDIGENA " +
+                        "WHERE DIV_NOM_DPTO  = '"+departamento+"' AND DIV_NOM_MPIO = '"+ciudad+"'  " +
+                        "ORDER BY NOMBRE_RESGUARDO_INDIGENA ASC";
+                //Log.d("SQL sql:", sql);
+                Cursor cursor = db.rawQuery(sql, null);
+                if (cursor != null && cursor.getCount() > 0) {
+                    cursor.moveToFirst();
+                    do {
+                        objeto.add(cursor.getString(0));
+                    } while (cursor.moveToNext());
+                }else{
+                    objeto = new ArrayList<String>();
+                    objeto.add("Seleccione...");
+                }
+                cursor.close();
+            } catch (Exception e) {
+                Log.d("Error:", e.getMessage());
+            } finally {
+            }
+        }
+
+        return objeto;
+    }
+
+    /**
+     * Metodo de consulta la informacion de los Comunidad negra
+     * @return
+     */
+    public synchronized List<String> getComunidadNegra(String departamento, String ciudad) {
+        List<String> objeto = new ArrayList<String>();
+        objeto.add("Seleccione...");
+
+        if(Util.stringNullEmptys(departamento) && Util.stringNullEmptys(ciudad)){
+            try {
+                SQLiteDatabase db = getReadableDatabase();
+                String sql = "SELECT DISTINCT  NOMBRE_TIERRA_COMUNIDAD_NEGRA " +
+                        "FROM DATOS_TIERRA_COMUNIDAD_NEGRA " +
+                        "WHERE DIV_NOM_DPTO  = '"+departamento+"' AND DIV_NOM_MPIO = '"+ciudad+"'  " +
+                        "ORDER BY NOMBRE_TIERRA_COMUNIDAD_NEGRA ASC";
+                //Log.d("SQL sql:", sql);
+
+                Cursor cursor = db.rawQuery(sql, null);
+                if (cursor != null && cursor.getCount() > 0) {
+                    cursor.moveToFirst();
+                    do {
+                        objeto.add(cursor.getString(0));
+                    } while (cursor.moveToNext());
+                }else{
+                    objeto = new ArrayList<String>();
+                    objeto.add("Seleccione...");
+                }
+                cursor.close();
+            } catch (Exception e) {
+                Log.d("Error:", e.getMessage());
+            } finally {
+            }
+        }
+        return objeto;
+    }
+
+    /**
+     * Metodo de consulta la informacion de los Directori0
+     * @return
+     */
+    public synchronized List<String> getPuebloIndigena() {
+        List<String> objeto = new ArrayList<String>();
+        objeto.add("Seleccione...");
+
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT DISTINCT  " +
+                    "NOMBRE  " +
+                    "FROM DATOS_PUEBLO_INDIGENA ORDER BY NOMBRE ASC", null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    objeto.add(cursor.getString(0));
+                } while (cursor.moveToNext());
+            }else{
+                objeto = new ArrayList<String>();
+                objeto.add("Seleccione...");
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.d("Error:", e.getMessage());
+        } finally {
+        }
+        return objeto;
+    }
+
+    /**
+     * Metodo de consulta la informacion de los departamentos
+     * @return
+     */
+    public synchronized List<String> getDepartamentos() {
+        List<String> objeto = new ArrayList<String>();
+        objeto.add("Seleccione...");
+
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT DISTINCT  " +
+                    "DEPARTAMENTO  " +
+                    "FROM DIVIPOLA ", null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    objeto.add(cursor.getString(0));
+                } while (cursor.moveToNext());
+            }else{
+                objeto = new ArrayList<String>();
+                objeto.add("Seleccione...");
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.d("Error:", e.getMessage());
+        } finally {
+        }
+        return objeto;
+    }
+
+    /**
+     * Metodo de consulta la informacion  un departamento
+     * @param codigo
+     * @return
+     */
+    public synchronized String getDepartamento(String codigo) {
+        String objeto = null;
+
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT DISTINCT  " +
+                    "DEPARTAMENTO  " +
+                    "FROM DIVIPOLA WHERE CODIGO_DEPARTAMENTO = '"+codigo+"'", null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    objeto = (cursor.getString(0));
+                } while (cursor.moveToNext());
+            }else{
+                objeto = null;
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.d("Error:", e.getMessage());
+        } finally {
+        }
+        return objeto;
+    }
+
+    /**
+     * Metodo de consulta la informacion de los municipios
+     * @return
+     */
+    public synchronized List<String> getMunicipios(String departamento) {
+        List<String> objeto = new ArrayList<String>();
+        objeto.add("Seleccione...");
+
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT DISTINCT  " +
+                    "MUNICIPIO  " +
+                    "FROM DIVIPOLA " +
+                    "WHERE DEPARTAMENTO = '"+departamento+"'", null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    objeto.add(cursor.getString(0));
+                } while (cursor.moveToNext());
+            }else{
+                objeto = new ArrayList<String>();
+                objeto.add("Seleccione...");
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.d("Error:", e.getMessage());
+        } finally {
+        }
+        return objeto;
+    }
+
+    /**
+     * Metodo de consulta la informacion de un municipios
+     * @return
+     */
+    public synchronized String getMunicipio(String codigo) {
+        String objeto = null;
+
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT DISTINCT  " +
+                    "MUNICIPIO  " +
+                    "FROM DIVIPOLA " +
+                    "WHERE CODIGO_MUNICIPIO = '"+codigo+"'", null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    objeto = (cursor.getString(0));
+                } while (cursor.moveToNext());
+            }else{
+                objeto = null;
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.d("Error:", e.getMessage());
+        } finally {
+        }
+        return objeto;
+    }
+
+    /**
+     * Metodo de consulta la informacion de los centro poblado por medio de los municipios
+     * @return
+     */
+    public synchronized List<String> getCentroPoblados(String municipio) {
+        List<String> objeto = new ArrayList<String>();
+        objeto.add("Seleccione...");
+
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT DISTINCT  " +
+                    "CENTRO_POBLADO  " +
+                    "FROM DIVIPOLA " +
+                    "WHERE MUNICIPIO = '"+municipio+"'", null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    objeto.add(cursor.getString(0));
+                } while (cursor.moveToNext());
+            }else{
+                objeto = new ArrayList<String>();
+                objeto.add("Seleccione...");
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.d("Error:", e.getMessage());
+        } finally {
+        }
+        return objeto;
+    }
+
+    /**
+     * Metodo de consulta la informacion de un centro poblado
+     * @return
+     */
+    public synchronized String getCentroPoblado(String codigo) {
+        String objeto = null;
+
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT DISTINCT  " +
+                    "CENTRO_POBLADO  " +
+                    "FROM DIVIPOLA " +
+                    "WHERE CODIGO_CENTRO_POBLADO = '"+codigo+"'", null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    objeto = (cursor.getString(0));
+                } while (cursor.moveToNext());
+            }else{
+                objeto =  null;
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.d("Error:", e.getMessage());
+        } finally {
+        }
+        return objeto;
+    }
+
+    /**
+     * Metodo de consulta la informacion de las localidades por medio de los municipios
+     * @return
+     */
+    public synchronized List<String> getLocalidades(String municipio) {
+        List<String> objeto = new ArrayList<String>();
+        objeto.add("Seleccione...");
+
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT DISTINCT  " +
+                    "NOM_LOCALIDAD  " +
+                    "FROM DATOS_COMUNAS_LOCALIDADES " +
+                    "WHERE NOM_MPIO = '"+municipio+"'", null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    objeto.add(cursor.getString(0));
+                } while (cursor.moveToNext());
+            }else{
+                objeto = new ArrayList<String>();
+                objeto.add("Seleccione...");
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.d("Error:", e.getMessage());
+        } finally {
+        }
+        return objeto;
+    }
+
+    /**
+     * Metodo de consulta la informacion de una localidad
+     * @return
+     */
+    public synchronized String getLocalidad(String codigo) {
+        String objeto = null;
+
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT DISTINCT  " +
+                    "NOM_LOCALIDAD  " +
+                    "FROM DATOS_COMUNAS_LOCALIDADES " +
+                    "WHERE COD_LOCALIDAD = '"+codigo+"'", null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    objeto = (cursor.getString(0));
+                } while (cursor.moveToNext());
+            }else{
+                objeto = null;
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.d("Error:", e.getMessage());
+        } finally {
+        }
+        return objeto;
+    }
+
+
+
+
+    /**
+     * Metodo de consulta la informacion Normalizador - Consulta
+     * @param idUnidadEconomica
+     * @return
+     */
+    public synchronized NormalizadorDireccionDTO getNormalizador(String idUnidadEconomica) {
+        NormalizadorDireccionDTO consulta = null;
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.rawQuery("select " +
+                    "ID,  " +
+                    "ID_MANZANA, " +
+                    "ID_UNIDAD_ECONOMICA, " +
+                    "DIREC_VP, " +
+                    "DIREC_NNOM_VP, " +
+                    "DIREC_NUM_VP, " +
+                    "DIREC_LET_VP, " +
+                    "DIREC_SF_VP, " +
+                    "DIREC_LET_SVP, " +
+                    "DIREC_CUAD_VP, " +
+                    "DIREC_NUM_VG, " +
+                    "DIREC_LET_VG, " +
+                    "DIREC_SF_VG, " +
+                    "DIREC_LET_SVG, " +
+                    "DIREC_NUM_PLACA, " +
+                    "DIREC_CUAD_VG, " +
+                    "DIREC_P_COMP, " +
+                    "DIREC_COMP, " +
+                    "DIREC_TEX_COM, " +
+                    "IMEI, " +
+                    "USUARIO, " +
+                    "FECHA_CREACION " +
+                    "from NORMALIZADOR " +
+                    "where ID_UNIDAD_ECONOMICA = '"+idUnidadEconomica+"'", null);
+            int i = 0;
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    consulta =  new NormalizadorDireccionDTO(
+                            cursor.isNull(0) ? null : cursor.getString(0), // id
+                            cursor.isNull(1) ? null : cursor.getString(1), // ID_MANZANA
+                            cursor.isNull(2) ? null : cursor.getString(2), // ID_UNIDAD_ECONOMICA
+                            cursor.isNull(3) ? null : cursor.getString(3), // direcVp
+                            cursor.isNull(4) ? null : cursor.getString(4), // direcNnomVp
+                            cursor.isNull(5) ? null : cursor.getString(5), // DIREC_NUM_VP
+                            cursor.isNull(6) ? null : cursor.getString(6), // direcLetVp
+                            cursor.isNull(7) ? null : cursor.getString(7), // direcSfVp
+                            cursor.isNull(8) ? null : cursor.getString(8), // direcLetSvp
+                            cursor.isNull(9) ? null : cursor.getString(9), // direcCuadVp
+                            cursor.isNull(10) ? null : cursor.getString(10), // direcNumVg
+                            cursor.isNull(11) ? null : cursor.getString(11), // direcLetVg
+                            cursor.isNull(12) ? null : cursor.getString(12), // direcSfVg
+                            cursor.isNull(13) ? null : cursor.getString(13), // direcLetSvg
+                            cursor.isNull(14) ? null : cursor.getString(14), // direcNumPlaca
+                            cursor.isNull(15) ? null : cursor.getString(15), // direcCuadVg
+                            cursor.isNull(16) ? null : cursor.getString(16), // direcPComp
+                            cursor.isNull(17) ? null : cursor.getString(17), // direcComp
+                            cursor.isNull(18) ? null : cursor.getString(18), // direcTexCom
+                            cursor.isNull(19) ? null : cursor.getString(19), // imei
+                            cursor.isNull(20) ? null : cursor.getString(20), // usuario
+                            cursor.isNull(21) ? null : cursor.getString(21) // fechaCreacion
+                    );
+                } while (cursor.moveToNext());
+            }else{
+                consulta = new NormalizadorDireccionDTO();
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.d("Error:", e.getMessage());
+        } finally {
+        }
+        return consulta;
+    }
+
+    /**
+     * Metodo que realiza el guardado Normalizador
+     * @param objeto
+     * @return
+     */
+    public Boolean postNormalizador(NormalizadorDireccionDTO objeto){
+        try{
+            SQLiteDatabase db = getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            //Normalizador
+            values.put(Normalizador.ID_MANZANA,objeto.getIdManzana());
+            values.put(Normalizador.ID_UNIDAD_ECONOMICA,objeto.getIdUnidadEconomica());
+            values.put(Normalizador.USUARIO,objeto.getUsuario());
+            values.put(Normalizador.DIREC_VP,objeto.getDirecVp());
+            values.put(Normalizador.DIREC_NNOM_VP,objeto.getDirecNnomVp());
+            values.put(Normalizador.DIREC_NUM_VP,objeto.getDirecNumVp());
+            values.put(Normalizador.DIREC_LET_VP,objeto.getDirecLetVp());
+            values.put(Normalizador.DIREC_SF_VP,objeto.getDirecSfVp());
+            values.put(Normalizador.DIREC_LET_SVP,objeto.getDirecLetSvp());
+            values.put(Normalizador.DIREC_CUAD_VP,objeto.getDirecCuadVp());
+            values.put(Normalizador.DIREC_NUM_VG,objeto.getDirecNumVg());
+            values.put(Normalizador.DIREC_LET_VG,objeto.getDirecLetVg());
+            values.put(Normalizador.DIREC_SF_VG,objeto.getDirecSfVg());
+            values.put(Normalizador.DIREC_LET_SVG,objeto.getDirecLetSvg());
+            values.put(Normalizador.DIREC_NUM_PLACA,objeto.getDirecNumPlaca());
+            values.put(Normalizador.DIREC_CUAD_VG,objeto.getDirecCuadVg());
+            values.put(Normalizador.DIREC_P_COMP,objeto.getDirecPComp());
+            values.put(Normalizador.DIREC_COMP,objeto.getDirecComp());
+            values.put(Normalizador.DIREC_TEX_COM,objeto.getDirecTexCom());
+            values.put(Normalizador.IMEI, objeto.getImei());
+            values.put(Normalizador.FECHA_CREACION, objeto.getFechaCreacion());
+
+            NormalizadorDireccionDTO existe = getNormalizador(objeto.getIdUnidadEconomica());
+            if(Util.stringNullEmptys(existe.getIdUnidadEconomica())){
+                String[] args = new String[]{ objeto.getIdUnidadEconomica()};
+                boolean valor = (db.update(Normalizador.TABLE_NAME,values ," ID_UNIDAD_ECONOMICA=? ",args)) >0;
+                db.close();
+                return valor;
+            }else{
+                boolean valor = (db.insert(Normalizador.TABLE_NAME, null, values)) >0;
+                db.close();
+                return valor;
+            }
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+
+
+
+
 
 }

@@ -3,9 +3,11 @@ package co.gov.dane.recuento.dtos;
 public class NormalizadorDireccionDTO {
 
     private String id;
-    private String idEncuesta;
+    private String idManzana;
+    private String idUnidadEconomica;
     private String direcVp;
     private String direcNnomVp;
+    private String direcNumVp;
     private String direcLetVp;
     private String direcSfVp;
     private String direcLetSvp;
@@ -26,15 +28,17 @@ public class NormalizadorDireccionDTO {
     public NormalizadorDireccionDTO() {
     }
 
-    public NormalizadorDireccionDTO(String id, String idEncuesta, String direcVp, String direcNnomVp,
+    public NormalizadorDireccionDTO(String id, String idManzana, String idUnidadEconomica, String direcVp, String direcNnomVp, String direcNumVp,
                                     String direcLetVp, String direcSfVp, String direcLetSvp, String direcCuadVp,
                                     String direcNumVg, String direcLetVg, String direcSfVg, String direcLetSvg,
                                     String direcNumPlaca, String direcCuadVg, String direcPComp, String direcComp,
                                     String direcTexCom, String imei, String usuario, String fechaCreacion) {
         this.id = id;
-        this.idEncuesta = idEncuesta;
+        this.idManzana = idManzana;
+        this.idUnidadEconomica = idUnidadEconomica;
         this.direcVp = direcVp;
         this.direcNnomVp = direcNnomVp;
+        this.direcNumVp = direcNumVp;
         this.direcLetVp = direcLetVp;
         this.direcSfVp = direcSfVp;
         this.direcLetSvp = direcLetSvp;
@@ -59,14 +63,6 @@ public class NormalizadorDireccionDTO {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getIdEncuesta() {
-        return idEncuesta;
-    }
-
-    public void setIdEncuesta(String idEncuesta) {
-        this.idEncuesta = idEncuesta;
     }
 
     public String getDirecVp() {
@@ -211,5 +207,29 @@ public class NormalizadorDireccionDTO {
 
     public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public String getDirecNumVp() {
+        return direcNumVp;
+    }
+
+    public void setDirecNumVp(String direcNumVp) {
+        this.direcNumVp = direcNumVp;
+    }
+
+    public String getIdManzana() {
+        return idManzana;
+    }
+
+    public void setIdManzana(String idManzana) {
+        this.idManzana = idManzana;
+    }
+
+    public String getIdUnidadEconomica() {
+        return idUnidadEconomica;
+    }
+
+    public void setIdUnidadEconomica(String idUnidadEconomica) {
+        this.idUnidadEconomica = idUnidadEconomica;
     }
 }
