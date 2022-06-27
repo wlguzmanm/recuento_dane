@@ -285,7 +285,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public Boolean guardarManzana(Manzana manzana, String id_formulario) {
+    public Boolean  guardarManzana(Manzana manzana, String id_formulario) {
         try {
             ContentValues values = new ContentValues();
             //Valido Existencia
@@ -355,7 +355,7 @@ public class Database extends SQLiteOpenHelper {
             values.put(EsquemaUnidadEconomica.TIPO_UNIDAD_OBSERVACION,unidad.getTipo_unidad_observacion());
             values.put(EsquemaUnidadEconomica.TIPO_VENDEDOR,unidad.getTipo_vendedor());
             values.put(EsquemaUnidadEconomica.SECTOR_ECONOMICO,unidad.getSector_economico());
-            values.put(EsquemaUnidadEconomica.UNIDAD_OSBSERVACION,unidad.getUnidad_osbservacion());
+            values.put(EsquemaUnidadEconomica.UNIDAD_OSBSERVACION,unidad.getUnidad_observacion());
             values.put(EsquemaUnidadEconomica.OBSERVACION,unidad.getObservacion());
             values.put(EsquemaUnidadEconomica.IMEI, unidad.getImei());
 
@@ -951,10 +951,13 @@ public class Database extends SQLiteOpenHelper {
             index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.SECTOR_ECONOMICO);
             unidad.setSector_economico(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.UNIDAD_OSBSERVACION);
-            unidad.setUnidad_osbservacion(c.getString(index));
+            unidad.setUnidad_observacion(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.OBSERVACION);
             unidad.setObservacion(c.getString(index));
-
+            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.IMEI);
+            unidad.setImei(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.ID);
+            unidad.setId(c.getString(index));
 
             index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.ID_MANZANA);
             unidad.setId_manzana(c.getString(index));
@@ -1920,7 +1923,7 @@ public class Database extends SQLiteOpenHelper {
         retorno.setTipo_unidad_observacion(unidad.getTipo_unidad_observacion());
         retorno.setTipo_vendedor(unidad.getTipo_vendedor());
         retorno.setSector_economico(unidad.getSector_economico());
-        retorno.setUnidad_osbservacion(unidad.getUnidad_osbservacion());
+        retorno.setUnidad_osbservacion(unidad.getUnidad_observacion());
         retorno.setObservacion(unidad.getObservacion());
         retorno.setId_edificacion(unidad.getId_edificacion());
         retorno.setId_manzana(unidad.getId_manzana());
@@ -2010,7 +2013,7 @@ public class Database extends SQLiteOpenHelper {
                 SQLiteDatabase db = getReadableDatabase();
                 String sql = "SELECT DISTINCT  NOMBRE_RESGUARDO_INDIGENA " +
                         "FROM DATOS_RESGUARDO_INDIGENA " +
-                        "WHERE DIV_NOM_DPTO  = '"+departamento+"' AND DIV_NOM_MPIO = '"+ciudad+"'  " +
+                        "WHERE DIV_DPTO  = '"+departamento+"' AND DIV_MPIO = '"+ciudad+"'  " +
                         "ORDER BY NOMBRE_RESGUARDO_INDIGENA ASC";
                 //Log.d("SQL sql:", sql);
                 Cursor cursor = db.rawQuery(sql, null);
@@ -2022,6 +2025,46 @@ public class Database extends SQLiteOpenHelper {
                 }else{
                     objeto = new ArrayList<String>();
                     objeto.add("Seleccione...");
+                }
+                cursor.close();
+            } catch (Exception e) {
+                Log.d("Error:", e.getMessage());
+            } finally {
+            }
+        }
+
+        return objeto;
+    }
+
+    /***
+     * Metodo de consulta la informacion de los resguardo indigena xNombre
+     *
+     * @param nombre
+     * @param isId
+     * @return
+     */
+    public synchronized String getCodResguardoIndigena(String nombre, boolean isId) {
+        String objeto = null;
+        if(Util.stringNullEmptys(nombre)){
+            try {
+                SQLiteDatabase db = getReadableDatabase();
+                String sql = "";
+                if(isId){
+                    sql = "SELECT DISTINCT  NOMBRE_RESGUARDO_INDIGENA " +
+                            "FROM DATOS_RESGUARDO_INDIGENA " +
+                            "WHERE ID  =   '"+nombre+"' ";
+                }else{
+                    sql = "SELECT DISTINCT  ID " +
+                            "FROM DATOS_RESGUARDO_INDIGENA " +
+                            "WHERE NOMBRE_RESGUARDO_INDIGENA  =  \""+nombre+"\" ";
+                }
+
+                Cursor cursor = db.rawQuery(sql, null);
+                if (cursor != null && cursor.getCount() > 0) {
+                    cursor.moveToFirst();
+                    do {
+                        objeto = (cursor.getString(0));
+                    } while (cursor.moveToNext());
                 }
                 cursor.close();
             } catch (Exception e) {
@@ -2046,7 +2089,7 @@ public class Database extends SQLiteOpenHelper {
                 SQLiteDatabase db = getReadableDatabase();
                 String sql = "SELECT DISTINCT  NOMBRE_TIERRA_COMUNIDAD_NEGRA " +
                         "FROM DATOS_TIERRA_COMUNIDAD_NEGRA " +
-                        "WHERE DIV_NOM_DPTO  = '"+departamento+"' AND DIV_NOM_MPIO = '"+ciudad+"'  " +
+                        "WHERE DIV_DPTO  = '"+departamento+"' AND DIV_MPIO = '"+ciudad+"'  " +
                         "ORDER BY NOMBRE_TIERRA_COMUNIDAD_NEGRA ASC";
                 //Log.d("SQL sql:", sql);
 
@@ -2059,6 +2102,44 @@ public class Database extends SQLiteOpenHelper {
                 }else{
                     objeto = new ArrayList<String>();
                     objeto.add("Seleccione...");
+                }
+                cursor.close();
+            } catch (Exception e) {
+                Log.d("Error:", e.getMessage());
+            } finally {
+            }
+        }
+        return objeto;
+    }
+
+    /**
+     * Metodo de consulta la informacion de los Comunidad negra xNombre
+     * @return
+     */
+    public synchronized String getCodComunidadNegra(String nombre, boolean isId) {
+        String objeto = null;
+
+        if(Util.stringNullEmptys(nombre)){
+            try {
+                SQLiteDatabase db = getReadableDatabase();
+                String sql = "";
+
+                if(isId){
+                    sql = "SELECT DISTINCT  NOMBRE_TIERRA_COMUNIDAD_NEGRA " +
+                            "FROM DATOS_TIERRA_COMUNIDAD_NEGRA " +
+                            "WHERE ID  = '"+nombre+"'  " ;
+                }else{
+                    sql = "SELECT DISTINCT  ID " +
+                            "FROM DATOS_TIERRA_COMUNIDAD_NEGRA " +
+                            "WHERE NOMBRE_TIERRA_COMUNIDAD_NEGRA  = '"+nombre+"'  " ;
+                }
+
+                Cursor cursor = db.rawQuery(sql, null);
+                if (cursor != null && cursor.getCount() > 0) {
+                    cursor.moveToFirst();
+                    do {
+                        objeto = (cursor.getString(0));
+                    } while (cursor.moveToNext());
                 }
                 cursor.close();
             } catch (Exception e) {
@@ -2338,6 +2419,35 @@ public class Database extends SQLiteOpenHelper {
         return objeto;
     }
 
+    /**
+     * Metodo de consulta la informacion de una localidad
+     * @return
+     */
+    public synchronized String getLocalidadDIVIPOLA(String codigo) {
+        String objeto = null;
+
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT DISTINCT  " +
+                    "CENTRO_POBLADO  " +
+                    "FROM DIVIPOLA " +
+                    "WHERE CODIGO_CENTRO_POBLADO = '"+codigo+"'", null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    objeto = (cursor.getString(0));
+                } while (cursor.moveToNext());
+            }else{
+                objeto = null;
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.d("Error:", e.getMessage());
+        } finally {
+        }
+        return objeto;
+    }
+
 
 
 
@@ -2446,6 +2556,7 @@ public class Database extends SQLiteOpenHelper {
             values.put(Normalizador.DIREC_COMP,objeto.getDirecComp());
             values.put(Normalizador.DIREC_TEX_COM,objeto.getDirecTexCom());
             values.put(Normalizador.IMEI, objeto.getImei());
+            values.put(Normalizador.USUARIO, objeto.getUsuario());
             values.put(Normalizador.FECHA_CREACION, objeto.getFechaCreacion());
 
             NormalizadorDireccionDTO existe = getNormalizador(objeto.getIdUnidadEconomica());

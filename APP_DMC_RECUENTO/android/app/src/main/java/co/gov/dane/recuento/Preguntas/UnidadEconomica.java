@@ -15,11 +15,11 @@ public class UnidadEconomica {
     private String tipo_unidad_observacion;
     private String tipo_vendedor;
     private String sector_economico;
-    private String unidad_osbservacion;
+    private String unidad_observacion;
     private String observacion;
 
 
-    private String id_manzana,id_edificacion,id_unidad,fechaModificacion, imei;
+    private String id, id_manzana,id_edificacion,id_unidad,fechaModificacion, imei;
 
     public UnidadEconomica(){
 
@@ -93,12 +93,12 @@ public class UnidadEconomica {
         this.sector_economico = sector_economico;
     }
 
-    public String getUnidad_osbservacion() {
-        return unidad_osbservacion;
+    public String getUnidad_observacion() {
+        return unidad_observacion;
     }
 
-    public void setUnidad_osbservacion(String unidad_osbservacion) {
-        this.unidad_osbservacion = unidad_osbservacion;
+    public void setUnidad_observacion(String unidad_observacion) {
+        this.unidad_observacion = unidad_observacion;
     }
 
     public String getObservacion() {
@@ -147,5 +147,13 @@ public class UnidadEconomica {
 
     public void setImei(String imei) {
         this.imei = imei;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

@@ -94,6 +94,8 @@ public class Formulario extends AppCompatActivity {
     LocationManager mLocationManager;
     public Activity activity;
 
+    String noDEPA, noMPIO, noLOCALIDAD, noCENTRO;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,7 +165,6 @@ public class Formulario extends AppCompatActivity {
         linearAgregarEdificacion.setVisibility(View.VISIBLE);
 
         spinnerCOD_RESG_ETNICO = (Spinner) findViewById(R.id.spinnerCOD_RESG_ETNICO);
-        spinnerCOD_RESG_ETNICO = (Spinner) findViewById(R.id.spinnerCOD_RESG_ETNICO);
         spinnerCOD_COMUN_ETNICO = (Spinner) findViewById(R.id.spinnerCOD_COMUN_ETNICO);
 
         id_manzana = getIntent().getStringExtra("id_manzana");
@@ -175,31 +176,6 @@ public class Formulario extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(Formulario.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(Formulario.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
-        }
-
-        if(manzana!= null && manzana.getAltura()!= null && manzana.getPrecision() != null && manzana.getLatitud()!= null && manzana.getLongitud()!= null){
-            latlon.setText("Latitud: "+manzana.getLatitud()+"\nLongitud: "+manzana.getLongitud()
-                    +"\nAltura: "+manzana.getAltura()+" m\nPrecisión: "+manzana.getPrecision()+" m");
-        }else{
-            Location location = getLastKnownLocation();
-            if(location!= null){
-                LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
-                double longitude = location.getLongitude();
-                double latitude = location.getLatitude();
-                double altura = location.getAltitude();
-                double precision = location.getAccuracy();
-
-                manzana.setLatitud(String.valueOf(latitude));
-                manzana.setLongitud(String.valueOf(longitude));
-                manzana.setAltura(String.valueOf(altura));
-                manzana.setPrecision(String.valueOf(precision));
-                coord="1";
-
-                latlon.setText("Latitud: "+manzana.getLatitud()+"\nLongitud: "+manzana.getLongitud()
-                        +"\nAltura: "+manzana.getAltura()+" m\nPrecisión: "+manzana.getPrecision()+" m");
-            }else{
-                msj.generarToast("GPS Desactivado","error");
-            }
         }
 
         //----------------------------------------------------------------------------------------------
@@ -220,7 +196,8 @@ public class Formulario extends AppCompatActivity {
         Manzana manzana_calculado=new Manzana();
         manzana_calculado=sp.getDatosCalculados(id_manzana);
         //Cargue de los resguardoIndigena
-        List<String> resguardoIndigena = db.getResguardoIndigena(manzana_calculado.getDepartamento(), manzana_calculado.getMunicipio());
+        //List<String> resguardoIndigena = db.getResguardoIndigena(manzana_calculado.getDepartamento(), manzana_calculado.getMunicipio());
+        List<String> resguardoIndigena = db.getResguardoIndigena("76", "76275");
         ArrayAdapter<String> adapterResguardoIndigena = new ArrayAdapter<String>(this, R.layout.simple_spinner_item, resguardoIndigena);
         adapterResguardoIndigena.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinnerCOD_RESG_ETNICO.setAdapter(adapterResguardoIndigena);
@@ -230,7 +207,8 @@ public class Formulario extends AppCompatActivity {
         }
 
         //Cargue de los comunidadNegra
-        List<String> comunidadNegra = db.getComunidadNegra(manzana_calculado.getDepartamento(), manzana_calculado.getMunicipio());
+        //List<String> comunidadNegra = db.getComunidadNegra(manzana_calculado.getDepartamento(), manzana_calculado.getMunicipio());
+        List<String> comunidadNegra = db.getComunidadNegra("05", "05475");
         ArrayAdapter<String> adapterComunidad = new ArrayAdapter<String>(this, R.layout.simple_spinner_item, comunidadNegra);
         adapterComunidad.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinnerCOD_COMUN_ETNICO.setAdapter(adapterComunidad);
@@ -250,16 +228,14 @@ public class Formulario extends AppCompatActivity {
         linearGuardarFormularioManzana.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Manzana manzana=new Manzana();
                 if(validarFormularioSoloManzana()){
                     manzana=saveManzana();
-                    manzana.setImei(idDevice);
                     if(db.guardarManzana(manzana, id_manzana)){
-                        msj.generarToast("Formulario Guardado");
+                        msj.dialogoMensaje("Success", "Formulario Guardado");
                     }
                     click=1;
                 }else{
-                    msj.generarToast("Debe diligenciar todos los campos obligatorios","error");
+                    msj.dialogoMensajeError("Error","Debe diligenciar todos los campos obligatorios");
                 }
 
             }
@@ -448,20 +424,18 @@ public class Formulario extends AppCompatActivity {
         linearAgregarEdificacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(coord.equals("")){
-                    msj.generarToast("Obtenga las coordenadas","error");
+                if(click==1){
+                    int siguiente=db.getMaxEdificacion(id_manzana)+1;
+                    Log.d("siguiente", String.valueOf(siguiente));
+                    db.crearEdificacion(id_manzana,String.valueOf(siguiente));
+                    msj.dialogoMensaje("Success","Se ha agregado una edificación.");
+                    lstEdificaciones.clear();
+                    lstEdificaciones.addAll(db.getAcordeonEdificacion(id_manzana));
+                    mAdapterEdificacion.notifyDataSetChanged();
                 }else{
-                    if(click==1){
-                        int siguiente=db.getMaxEdificacion(id_manzana)+1;
-                        Log.d("siguiente", String.valueOf(siguiente));
-                        db.crearEdificacion(id_manzana,String.valueOf(siguiente));
-                        lstEdificaciones.clear();
-                        lstEdificaciones.addAll(db.getAcordeonEdificacion(id_manzana));
-                        mAdapterEdificacion.notifyDataSetChanged();
-                    }else{
-                        msj.generarToast("Guarde el formulario","error");
-                    }
+                    msj.dialogoMensajeError("Error","Guarde el formulario");
                 }
+
             }
         });
 
@@ -473,6 +447,9 @@ public class Formulario extends AppCompatActivity {
                     case -1:
                         TERRITORIO_ETNICO = "";
                         linearTerritorioEtnico.setVisibility(View.GONE);
+                        id_pregunta2_5_1.setChecked(false);
+                        id_pregunta2_5_1.setChecked(false);
+                        radioSEL_TERR_ETNICO.clearCheck();
                         break;
                     case R.id.id_pregunta2_4_si:
                         TERRITORIO_ETNICO = "1";
@@ -485,6 +462,9 @@ public class Formulario extends AppCompatActivity {
                         linearTerritorioEtnico.setVisibility(View.GONE);
                         linearResguardo.setVisibility(View.GONE);
                         linearComunidadNegra.setVisibility(View.GONE);
+                        id_pregunta2_5_1.setChecked(false);
+                        id_pregunta2_5_1.setChecked(false);
+                        radioSEL_TERR_ETNICO.clearCheck();
                         break;
                 }
             }
@@ -501,6 +481,8 @@ public class Formulario extends AppCompatActivity {
                         break;
                     case R.id.id_pregunta2_5_1:
                         SEL_TERR_ETNICO = "1";
+                        selRESGUARDO = null;
+                        selCOMUNIDAD_NEGRA = null;
                         linearResguardo.setVisibility(View.VISIBLE);
                         linearComunidadNegra.setVisibility(View.GONE);
                         spinnerCOD_RESG_ETNICO.setSelection(
@@ -510,6 +492,8 @@ public class Formulario extends AppCompatActivity {
                         break;
                     case R.id.id_pregunta2_5_2:
                         SEL_TERR_ETNICO = "2";
+                        selRESGUARDO = null;
+                        selCOMUNIDAD_NEGRA = null;
                         linearResguardo.setVisibility(View.GONE);
                         linearComunidadNegra.setVisibility(View.VISIBLE);
                         spinnerCOD_RESG_ETNICO.setSelection(
@@ -527,10 +511,6 @@ public class Formulario extends AppCompatActivity {
                 switch (checkedId) {
                     case -1:
                         EXISTE_UNIDAD = "";
-                        break;
-                    case R.id.id_pregunta5_2_si:
-                        EXISTE_UNIDAD = "1";
-                        linearAgregarEdificacion.setVisibility(View.VISIBLE);
                         id_pregunta5_3_1.setChecked(false);
                         id_pregunta5_3_2.setChecked(false);
                         id_pregunta5_3_3.setChecked(false);
@@ -538,10 +518,35 @@ public class Formulario extends AppCompatActivity {
                         id_pregunta5_3_5.setChecked(false);
                         id_pregunta5_3_6.setChecked(false);
                         id_pregunta5_3_7.setChecked(false);
+                        radioTIPO_NOVEDAD.clearCheck();
+                        break;
+                    case R.id.id_pregunta5_2_si:
+                        EXISTE_UNIDAD = "1";
+                        linearAgregarEdificacion.setVisibility(View.VISIBLE);
+                        linearExisteEdificaciones.setVisibility(View.VISIBLE);
+                        linearTipoNovedad.setVisibility(View.GONE);
+                        id_pregunta5_3_1.setChecked(false);
+                        id_pregunta5_3_2.setChecked(false);
+                        id_pregunta5_3_3.setChecked(false);
+                        id_pregunta5_3_4.setChecked(false);
+                        id_pregunta5_3_5.setChecked(false);
+                        id_pregunta5_3_6.setChecked(false);
+                        id_pregunta5_3_7.setChecked(false);
+                        radioTIPO_NOVEDAD.clearCheck();
                         break;
                     case R.id.id_pregunta5_2_no:
                         EXISTE_UNIDAD = "2";
                         linearAgregarEdificacion.setVisibility(View.GONE);
+                        linearExisteEdificaciones.setVisibility(View.GONE);
+                        linearTipoNovedad.setVisibility(View.VISIBLE);
+                        id_pregunta5_3_1.setChecked(false);
+                        id_pregunta5_3_2.setChecked(false);
+                        id_pregunta5_3_3.setChecked(false);
+                        id_pregunta5_3_4.setChecked(false);
+                        id_pregunta5_3_5.setChecked(false);
+                        id_pregunta5_3_6.setChecked(false);
+                        id_pregunta5_3_7.setChecked(false);
+                        radioTIPO_NOVEDAD.clearCheck();
                         break;
                 }
             }
@@ -579,70 +584,41 @@ public class Formulario extends AppCompatActivity {
             }
         });
 
-
-
-
-
-/*
-        spinner_presencia_unidades_economicas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerCOD_RESG_ETNICO.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-
-                if(entroPrimeraVez){
-                    entroPrimeraVez = false;
-                    if(spinner_presencia_unidades_economicas.getSelectedItem().toString().equals("Si")){
-                        existe_unidades.setVisibility(View.VISIBLE);
-                    }else{
-                        existe_unidades.setVisibility(View.GONE);
-                    }
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(!spinnerCOD_RESG_ETNICO.getSelectedItem().toString().equals("Seleccione...")){
+                    selRESGUARDO = spinnerCOD_RESG_ETNICO.getSelectedItem().toString();
+                    selCOMUNIDAD_NEGRA = null;
                 }else{
-                    if(spinner_presencia_unidades_economicas.getSelectedItem().toString().equals("Si")){
-                        existe_unidades.setVisibility(View.VISIBLE);
-                    }else{
-                        if(db.tieneEdificaciones(id_manzana)){
-                            existe_unidades.setVisibility(View.GONE);
-                            AlertDialog.Builder builder = new AlertDialog.Builder(Formulario.this);
-                            builder.setTitle("Confirmación");
-                            builder.setMessage("Confirme para eliminar la información de Edificacion(es) y Unidad Económica(s) asociadas.");
-                            builder.setIcon(R.drawable.ic_menu_salir);
-                            builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.dismiss();
-                                    if(!validaExistenciaAlguna(id_manzana)){
-                                        db.eliminarEdificacionesUnidades(id_manzana);
-                                    }
-                                    if(spinner_presencia_unidades_economicas.getSelectedItem().toString().equals("Si")){
-                                        existe_unidades.setVisibility(View.VISIBLE);
-                                    }else{
-                                        existe_unidades.setVisibility(View.GONE);
-                                    }
-                                }
-                            });
-                            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.dismiss();
-                                    if(spinner_presencia_unidades_economicas.getSelectedItem().toString().equals("Si")){
-                                        existe_unidades.setVisibility(View.VISIBLE);
-                                    }else{
-                                        existe_unidades.setVisibility(View.GONE);
-                                    }
-                                }
-                            });
-                            AlertDialog alert = builder.create();
-                            alert.show();
-                        }else{
-
-                            //radioEXISTE_UNIDAD.setVisibility(View.GONE);
-                        }
-                    }
+                    selRESGUARDO = null;
+                    selCOMUNIDAD_NEGRA = null;
                 }
             }
-
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
+            public void onNothingSelected(AdapterView<?> parent) {
+                selRESGUARDO = null;
+                selCOMUNIDAD_NEGRA = null;
             }
-        });*/
+        });
+
+        spinnerCOD_COMUN_ETNICO.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(!spinnerCOD_COMUN_ETNICO.getSelectedItem().toString().equals("Seleccione...")){
+                    selCOMUNIDAD_NEGRA = spinnerCOD_COMUN_ETNICO.getSelectedItem().toString();
+                    selRESGUARDO = null;
+                }else{
+                    selRESGUARDO = null;
+                    selCOMUNIDAD_NEGRA = null;
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                selRESGUARDO = null;
+                selCOMUNIDAD_NEGRA = null;
+            }
+        });
 
     }
 
@@ -671,15 +647,17 @@ public class Formulario extends AppCompatActivity {
     private boolean validarFormularioSoloManzana() {
         boolean retorno = true;
         if((editDIREC_BARRIO.getText().toString()!=null && !editDIREC_BARRIO.getText().toString().equals(""))
-                || (TERRITORIO_ETNICO!=null && !TERRITORIO_ETNICO.equals(""))
-                || (fecha_conteo.getText().toString()!=null && !fecha_conteo.getText().toString().equals(""))  ){
+                && (TERRITORIO_ETNICO!=null && !TERRITORIO_ETNICO.equals(""))
+                && (fecha_conteo.getText().toString()!=null && !fecha_conteo.getText().toString().equals(""))  ){
 
-            if(TERRITORIO_ETNICO.equals("1") && SEL_TERR_ETNICO!= null && !SEL_TERR_ETNICO.equals("")){
-                if(SEL_TERR_ETNICO.equals("1") && selRESGUARDO!= null && !selRESGUARDO.equals("") ){
+            if(TERRITORIO_ETNICO!= null && TERRITORIO_ETNICO.equals("1") && SEL_TERR_ETNICO!= null && !SEL_TERR_ETNICO.equals("")){
+                if(SEL_TERR_ETNICO!= null && SEL_TERR_ETNICO.equals("1") && selRESGUARDO!= null && !selRESGUARDO.equals("") ){
                     retorno = true;
                 }else{
-                    if(SEL_TERR_ETNICO.equals("2") && selCOMUNIDAD_NEGRA!= null && !selCOMUNIDAD_NEGRA.equals("") ){
+                    if(SEL_TERR_ETNICO!= null && SEL_TERR_ETNICO.equals("2") && selCOMUNIDAD_NEGRA!= null && !selCOMUNIDAD_NEGRA.equals("") ){
                         retorno = true;
+                    }else{
+                        return false;
                     }
                 }
             }
@@ -687,6 +665,12 @@ public class Formulario extends AppCompatActivity {
             if(EXISTE_UNIDAD!= null && !EXISTE_UNIDAD.equals("")){
                 if(EXISTE_UNIDAD.equals("2") && TIPO_NOVEDAD!= null && !TIPO_NOVEDAD.equals("")){
                     retorno = true;
+                }else{
+                    if(EXISTE_UNIDAD.equals("1") ){
+                        retorno = true;
+                    }else{
+                        return false;
+                    }
                 }
             }else{
                 return false;
@@ -916,7 +900,7 @@ public class Formulario extends AppCompatActivity {
         retorno.setTipo_unidad_observacion(unidad.getTipo_unidad_observacion());
         retorno.setTipo_vendedor(unidad.getTipo_vendedor());
         retorno.setSector_economico(unidad.getSector_economico());
-        retorno.setUnidad_osbservacion(unidad.getUnidad_osbservacion());
+        retorno.setUnidad_osbservacion(unidad.getUnidad_observacion());
         retorno.setObservacion(unidad.getObservacion());
 
         retorno.setFecha_modificacion(unidad.getFechaModificacion());
@@ -933,16 +917,34 @@ public class Formulario extends AppCompatActivity {
      * @return
      */
     private Manzana saveManzana(){
+        manzana.setId_manzana(id_manzana);
         manzana.setFecha(util.getFechaActual());
-        manzana.setDepartamento(editDPTO.getText().toString());
-        manzana.setMunicipio(editMPIO.getText().toString());
+        manzana.setDepartamento(noDEPA);
+        manzana.setMunicipio(noMPIO);
         manzana.setClase(editCLASE.getText().toString());
-        manzana.setLocalidad(editCOM_LOC.getText().toString());
-        manzana.setCentro_poblado(editC_POB.getText().toString());
+        manzana.setLocalidad(noLOCALIDAD);
+        manzana.setCentro_poblado(noCENTRO);
         manzana.setTerritorioEtnico(TERRITORIO_ETNICO);
         manzana.setSelTerritorioEtnico(SEL_TERR_ETNICO);
-        manzana.setResguardoEtnico(selRESGUARDO);
-        manzana.setComunidadEtnica(selCOMUNIDAD_NEGRA);
+
+        if(Util.stringNullEmptys(TERRITORIO_ETNICO) && TERRITORIO_ETNICO.equals("2")){
+            manzana.setResguardoEtnico(null);
+            manzana.setComunidadEtnica(null);
+            manzana.setSelTerritorioEtnico(null);
+        }
+
+        if(Util.stringNullEmptys(selRESGUARDO)){
+            manzana.setResguardoEtnico(db.getCodResguardoIndigena(selRESGUARDO,false));
+        }else{
+            manzana.setResguardoEtnico(null);
+        }
+
+        if(Util.stringNullEmptys(selCOMUNIDAD_NEGRA)){
+            manzana.setComunidadEtnica(db.getCodComunidadNegra(selCOMUNIDAD_NEGRA,false));
+        }else{
+            manzana.setComunidadEtnica(null);
+        }
+
         manzana.setCoordinacionOperativa(editCO.getText().toString());
         manzana.setAreaOperativa(editAO.getText().toString());
         manzana.setUnidad_cobertura(editAG.getText().toString());
@@ -950,8 +952,14 @@ public class Formulario extends AppCompatActivity {
         manzana.setBarrio(editDIREC_BARRIO.getText().toString());
         manzana.setExisteUnidad(EXISTE_UNIDAD);
         manzana.setTipoNovedad(TIPO_NOVEDAD);
+
+        if(Util.stringNullEmptys(EXISTE_UNIDAD) && EXISTE_UNIDAD.equals("1")){
+            manzana.setTipoNovedad(null);
+        }
+
         manzana.setManzana(manzana.getManzana());
         manzana.setCod_enumerador(session.getusename());
+        manzana.setImei(idDevice);
         return manzana;
 
     }
@@ -973,59 +981,118 @@ public class Formulario extends AppCompatActivity {
             fecha_conteo.setText("Fecha: "+currentDateandTime);
         }
 
-        editDPTO.setText(manzana_calculado.getDepartamento());
-        editMPIO.setText(manzana_calculado.getMunicipio());
-        editCLASE.setText(manzana_calculado.getClase());
-        editCOM_LOC.setText(manzana_calculado.getLocalidad());
-        editC_POB.setText(manzana_calculado.getCentro_poblado());
+        if(manzana_db!= null
+                && manzana_db.getDepartamento()!= null && !manzana_db.getDepartamento().isEmpty()
+                && manzana_db.getMunicipio()!= null && !manzana_db.getMunicipio().isEmpty()
+                && manzana_db.getClase()!= null && !manzana_db.getClase().isEmpty()
+                && manzana_db.getLocalidad()!= null && !manzana_db.getLocalidad().isEmpty()
+                && manzana_db.getCentro_poblado()!= null && !manzana_db.getCentro_poblado().isEmpty()
+        ){
+            noDEPA = manzana_db.getDepartamento();
+            noMPIO = manzana_db.getMunicipio();
+            //noLOCALIDAD = manzana_db.getLocalidad();
+            noLOCALIDAD = "05001000";
+            noCENTRO = manzana_db.getCentro_poblado();
+
+            editDPTO.setText(db.getDepartamento(manzana_db.getDepartamento()));
+            editMPIO.setText(db.getMunicipio(manzana_db.getMunicipio()));
+            editCLASE.setText(manzana_db.getClase());
+
+            editCOM_LOC.setText(db.getLocalidadDIVIPOLA("05001000"));
+            //editCOM_LOC.setText(db.getLocalidad(manzana_db.getLocalidad()));
+            editC_POB.setText(db.getCentroPoblado(manzana_db.getCentro_poblado()));
+        }else{
+            noDEPA = manzana_calculado.getDepartamento();
+            noMPIO = manzana_calculado.getMunicipio();
+            //noLOCALIDAD = manzana_calculado.getLocalidad();
+            noLOCALIDAD = "05001000";
+            noCENTRO = manzana_calculado.getCentro_poblado();
+
+            editDPTO.setText(db.getDepartamento(manzana_calculado.getDepartamento()));
+            editMPIO.setText(db.getMunicipio(manzana_calculado.getMunicipio()));
+            editCLASE.setText(manzana_calculado.getClase());
+
+            editCOM_LOC.setText(db.getLocalidadDIVIPOLA("05001000"));
+            //editCOM_LOC.setText(db.getLocalidad(manzana_calculado.getLocalidad()));
+            editC_POB.setText(db.getCentroPoblado(manzana_calculado.getCentro_poblado()));
+        }
 
         if(manzana_db.getTerritorioEtnico()!= null && manzana_db.getTerritorioEtnico().toString().equals("1")){
             id_pregunta2_4_si.setChecked(true);
+            TERRITORIO_ETNICO = manzana_db.getTerritorioEtnico();
+            linearTerritorioEtnico.setVisibility(View.VISIBLE);
         }
         if(manzana_db.getTerritorioEtnico()!= null && manzana_db.getTerritorioEtnico().toString().equals("2")){
             id_pregunta2_4_no.setChecked(true);
+            TERRITORIO_ETNICO = manzana_db.getTerritorioEtnico();
+            linearTerritorioEtnico.setVisibility(View.GONE);
         }
 
         if(manzana_db.getSelTerritorioEtnico()!= null && manzana_db.getSelTerritorioEtnico().toString().equals("1")){
             id_pregunta2_5_1.setChecked(true);
+            id_pregunta2_5_2.setChecked(false);
+            SEL_TERR_ETNICO = manzana_db.getTerritorioEtnico();
+            linearResguardo.setVisibility(View.VISIBLE);
+            linearComunidadNegra.setVisibility(View.GONE);
         }
         if(manzana_db.getSelTerritorioEtnico()!= null && manzana_db.getSelTerritorioEtnico().toString().equals("2")){
+            id_pregunta2_5_1.setChecked(false);
             id_pregunta2_5_2.setChecked(true);
+            SEL_TERR_ETNICO = manzana_db.getTerritorioEtnico();
+            linearResguardo.setVisibility(View.GONE);
+            linearComunidadNegra.setVisibility(View.VISIBLE);
         }
 
         if(manzana_db.getExisteUnidad()!= null && manzana_db.getExisteUnidad().toString().equals("1")){
             id_pregunta5_2_si.setChecked(true);
+            EXISTE_UNIDAD = "1";
+            linearAgregarEdificacion.setVisibility(View.VISIBLE);
+            linearExisteEdificaciones.setVisibility(View.VISIBLE);
+            linearTipoNovedad.setVisibility(View.GONE);
         }
         if(manzana_db.getExisteUnidad()!= null && manzana_db.getExisteUnidad().toString().equals("2")){
             id_pregunta5_2_no.setChecked(true);
+            EXISTE_UNIDAD = "2";
+            linearAgregarEdificacion.setVisibility(View.GONE);
+            linearExisteEdificaciones.setVisibility(View.GONE);
+            linearTipoNovedad.setVisibility(View.VISIBLE);
         }
 
 
         if(manzana_db.getTipoNovedad()!= null && manzana_db.getTipoNovedad().toString().equals("1")){
             id_pregunta5_3_1.setChecked(true);
+            TIPO_NOVEDAD  = manzana_db.getTipoNovedad();
         }
         if(manzana_db.getTipoNovedad()!= null && manzana_db.getTipoNovedad().toString().equals("2")){
             id_pregunta5_3_2.setChecked(true);
+            TIPO_NOVEDAD  = manzana_db.getTipoNovedad();
         }
         if(manzana_db.getTipoNovedad()!= null && manzana_db.getTipoNovedad().toString().equals("3")){
             id_pregunta5_3_3.setChecked(true);
+            TIPO_NOVEDAD  = manzana_db.getTipoNovedad();
         }
         if(manzana_db.getTipoNovedad()!= null && manzana_db.getTipoNovedad().toString().equals("4")){
             id_pregunta5_3_4.setChecked(true);
+            TIPO_NOVEDAD  = manzana_db.getTipoNovedad();
         }
         if(manzana_db.getTipoNovedad()!= null && manzana_db.getTipoNovedad().toString().equals("5")){
             id_pregunta5_3_5.setChecked(true);
+            TIPO_NOVEDAD  = manzana_db.getTipoNovedad();
         }
         if(manzana_db.getTipoNovedad()!= null && manzana_db.getTipoNovedad().toString().equals("6")){
             id_pregunta5_3_6.setChecked(true);
+            TIPO_NOVEDAD  = manzana_db.getTipoNovedad();
         }
         if(manzana_db.getTipoNovedad()!= null && manzana_db.getTipoNovedad().toString().equals("7")){
             id_pregunta5_3_7.setChecked(true);
+            TIPO_NOVEDAD  = manzana_db.getTipoNovedad();
         }
 
         editDIREC_BARRIO.setText(manzana_db.getBarrio());
-        spinnerCOD_RESG_ETNICO.setSelection(getIndexSpinner(spinnerCOD_RESG_ETNICO,manzana_db.getResguardoEtnico()));
-        spinnerCOD_COMUN_ETNICO.setSelection(getIndexSpinner(spinnerCOD_COMUN_ETNICO,manzana_db.getComunidadEtnica()));
+        spinnerCOD_RESG_ETNICO.setSelection(getIndexSpinner(spinnerCOD_RESG_ETNICO, db.getCodResguardoIndigena(manzana_db.getResguardoEtnico(),true) ));
+        selRESGUARDO = manzana_db.getResguardoEtnico();
+        spinnerCOD_COMUN_ETNICO.setSelection(getIndexSpinner(spinnerCOD_COMUN_ETNICO,db.getCodComunidadNegra(manzana_db.getComunidadEtnica(), true) ));
+        selCOMUNIDAD_NEGRA = manzana_db.getComunidadEtnica();
 
         if(manzana_db.getFinalizado().toUpperCase().equals("SI")){
             finalizacion = true;
@@ -1033,19 +1100,45 @@ public class Formulario extends AppCompatActivity {
             finalizacion = false;
         }
 
-        latlon.setText("Latitud: "+manzana_db.getLatitud()+"\nLongitud: "+manzana_db.getLongitud()
-                +"\nAltura: "+manzana_db.getAltura()+" m\nPrecisión: "+manzana_db.getPrecision()+" m");
+        if(manzana!= null && Util.stringNullEmptys(manzana.getAltura()) && Util.stringNullEmptys(manzana.getPrecision())
+                && Util.stringNullEmptys(manzana.getLatitud()) && Util.stringNullEmptys(manzana.getLongitud())){
+            latlon.setText("Latitud: "+manzana.getLatitud()+"\nLongitud: "+manzana.getLongitud()
+                    +"\nAltura: "+manzana.getAltura()+" m\nPrecisión: "+manzana.getPrecision()+" m");
+        }else{
+            Location location = getLastKnownLocation();
+            if(location!= null){
+                LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
+                double longitude = location.getLongitude();
+                double latitude = location.getLatitude();
+                double altura = location.getAltitude();
+                double precision = location.getAccuracy();
 
-        coord=manzana_db.getLatitud();
+                manzana.setLatitud(String.valueOf(latitude));
+                manzana.setLongitud(String.valueOf(longitude));
+                manzana.setAltura(String.valueOf(altura));
+                manzana.setPrecision(String.valueOf(precision));
+                coord="1";
 
-        manzana.setLatitud(manzana_db.getLatitud());
-        manzana.setLongitud(manzana_db.getLongitud());
-        manzana.setAltura(manzana_db.getAltura());
-        manzana.setPrecision(manzana_db.getPrecision());
-        Log.d("lat:",manzana_db.getLatitud());
+                latlon.setText("Latitud: "+manzana.getLatitud()+"\nLongitud: "+manzana.getLongitud()
+                        +"\nAltura: "+manzana.getAltura()+" m\nPrecisión: "+manzana.getPrecision()+" m");
+            }else{
+                msj.generarToast("GPS Desactivado","error");
+            }
+        }
 
-        if(!manzana_db.getLatitud().isEmpty()){
-            latlon.setVisibility(View.GONE);
+        if(manzana_db.getLatitud()!= null && !manzana_db.getLatitud().isEmpty()){
+            coord=manzana_db.getLatitud();
+        }
+
+        if(manzana_db.getLatitud()!= null && !manzana_db.getLatitud().isEmpty()
+        && manzana_db.getLongitud()!= null && !manzana_db.getLongitud().isEmpty()
+        && manzana_db.getAltura()!= null && !manzana_db.getAltura().isEmpty()
+        && manzana_db.getPrecision()!= null && !manzana_db.getPrecision().isEmpty() ){
+            manzana.setLatitud(manzana_db.getLatitud());
+            manzana.setLongitud(manzana_db.getLongitud());
+            manzana.setAltura(manzana_db.getAltura());
+            manzana.setPrecision(manzana_db.getPrecision());
+            Log.d("lat:",manzana_db.getLatitud());
         }
 
         if(manzana_db.getFinalizado().equals("Si")){
@@ -1053,6 +1146,7 @@ public class Formulario extends AppCompatActivity {
             spinnerCOD_RESG_ETNICO.setEnabled(false);
             spinnerCOD_COMUN_ETNICO.setEnabled(false);
             linearAgregarEdificacion.setVisibility(View.GONE);
+            linearExisteEdificaciones.setVisibility(View.GONE);
             linearGuardarFormularioManzana.setVisibility(View.GONE);
             latlon.setVisibility(View.GONE);
             linearEliminarFormulario.setVisibility(View.GONE);

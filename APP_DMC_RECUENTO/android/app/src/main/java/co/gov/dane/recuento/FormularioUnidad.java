@@ -27,6 +27,7 @@ import co.gov.dane.recuento.Preguntas.Edificacion;
 import co.gov.dane.recuento.Preguntas.Manzana;
 import co.gov.dane.recuento.Preguntas.UnidadEconomica;
 import co.gov.dane.recuento.backend.Database;
+import co.gov.dane.recuento.dtos.NormalizadorDireccionDTO;
 import co.gov.dane.recuento.model.EsquemaEdificacionEnvioViewModel;
 import co.gov.dane.recuento.model.EsquemaManzanaEnvioViewModel;
 import co.gov.dane.recuento.model.EsquemaUnidadesEnvioViewModel;
@@ -45,18 +46,22 @@ public class FormularioUnidad extends AppCompatActivity {
 
     private RadioGroup radioDIREC_P_COMP;
 
-    private RadioButton id_pregunta5_2_si, id_pregunta5_2_no;
+    private RadioButton id_complemento_si, id_complemento_no;
 
     private Database db;
     private Util util;
     private Mensajes msj;
 
     private LinearLayout linearCabecera, linearPregunta6, linearPregunta7, linearNormalizador, guardar_formulario, linearComplemento,
-            linearComplementoAcomp, linearAdicionarComplemento, linearAdicionarAgregarDireccion;
+            linearComplementoAcomp, linearAdicionarComplemento, linearAdicionarAgregarDireccion, linearTipoVendedor, linearBtnNormalizador;
     private TextView textUnidadEconomica;
-    private String idDevice;
-    private Session session;
+    private String idDevice, DIREC_PREVIA,  DIREC_P_TIPO, DIRECC, NOV_CARTO, UNIDAD_OBSERVACION, TIPO_OBSERVACION, TIPO_VENDEDOR, SECTOR_ECONOMICO ;
 
+    private Session session;
+    private NormalizadorDireccionDTO normalizador = new NormalizadorDireccionDTO();
+    private int isEdit;
+
+    ArrayAdapter<CharSequence> arrDefault;
     ArrayAdapter<CharSequence> arr_estado_unidad;
     ArrayAdapter<CharSequence> arr_unidad_observacion;
     ArrayAdapter<CharSequence> arr_unidad_observacion_1;
@@ -68,6 +73,7 @@ public class FormularioUnidad extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        isEdit = 1;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.formulario_unidad);
         session=new Session(FormularioUnidad.this);
@@ -94,9 +100,11 @@ public class FormularioUnidad extends AppCompatActivity {
         linearNormalizador = (LinearLayout) findViewById(R.id.linearNormalizador);
         guardar_formulario = (LinearLayout) findViewById(R.id.guardar_formulario);
         linearComplemento = (LinearLayout) findViewById(R.id.linearComplemento);
+        linearBtnNormalizador = (LinearLayout) findViewById(R.id.normalizador);
         linearComplementoAcomp = (LinearLayout) findViewById(R.id.linearComplementoAcomp);
         linearAdicionarComplemento = (LinearLayout) findViewById(R.id.linearAdicionarComplemento);
         linearAdicionarAgregarDireccion = (LinearLayout) findViewById(R.id.linearAdicionarAgregarDireccion);
+        linearTipoVendedor = (LinearLayout) findViewById(R.id.linearTipoVendedor);
 
         linearNormalizador.setVisibility(View.GONE);
 
@@ -127,10 +135,12 @@ public class FormularioUnidad extends AppCompatActivity {
         editDIREC_TEX_COM = (EditText) findViewById(R.id.editDIREC_TEX_COM);
         editDireccionCompleta = (EditText) findViewById(R.id.editDireccionCompleta);
 
+        textUnidadEconomica = (TextView) findViewById(R.id.textUnidadEconomica);
+
         radioDIREC_P_COMP = (RadioGroup) findViewById(R.id.radioDIREC_P_COMP);
 
-        id_pregunta5_2_si  = (RadioButton) findViewById(R.id.id_pregunta5_2_si);
-        id_pregunta5_2_no = (RadioButton) findViewById(R.id.id_pregunta5_2_no);
+        id_complemento_si  = (RadioButton) findViewById(R.id.id_complemento_si);
+        id_complemento_no = (RadioButton) findViewById(R.id.id_complemento_no);
 
         ArrayAdapter<CharSequence> adapter_DIREC_VP = ArrayAdapter.createFromResource(this,
                 R.array.DIREC_VP, android.R.layout.simple_spinner_item);
@@ -182,15 +192,6 @@ public class FormularioUnidad extends AppCompatActivity {
         adapter_DIREC_COMP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDIREC_COMP.setAdapter(adapter_DIREC_COMP);
 
-
-        spinnerDIREC_PREVIA = (Spinner) findViewById(R.id.spinnerDIREC_PREVIA);
-        spinnerDIREC_P_TIPO = (Spinner) findViewById(R.id.spinnerDIREC_P_TIPO);
-        spinnerNOV_CARTO = (Spinner) findViewById(R.id.spinnerNOV_CARTO);
-        spinnerUnidadObservacion = (Spinner) findViewById(R.id.spinnerUnidadObservacion);
-        spinnerTipoObservacion = (Spinner) findViewById(R.id.spinnerTipoObservacion);
-        spinnerTipoVendedor = (Spinner) findViewById(R.id.spinnerTipoVendedor);
-        spinnerSectorEconomico = (Spinner) findViewById(R.id.spinnerSectorEconomico);
-
         ArrayAdapter<CharSequence> adapter_DIREC_PREVIA = ArrayAdapter.createFromResource(this,
                 R.array.direccion_previa, android.R.layout.simple_spinner_item);
         adapter_DIREC_PREVIA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -211,7 +212,9 @@ public class FormularioUnidad extends AppCompatActivity {
         adapter_estado_unidad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerUnidadObservacion.setAdapter(adapter_estado_unidad);
 
-
+        arrDefault = ArrayAdapter.createFromResource(this,
+                R.array.listado_default, android.R.layout.simple_spinner_item);
+        arrDefault.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         arr_estado_unidad = ArrayAdapter.createFromResource(this,
                 R.array.estado_unidad, android.R.layout.simple_spinner_item);
@@ -220,7 +223,6 @@ public class FormularioUnidad extends AppCompatActivity {
         arr_tipo_vendedor = ArrayAdapter.createFromResource(this,
                 R.array.tipo_vendedor, android.R.layout.simple_spinner_item);
         arr_tipo_vendedor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
 
         arr_unidad_observacion = ArrayAdapter.createFromResource(this,
                 R.array.unidad_observacion, android.R.layout.simple_spinner_item);
@@ -243,86 +245,13 @@ public class FormularioUnidad extends AppCompatActivity {
         arr_sector_economico1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         arr_sector_economico2 = ArrayAdapter.createFromResource(this,
-                R.array.sector_economico1, android.R.layout.simple_spinner_item);
+                R.array.sector_economico2, android.R.layout.simple_spinner_item);
         arr_sector_economico2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        estado_unidad.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(++check > 1) {
-                    switch(i){
+        linearPregunta6.setVisibility(View.VISIBLE);
+        linearPregunta7.setVisibility(View.VISIBLE);
 
-                        case 0:
-                            unidad_observacion.setAdapter(arr_unidad_observacion);
-                            sector_economico.setAdapter(arr_sector_economico);
-                            break;
-                        case 1:
-
-                            unidad_observacion.setAdapter(arr_unidad_observacion_1);
-                            sector_economico.setAdapter(arr_sector_economico1);
-                            break;
-                        case 2:
-                            unidad_observacion.setAdapter(arr_unidad_observacion_2);
-                            sector_economico.setAdapter(arr_sector_economico2);
-                            break;
-                    }
-                }
-
-            }
-
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                return;
-            }
-        });
-
-        llenarFormulario();
-
-        LinearLayout guardar_formulario = (LinearLayout) findViewById(R.id.guardar_formulario);
-
-        guardar_formulario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            UnidadEconomica unidad=new UnidadEconomica();
-
-            if(chequeo_agrupado){
-                String validacion = validarFormulario();
-                if(validacion.equals("")){
-                    if(unidades_se_encuentran_ocupadas == 0){
-                        msj.generarToast("Sumas OK");
-
-                            unidad=saveFormulario();
-                            unidad.setImei(idDevice);
-                            if(db.guardarUnidadEconomica(unidad,id_manzana,id_edificacion,id_unidad)){
-                                msj.generarToast("Formulario Guardado");
-                            }
-                            FormularioUnidad.this.finish();
-                    }else{
-                        int verificacion=verificarSumas();
-                        if(verificacion==2){
-                            msj.generarToast("Sumas OK");
-                            unidad=saveFormulario();
-                            unidad.setImei(idDevice);
-                            if(db.guardarUnidadEconomica(unidad,id_manzana,id_edificacion,id_unidad)){
-                                msj.generarToast("Formulario Guardado");
-                            }
-
-                        }else if(verificacion==1){
-                            msj.generarToast("Ingrese valores","error");
-                        }else if(verificacion==0){
-                            msj.generarToast("Sumas no coinciden","error");
-                        }
-                    }
-                }else{
-                    msj.generarToast(validacion,"error");
-                }
-            }else{
-                msj.generarToast("Seleccione agrupamiento","error");
-            }
-
-            }
-        });
-
-        btn_dir_automatica.setOnClickListener(new View.OnClickListener() {
+        linearAdicionarAgregarDireccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 UnidadEconomica unidad= new UnidadEconomica();
@@ -337,12 +266,336 @@ public class FormularioUnidad extends AppCompatActivity {
                 }
 
                 unidad=db.getUnidadEconomica(id_manzana,id_edificacion,String.valueOf(id_anterior));
-
-                spinner_dir_a.setSelection(getIndexSpinner(spinner_dir_a,unidad.getTipo_via_principal()));
-
-                via_principal.setText(unidad.getVia_principal());
-                via_secundaria.setText(unidad.getVia_secundaria());
                 msj.generarToast("Dirección Generada");
+            }
+        });
+
+        spinnerDIREC_PREVIA.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(!spinnerDIREC_PREVIA.getSelectedItem().toString().equals("Seleccione...")){
+                    if(spinnerDIREC_PREVIA.getSelectedItem().toString().contains("1"))
+                         DIREC_PREVIA = "1";
+                    if(spinnerDIREC_PREVIA.getSelectedItem().toString().contains("2"))
+                        DIREC_PREVIA = "2";
+                    if(spinnerDIREC_PREVIA.getSelectedItem().toString().contains("3"))
+                        DIREC_PREVIA = "3";
+                }else{
+                    DIREC_PREVIA = null;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                DIREC_PREVIA = null;
+            }
+        });
+
+        spinnerDIREC_P_TIPO.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(!spinnerDIREC_P_TIPO.getSelectedItem().toString().equals("Seleccione...")){
+                    if(spinnerDIREC_P_TIPO.getSelectedItem().toString().contains("1"))
+                        DIREC_P_TIPO = "1";
+                    if(spinnerDIREC_P_TIPO.getSelectedItem().toString().contains("2"))
+                        DIREC_P_TIPO = "2";
+                    if(spinnerDIREC_P_TIPO.getSelectedItem().toString().contains("3"))
+                        DIREC_P_TIPO = "3";
+                }else{
+                    DIREC_P_TIPO = null;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                DIREC_P_TIPO = null;
+            }
+        });
+
+        spinnerNOV_CARTO.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(!spinnerNOV_CARTO.getSelectedItem().toString().equals("Seleccione...")){
+                    if(spinnerNOV_CARTO.getSelectedItem().toString().contains("1"))
+                        NOV_CARTO = "1";
+                    if(spinnerNOV_CARTO.getSelectedItem().toString().contains("2"))
+                        NOV_CARTO = "2";
+                    if(spinnerNOV_CARTO.getSelectedItem().toString().contains("3"))
+                        NOV_CARTO = "3";
+                    if(spinnerNOV_CARTO.getSelectedItem().toString().contains("4"))
+                        NOV_CARTO = "4";
+                }else{
+                    NOV_CARTO = null;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                NOV_CARTO = null;
+            }
+        });
+
+        //Pregunta 7
+        spinnerUnidadObservacion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(isEdit == 1){
+                    if(!spinnerUnidadObservacion.getSelectedItem().toString().equals("Seleccione...")){
+                        if(spinnerUnidadObservacion.getSelectedItem().toString().contains("1")){
+                            spinnerTipoObservacion.setAdapter(arr_unidad_observacion);
+                            spinnerTipoVendedor.setAdapter(arrDefault);
+                            spinnerSectorEconomico.setAdapter(arrDefault);
+                            TIPO_OBSERVACION = null;
+                            TIPO_VENDEDOR = null;
+                            SECTOR_ECONOMICO = null;
+                            UNIDAD_OBSERVACION = "1";
+                        }
+                        if(spinnerUnidadObservacion.getSelectedItem().toString().contains("2")){
+                            spinnerTipoObservacion.setAdapter(arr_unidad_observacion_1);
+                            spinnerTipoVendedor.setAdapter(arrDefault);
+                            spinnerSectorEconomico.setAdapter(arrDefault);
+                            UNIDAD_OBSERVACION = "2";
+                            TIPO_OBSERVACION = null;
+                            TIPO_VENDEDOR = null;
+                            SECTOR_ECONOMICO = null;
+                        }
+                        if(spinnerUnidadObservacion.getSelectedItem().toString().contains("3")){
+                            spinnerTipoObservacion.setAdapter(arr_unidad_observacion_2);
+                            spinnerTipoVendedor.setAdapter(arrDefault);
+                            spinnerSectorEconomico.setAdapter(arrDefault);
+                            UNIDAD_OBSERVACION = "3";
+                            TIPO_OBSERVACION = null;
+                            TIPO_VENDEDOR = null;
+                            SECTOR_ECONOMICO = null;
+                        }
+                    }else{
+                        spinnerTipoObservacion.setAdapter(arrDefault);
+                        spinnerTipoVendedor.setAdapter(arrDefault);
+                        spinnerSectorEconomico.setAdapter(arrDefault);
+                        UNIDAD_OBSERVACION = null;
+                        TIPO_OBSERVACION = null;
+                        TIPO_VENDEDOR = null;
+                        SECTOR_ECONOMICO = null;
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                if(isEdit == 1){
+                    UNIDAD_OBSERVACION = null;
+                    TIPO_OBSERVACION = null;
+                    TIPO_VENDEDOR = null;
+                    SECTOR_ECONOMICO = null;
+                }
+            }
+        });
+
+        spinnerTipoObservacion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(isEdit == 1){
+                    if(!spinnerTipoObservacion.getSelectedItem().toString().equals("Seleccione...")){
+                        if(spinnerUnidadObservacion.getSelectedItem().toString().contains("1")){
+                            if(spinnerTipoObservacion.getSelectedItem().toString().contains("1")
+                                    || spinnerTipoObservacion.getSelectedItem().toString().contains("2")
+                                    || spinnerTipoObservacion.getSelectedItem().toString().contains("4")){
+                                spinnerSectorEconomico.setAdapter(arr_sector_economico);
+                                linearTipoVendedor.setVisibility(View.GONE);
+                                spinnerTipoVendedor.setAdapter(arrDefault);
+
+                                if(spinnerTipoObservacion.getSelectedItem().toString().contains("1")){
+                                    TIPO_OBSERVACION = "1";
+                                    TIPO_VENDEDOR = null;
+                                    SECTOR_ECONOMICO = null;
+                                }
+
+                                if(spinnerTipoObservacion.getSelectedItem().toString().contains("2")){
+                                    TIPO_OBSERVACION = "2";
+                                    TIPO_VENDEDOR = null;
+                                    SECTOR_ECONOMICO = null;
+                                }
+
+                                if(spinnerTipoObservacion.getSelectedItem().toString().contains("4")){
+                                    TIPO_OBSERVACION = "4";
+                                    TIPO_VENDEDOR = null;
+                                    SECTOR_ECONOMICO = null;
+                                }
+                            }else{
+                                spinnerTipoVendedor.setAdapter(arr_tipo_vendedor);
+                                spinnerSectorEconomico.setAdapter(arrDefault);
+                                linearTipoVendedor.setVisibility(View.VISIBLE);
+                                TIPO_OBSERVACION = "3";
+                                TIPO_VENDEDOR = null;
+                                SECTOR_ECONOMICO = null;
+                            }
+                        }
+
+                        if(spinnerUnidadObservacion.getSelectedItem().toString().contains("2")){
+                            spinnerSectorEconomico.setAdapter(arr_sector_economico2);
+                            linearTipoVendedor.setVisibility(View.GONE);
+                            if(spinnerTipoObservacion.getSelectedItem().toString().contains("1")){
+                                TIPO_OBSERVACION = "1";
+                                TIPO_VENDEDOR = null;
+                                SECTOR_ECONOMICO = null;
+                            }
+                            if(spinnerTipoObservacion.getSelectedItem().toString().contains("2")){
+                                TIPO_OBSERVACION = "2";
+                                TIPO_VENDEDOR = null;
+                                SECTOR_ECONOMICO = null;
+                            }
+                        }
+
+                        if(spinnerUnidadObservacion.getSelectedItem().toString().contains("3")){
+                            spinnerSectorEconomico.setAdapter(arr_sector_economico1);
+                            linearTipoVendedor.setVisibility(View.GONE);
+                            if(spinnerTipoObservacion.getSelectedItem().toString().contains("1")){
+                                TIPO_OBSERVACION = "1";
+                                TIPO_VENDEDOR = null;
+                                SECTOR_ECONOMICO = null;
+                            }
+                        }
+                    }else{
+                        spinnerTipoVendedor.setAdapter(arrDefault);
+                        TIPO_OBSERVACION = null;
+                        TIPO_VENDEDOR = null;
+                        SECTOR_ECONOMICO = null;
+                    }
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                if(isEdit == 1){
+                    TIPO_OBSERVACION = null;
+                    TIPO_VENDEDOR = null;
+                    SECTOR_ECONOMICO = null;
+                }
+
+            }
+        });
+
+        spinnerTipoVendedor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(isEdit == 1){
+                    if(!spinnerTipoVendedor.getSelectedItem().toString().equals("Seleccione...")){
+                        if(spinnerTipoVendedor.getSelectedItem().toString().contains("1")){
+                            TIPO_VENDEDOR = "1";
+                            SECTOR_ECONOMICO = null;
+                            spinnerSectorEconomico.setAdapter(arr_sector_economico);
+                        }
+                        if(spinnerTipoVendedor.getSelectedItem().toString().contains("2")){
+                            TIPO_VENDEDOR = "2";
+                            SECTOR_ECONOMICO = null;
+                            spinnerSectorEconomico.setAdapter(arr_sector_economico);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                if(isEdit == 1){
+                    TIPO_VENDEDOR = null;
+                    SECTOR_ECONOMICO = null;
+                }
+            }
+        });
+
+        spinnerSectorEconomico.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(isEdit == 1){
+                    if(!spinnerSectorEconomico.getSelectedItem().toString().equals("Seleccione...")){
+                        if(spinnerUnidadObservacion.getSelectedItem().toString().contains("1")){
+                            if(spinnerSectorEconomico.getSelectedItem().toString().contains("1")){
+                                SECTOR_ECONOMICO = "1";
+                            }
+                            if(spinnerSectorEconomico.getSelectedItem().toString().contains("2")){
+                                SECTOR_ECONOMICO = "2";
+                            }
+                            if(spinnerSectorEconomico.getSelectedItem().toString().contains("3")){
+                                SECTOR_ECONOMICO = "3";
+                            }
+                            if(spinnerSectorEconomico.getSelectedItem().toString().contains("4")){
+                                SECTOR_ECONOMICO = "4";
+                            }
+                            if(spinnerSectorEconomico.getSelectedItem().toString().contains("5")){
+                                SECTOR_ECONOMICO = "5";
+                            }
+                        }
+                        if(spinnerUnidadObservacion.getSelectedItem().toString().contains("2")){
+                            if(spinnerSectorEconomico.getSelectedItem().toString().contains("1")){
+                                SECTOR_ECONOMICO = "1";
+                            }
+                        }
+                        if(spinnerUnidadObservacion.getSelectedItem().toString().contains("3")){
+                            if(spinnerSectorEconomico.getSelectedItem().toString().contains("1")){
+                                SECTOR_ECONOMICO = "1";
+                            }
+                        }
+                    }
+                }else{
+                    if(isEdit==100){
+                        isEdit = 1;
+                    }
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                if(isEdit == 1)
+                    SECTOR_ECONOMICO = null;
+            }
+        });
+
+        linearBtnNormalizador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearNormalizador.setVisibility(View.VISIBLE);
+                linearAdicionarAgregarDireccion.setVisibility(View.VISIBLE);
+                linearPregunta6.setVisibility(View.GONE);
+                linearPregunta7.setVisibility(View.GONE);
+                guardar_formulario.setVisibility(View.GONE);
+                //TODO : LLENAR NORMALIZADOR SI FUE DILIGENCIADO
+
+            }
+        });
+
+        linearAdicionarAgregarDireccion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearNormalizador.setVisibility(View.GONE);
+                linearAdicionarAgregarDireccion.setVisibility(View.GONE);
+                linearPregunta6.setVisibility(View.VISIBLE);
+                linearPregunta7.setVisibility(View.VISIBLE);
+                guardar_formulario.setVisibility(View.VISIBLE);
+                //TODO : VALIDAR CUANDO SE VAYA AGREGAR UA DIRECCION
+            }
+        });
+
+        guardar_formulario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UnidadEconomica unidad=new UnidadEconomica();
+
+                String retorno = validarFormulario();
+                if(retorno == null){
+                    unidad=saveFormulario();
+                    unidad.setImei(idDevice);
+                    if(db.guardarUnidadEconomica(unidad,id_manzana,id_edificacion,id_unidad)){
+                        normalizador.setIdManzana(id_manzana);
+                        normalizador.setIdUnidadEconomica(id_unidad);
+                        db.postNormalizador(normalizador);
+                        msj.generarToast("Formulario Guardado");
+                    }
+                    FormularioUnidad.this.finish();
+                }else{
+                    msj.dialogoMensajeError("Error", retorno);
+                }
             }
         });
 
@@ -351,29 +604,46 @@ public class FormularioUnidad extends AppCompatActivity {
 
         if(manzana.getFinalizado().equals("Si")){
             guardar_formulario.setVisibility(View.GONE);
-
         }
-
+        llenarFormulario();
     }
 
+    /**
+     * Metodo que valida el formulario
+     *
+     * @return
+     */
     private String validarFormulario() {
         String retorno = "";
 
-        if(unidades_se_encuentran_ocupadas==1 && unidades_puesto_movil == 0 ){
-            if(ocupado==1 && desocupado==0)
-                retorno = retorno + "El estado de la Unidad en Ocupado no puede ser de valor  1, cuando es agrupada.\n";
+        if(DIREC_PREVIA == null)
+            retorno = retorno + "Debe seleccionar la dirección de unidad previa.\n";
 
-            if(total<=1)
-                retorno = retorno + "La suma de ocupado más desocupado debe ser mayor a 1.\n";
+        if(DIREC_P_TIPO == null )
+            retorno = retorno + "Debe seleccionar el tipo dirección.\n";
 
-            if(vivienda > ocupado){
-                retorno = retorno + "Vivienda con actividad económica no puede ser mayor al estado de la unidad Ocupado en "+ocupado +". \n";
-            }
+        if(NOV_CARTO == null )
+            retorno = retorno + "Debe seleccionar ña novedad cartográfica.\n";
+
+        if(UNIDAD_OBSERVACION == null )
+            retorno = retorno + "Debe seleccionar el estado de la unidad de observación.\n";
+
+        if(TIPO_OBSERVACION == null )
+            retorno = retorno + "Debe seleccionar el tipo de la unidad de observación.\n";
+
+        if(TIPO_OBSERVACION!= null && !TIPO_OBSERVACION.isEmpty() && TIPO_OBSERVACION == "3"){
+            if(TIPO_VENDEDOR == null)
+                retorno = retorno + "Debe seleccionar el tipo de vendedor.\n";
         }
-        if(via_principal.getText().toString().equals("") || spinner_dir_a.getSelectedItem().toString().equals("") || via_secundaria.getText().toString().equals("")
-                || placa_cuadrante.getText().toString().equals("") || nombre_unidad.getText().toString().equals("") ){
-            retorno = retorno + "Debe diligenciar todos los campos obligatorios. \n";
-        }
+
+        if(SECTOR_ECONOMICO == null )
+            retorno = retorno + "Debe seleccionar el sector económico de la unidad.\n";
+
+//        if(DIRECC == null)
+//            retorno = retorno + "Debe agregar la dirección con el normalizador de dirección.\n";
+
+        if(retorno.equals("")) retorno = null;
+
         return retorno;
     }
 
@@ -483,7 +753,7 @@ public class FormularioUnidad extends AppCompatActivity {
         retorno.setTipo_unidad_observacion(unidad.getTipo_unidad_observacion());
         retorno.setTipo_vendedor(unidad.getTipo_vendedor());
         retorno.setSector_economico(unidad.getSector_economico());
-        retorno.setUnidad_osbservacion(unidad.getUnidad_osbservacion());
+        retorno.setUnidad_osbservacion(unidad.getUnidad_observacion());
         retorno.setObservacion(unidad.getObservacion());
 
         retorno.setFecha_modificacion(unidad.getFechaModificacion());
@@ -496,205 +766,102 @@ public class FormularioUnidad extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Metodo que asigna las variables
+     * @return
+     */
     private UnidadEconomica saveFormulario(){
-
         UnidadEconomica unidad=new UnidadEconomica();
-
-        unidad.setTipo_via_principal(spinner_dir_a.getSelectedItem().toString());
-        unidad.setVia_principal(via_principal.getText().toString());
-        unidad.setVia_secundaria(via_secundaria.getText().toString());
-        unidad.setPlaca_cuadrante(placa_cuadrante.getText().toString());
-        unidad.setComplemento_direccion(complemento_direccion.getText().toString());
-        unidad.setUnidades_ocupadas(String.valueOf(unidades_se_encuentran_ocupadas));
-
-        unidad.setNombre_unidad_observacion(nombre_unidad.getText().toString());
-        unidad.setObservaciones_unidad_observacion(observaciones_unidad.getText().toString());
-        unidad.setObservaciones_sn(String.valueOf((unidades_puesto_movil)));
+        unidad.setId_edificacion(id_edificacion);
+        unidad.setId_manzana(id_manzana);
+        unidad.setId_unidad(id_unidad);
+        unidad.setDirec_previa(DIREC_PREVIA);
+        unidad.setDirec_p_tipo(DIREC_P_TIPO);
+        unidad.setNov_carto(NOV_CARTO);
+        unidad.setEstado_unidad_observacion(UNIDAD_OBSERVACION);
+        unidad.setTipo_unidad_observacion(TIPO_OBSERVACION);
+        unidad.setTipo_vendedor(TIPO_VENDEDOR);
+        unidad.setSector_economico(SECTOR_ECONOMICO);
+        unidad.setUnidad_observacion(editUnidadObservacion.getText().toString());
+        unidad.setObservacion(editObservacionUnidad.getText().toString());
 
         return unidad;
     }
 
 
-
-
-    //TODO: AJUSTAR
+    /**
+     * Metodo que llena el formulario si tiene informacion.
+     */
     private void llenarFormulario(){
-
         UnidadEconomica unidad= new UnidadEconomica();
-
         unidad=db.getUnidadEconomica(id_manzana,id_edificacion,id_unidad);
 
-        spinner_dir_a.setSelection(getIndexSpinner(spinner_dir_a,unidad.getTipo_via_principal()));
+        if(unidad!= null && unidad.getId() != null && !unidad.getId().isEmpty()){
+            isEdit = 100;
+            DIREC_PREVIA = unidad.getDirec_previa();
+            DIREC_P_TIPO = unidad.getDirec_p_tipo();
+            DIRECC = unidad.getDirecc();
+            NOV_CARTO = unidad.getNov_carto();
+            UNIDAD_OBSERVACION = unidad.getEstado_unidad_observacion();
+            TIPO_OBSERVACION = unidad.getTipo_unidad_observacion();
+            TIPO_VENDEDOR = unidad.getTipo_vendedor();
+            SECTOR_ECONOMICO = unidad.getSector_economico();
 
-        via_principal.setText(unidad.getVia_principal());
-        via_secundaria.setText(unidad.getVia_secundaria());
-        placa_cuadrante.setText(unidad.getPlaca_cuadrante());
-        complemento_direccion.setText(unidad.getComplemento_direccion());
+            spinnerDIREC_PREVIA.setSelection(getIndexSpinnerContains(spinnerDIREC_PREVIA, DIREC_PREVIA));
+            spinnerDIREC_P_TIPO.setSelection(getIndexSpinnerContains(spinnerDIREC_P_TIPO, DIREC_P_TIPO));
+            spinnerNOV_CARTO.setSelection(getIndexSpinnerContains(spinnerNOV_CARTO, NOV_CARTO));
+            spinnerUnidadObservacion.setSelection(getIndexSpinnerContains(spinnerUnidadObservacion, UNIDAD_OBSERVACION));
 
-        nombre_unidad.setText(unidad.getNombre_unidad_observacion());
-        observaciones_unidad.setText(unidad.getObservaciones_unidad_observacion());
-
-        String uni=unidad.getUnidades_ocupadas();
-
-        if((uni!=null  && uni.equals("true")) ||  (  uni!= null && uni.equals("1")) ){
-            RadioButton b = (RadioButton) findViewById(R.id.unidades_ocupadas_si);
-            b.setChecked(true);
-
-            estado_ocupado.setText(unidad.getEstado_ocupado());
-            estado_desocupado.setText(unidad.getEstado_desocupado());
-            estado_obra.setText(unidad.getEstado_obra());
-
-            emplazamiento_fijo.setText(unidad.getEstablecimiento_fijo());
-            emplazamiento_semifijo.setText(unidad.getEstablecimiento_semifijo());
-            puesto_movil.setText(unidad.getPuesto_movil());
-            unidades_puesto_movil = StringToInt(unidad.getObservaciones_sn());
-
-            emplazamiento_vivienda_actividad_economica.setText(unidad.getVivienda_actividad_economica());
-            emplazamiento_obra_edificacion.setText(unidad.getObra_edificacion());
-            unidades_comercio.setText(unidad.getComercio());
-            unidades_industria.setText(unidad.getIndustria());
-            unidades_servicios.setText(unidad.getServicios());
-            unidades_transporte.setText(unidad.getTransporte());
-            unidades_construccion.setText(unidad.getConstruccion());
-            unidades_no_aplica.setText(unidad.getNo_aplica());
-
-        }
-        Boolean entro = false;
-        if( (uni!=null  && uni.equals("false")) ||  (uni != null && uni.equals("0"))){
-
-            RadioButton b = (RadioButton) findViewById(R.id.unidades_ocupadas_no);
-            b.setChecked(true);
-
-            String oc=unidad.getEstado_ocupado();
-            if(oc!=null  && oc.equals("1")){
-                estado_unidad.setSelection(0);
-                unidad_observacion.setAdapter(arr_unidad_observacion);
-                sector_economico.setAdapter(arr_sector_economico);
-                entro = true;
+            if(UNIDAD_OBSERVACION!= null && UNIDAD_OBSERVACION.equals("1")){
+                spinnerTipoObservacion.setAdapter(arr_unidad_observacion);
+                if(TIPO_OBSERVACION!= null && TIPO_OBSERVACION.equals("1")){
+                    spinnerSectorEconomico.setAdapter(arr_sector_economico);
+                    linearTipoVendedor.setVisibility(View.GONE);
+                    spinnerTipoVendedor.setAdapter(arrDefault);
+                }
+                if(TIPO_OBSERVACION!= null && TIPO_OBSERVACION.equals("2")){
+                    spinnerSectorEconomico.setAdapter(arr_sector_economico);
+                    linearTipoVendedor.setVisibility(View.GONE);
+                    spinnerTipoVendedor.setAdapter(arrDefault);
+                }
+                if(TIPO_OBSERVACION!= null && TIPO_OBSERVACION.equals("3")){
+                    spinnerTipoVendedor.setAdapter(arr_tipo_vendedor);
+                    spinnerSectorEconomico.setAdapter(arr_sector_economico);
+                    linearTipoVendedor.setVisibility(View.VISIBLE);
+                }
+                if(TIPO_OBSERVACION!= null && TIPO_OBSERVACION.equals("4")){
+                    spinnerSectorEconomico.setAdapter(arr_sector_economico);
+                    linearTipoVendedor.setVisibility(View.GONE);
+                    spinnerTipoVendedor.setAdapter(arrDefault);
+                }
+                spinnerTipoObservacion.setSelection(getIndexSpinnerContains(spinnerTipoObservacion, TIPO_OBSERVACION));
+                spinnerTipoVendedor.setSelection(getIndexSpinnerContains(spinnerTipoVendedor, TIPO_VENDEDOR));
+                spinnerSectorEconomico.setSelection(getIndexSpinnerContains(spinnerSectorEconomico, SECTOR_ECONOMICO));
             }
-
-            String oc1=unidad.getEstado_desocupado();
-            if(oc1!=null  && oc1.equals("1")){
-                estado_unidad.setSelection(1);
-                unidad_observacion.setAdapter(arr_unidad_observacion_1);
-                sector_economico.setAdapter(arr_sector_economico1);
-                entro = true;
+            if(UNIDAD_OBSERVACION!= null && UNIDAD_OBSERVACION.equals("2")){
+                spinnerTipoObservacion.setAdapter(arr_unidad_observacion_1);
+                if(TIPO_OBSERVACION!= null && TIPO_OBSERVACION.equals("1")){
+                    spinnerSectorEconomico.setAdapter(arr_sector_economico2);
+                    linearTipoVendedor.setVisibility(View.GONE);
+                }
+                if(TIPO_OBSERVACION!= null && TIPO_OBSERVACION.equals("2")){
+                    spinnerSectorEconomico.setAdapter(arr_sector_economico2);
+                    linearTipoVendedor.setVisibility(View.GONE);
+                }
+                spinnerTipoObservacion.setSelection(getIndexSpinnerContains(spinnerTipoObservacion, TIPO_OBSERVACION));
+                spinnerSectorEconomico.setSelection(getIndexSpinnerContains(spinnerSectorEconomico, SECTOR_ECONOMICO));
             }
-
-            String oc2=unidad.getEstado_obra();
-            if(oc2!=null  && oc2.equals("1")){
-                estado_unidad.setSelection(2);
-                unidad_observacion.setAdapter(arr_unidad_observacion_2);
-                sector_economico.setAdapter(arr_sector_economico2);
-                entro = true;
+            if(UNIDAD_OBSERVACION!= null && UNIDAD_OBSERVACION.equals("3")){
+                spinnerTipoObservacion.setAdapter(arr_unidad_observacion_2);
+                if(TIPO_OBSERVACION!= null && TIPO_OBSERVACION.equals("1")){
+                    spinnerSectorEconomico.setAdapter(arr_sector_economico1);
+                    linearTipoVendedor.setVisibility(View.GONE);
+                }
+                spinnerTipoObservacion.setSelection(getIndexSpinnerContains(spinnerTipoObservacion, TIPO_OBSERVACION));
+                spinnerSectorEconomico.setSelection(getIndexSpinnerContains(spinnerSectorEconomico, SECTOR_ECONOMICO));
             }
-
-
-            String uo1=unidad.getEstablecimiento_fijo();
-            if(uo1!=null  && uo1.equals("1")){
-                unidad_observacion.setSelection(getIndexSpinner(unidad_observacion,"Establecimiento Fijo"));
-                div_unidad_observacion.setVisibility(View.GONE);
-                entro = true;
-            }
-            String uo2=unidad.getEstablecimiento_semifijo();
-            if(uo2!=null  && uo2.equals("1")){
-                unidad_observacion.setSelection(getIndexSpinner(unidad_observacion,"Establecimiento Semifijo"));
-                div_unidad_observacion.setVisibility(View.GONE);
-                entro = true;
-            }
-
-            String uo3=unidad.getPuesto_movil();
-            if(uo3!=null  && uo3.equals("1")){
-                unidad_observacion.setSelection(getIndexSpinner(unidad_observacion,"Puesto Móvil"));
-                div_unidad_observacion.setVisibility(View.GONE);
-                entro = true;
-            }
-            String uo4=unidad.getVivienda_actividad_economica();
-            if(uo4!=null  && uo4.equals("1")){
-                unidad_observacion.setSelection(getIndexSpinner(unidad_observacion,"Vivienda con actividad económica"));
-                div_unidad_observacion.setVisibility(View.GONE);
-                entro = true;
-            }
-
-
-            String se1=unidad.getComercio();
-            if(se1!=null  && se1.equals("1")){
-                sector_economico.setSelection(getIndexSpinner(sector_economico,"Comercio"));
-                div_sector_economico.setVisibility(View.GONE);
-                entro = true;
-            }
-            String se2=unidad.getIndustria();
-            if(se2!=null  && se2.equals("1")){
-                sector_economico.setSelection(getIndexSpinner(sector_economico,"Industria"));
-                div_sector_economico.setVisibility(View.GONE);
-                entro = true;
-            }
-
-            String se3=unidad.getServicios();
-            if(se3!=null  && se3.equals("1")){
-                sector_economico.setSelection(getIndexSpinner(sector_economico,"Servicios"));
-                div_sector_economico.setVisibility(View.GONE);
-                entro = true;
-            }
-            String se4=unidad.getTransporte();
-            if(se4!=null  && se4.equals("1")){
-                sector_economico.setSelection(getIndexSpinner(sector_economico,"Transporte"));
-                div_sector_economico.setVisibility(View.GONE);
-                entro = true;
-            }
-            String se5=unidad.getConstruccion();
-            if(se5!=null  && se5.equals("1")){
-                sector_economico.setSelection(getIndexSpinner(sector_economico,"Construcción"));
-                div_sector_economico.setVisibility(View.GONE);
-                entro = true;
-            }
-
-        }
-
-
-        String movi=unidad.getObservaciones_sn();
-        if(!entro){
-            if(movi!=null  && movi.equals("true") || ( movi!= null &&  movi.equals("1") )  ) {
-                RadioButton b = (RadioButton) findViewById(R.id.unidades_movil_si);
-                b.setChecked(true);
-                unidades_puesto_movil = 1;
-                emplazamiento_vivienda_actividad_economica.setText(unidad.getVivienda_actividad_economica());
-                emplazamiento_obra_edificacion.setText(unidad.getObra_edificacion());
-
-                emplazamiento_fijo.setText(unidad.getEstablecimiento_fijo());
-                emplazamiento_semifijo.setText(unidad.getEstablecimiento_semifijo());
-                puesto_movil.setText(unidad.getPuesto_movil());
-
-                unidades_comercio.setText(unidad.getComercio());
-                unidades_industria.setText(unidad.getIndustria());
-                unidades_servicios.setText(unidad.getServicios());
-                unidades_transporte.setText(unidad.getTransporte());
-                unidades_construccion.setText(unidad.getConstruccion());
-                unidades_no_aplica.setText(unidad.getNo_aplica());
-
-                estado_ocupado.setText(unidad.getEstado_ocupado());
-                estado_desocupado.setText(unidad.getEstado_desocupado());
-            }
-            if( movi!=null  && movi.equals("false") ||  (movi!= null &&  movi.equals("0"))){
-                RadioButton b = (RadioButton) findViewById(R.id.unidades_movil_no);
-                b.setChecked(true);
-                unidades_puesto_movil = 0;
-                emplazamiento_fijo.setText(unidad.getEstablecimiento_fijo());
-                emplazamiento_semifijo.setText(unidad.getEstablecimiento_semifijo());
-                emplazamiento_vivienda_actividad_economica.setText(unidad.getVivienda_actividad_economica());
-                puesto_movil.setText(unidad.getPuesto_movil());
-
-                unidades_comercio.setText(unidad.getComercio());
-                unidades_industria.setText(unidad.getIndustria());
-                unidades_servicios.setText(unidad.getServicios());
-                unidades_transporte.setText(unidad.getTransporte());
-                unidades_construccion.setText(unidad.getConstruccion());
-                unidades_no_aplica.setText(unidad.getNo_aplica());
-
-                estado_ocupado.setText(unidad.getEstado_ocupado());
-                estado_desocupado.setText(unidad.getEstado_desocupado());
-            }
+            editObservacionUnidad.setText(unidad.getObservacion());
+            editUnidadObservacion.setText(unidad.getUnidad_observacion());
         }
     }
 
@@ -717,6 +884,27 @@ public class FormularioUnidad extends AppCompatActivity {
         }
         return index;
     }
+
+    /**
+     * metodo que ubica la lista que contiene
+     * @param spinner
+     * @param myString
+     * @return
+     */
+    private int getIndexSpinnerContains(Spinner spinner, String myString){
+        int index = 0;
+
+        if(myString!= null && !myString.equals("")){
+            for (int i=0;i<spinner.getCount();i++){
+                if (spinner.getItemAtPosition(i).toString().contains(myString)){
+                    index = i;
+                }
+            }
+        }
+
+        return index;
+    }
+
 
     /**
      * Metodo para retornar
@@ -753,6 +941,18 @@ public class FormularioUnidad extends AppCompatActivity {
     }
 
 
+    public int StringToInt(String texto){
+        int valor=0;
+        if(texto!= null){
+            if(texto.equals("")){
+                return 0;
+            }else{
+                return Integer.parseInt(texto);
+            }
+        }else{
+            return 0;
+        }
+    }
 
 
 }

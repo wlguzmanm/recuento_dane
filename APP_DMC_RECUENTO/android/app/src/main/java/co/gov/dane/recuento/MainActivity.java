@@ -477,7 +477,7 @@ public class MainActivity extends AppCompatActivity
         retorno.setTipo_unidad_observacion(unidad.getTipo_unidad_observacion());
         retorno.setTipo_vendedor(unidad.getTipo_vendedor());
         retorno.setSector_economico(unidad.getSector_economico());
-        retorno.setUnidad_osbservacion(unidad.getUnidad_osbservacion());
+        retorno.setUnidad_osbservacion(unidad.getUnidad_observacion());
         retorno.setObservacion(unidad.getObservacion());
 
         retorno.setFecha_modificacion(unidad.getFechaModificacion());

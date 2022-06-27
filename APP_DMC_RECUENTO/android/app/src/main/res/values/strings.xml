@@ -194,6 +194,10 @@
         <item>Otros</item>
     </string-array>
 
+    <string-array name="listado_default">
+        <item>Seleccione...</item>
+    </string-array>
+
     <string-array name="estado_unidad">
         <item>Seleccione...</item>
         <item>1. Ocupado</item>
