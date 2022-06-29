@@ -9,13 +9,17 @@ public class NormalizadorDireccionDTO {
     private String direcNnomVp;
     private String direcNumVp;
     private String direcLetVp;
+    private String direcLetVpOtro;
     private String direcSfVp;
     private String direcLetSvp;
+    private String direcLetSvpOtro;
     private String direcCuadVp;
     private String direcNumVg;
     private String direcLetVg;
+    private String direcLetVgOtro;
     private String direcSfVg;
     private String direcLetSvg;
+    private String direcLetSvgOtro;
     private String direcNumPlaca;
     private String direcCuadVg;
     private String direcPComp;
@@ -29,8 +33,8 @@ public class NormalizadorDireccionDTO {
     }
 
     public NormalizadorDireccionDTO(String id, String idManzana, String idUnidadEconomica, String direcVp, String direcNnomVp, String direcNumVp,
-                                    String direcLetVp, String direcSfVp, String direcLetSvp, String direcCuadVp,
-                                    String direcNumVg, String direcLetVg, String direcSfVg, String direcLetSvg,
+                                    String direcLetVp,  String direcLetVpOtro, String direcSfVp, String direcLetSvp, String direcLetSvpOtro, String direcCuadVp,
+                                    String direcNumVg, String direcLetVg, String direcLetVgOtro, String direcSfVg, String direcLetSvg, String direcLetSvgOtro,
                                     String direcNumPlaca, String direcCuadVg, String direcPComp, String direcComp,
                                     String direcTexCom, String imei, String usuario, String fechaCreacion) {
         this.id = id;
@@ -40,13 +44,17 @@ public class NormalizadorDireccionDTO {
         this.direcNnomVp = direcNnomVp;
         this.direcNumVp = direcNumVp;
         this.direcLetVp = direcLetVp;
+        this.direcLetVpOtro = direcLetVpOtro;
         this.direcSfVp = direcSfVp;
         this.direcLetSvp = direcLetSvp;
+        this.direcLetSvpOtro = direcLetSvpOtro;
         this.direcCuadVp = direcCuadVp;
         this.direcNumVg = direcNumVg;
         this.direcLetVg = direcLetVg;
+        this.direcLetVgOtro = direcLetVgOtro;
         this.direcSfVg = direcSfVg;
         this.direcLetSvg = direcLetSvg;
+        this.direcLetSvgOtro = direcLetSvgOtro;
         this.direcNumPlaca = direcNumPlaca;
         this.direcCuadVg = direcCuadVg;
         this.direcPComp = direcPComp;
@@ -231,5 +239,37 @@ public class NormalizadorDireccionDTO {
 
     public void setIdUnidadEconomica(String idUnidadEconomica) {
         this.idUnidadEconomica = idUnidadEconomica;
+    }
+
+    public String getDirecLetVpOtro() {
+        return direcLetVpOtro;
+    }
+
+    public void setDirecLetVpOtro(String direcLetVpOtro) {
+        this.direcLetVpOtro = direcLetVpOtro;
+    }
+
+    public String getDirecLetSvpOtro() {
+        return direcLetSvpOtro;
+    }
+
+    public void setDirecLetSvpOtro(String direcLetSvpOtro) {
+        this.direcLetSvpOtro = direcLetSvpOtro;
+    }
+
+    public String getDirecLetVgOtro() {
+        return direcLetVgOtro;
+    }
+
+    public void setDirecLetVgOtro(String direcLetVgOtro) {
+        this.direcLetVgOtro = direcLetVgOtro;
+    }
+
+    public String getDirecLetSvgOtro() {
+        return direcLetSvgOtro;
+    }
+
+    public void setDirecLetSvgOtro(String direcLetSvgOtro) {
+        this.direcLetSvgOtro = direcLetSvgOtro;
     }
 }

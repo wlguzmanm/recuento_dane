@@ -177,9 +177,9 @@ public class SpatiaLite extends SQLiteOpenHelper {
         org.spatialite.database.SQLiteDatabase sp1=db1.getWritableDatabase();
         try{
             Cursor c = sp1.rawQuery(
-                    "select dpto_ccdgo, mpio_ccdgo, clas_ccdgo, cpob_ccdgo as centro_poblado, " +
-                            "null as localidad, null as coordinacion_operativa, null as area_operativa, null as ag, null as acer, " +
-                            "null as unidad_cobertura, manz_ccnct from manzanas where manz_ccnct='"+id_manzana+"'",null);
+                    "select dpto, mpio, clase, c_pob as centro_poblado, " +
+                            "com_loc as localidad, co as coordinacion_operativa, ao as area_operativa, ag as ag, acer as acer, " +
+                            "uc as unidad_cobertura, manz_ccnct from manzanas where manz_ccnct='"+id_manzana+"'",null);
             while (c.moveToNext()) {
                 int index;
                 manzana.setDepartamento(c.getString(0));

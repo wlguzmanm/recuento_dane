@@ -35,6 +35,17 @@ public class Util {
         return false;
     }
 
+    /**
+     * Metodo qye saca el mprimer valor
+     * @param valor
+     * @return
+     */
+    public static  String primerValor(String valor){
+        if(valor != null && !valor.equals("")){
+           return valor.substring(0,1);
+        }
+        return null;
+    }
 
     public String getFechaActual(){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
@@ -129,7 +140,6 @@ public class Util {
             return 0;
         }
     }
-
 
 
 

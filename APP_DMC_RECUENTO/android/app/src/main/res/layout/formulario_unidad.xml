@@ -257,7 +257,7 @@
 
             <!-- Pregunta 7 -->
             <LinearLayout
-                android:visibility="visible"
+                android:visibility="gone"
                 android:id="@+id/linearPregunta7"
                 android:background="@color/gris_claro"
                 android:layout_width="match_parent"
@@ -694,6 +694,31 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 />
+
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/linearDIREC_LET_VP_OTRO"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta6_1_5_Otro" />
+                                <EditText
+                                    android:id="@+id/editDIREC_LET_VP_OTRO"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/edit_text_design"
+                                    android:maxLength="2"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:inputType="text|textCapCharacters"
+                                    />
+                            </LinearLayout>
+
+
                         </LinearLayout>
                     </LinearLayout>
 
@@ -780,6 +805,30 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 />
+
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/linearDIREC_LET_SVP_OTRO"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta6_1_7_Otro" />
+                                <EditText
+                                    android:id="@+id/editDIREC_LET_SVP_OTRO"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/edit_text_design"
+                                    android:maxLength="2"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:inputType="text|textCapCharacters"
+                                    />
+                            </LinearLayout>
+
                         </LinearLayout>
                     </LinearLayout>
 
@@ -903,6 +952,31 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 />
+
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/linearDIREC_LET_VG_OTRO"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta6_2_3_Otro" />
+                                <EditText
+                                    android:id="@+id/editDIREC_LET_VG_OTRO"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/edit_text_design"
+                                    android:maxLength="2"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:inputType="text|textCapCharacters"
+                                    />
+                            </LinearLayout>
+
+
                         </LinearLayout>
                     </LinearLayout>
 
@@ -989,6 +1063,31 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 />
+
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/linearDIREC_LET_SVG_OTRO"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta6_2_5_Otro" />
+                                <EditText
+                                    android:id="@+id/editDIREC_LET_SVG_OTRO"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/edit_text_design"
+                                    android:maxLength="2"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:inputType="text|textCapCharacters"
+                                    />
+                            </LinearLayout>
+
+
                         </LinearLayout>
                     </LinearLayout>
 
@@ -1243,11 +1342,12 @@
                                 android:id="@+id/editDireccionCompleta"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="comments"
+                                android:hint="(CONCATENADO)"
                                 android:justificationMode="inter_word"
                                 android:inputType="textMultiLine"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
+                                android:enabled="false"
                                 android:longClickable="false" />
 
                         </LinearLayout>

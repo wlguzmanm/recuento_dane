@@ -196,8 +196,8 @@ public class Formulario extends AppCompatActivity {
         Manzana manzana_calculado=new Manzana();
         manzana_calculado=sp.getDatosCalculados(id_manzana);
         //Cargue de los resguardoIndigena
-        //List<String> resguardoIndigena = db.getResguardoIndigena(manzana_calculado.getDepartamento(), manzana_calculado.getMunicipio());
-        List<String> resguardoIndigena = db.getResguardoIndigena("76", "76275");
+        List<String> resguardoIndigena = db.getResguardoIndigena(manzana_calculado.getDepartamento(), manzana_calculado.getMunicipio());
+        //List<String> resguardoIndigena = db.getResguardoIndigena("76", "76275"); //TODO: PRUEBA
         ArrayAdapter<String> adapterResguardoIndigena = new ArrayAdapter<String>(this, R.layout.simple_spinner_item, resguardoIndigena);
         adapterResguardoIndigena.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinnerCOD_RESG_ETNICO.setAdapter(adapterResguardoIndigena);
@@ -207,8 +207,8 @@ public class Formulario extends AppCompatActivity {
         }
 
         //Cargue de los comunidadNegra
-        //List<String> comunidadNegra = db.getComunidadNegra(manzana_calculado.getDepartamento(), manzana_calculado.getMunicipio());
-        List<String> comunidadNegra = db.getComunidadNegra("05", "05475");
+        List<String> comunidadNegra = db.getComunidadNegra(manzana_calculado.getDepartamento(), manzana_calculado.getMunicipio());
+        //List<String> comunidadNegra = db.getComunidadNegra("05", "05475");  //TODO: PRUEBA
         ArrayAdapter<String> adapterComunidad = new ArrayAdapter<String>(this, R.layout.simple_spinner_item, comunidadNegra);
         adapterComunidad.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinnerCOD_COMUN_ETNICO.setAdapter(adapterComunidad);
@@ -990,31 +990,42 @@ public class Formulario extends AppCompatActivity {
         ){
             noDEPA = manzana_db.getDepartamento();
             noMPIO = manzana_db.getMunicipio();
-            //noLOCALIDAD = manzana_db.getLocalidad();
-            noLOCALIDAD = "05001000";
+            noLOCALIDAD = manzana_db.getLocalidad();
+            //noLOCALIDAD = "05001000"; //TODO: PRUEBA
             noCENTRO = manzana_db.getCentro_poblado();
 
-            editDPTO.setText(db.getDepartamento(manzana_db.getDepartamento()));
-            editMPIO.setText(db.getMunicipio(manzana_db.getMunicipio()));
+            editDPTO.setText(manzana_db.getDepartamento()+"-"+db.getDepartamento(manzana_db.getDepartamento()));
+            editMPIO.setText(manzana_db.getMunicipio()+"-"+db.getMunicipio(manzana_db.getDepartamento()+manzana_db.getMunicipio()));
             editCLASE.setText(manzana_db.getClase());
 
-            editCOM_LOC.setText(db.getLocalidadDIVIPOLA("05001000"));
-            //editCOM_LOC.setText(db.getLocalidad(manzana_db.getLocalidad()));
-            editC_POB.setText(db.getCentroPoblado(manzana_db.getCentro_poblado()));
+            //editCOM_LOC.setText(db.getLocalidadDIVIPOLA("05001000")); //TODO: PRUEBA
+            editCOM_LOC.setText(manzana_db.getLocalidad()+"-"+db.getLocalidad(manzana_db.getLocalidad()));
+            editC_POB.setText(manzana_db.getCentro_poblado()+"-"+db.getCentroPoblado(manzana_db.getDepartamento()+manzana_db.getMunicipio()+manzana_db.getCentro_poblado()));
+
+            editCO.setText(manzana_db.getCoordinacionOperativa());
+            editAO.setText(manzana_db.getAreaOperativa());
+            editAG.setText(manzana_db.getUnidad_cobertura());
+            editACER.setText(manzana_db.getACER());
         }else{
             noDEPA = manzana_calculado.getDepartamento();
             noMPIO = manzana_calculado.getMunicipio();
-            //noLOCALIDAD = manzana_calculado.getLocalidad();
-            noLOCALIDAD = "05001000";
+            noLOCALIDAD = manzana_calculado.getLocalidad();
+            //noLOCALIDAD = "05001000"; //TODO: PRUEBA
             noCENTRO = manzana_calculado.getCentro_poblado();
 
-            editDPTO.setText(db.getDepartamento(manzana_calculado.getDepartamento()));
-            editMPIO.setText(db.getMunicipio(manzana_calculado.getMunicipio()));
+            editDPTO.setText(manzana_calculado.getDepartamento()+"-"+db.getDepartamento(manzana_calculado.getDepartamento()));
+            editMPIO.setText(manzana_calculado.getMunicipio()+"-"+db.getMunicipio(manzana_calculado.getDepartamento()+manzana_calculado.getMunicipio()));
             editCLASE.setText(manzana_calculado.getClase());
 
-            editCOM_LOC.setText(db.getLocalidadDIVIPOLA("05001000"));
-            //editCOM_LOC.setText(db.getLocalidad(manzana_calculado.getLocalidad()));
-            editC_POB.setText(db.getCentroPoblado(manzana_calculado.getCentro_poblado()));
+            //editCOM_LOC.setText(db.getLocalidadDIVIPOLA("05001000")); //TODO: PRUEBA
+            editCOM_LOC.setText(manzana_calculado.getLocalidad()+"-"+db.getLocalidad(manzana_calculado.getLocalidad()));
+            editC_POB.setText(manzana_calculado.getCentro_poblado()+"-"+db.getCentroPoblado(manzana_db.getDepartamento()+manzana_db.getMunicipio()+manzana_db.getCentro_poblado()));
+
+            editCO.setText(manzana_calculado.getCoordinacionOperativa());
+            editAO.setText(manzana_calculado.getAreaOperativa());
+            editAG.setText(manzana_calculado.getUnidad_cobertura());
+            editACER.setText(manzana_calculado.getACER());
+
         }
 
         if(manzana_db.getTerritorioEtnico()!= null && manzana_db.getTerritorioEtnico().toString().equals("1")){

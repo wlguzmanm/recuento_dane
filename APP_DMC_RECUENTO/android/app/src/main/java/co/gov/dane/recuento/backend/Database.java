@@ -35,7 +35,7 @@ public class Database extends SQLiteOpenHelper {
 
     private Context contexto ;
     public static final int DATABASE_VERSION = 17;
-    public static final String DATABASE_NAME = "Re_ConteoFormularioV_1_0_0.db";
+    public static final String DATABASE_NAME = "Re_ConteoFormularioV_1_0_1.db";
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -165,13 +165,17 @@ public class Database extends SQLiteOpenHelper {
                 + Normalizador.DIREC_NNOM_VP + " TEXT,"
                 + Normalizador.DIREC_NUM_VP + " TEXT,"
                 + Normalizador.DIREC_LET_VP + " TEXT, "
+                + Normalizador.DIREC_LET_VP_OTRO + " TEXT, "
                 + Normalizador.DIREC_SF_VP + " TEXT, "
                 + Normalizador.DIREC_LET_SVP + " TEXT,"
+                + Normalizador.DIREC_LET_SVP_OTRO + " TEXT,"
                 + Normalizador.DIREC_CUAD_VP + " TEXT, "
                 + Normalizador.DIREC_NUM_VG + " TEXT, "
                 + Normalizador.DIREC_LET_VG + " TEXT ,"
+                + Normalizador.DIREC_LET_VG_OTRO + " TEXT ,"
                 + Normalizador.DIREC_SF_VG + " TEXT ,"
                 + Normalizador.DIREC_LET_SVG + " TEXT ,"
+                + Normalizador.DIREC_LET_SVG_OTRO + " TEXT ,"
                 + Normalizador.DIREC_NUM_PLACA + " TEXT ,"
                 + Normalizador.DIREC_CUAD_VG + " TEXT ,"
                 + Normalizador.DIREC_P_COMP + " TEXT ,"
@@ -258,7 +262,6 @@ public class Database extends SQLiteOpenHelper {
         cargue.cargarIntoTablas(db , "infoCentroPoblado");
         cargue.cargarIntoTablas(db , "infoTablaComunas");
         cargue.cargarIntoTablas(db , "infoTablaDivipola");
-        cargue.cargarIntoTablas(db , "infoTablaDivipola2");
         cargue.cargarIntoTablas(db , "infoTablaPuebloIndigena");
         cargue.cargarIntoTablas(db , "infoTablaResguardoIndigena");
         cargue.cargarIntoTablas(db , "infoTablaTierraComunidadNegra");
@@ -2340,9 +2343,9 @@ public class Database extends SQLiteOpenHelper {
         try {
             SQLiteDatabase db = getReadableDatabase();
             Cursor cursor = db.rawQuery("SELECT DISTINCT  " +
-                    "CENTRO_POBLADO  " +
-                    "FROM DIVIPOLA " +
-                    "WHERE CODIGO_CENTRO_POBLADO = '"+codigo+"'", null);
+                    "DIV_NOM_CPOB  " +
+                    "FROM DATOS_CENTRO_POBLADO " +
+                    "WHERE DIV_CPOB = '"+codigo+"'", null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 do {
@@ -2468,13 +2471,17 @@ public class Database extends SQLiteOpenHelper {
                     "DIREC_NNOM_VP, " +
                     "DIREC_NUM_VP, " +
                     "DIREC_LET_VP, " +
+                    "DIREC_LET_VP_OTRO, " +
                     "DIREC_SF_VP, " +
                     "DIREC_LET_SVP, " +
+                    "DIREC_LET_SVP_OTRO, " +
                     "DIREC_CUAD_VP, " +
                     "DIREC_NUM_VG, " +
                     "DIREC_LET_VG, " +
+                    "DIREC_LET_VG_OTRO, " +
                     "DIREC_SF_VG, " +
                     "DIREC_LET_SVG, " +
+                    "DIREC_LET_SVG_OTRO, " +
                     "DIREC_NUM_PLACA, " +
                     "DIREC_CUAD_VG, " +
                     "DIREC_P_COMP, " +
@@ -2497,21 +2504,25 @@ public class Database extends SQLiteOpenHelper {
                             cursor.isNull(4) ? null : cursor.getString(4), // direcNnomVp
                             cursor.isNull(5) ? null : cursor.getString(5), // DIREC_NUM_VP
                             cursor.isNull(6) ? null : cursor.getString(6), // direcLetVp
-                            cursor.isNull(7) ? null : cursor.getString(7), // direcSfVp
-                            cursor.isNull(8) ? null : cursor.getString(8), // direcLetSvp
-                            cursor.isNull(9) ? null : cursor.getString(9), // direcCuadVp
-                            cursor.isNull(10) ? null : cursor.getString(10), // direcNumVg
-                            cursor.isNull(11) ? null : cursor.getString(11), // direcLetVg
-                            cursor.isNull(12) ? null : cursor.getString(12), // direcSfVg
-                            cursor.isNull(13) ? null : cursor.getString(13), // direcLetSvg
-                            cursor.isNull(14) ? null : cursor.getString(14), // direcNumPlaca
-                            cursor.isNull(15) ? null : cursor.getString(15), // direcCuadVg
-                            cursor.isNull(16) ? null : cursor.getString(16), // direcPComp
-                            cursor.isNull(17) ? null : cursor.getString(17), // direcComp
-                            cursor.isNull(18) ? null : cursor.getString(18), // direcTexCom
-                            cursor.isNull(19) ? null : cursor.getString(19), // imei
-                            cursor.isNull(20) ? null : cursor.getString(20), // usuario
-                            cursor.isNull(21) ? null : cursor.getString(21) // fechaCreacion
+                            cursor.getString(7), // direcLetVpOtro
+                            cursor.getString(8), // direcSfVp
+                            cursor.getString(9), // direcLetSvp
+                            cursor.getString(10), // direcLetSvpOtro
+                            cursor.getString(11), // direcCuadVp
+                            cursor.isNull(12) ? null : cursor.getString(12), // direcNumVg
+                            cursor.isNull(13) ? null : cursor.getString(13), // direcLetVg
+                            cursor.getString(14), // direcLetVgOtro
+                            cursor.isNull(15) ? null : cursor.getString(15), // direcSfVg
+                            cursor.isNull(16) ? null : cursor.getString(16), // direcLetSvg
+                            cursor.getString(17), // direcLetSvgOtro
+                            cursor.isNull(18) ? null : cursor.getString(18), // direcNumPlaca
+                            cursor.getString(19), // direcCuadVg
+                            cursor.isNull(20) ? null : cursor.getString(20), // direcPComp
+                            cursor.isNull(21) ? null : cursor.getString(21), // direcComp
+                            cursor.isNull(22) ? null : cursor.getString(22), // direcTexCom
+                            cursor.isNull(23) ? null : cursor.getString(23), // imei
+                            cursor.isNull(24) ? null : cursor.getString(24), // usuario
+                            cursor.isNull(25) ? null : cursor.getString(25) // fechaCreacion
                     );
                 } while (cursor.moveToNext());
             }else{
@@ -2543,13 +2554,17 @@ public class Database extends SQLiteOpenHelper {
             values.put(Normalizador.DIREC_NNOM_VP,objeto.getDirecNnomVp());
             values.put(Normalizador.DIREC_NUM_VP,objeto.getDirecNumVp());
             values.put(Normalizador.DIREC_LET_VP,objeto.getDirecLetVp());
+            values.put(Normalizador.DIREC_LET_VP_OTRO,objeto.getDirecLetVpOtro());
             values.put(Normalizador.DIREC_SF_VP,objeto.getDirecSfVp());
             values.put(Normalizador.DIREC_LET_SVP,objeto.getDirecLetSvp());
+            values.put(Normalizador.DIREC_LET_SVP_OTRO,objeto.getDirecLetSvpOtro());
             values.put(Normalizador.DIREC_CUAD_VP,objeto.getDirecCuadVp());
             values.put(Normalizador.DIREC_NUM_VG,objeto.getDirecNumVg());
             values.put(Normalizador.DIREC_LET_VG,objeto.getDirecLetVg());
+            values.put(Normalizador.DIREC_LET_VG_OTRO,objeto.getDirecLetVgOtro());
             values.put(Normalizador.DIREC_SF_VG,objeto.getDirecSfVg());
             values.put(Normalizador.DIREC_LET_SVG,objeto.getDirecLetSvg());
+            values.put(Normalizador.DIREC_LET_SVG_OTRO,objeto.getDirecLetSvgOtro());
             values.put(Normalizador.DIREC_NUM_PLACA,objeto.getDirecNumPlaca());
             values.put(Normalizador.DIREC_CUAD_VG,objeto.getDirecCuadVg());
             values.put(Normalizador.DIREC_P_COMP,objeto.getDirecPComp());
@@ -2574,10 +2589,6 @@ public class Database extends SQLiteOpenHelper {
             return false;
         }
     }
-
-
-
-
 
 
 }
