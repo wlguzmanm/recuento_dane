@@ -23,11 +23,11 @@ public class NormalizadorDireccionDTO {
     private String direcNumPlaca;
     private String direcCuadVg;
     private String direcPComp;
-    private String direcComp;
-    private String direcTexCom;
     private String imei;
     private String usuario;
     private String fechaCreacion;
+
+    private ComplementoNormalizadorDTO complememnto;
 
     public NormalizadorDireccionDTO() {
     }
@@ -35,8 +35,7 @@ public class NormalizadorDireccionDTO {
     public NormalizadorDireccionDTO(String id, String idManzana, String idUnidadEconomica, String direcVp, String direcNnomVp, String direcNumVp,
                                     String direcLetVp,  String direcLetVpOtro, String direcSfVp, String direcLetSvp, String direcLetSvpOtro, String direcCuadVp,
                                     String direcNumVg, String direcLetVg, String direcLetVgOtro, String direcSfVg, String direcLetSvg, String direcLetSvgOtro,
-                                    String direcNumPlaca, String direcCuadVg, String direcPComp, String direcComp,
-                                    String direcTexCom, String imei, String usuario, String fechaCreacion) {
+                                    String direcNumPlaca, String direcCuadVg, String direcPComp, String imei, String usuario, String fechaCreacion) {
         this.id = id;
         this.idManzana = idManzana;
         this.idUnidadEconomica = idUnidadEconomica;
@@ -58,8 +57,6 @@ public class NormalizadorDireccionDTO {
         this.direcNumPlaca = direcNumPlaca;
         this.direcCuadVg = direcCuadVg;
         this.direcPComp = direcPComp;
-        this.direcComp = direcComp;
-        this.direcTexCom = direcTexCom;
         this.imei = imei;
         this.usuario = usuario;
         this.fechaCreacion = fechaCreacion;
@@ -177,22 +174,6 @@ public class NormalizadorDireccionDTO {
         this.direcPComp = direcPComp;
     }
 
-    public String getDirecComp() {
-        return direcComp;
-    }
-
-    public void setDirecComp(String direcComp) {
-        this.direcComp = direcComp;
-    }
-
-    public String getDirecTexCom() {
-        return direcTexCom;
-    }
-
-    public void setDirecTexCom(String direcTexCom) {
-        this.direcTexCom = direcTexCom;
-    }
-
     public String getImei() {
         return imei;
     }
@@ -271,5 +252,13 @@ public class NormalizadorDireccionDTO {
 
     public void setDirecLetSvgOtro(String direcLetSvgOtro) {
         this.direcLetSvgOtro = direcLetSvgOtro;
+    }
+
+    public ComplementoNormalizadorDTO getComplememnto() {
+        return complememnto;
+    }
+
+    public void setComplememnto(ComplementoNormalizadorDTO complememnto) {
+        this.complememnto = complememnto;
     }
 }

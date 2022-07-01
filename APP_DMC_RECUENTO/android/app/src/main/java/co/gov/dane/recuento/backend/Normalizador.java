@@ -23,8 +23,6 @@ public class Normalizador {
     public static final String DIREC_NUM_PLACA= "DIREC_NUM_PLACA";
     public static final String DIREC_CUAD_VG= "DIREC_CUAD_VG";
     public static final String DIREC_P_COMP= "DIREC_P_COMP";
-    public static final String DIREC_COMP= "DIREC_COMP";
-    public static final String DIREC_TEX_COM= "DIREC_TEX_COM";
     public static final String IMEI = "IMEI";
     public static final String USUARIO = "USUARIO";
     public static final String FECHA_CREACION = "FECHA_CREACION";

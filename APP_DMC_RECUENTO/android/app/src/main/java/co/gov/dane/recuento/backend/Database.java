@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import co.gov.dane.recuento.dtos.ComplementoNormalizadorDTO;
 import co.gov.dane.recuento.dtos.NormalizadorDireccionDTO;
 import co.gov.dane.recuento.model.ConteoManzana;
 import co.gov.dane.recuento.model.ConteoEdificacion;
@@ -35,7 +36,7 @@ public class Database extends SQLiteOpenHelper {
 
     private Context contexto ;
     public static final int DATABASE_VERSION = 17;
-    public static final String DATABASE_NAME = "Re_ConteoFormularioV_1_0_1.db";
+    public static final String DATABASE_NAME = "Re_ConteoFormularioV_1_0_2.db";
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -179,11 +180,17 @@ public class Database extends SQLiteOpenHelper {
                 + Normalizador.DIREC_NUM_PLACA + " TEXT ,"
                 + Normalizador.DIREC_CUAD_VG + " TEXT ,"
                 + Normalizador.DIREC_P_COMP + " TEXT ,"
-                + Normalizador.DIREC_COMP + " TEXT ,"
-                + Normalizador.DIREC_TEX_COM + " TEXT ,"
                 + Normalizador.IMEI + " TEXT ,"
                 + Normalizador.USUARIO + " TEXT ,"
                 + Normalizador.FECHA_CREACION + " TEXT"
+                + ")");
+
+        db.execSQL("CREATE TABLE " + ComplementoNormalizador.TABLE_NAME + " ("
+                + ComplementoNormalizador.ID +" TEXT PRIMARY KEY,"
+                + ComplementoNormalizador.ID_NORMALIZADOR +" TEXT NOT NULL,"
+                + ComplementoNormalizador.DIREC_COMP +" TEXT NOT NULL,"
+                + ComplementoNormalizador.DIREC_TEX_COM +" TEXT NOT NULL,"
+                + ComplementoNormalizador.DIREC_COMPLEMENTO + " TEXT NOT NULL"
                 + ")");
 
 
@@ -2485,8 +2492,6 @@ public class Database extends SQLiteOpenHelper {
                     "DIREC_NUM_PLACA, " +
                     "DIREC_CUAD_VG, " +
                     "DIREC_P_COMP, " +
-                    "DIREC_COMP, " +
-                    "DIREC_TEX_COM, " +
                     "IMEI, " +
                     "USUARIO, " +
                     "FECHA_CREACION " +
@@ -2518,11 +2523,9 @@ public class Database extends SQLiteOpenHelper {
                             cursor.isNull(18) ? null : cursor.getString(18), // direcNumPlaca
                             cursor.getString(19), // direcCuadVg
                             cursor.isNull(20) ? null : cursor.getString(20), // direcPComp
-                            cursor.isNull(21) ? null : cursor.getString(21), // direcComp
-                            cursor.isNull(22) ? null : cursor.getString(22), // direcTexCom
-                            cursor.isNull(23) ? null : cursor.getString(23), // imei
-                            cursor.isNull(24) ? null : cursor.getString(24), // usuario
-                            cursor.isNull(25) ? null : cursor.getString(25) // fechaCreacion
+                            cursor.isNull(21) ? null : cursor.getString(21), // imei
+                            cursor.isNull(22) ? null : cursor.getString(22), // usuario
+                            cursor.isNull(23) ? null : cursor.getString(23) // fechaCreacion
                     );
                 } while (cursor.moveToNext());
             }else{
@@ -2568,8 +2571,6 @@ public class Database extends SQLiteOpenHelper {
             values.put(Normalizador.DIREC_NUM_PLACA,objeto.getDirecNumPlaca());
             values.put(Normalizador.DIREC_CUAD_VG,objeto.getDirecCuadVg());
             values.put(Normalizador.DIREC_P_COMP,objeto.getDirecPComp());
-            values.put(Normalizador.DIREC_COMP,objeto.getDirecComp());
-            values.put(Normalizador.DIREC_TEX_COM,objeto.getDirecTexCom());
             values.put(Normalizador.IMEI, objeto.getImei());
             values.put(Normalizador.USUARIO, objeto.getUsuario());
             values.put(Normalizador.FECHA_CREACION, objeto.getFechaCreacion());
@@ -2590,5 +2591,82 @@ public class Database extends SQLiteOpenHelper {
         }
     }
 
+
+    /**
+     * Metodo de consulta la informacion del Complemento del Normalizador - Consulta
+     * @param idNormalizador
+     * @return
+     */
+    public synchronized ComplementoNormalizadorDTO getComplementoNormalizador(String idNormalizador) {
+        ComplementoNormalizadorDTO consulta = null;
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.rawQuery("select " +
+                    "ID,  " +
+                    "ID_NORMALIZADOR, " +
+                    "DIREC_COMP, " +
+                    "DIREC_TEX_COM, " +
+                    "DIREC_COMPLEMENTO " +
+                    "from NORMALIZADOR_COMPLEMENTO " +
+                    "where ID_NORMALIZADOR = '"+idNormalizador+"'", null);
+            int i = 0;
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    consulta =  new ComplementoNormalizadorDTO(
+                            cursor.isNull(0) ? null : cursor.getString(0), // id
+                            cursor.isNull(1) ? null : cursor.getString(1), // idNormalizador
+                            cursor.isNull(2) ? null : cursor.getString(2), // direcPComp
+                            cursor.isNull(3) ? null : cursor.getString(3), // direcComp
+                            cursor.isNull(4) ? null : cursor.getString(4) // direcComplemento
+                    );
+                } while (cursor.moveToNext());
+            }else{
+                consulta = new ComplementoNormalizadorDTO();
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.d("Error:", e.getMessage());
+        } finally {
+        }
+        return consulta;
+    }
+
+
+
+    /**
+     * Metodo que realiza el guardado el Complementa del Normalizador
+     * @param objeto
+     * @return
+     */
+    public Boolean postComplementoNormalizador(ComplementoNormalizadorDTO objeto, Boolean validarEliminacion){
+        try{
+            SQLiteDatabase db = getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            if(validarEliminacion){
+                boolean valor =  (db.delete(ComplementoNormalizador.TABLE_NAME, ComplementoNormalizador.ID_NORMALIZADOR + "=? ",
+                        new String[]{objeto.getIdNormalizador()})) >0 ;
+                db.close();
+                return valor;
+            }else{
+                //Normalizador Complemento
+                values.put(ComplementoNormalizador.ID,objeto.getId());
+                values.put(ComplementoNormalizador.ID_NORMALIZADOR,objeto.getIdNormalizador());
+                values.put(ComplementoNormalizador.DIREC_COMP,objeto.getDirecComp());
+                values.put(ComplementoNormalizador.DIREC_TEX_COM,objeto.getDirecPComp());
+                values.put(ComplementoNormalizador.DIREC_COMPLEMENTO,objeto.getDirecComplemento());
+
+                boolean valor = (db.insert(Normalizador.TABLE_NAME, null, values)) >0;
+                db.close();
+                return valor;
+            }
+
+
+
+        }catch (Exception e){
+            return false;
+        }
+    }
 
 }

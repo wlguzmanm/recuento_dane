@@ -1,5 +1,7 @@
 package co.gov.dane.recuento.model;
 
+import co.gov.dane.recuento.dtos.NormalizadorDireccionDTO;
+
 public class EsquemaUnidadesEnvioViewModel {
 
     private String id_manzana;
@@ -19,6 +21,7 @@ public class EsquemaUnidadesEnvioViewModel {
 
     private String fecha_modificacion;
     private String id_manzana_edificio_unidad;
+    private NormalizadorDireccionDTO direccionNormalizada;
 
     public EsquemaUnidadesEnvioViewModel() {
     }
@@ -149,5 +152,13 @@ public class EsquemaUnidadesEnvioViewModel {
 
     public void setImei(String imei) {
         this.imei = imei;
+    }
+
+    public NormalizadorDireccionDTO getDireccionNormalizada() {
+        return direccionNormalizada;
+    }
+
+    public void setDireccionNormalizada(NormalizadorDireccionDTO direccionNormalizada) {
+        this.direccionNormalizada = direccionNormalizada;
     }
 }
