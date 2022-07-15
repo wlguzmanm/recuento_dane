@@ -199,6 +199,7 @@
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp">
                             <TextView
+                                android:id="@+id/tx_label_normalizador"
                                 android:layout_margin="5dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="30dp"
@@ -211,47 +212,7 @@
                                 style="@style/titulo_negrita"/>
                     </LinearLayout>
 
-                    <!-- Pregunta novedades  -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-                            <TextView
-                                style="@style/titulo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/text_pregunta6_3"  />
 
-                            <Spinner
-                                android:id="@+id/spinnerNOV_CARTO"
-                                style="@style/Widget.AppCompat.Spinner"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:background="@drawable/borde_spinner"
-                                android:dropDownWidth="wrap_content"
-                                android:dropDownVerticalOffset="30dp"
-                                android:hapticFeedbackEnabled="false"
-                                android:paddingBottom="5dp"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:paddingTop="5dp"
-                                android:popupBackground="@android:color/white"
-                                android:popupElevation="0dp"
-                                android:singleLine="true"
-                                android:spinnerMode="dialog"
-                                android:stateListAnimator="@drawable/spinner_sla"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                />
-                        </LinearLayout>
-                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -602,6 +563,7 @@
 
                     <!-- Pregunta nombre via -->
                     <LinearLayout
+                        android:id="@+id/linearDIREC_NNOM_VP"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -629,6 +591,7 @@
 
                     <!-- Pregunta numero via  -->
                     <LinearLayout
+                        android:id="@+id/linearDIREC_NUM_VP"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -656,6 +619,7 @@
 
                     <!-- Pregunta  Letra  -->
                     <LinearLayout
+                        android:id="@+id/linearDIREC_LET_VP"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -724,6 +688,7 @@
 
                     <!-- Pregunta  sufijo  -->
                     <LinearLayout
+                        android:id="@+id/linearDIREC_SF_VP"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -767,6 +732,7 @@
 
                     <!-- Pregunta  letra sfijo  -->
                     <LinearLayout
+                        android:id="@+id/linearDIREC_LET_SVP"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -834,6 +800,7 @@
 
                     <!-- Pregunta  cuadrante  -->
                     <LinearLayout
+                        android:id="@+id/linearDIREC_CUAD_VP"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -877,6 +844,7 @@
 
                     <!-- Pregunta  Via Generadora  -->
                     <LinearLayout
+                        android:id="@+id/linearDIREC_NUM_VG"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -914,6 +882,7 @@
 
                     <!-- Pregunta  Letra  -->
                     <LinearLayout
+                        android:id="@+id/linearDIREC_LET_VG"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -982,6 +951,7 @@
 
                     <!-- Pregunta  sufijo  -->
                     <LinearLayout
+                        android:id="@+id/linearDIREC_SF_VG"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -1025,6 +995,7 @@
 
                     <!-- Pregunta  letra sufijo  -->
                     <LinearLayout
+                        android:id="@+id/linearDIREC_LET_SVG"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -1093,6 +1064,7 @@
 
                     <!-- Pregunta  Via Generadora  -->
                     <LinearLayout
+                        android:id="@+id/linearDIREC_NUM_PLACA"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -1122,6 +1094,7 @@
 
                     <!-- Pregunta  cuadrante  -->
                     <LinearLayout
+                        android:id="@+id/linearDIREC_CUAD_VG"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -1165,6 +1138,7 @@
 
                     <!-- Pregunta  Añadir complemento  -->
                     <LinearLayout
+                        android:id="@+id/linearDIREC_P_COMP"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -1262,6 +1236,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -1283,7 +1258,7 @@
                                 android:inputType="text"
                                 />
 
-                            <!-- Pregunta normalizador  -->
+                            <!-- Pregunta complemento  -->
                             <LinearLayout
                                 android:id="@+id/linearAdicionarComplemento"
                                 android:layout_width="match_parent"
@@ -1316,7 +1291,19 @@
                                     android:text="@string/text_pregunta6_3_5"
                                     style="@style/titulo_negrita"/>
                             </LinearLayout>
+                            <TextView
+                                style="@style/titulo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/dane"
+                                android:text="Listado de complementos." />
 
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycler_complementos"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:scrollbars="vertical" />
                         </LinearLayout>
                     </LinearLayout>
 

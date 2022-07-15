@@ -40,7 +40,7 @@ public class    ConteoAdapterManzana extends RecyclerView.Adapter<ConteoAdapterM
     private MainActivity main;
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
-        public TextView id, fecha, nombre;
+        public TextView id, fecha, nombre, tv_resumenManzana;
         public LinearLayout linear_manzana, linear_item;
         public ImageView imageView, sincronizado, doble_sincronizado, sincronizado_nube;
 
@@ -49,6 +49,7 @@ public class    ConteoAdapterManzana extends RecyclerView.Adapter<ConteoAdapterM
             id = (TextView) view.findViewById(R.id.identificador);
             nombre = (TextView) view.findViewById(R.id.nombre);
             fecha = (TextView) view.findViewById(R.id.fecha_conteo);
+            tv_resumenManzana = (TextView) view.findViewById(R.id.tv_resumenManzana);
             linear_manzana = (LinearLayout) view.findViewById(R.id.linear_manzana);
             imageView = (ImageView) view.findViewById(R.id.imageView);
             sincronizado = (ImageView) view.findViewById(R.id.sincronizado);
@@ -210,6 +211,7 @@ public class    ConteoAdapterManzana extends RecyclerView.Adapter<ConteoAdapterM
                 String id_manzana = formulario.get(itemPosition).getId();
                 Database db = new Database(v.getContext());
                 String res = db.getResumen(id_manzana);
+
                 res = res.replace(",", "\n");
                 LayoutInflater inflater = (LayoutInflater) v.getContext()
                         .getSystemService(v.getContext().LAYOUT_INFLATER_SERVICE);
@@ -218,6 +220,10 @@ public class    ConteoAdapterManzana extends RecyclerView.Adapter<ConteoAdapterM
                 mBuilder.setView(mView);
                 final AlertDialog dialog = mBuilder.create();
                 LinearLayout dialog_close_resumen = (LinearLayout) mView.findViewById(R.id.dialog_close_resumen);
+
+                TextView tv_resumenManzana = (TextView) mView.findViewById(R.id.tv_resumenManzana);;
+                tv_resumenManzana.setText(id_manzana);
+
                 TextView resumen = (TextView) mView.findViewById(R.id.resumen);
                 resumen.setText(res);
                 dialog_close_resumen.setOnClickListener(new View.OnClickListener() {

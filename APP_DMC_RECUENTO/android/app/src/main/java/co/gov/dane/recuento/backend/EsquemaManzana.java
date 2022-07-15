@@ -38,6 +38,12 @@ public class EsquemaManzana {
 
     public static final String DIREC_BARRIO = "DIREC_BARRIO";
 
+    public static final String NOV_CARTO ="NOV_CARTO";
+
+    public static final String OBSMZ ="OBSMZ";
+
+    public static final String UC ="UC";
+
     public static final String EXISTE_UNIDAD = "EXISTE_UNIDAD";
 
     public static final String TIPO_NOVEDAD = "TIPO_NOVEDAD";

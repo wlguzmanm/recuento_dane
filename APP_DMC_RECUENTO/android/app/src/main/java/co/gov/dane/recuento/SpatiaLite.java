@@ -179,7 +179,7 @@ public class SpatiaLite extends SQLiteOpenHelper {
             Cursor c = sp1.rawQuery(
                     "select dpto, mpio, clase, c_pob as centro_poblado, " +
                             "com_loc as localidad, co as coordinacion_operativa, ao as area_operativa, ag as ag, acer as acer, " +
-                            "uc as unidad_cobertura, manz_ccnct from manzanas where manz_ccnct='"+id_manzana+"'",null);
+                            "uc as unidad_cobertura, manz_ccnct, uc from manzanas where manz_ccnct='"+id_manzana+"'",null);
             while (c.moveToNext()) {
                 int index;
                 manzana.setDepartamento(c.getString(0));
@@ -193,6 +193,7 @@ public class SpatiaLite extends SQLiteOpenHelper {
                 manzana.setACER(c.getString(8));
                 manzana.setUnidad_cobertura(c.getString(9));
                 manzana.setManzana(c.getString(10));
+                manzana.setUc(c.getString(11));
 
             }
         } catch (Exception e) {

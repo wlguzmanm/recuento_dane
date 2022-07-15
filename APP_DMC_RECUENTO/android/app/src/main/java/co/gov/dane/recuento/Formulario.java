@@ -46,6 +46,7 @@ import co.gov.dane.recuento.Preguntas.UnidadEconomica;
 import co.gov.dane.recuento.adapter.ConteoAdapterEdificacion;
 import co.gov.dane.recuento.adapter.SimpleItemTouchHelperCallback;
 import co.gov.dane.recuento.backend.Database;
+import co.gov.dane.recuento.dtos.ComplementoNormalizadorDTO;
 import co.gov.dane.recuento.model.ConteoEdificacion;
 import co.gov.dane.recuento.model.EnvioFormularioViewModel;
 import co.gov.dane.recuento.model.EsquemaEdificacionEnvioViewModel;
@@ -62,15 +63,22 @@ public class Formulario extends AppCompatActivity {
 
 
     private String id_manzana;
-    private Spinner spinnerCOD_RESG_ETNICO,  spinnerCOD_COMUN_ETNICO;
+
+    private Spinner spinnerCOD_RESG_ETNICO,  spinnerCOD_COMUN_ETNICO, spinnerNOV_CARTO;
+
     private LinearLayout linearTerritorioEtnico, linearResguardo, linearComunidadNegra, linearTipoNovedad, linearExisteEdificaciones, linearFinalizarFormulario,
-            linearGuardarFormularioManzana, linearEliminarFormulario, linearHabilitarFormulario, linearAgregarEdificacion;
-    private EditText  editDPTO, editMPIO, editCLASE, editCOM_LOC, editC_POB, editCO, editAO, editAG, editACER, editDIREC_BARRIO, latlon;
+            linearGuardarFormularioManzana, linearEliminarFormulario, linearHabilitarFormulario, linearAgregarEdificacion, linearNombreLocalidad, linearCentroPoblado,
+            linearUnidadCobertura;
+
+
+    private EditText  editDPTO, editMPIO, editCLASE, editCOM_LOC, editC_POB, editCO, editAO, editAG, editACER, editDIREC_BARRIO, latlon, editObservacionmz;
+
     private RadioGroup radioTERRITORIO_ETNICO, radioSEL_TERR_ETNICO, radioEXISTE_UNIDAD, radioTIPO_NOVEDAD;
+
     private RadioButton id_pregunta2_4_si, id_pregunta2_4_no, id_pregunta2_5_1, id_pregunta2_5_2, id_pregunta5_2_si, id_pregunta5_2_no,
             id_pregunta5_3_1,id_pregunta5_3_2,id_pregunta5_3_3,id_pregunta5_3_4,id_pregunta5_3_5,id_pregunta5_3_6,id_pregunta5_3_7;
 
-    private String TERRITORIO_ETNICO, SEL_TERR_ETNICO, EXISTE_UNIDAD, TIPO_NOVEDAD, selRESGUARDO, selCOMUNIDAD_NEGRA;
+    private String TERRITORIO_ETNICO, SEL_TERR_ETNICO, EXISTE_UNIDAD, TIPO_NOVEDAD, selRESGUARDO, selCOMUNIDAD_NEGRA, NOV_CARTO;
 
     private TextView fecha_conteo;
     private List<ConteoEdificacion> lstEdificaciones = new ArrayList<>();
@@ -94,7 +102,7 @@ public class Formulario extends AppCompatActivity {
     LocationManager mLocationManager;
     public Activity activity;
 
-    String noDEPA, noMPIO, noLOCALIDAD, noCENTRO;
+    String noDEPA, noMPIO, noLOCALIDAD, noCENTRO, UC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +129,7 @@ public class Formulario extends AppCompatActivity {
         editACER=(EditText) findViewById(R.id.editACER);
         editDIREC_BARRIO=(EditText) findViewById(R.id.editDIREC_BARRIO);
         latlon=(EditText) findViewById(R.id.latlon);
+        editObservacionmz=(EditText) findViewById(R.id.editObservacionmz);
 
         linearExisteEdificaciones=(LinearLayout) findViewById(R.id.linearExisteEdificaciones);
         linearFinalizarFormulario=(LinearLayout) findViewById(R.id.linearFinalizarFormulario);
@@ -132,6 +141,9 @@ public class Formulario extends AppCompatActivity {
         linearComunidadNegra=(LinearLayout) findViewById(R.id.linearComunidadNegra);
         linearTipoNovedad=(LinearLayout) findViewById(R.id.linearTipoNovedad);
         linearAgregarEdificacion=(LinearLayout) findViewById(R.id.linearAgregarEdificacion);
+        linearNombreLocalidad=(LinearLayout) findViewById(R.id.linearNombreLocalidad);
+        linearCentroPoblado=(LinearLayout) findViewById(R.id.linearCentroPoblado);
+        linearUnidadCobertura=(LinearLayout) findViewById(R.id.linearUnidadCobertura);
 
         radioTERRITORIO_ETNICO = (RadioGroup) findViewById(R.id.radioTERRITORIO_ETNICO);
         radioSEL_TERR_ETNICO = (RadioGroup) findViewById(R.id.radioSEL_TERR_ETNICO);
@@ -163,12 +175,20 @@ public class Formulario extends AppCompatActivity {
         linearExisteEdificaciones.setVisibility(View.GONE);
         linearFinalizarFormulario.setVisibility(View.GONE);
         linearAgregarEdificacion.setVisibility(View.VISIBLE);
+        linearNombreLocalidad.setVisibility(View.GONE);
+        linearCentroPoblado.setVisibility(View.GONE);
+        linearUnidadCobertura.setVisibility(View.GONE);
 
         spinnerCOD_RESG_ETNICO = (Spinner) findViewById(R.id.spinnerCOD_RESG_ETNICO);
         spinnerCOD_COMUN_ETNICO = (Spinner) findViewById(R.id.spinnerCOD_COMUN_ETNICO);
+        spinnerNOV_CARTO = (Spinner) findViewById(R.id.spinnerNOV_CARTO);
+
+        ArrayAdapter<CharSequence> adapter_NOV_CARTO = ArrayAdapter.createFromResource(this,
+                R.array.Novedades_cartograficas, android.R.layout.simple_spinner_item);
+        adapter_NOV_CARTO.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerNOV_CARTO.setAdapter(adapter_NOV_CARTO);
 
         id_manzana = getIntent().getStringExtra("id_manzana");
-
         manzana = db.getManzana(id_manzana);
 
         //Cargar la informacion del GPS-----------------------------------------------------------------
@@ -177,7 +197,6 @@ public class Formulario extends AppCompatActivity {
                 && ActivityCompat.checkSelfPermission(Formulario.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-
         //----------------------------------------------------------------------------------------------
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view1);
@@ -215,6 +234,30 @@ public class Formulario extends AppCompatActivity {
 
         prepararDatos(id_manzana);
         llenarFormulario();
+
+        spinnerNOV_CARTO.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(!spinnerNOV_CARTO.getSelectedItem().toString().equals("Seleccione...")){
+                    if(spinnerNOV_CARTO.getSelectedItem().toString().contains("1"))
+                        NOV_CARTO = "1";
+                    if(spinnerNOV_CARTO.getSelectedItem().toString().contains("2"))
+                        NOV_CARTO = "2";
+                    if(spinnerNOV_CARTO.getSelectedItem().toString().contains("3"))
+                        NOV_CARTO = "3";
+                    if(spinnerNOV_CARTO.getSelectedItem().toString().contains("4"))
+                        NOV_CARTO = "4";
+                }else{
+                    NOV_CARTO = null;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                NOV_CARTO = null;
+            }
+        });
+
 
         //Metodo que va atras
         ImageView atras = (ImageView) findViewById(R.id.atras);
@@ -313,7 +356,7 @@ public class Formulario extends AppCompatActivity {
                 LinearLayout dialog_finalizar_si= (LinearLayout) mView.findViewById(R.id.dialog_finalizar_si);
                 LinearLayout dialog_finalizar_no= (LinearLayout) mView.findViewById(R.id.dialog_finalizar_no);
 
-                if(radioEXISTE_UNIDAD.toString().contains("2")){
+                if(TERRITORIO_ETNICO.toString().contains("2")){
                   if(db.tieneEdificaciones(id_manzana)){
                        validacionExxistencia = false;
                         AlertDialog.Builder builder = new AlertDialog.Builder(Formulario.this);
@@ -647,10 +690,10 @@ public class Formulario extends AppCompatActivity {
     private boolean validarFormularioSoloManzana() {
         boolean retorno = true;
         if((editDIREC_BARRIO.getText().toString()!=null && !editDIREC_BARRIO.getText().toString().equals(""))
-                && (TERRITORIO_ETNICO!=null && !TERRITORIO_ETNICO.equals(""))
                 && (fecha_conteo.getText().toString()!=null && !fecha_conteo.getText().toString().equals(""))  ){
 
-            if(TERRITORIO_ETNICO!= null && TERRITORIO_ETNICO.equals("1") && SEL_TERR_ETNICO!= null && !SEL_TERR_ETNICO.equals("")){
+            if( editCLASE != null && ( editCLASE.getText().toString().contains("2") || editCLASE.getText().toString().contains("3")) &&
+                TERRITORIO_ETNICO!= null && TERRITORIO_ETNICO.equals("1") && SEL_TERR_ETNICO!= null && !SEL_TERR_ETNICO.equals("")){
                 if(SEL_TERR_ETNICO!= null && SEL_TERR_ETNICO.equals("1") && selRESGUARDO!= null && !selRESGUARDO.equals("") ){
                     retorno = true;
                 }else{
@@ -679,6 +722,9 @@ public class Formulario extends AppCompatActivity {
             return false;
         }
 
+        if(NOV_CARTO == null )
+            return false;
+
         if(manzana.getLatitud().equals("")
                 ||  manzana.getLongitud().equals("") ||  manzana.getAltura().equals("") ||  manzana.getPrecision().equals("")){
             return false;
@@ -702,6 +748,7 @@ public class Formulario extends AppCompatActivity {
                 || (validar.getClase()!=null && !validar.getClase().equals(""))
                 || (validar.getFechaConteo()!=null && !validar.getFechaConteo().equals(""))
                 || (validar.getManzana()!=null && !validar.getManzana().equals(""))
+                || (validar.getNov_carto()!= null && !validar.getNov_carto().equals(""))
                 || (validar.getImei()!=null && !validar.getImei().equals(""))){
 
             if(validar.getTerritorio_etnico().equals("1") && validar.getSel_terr_etnico()!= null && !validar.getSel_terr_etnico().equals("")){
@@ -738,23 +785,31 @@ public class Formulario extends AppCompatActivity {
                         for (EsquemaUnidadesEnvioViewModel lstUnid : lstEdifi.getUnidades()){
                             if((lstUnid.getDirec_previa()!=null && !lstUnid.getDirec_previa().equals(""))
                             || (lstUnid.getDirec_p_tipo()!= null && !lstUnid.getDirec_p_tipo().equals("")
-                            || (lstUnid.getNov_carto()!= null && !lstUnid.getNov_carto().equals(""))
                             || (lstUnid.getDirecc()!= null && !lstUnid.getDirecc().equals("")) )   ){
                                 retorno = true;
                             }else{
                                 return false;
                             }
-                            if(lstUnid.getEstado_unidad_observacion()!= null && lstUnid.getEstado_unidad_observacion().equals("")){
-                                if(lstUnid.getEstado_unidad_observacion().equals("1") && lstUnid.getTipo_unidad_observacion()!= null && !lstUnid.getTipo_unidad_observacion().equals("")   ){
-                                    if(lstUnid.getTipo_unidad_observacion().equals("3") && lstUnid.getTipo_vendedor()!= null && !lstUnid.getTipo_vendedor().equals("")){
-                                        if(lstUnid.getSector_economico()!= null && !lstUnid.getSector_economico().equals("")
-                                                && lstUnid.getUnidad_osbservacion()!= null && !lstUnid.getUnidad_osbservacion().equals("")){
-                                            retorno = true;
+                            if(lstUnid.getEstado_unidad_observacion()!= null && !lstUnid.getEstado_unidad_observacion().equals("")){
+                                if(lstUnid.getEstado_unidad_observacion().equals("1") && lstUnid.getTipo_unidad_observacion()!= null
+                                        && !lstUnid.getTipo_unidad_observacion().equals("")   ){
+                                    if(lstUnid.getTipo_unidad_observacion().equals("1") && lstUnid.getSector_economico()!= null
+                                            && !lstUnid.getSector_economico().equals("")){
+                                        retorno = true;
+                                    }else{
+                                        return false;
+                                    }
+                                    if(lstUnid.getTipo_unidad_observacion().equals("3") ){
+                                        if(lstUnid.getTipo_vendedor()!= null && !lstUnid.getTipo_vendedor().equals("")){
+                                            if(lstUnid.getSector_economico()!= null && !lstUnid.getSector_economico().equals("")
+                                                    && lstUnid.getUnidad_osbservacion()!= null && !lstUnid.getUnidad_osbservacion().equals("")){
+                                                retorno = true;
+                                            }else{
+                                                return false;
+                                            }
                                         }else{
                                             return false;
                                         }
-                                    }else{
-                                        return false;
                                     }
                                 }
                                 if(lstUnid.getEstado_unidad_observacion().equals("2")){
@@ -863,6 +918,9 @@ public class Formulario extends AppCompatActivity {
         retorno.setImei(manzana.getImei());
         retorno.setManzana(manzana.getManzana());
         retorno.setSupervisor(manzana.getSupervisor());
+        retorno.setUc(manzana.getUc());
+        retorno.setObsmz(manzana.getObsmz());
+        retorno.setNov_carto(manzana.getNov_carto());
         return retorno;
     }
 
@@ -895,7 +953,6 @@ public class Formulario extends AppCompatActivity {
         retorno.setDirec_previa(unidad.getDirec_previa());
         retorno.setDirec_p_tipo(unidad.getDirec_p_tipo());
         retorno.setDirecc(unidad.getDirecc());
-        retorno.setNov_carto(unidad.getNov_carto());
         retorno.setEstado_unidad_observacion(unidad.getEstado_unidad_observacion());
         retorno.setTipo_unidad_observacion(unidad.getTipo_unidad_observacion());
         retorno.setTipo_vendedor(unidad.getTipo_vendedor());
@@ -921,7 +978,20 @@ public class Formulario extends AppCompatActivity {
         manzana.setFecha(util.getFechaActual());
         manzana.setDepartamento(noDEPA);
         manzana.setMunicipio(noMPIO);
-        manzana.setClase(editCLASE.getText().toString());
+
+        if(editCLASE.getText().toString().contains("1")){
+            manzana.setClase("1");
+        }
+        if(editCLASE.getText().toString().contains("2")){
+            manzana.setClase("2");
+        }
+        if(editCLASE.getText().toString().contains("3")){
+            manzana.setClase("3");
+        }
+
+        manzana.setUc(UC);
+        manzana.setObsmz(editObservacionmz.getText().toString());
+        manzana.setNov_carto(NOV_CARTO);
         manzana.setLocalidad(noLOCALIDAD);
         manzana.setCentro_poblado(noCENTRO);
         manzana.setTerritorioEtnico(TERRITORIO_ETNICO);
@@ -957,7 +1027,7 @@ public class Formulario extends AppCompatActivity {
             manzana.setTipoNovedad(null);
         }
 
-        manzana.setManzana(manzana.getManzana());
+        manzana.setManzana(manzana.getId_manzana());
         manzana.setCod_enumerador(session.getusename());
         manzana.setImei(idDevice);
         return manzana;
@@ -972,6 +1042,7 @@ public class Formulario extends AppCompatActivity {
         Manzana manzana_calculado=new Manzana();
         manzana_db=db.getManzana(id_manzana);
         manzana_calculado=sp.getDatosCalculados(id_manzana);
+        UC = manzana_calculado.getUc();
 
         fecha_conteo.setText("Fecha: "+manzana_db.getFecha());
 
@@ -996,16 +1067,44 @@ public class Formulario extends AppCompatActivity {
 
             editDPTO.setText(manzana_db.getDepartamento()+"-"+db.getDepartamento(manzana_db.getDepartamento()));
             editMPIO.setText(manzana_db.getMunicipio()+"-"+db.getMunicipio(manzana_db.getDepartamento()+manzana_db.getMunicipio()));
-            editCLASE.setText(manzana_db.getClase());
+
+            if(manzana_db.getClase()!= null){
+                if( manzana_db.getClase().equals("1")){
+                    linearNombreLocalidad.setVisibility(View.VISIBLE);
+                    linearCentroPoblado.setVisibility(View.GONE);
+                    linearUnidadCobertura.setVisibility(View.GONE);
+                }
+                if( manzana_db.getClase().equals("2")){
+                    linearNombreLocalidad.setVisibility(View.GONE);
+                    linearCentroPoblado.setVisibility(View.VISIBLE);
+                    linearUnidadCobertura.setVisibility(View.VISIBLE);
+                }
+                if( manzana_db.getClase().equals("3")){
+                    linearNombreLocalidad.setVisibility(View.GONE);
+                    linearCentroPoblado.setVisibility(View.VISIBLE);
+                    linearUnidadCobertura.setVisibility(View.VISIBLE);
+                }
+                editCLASE.setText("Clase " +manzana_db.getClase());
+            }
 
             //editCOM_LOC.setText(db.getLocalidadDIVIPOLA("05001000")); //TODO: PRUEBA
-            editCOM_LOC.setText(manzana_db.getLocalidad()+"-"+db.getLocalidad(manzana_db.getLocalidad()));
-            editC_POB.setText(manzana_db.getCentro_poblado()+"-"+db.getCentroPoblado(manzana_db.getDepartamento()+manzana_db.getMunicipio()+manzana_db.getCentro_poblado()));
+            if(db.getLocalidad(manzana_db.getLocalidad())!= null){
+                editCOM_LOC.setText(manzana_db.getLocalidad()+"-"+db.getLocalidad(manzana_db.getLocalidad()));
+            }else{
+                editCOM_LOC.setText(manzana_db.getLocalidad());
+            }
+
+            if(db.getCentroPoblado(manzana_db.getDepartamento()+manzana_db.getMunicipio()+manzana_db.getCentro_poblado())!= null){
+                editC_POB.setText(manzana_db.getCentro_poblado()+"-"+db.getCentroPoblado(manzana_db.getDepartamento()+manzana_db.getMunicipio()+manzana_db.getCentro_poblado()));
+            }else{
+                editC_POB.setText(manzana_db.getCentro_poblado());
+            }
 
             editCO.setText(manzana_db.getCoordinacionOperativa());
             editAO.setText(manzana_db.getAreaOperativa());
             editAG.setText(manzana_db.getUnidad_cobertura());
             editACER.setText(manzana_db.getACER());
+
         }else{
             noDEPA = manzana_calculado.getDepartamento();
             noMPIO = manzana_calculado.getMunicipio();
@@ -1015,17 +1114,43 @@ public class Formulario extends AppCompatActivity {
 
             editDPTO.setText(manzana_calculado.getDepartamento()+"-"+db.getDepartamento(manzana_calculado.getDepartamento()));
             editMPIO.setText(manzana_calculado.getMunicipio()+"-"+db.getMunicipio(manzana_calculado.getDepartamento()+manzana_calculado.getMunicipio()));
-            editCLASE.setText(manzana_calculado.getClase());
+
+            if(manzana_calculado.getClase()!= null){
+                if( manzana_calculado.getClase().equals("1")){
+                    linearNombreLocalidad.setVisibility(View.VISIBLE);
+                    linearCentroPoblado.setVisibility(View.GONE);
+                    linearUnidadCobertura.setVisibility(View.GONE);
+                }
+                if( manzana_calculado.getClase().equals("2")){
+                    linearNombreLocalidad.setVisibility(View.GONE);
+                    linearCentroPoblado.setVisibility(View.VISIBLE);
+                    linearUnidadCobertura.setVisibility(View.VISIBLE);
+                }
+                if( manzana_calculado.getClase().equals("3")){
+                    linearNombreLocalidad.setVisibility(View.GONE);
+                    linearCentroPoblado.setVisibility(View.VISIBLE);
+                    linearUnidadCobertura.setVisibility(View.VISIBLE);
+                }
+                editCLASE.setText("Clase " +manzana_calculado.getClase());
+            }
 
             //editCOM_LOC.setText(db.getLocalidadDIVIPOLA("05001000")); //TODO: PRUEBA
-            editCOM_LOC.setText(manzana_calculado.getLocalidad()+"-"+db.getLocalidad(manzana_calculado.getLocalidad()));
-            editC_POB.setText(manzana_calculado.getCentro_poblado()+"-"+db.getCentroPoblado(manzana_db.getDepartamento()+manzana_db.getMunicipio()+manzana_db.getCentro_poblado()));
+            if(db.getLocalidad(manzana_calculado.getLocalidad())!= null){
+                editCOM_LOC.setText(manzana_calculado.getLocalidad()+"-"+db.getLocalidad(manzana_calculado.getLocalidad()));
+            }else{
+                editCOM_LOC.setText(manzana_calculado.getLocalidad());
+            }
+
+            if(db.getCentroPoblado(manzana_db.getDepartamento()+manzana_db.getMunicipio()+manzana_db.getCentro_poblado())!= null){
+                editC_POB.setText(manzana_calculado.getCentro_poblado()+"-"+db.getCentroPoblado(manzana_db.getDepartamento()+manzana_db.getMunicipio()+manzana_db.getCentro_poblado()));
+            }else{
+                editC_POB.setText(manzana_calculado.getCentro_poblado());
+            }
 
             editCO.setText(manzana_calculado.getCoordinacionOperativa());
             editAO.setText(manzana_calculado.getAreaOperativa());
             editAG.setText(manzana_calculado.getUnidad_cobertura());
             editACER.setText(manzana_calculado.getACER());
-
         }
 
         if(manzana_db.getTerritorioEtnico()!= null && manzana_db.getTerritorioEtnico().toString().equals("1")){
@@ -1104,6 +1229,10 @@ public class Formulario extends AppCompatActivity {
         selRESGUARDO = manzana_db.getResguardoEtnico();
         spinnerCOD_COMUN_ETNICO.setSelection(getIndexSpinner(spinnerCOD_COMUN_ETNICO,db.getCodComunidadNegra(manzana_db.getComunidadEtnica(), true) ));
         selCOMUNIDAD_NEGRA = manzana_db.getComunidadEtnica();
+        editObservacionmz.setText(manzana_db.getObsmz());
+        NOV_CARTO  = manzana_db.getNov_carto();
+        spinnerNOV_CARTO.setSelection(getIndexSpinnerContains(spinnerNOV_CARTO, NOV_CARTO));
+
 
         if(manzana_db.getFinalizado().toUpperCase().equals("SI")){
             finalizacion = true;
@@ -1114,7 +1243,7 @@ public class Formulario extends AppCompatActivity {
         if(manzana!= null && Util.stringNullEmptys(manzana.getAltura()) && Util.stringNullEmptys(manzana.getPrecision())
                 && Util.stringNullEmptys(manzana.getLatitud()) && Util.stringNullEmptys(manzana.getLongitud())){
             latlon.setText("Latitud: "+manzana.getLatitud()+"\nLongitud: "+manzana.getLongitud()
-                    +"\nAltura: "+manzana.getAltura()+" m\nPrecisión: "+manzana.getPrecision()+" m");
+                    +"\nAltura: "+manzana.getAltura()+" m\nPrecisión: "+manzana.getPrecision()+" m\n\nUC: "+manzana_calculado.getUc());
         }else{
             Location location = getLastKnownLocation();
             if(location!= null){
@@ -1131,7 +1260,7 @@ public class Formulario extends AppCompatActivity {
                 coord="1";
 
                 latlon.setText("Latitud: "+manzana.getLatitud()+"\nLongitud: "+manzana.getLongitud()
-                        +"\nAltura: "+manzana.getAltura()+" m\nPrecisión: "+manzana.getPrecision()+" m");
+                        +"\nAltura: "+manzana.getAltura()+" m\nPrecisión: "+manzana.getPrecision()+" m\n\nUC: "+manzana_calculado.getUc());
             }else{
                 msj.generarToast("GPS Desactivado","error");
             }
@@ -1193,6 +1322,26 @@ public class Formulario extends AppCompatActivity {
                 index = i;
             }
         }
+        return index;
+    }
+
+    /**
+     * metodo que ubica la lista que contiene
+     * @param spinner
+     * @param myString
+     * @return
+     */
+    private int getIndexSpinnerContains(Spinner spinner, String myString){
+        int index = 0;
+
+        if(myString!= null && !myString.equals("")){
+            for (int i=0;i<spinner.getCount();i++){
+                if (spinner.getItemAtPosition(i).toString().contains(myString)){
+                    index = i;
+                }
+            }
+        }
+
         return index;
     }
 

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Re-Cuento</string>
-    <string name="version_app">Versión 1.0.2</string>
+    <string name="version_app">Versión 1.0.4 - PRUEBAS</string>
     <string name="copyright_app">© 2022 - DANE, Colombia</string>
 
     <string-array name="direccion_previa">
@@ -9,6 +9,13 @@
         <item>2. Dirección antes de complemento.</item>
         <item>3. Dirección hasta complemento.</item>
         <item>4. Sin dirección previa.</item>
+    </string-array>
+
+    <string-array name="direccion_previa2">
+        <item>Seleccione...</item>
+        <item>1. Dirección antes de placa.</item>
+        <item>2. Dirección antes de complemento.</item>
+        <item>3. Dirección hasta complemento.</item>
     </string-array>
 
     <string-array name="direccion_tipo">
@@ -209,8 +216,8 @@
         <item>Seleccione...</item>
         <item>1. Establecimiento Fijo</item>
         <item>2. Establecimiento Semifijo</item>
-        <item>3. Puesto Móvil</item>
-        <item>4. Vivienda con actividad económica</item>
+        <item>3. Vendedor de Calle</item>
+        <item>4. Vivienda con actividad económica visible</item>
     </string-array>
 
     <string-array name="unidad_observacion_1">
@@ -234,14 +241,14 @@
         <item>Seleccione...</item>
         <item>1. Comercio</item>
         <item>2. Industria</item>
-        <item>3. Servicios</item>
+        <item>3. Servicio</item>
         <item>4. Transporte</item>
         <item>5. Construcción</item>
     </string-array>
 
     <string-array name="sector_economico1">
         <item>Seleccione...</item>
-        <item>5. Construcción</item>
+        <item>6. No aplica</item>
     </string-array>
 
     <string-array name="sector_economico2">
@@ -268,7 +275,7 @@
     <string name="text_pregunta2_1">Clase</string>
     <string name="text_pregunta2_2">Nombre de la localidad o comuna</string>
     <string name="text_pregunta2_3">Nombre del centro poblado</string>
-    <string name="text_pregunta2_4">¿La unidad económica se encuentra al interior de un territorio étnico?</string>
+    <string name="text_pregunta2_4">¿La unidad de cobertura se encuentra al interior de un territorio étnico?</string>
     <string name="text_pregunta2_4_Si">1. Si</string>
     <string name="text_pregunta2_4_No">2. No</string>
 
@@ -299,6 +306,7 @@
     <string name="text_pregunta5_3_5">5. Uso Institucional</string>
     <string name="text_pregunta5_3_6">6. Orden Público</string>
     <string name="text_pregunta5_3_7">7. Otros Motivos</string>
+    <string name="text_pregunta5_4">Observación</string>
 
     <string name="text_pregunta6">6. Dirección</string>
     <string name="text_pregunta6_1">¿Obtiene dirección de unidad previa?</string>

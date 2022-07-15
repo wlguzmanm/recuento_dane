@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:layout_marginVertical="10dp">
+
+
+    <LinearLayout
+        android:id="@+id/contenedorComplemento"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/idNormalizador"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="aaa"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/direcComp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:text="aaa"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/direcTextComp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="aaa" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/eliminar_item_complemento"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:tint="@color/raton"
+            app:srcCompat="@drawable/ic_delete_item" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -20,8 +20,6 @@ public class EsquemaUnidadEconomica {
 
     public static final String DIRECC ="DIRECC";
 
-    public static final String NOV_CARTO ="NOV_CARTO";
-
     public static final String ESTADO_UNIDAD_OBSERVACION = "ESTADO_UNIDAD_OBSERVACION";
 
     public static final String TIPO_UNIDAD_OBSERVACION = "TIPO_UNIDAD_OBSERVACION";

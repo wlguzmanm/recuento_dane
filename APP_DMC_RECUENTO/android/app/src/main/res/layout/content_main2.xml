@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:layout_marginBottom="5dp"
-                android:text="Formulario para el registro del conteo de unidades económicas." />
+                android:text="Formulario para el registro del re-cuento de unidades económicas." />
             <CheckBox
                 android:id="@+id/check_finalizado"
                 android:layout_width="wrap_content"

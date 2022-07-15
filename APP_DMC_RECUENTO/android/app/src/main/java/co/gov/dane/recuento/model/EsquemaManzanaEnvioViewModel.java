@@ -28,6 +28,10 @@ public class EsquemaManzanaEnvioViewModel {
     private String tipo_novedad;
     private String manzana;
 
+    private String uc;
+    private String obsmz;
+    private String nov_carto;
+
     private String fechaModificacion;
     private String cod_enumerador;
     private String supervisor;
@@ -277,5 +281,29 @@ public class EsquemaManzanaEnvioViewModel {
 
     public void setEsquemaEdificacion(List<EsquemaEdificacionEnvioViewModel> esquemaEdificacion) {
         this.esquemaEdificacion = esquemaEdificacion;
+    }
+
+    public String getUc() {
+        return uc;
+    }
+
+    public void setUc(String uc) {
+        this.uc = uc;
+    }
+
+    public String getObsmz() {
+        return obsmz;
+    }
+
+    public void setObsmz(String obsmz) {
+        this.obsmz = obsmz;
+    }
+
+    public String getNov_carto() {
+        return nov_carto;
+    }
+
+    public void setNov_carto(String nov_carto) {
+        this.nov_carto = nov_carto;
     }
 }

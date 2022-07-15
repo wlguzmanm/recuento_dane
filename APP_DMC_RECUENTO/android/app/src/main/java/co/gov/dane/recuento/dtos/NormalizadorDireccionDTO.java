@@ -4,6 +4,7 @@ public class NormalizadorDireccionDTO {
 
     private String id;
     private String idManzana;
+    private String idEdificacion;
     private String idUnidadEconomica;
     private String direcVp;
     private String direcNnomVp;
@@ -32,12 +33,13 @@ public class NormalizadorDireccionDTO {
     public NormalizadorDireccionDTO() {
     }
 
-    public NormalizadorDireccionDTO(String id, String idManzana, String idUnidadEconomica, String direcVp, String direcNnomVp, String direcNumVp,
+    public NormalizadorDireccionDTO(String id, String idManzana, String idEdificacion, String idUnidadEconomica, String direcVp, String direcNnomVp, String direcNumVp,
                                     String direcLetVp,  String direcLetVpOtro, String direcSfVp, String direcLetSvp, String direcLetSvpOtro, String direcCuadVp,
                                     String direcNumVg, String direcLetVg, String direcLetVgOtro, String direcSfVg, String direcLetSvg, String direcLetSvgOtro,
                                     String direcNumPlaca, String direcCuadVg, String direcPComp, String imei, String usuario, String fechaCreacion) {
         this.id = id;
         this.idManzana = idManzana;
+        this.idEdificacion = idEdificacion;
         this.idUnidadEconomica = idUnidadEconomica;
         this.direcVp = direcVp;
         this.direcNnomVp = direcNnomVp;
@@ -260,5 +262,13 @@ public class NormalizadorDireccionDTO {
 
     public void setComplememnto(ComplementoNormalizadorDTO complememnto) {
         this.complememnto = complememnto;
+    }
+
+    public String getIdEdificacion() {
+        return idEdificacion;
+    }
+
+    public void setIdEdificacion(String idEdificacion) {
+        this.idEdificacion = idEdificacion;
     }
 }

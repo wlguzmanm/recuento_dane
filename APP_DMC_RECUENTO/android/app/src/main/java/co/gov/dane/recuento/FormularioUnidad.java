@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -23,12 +24,20 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import co.gov.dane.recuento.Preguntas.Edificacion;
 import co.gov.dane.recuento.Preguntas.Manzana;
 import co.gov.dane.recuento.Preguntas.UnidadEconomica;
+import co.gov.dane.recuento.adapter.ConteoAdapterComplementos;
+import co.gov.dane.recuento.adapter.ConteoAdapterEdificacion;
 import co.gov.dane.recuento.backend.Database;
 import co.gov.dane.recuento.backend.Normalizador;
+import co.gov.dane.recuento.dtos.ComplementoNormalizadorDTO;
 import co.gov.dane.recuento.dtos.NormalizadorDireccionDTO;
+import co.gov.dane.recuento.model.ConteoEdificacion;
 import co.gov.dane.recuento.model.EsquemaEdificacionEnvioViewModel;
 import co.gov.dane.recuento.model.EsquemaManzanaEnvioViewModel;
 import co.gov.dane.recuento.model.EsquemaUnidadesEnvioViewModel;
@@ -37,7 +46,7 @@ public class FormularioUnidad extends AppCompatActivity {
 
     private String id_manzana,id_edificacion,id_unidad;
 
-    private Spinner spinnerDIREC_PREVIA,spinnerDIREC_P_TIPO, spinnerNOV_CARTO,
+    private Spinner spinnerDIREC_PREVIA,spinnerDIREC_P_TIPO,
             spinnerUnidadObservacion, spinnerTipoObservacion, spinnerTipoVendedor, spinnerSectorEconomico,
             spinnerDIREC_VP, spinnerDIREC_LET_VP, spinnerDIREC_SF_VP, spinnerDIREC_LET_SVP, spinnerDIREC_CUAD_VP,
             spinnerDIREC_LET_VG, spinnerDIREC_SF_VG, spinnerDIREC_LET_SVG, spinnerDIREC_CUAD_VG, spinnerDIREC_COMP ;
@@ -49,6 +58,7 @@ public class FormularioUnidad extends AppCompatActivity {
     private RadioGroup radioDIREC_P_COMP;
 
     private RadioButton id_complemento_si, id_complemento_no;
+    private RecyclerView recycler_complementos;
 
     private Database db;
     private Util util;
@@ -56,9 +66,15 @@ public class FormularioUnidad extends AppCompatActivity {
 
     private LinearLayout linearCabecera, linearPregunta6, linearPregunta7, linearNormalizador, guardar_formulario, linearComplemento,
             linearComplementoAcomp, linearAdicionarComplemento, linearAdicionarAgregarDireccion, linearTipoVendedor, linearBtnNormalizador,
-            linearDIREC_LET_VP_OTRO, linearDIREC_LET_SVP_OTRO, linearDIREC_LET_VG_OTRO,  linearDIREC_LET_SVG_OTRO;
-    private TextView textUnidadEconomica;
-    private String idDevice, DIREC_PREVIA,  DIREC_P_TIPO, DIRECC, NOV_CARTO, UNIDAD_OBSERVACION, TIPO_OBSERVACION, TIPO_VENDEDOR, SECTOR_ECONOMICO,
+            linearDIREC_LET_VP_OTRO, linearDIREC_LET_SVP_OTRO, linearDIREC_LET_VG_OTRO,  linearDIREC_LET_SVG_OTRO,
+            linearDIREC_NNOM_VP, linearDIREC_NUM_VP, linearDIREC_LET_VP, linearDIREC_SF_VP, linearDIREC_LET_SVP,
+            linearDIREC_CUAD_VP, linearDIREC_NUM_VG, linearDIREC_LET_VG, linearDIREC_SF_VG, linearDIREC_LET_SVG,
+            linearDIREC_NUM_PLACA, linearDIREC_CUAD_VG, linearDIREC_P_COMP
+
+
+    ;
+    private TextView textUnidadEconomica, tx_label_normalizador;
+    private String idDevice, DIREC_PREVIA,  DIREC_P_TIPO, DIRECC, UNIDAD_OBSERVACION, TIPO_OBSERVACION, TIPO_VENDEDOR, SECTOR_ECONOMICO,
             DIREC_VP,
             DIREC_NNOM_VP,
             DIREC_NUM_VP,
@@ -79,6 +95,8 @@ public class FormularioUnidad extends AppCompatActivity {
             DIREC_P_COMP,
             DIREC_COMP,
             DIREC_TEX_COM;
+    private List<ComplementoNormalizadorDTO> lstComplemento = new ArrayList<>();
+    private ConteoAdapterComplementos mAdapterComplemento;
 
     private Session session;
     private NormalizadorDireccionDTO normalizador = new NormalizadorDireccionDTO();
@@ -133,11 +151,25 @@ public class FormularioUnidad extends AppCompatActivity {
         linearDIREC_LET_VG_OTRO = (LinearLayout) findViewById(R.id.linearDIREC_LET_VG_OTRO);
         linearDIREC_LET_SVG_OTRO = (LinearLayout) findViewById(R.id.linearDIREC_LET_SVG_OTRO);
 
+        linearDIREC_NNOM_VP = (LinearLayout) findViewById(R.id.linearDIREC_NNOM_VP);
+        linearDIREC_NUM_VP = (LinearLayout) findViewById(R.id.linearDIREC_NUM_VP);
+        linearDIREC_LET_VP = (LinearLayout) findViewById(R.id.linearDIREC_LET_VP);
+        linearDIREC_SF_VP = (LinearLayout) findViewById(R.id.linearDIREC_SF_VP);
+        linearDIREC_LET_SVP = (LinearLayout) findViewById(R.id.linearDIREC_LET_SVP);
+        linearDIREC_CUAD_VP = (LinearLayout) findViewById(R.id.linearDIREC_CUAD_VP);
+        linearDIREC_NUM_VG = (LinearLayout) findViewById(R.id.linearDIREC_NUM_VG);
+        linearDIREC_LET_VG = (LinearLayout) findViewById(R.id.linearDIREC_LET_VG);
+        linearDIREC_SF_VG = (LinearLayout) findViewById(R.id.linearDIREC_SF_VG);
+        linearDIREC_LET_SVG = (LinearLayout) findViewById(R.id.linearDIREC_LET_SVG);
+        linearDIREC_NUM_PLACA = (LinearLayout) findViewById(R.id.linearDIREC_NUM_PLACA);
+        linearDIREC_CUAD_VG = (LinearLayout) findViewById(R.id.linearDIREC_CUAD_VG);
+        linearDIREC_P_COMP = (LinearLayout) findViewById(R.id.linearDIREC_P_COMP);
+
+
         linearNormalizador.setVisibility(View.GONE);
 
         spinnerDIREC_PREVIA = (Spinner) findViewById(R.id.spinnerDIREC_PREVIA);
         spinnerDIREC_P_TIPO = (Spinner) findViewById(R.id.spinnerDIREC_P_TIPO);
-        spinnerNOV_CARTO = (Spinner) findViewById(R.id.spinnerNOV_CARTO);
         spinnerUnidadObservacion = (Spinner) findViewById(R.id.spinnerUnidadObservacion);
         spinnerTipoObservacion = (Spinner) findViewById(R.id.spinnerTipoObservacion);
         spinnerTipoVendedor = (Spinner) findViewById(R.id.spinnerTipoVendedor);
@@ -165,10 +197,20 @@ public class FormularioUnidad extends AppCompatActivity {
         editDIREC_LET_SVP_OTRO = (EditText) findViewById(R.id.editDIREC_LET_SVP_OTRO);
         editDIREC_LET_VG_OTRO = (EditText) findViewById(R.id.editDIREC_LET_VG_OTRO);
         editDIREC_LET_SVG_OTRO = (EditText) findViewById(R.id.editDIREC_LET_SVG_OTRO);
+        tx_label_normalizador = (TextView) findViewById(R.id.tx_label_normalizador);
 
         textUnidadEconomica = (TextView) findViewById(R.id.textUnidadEconomica);
 
         radioDIREC_P_COMP = (RadioGroup) findViewById(R.id.radioDIREC_P_COMP);
+
+        recycler_complementos = (RecyclerView) findViewById(R.id.recycler_complementos);
+        mAdapterComplemento = new ConteoAdapterComplementos(lstComplemento,FormularioUnidad.this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recycler_complementos.setLayoutManager(mLayoutManager);
+        recycler_complementos.setItemAnimator(new DefaultItemAnimator());
+        recycler_complementos.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
+        recycler_complementos.setAdapter(mAdapterComplemento);
 
         id_complemento_si  = (RadioButton) findViewById(R.id.id_complemento_si);
         id_complemento_no = (RadioButton) findViewById(R.id.id_complemento_no);
@@ -233,11 +275,6 @@ public class FormularioUnidad extends AppCompatActivity {
         adapter_DIREC_P_TIPO.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDIREC_P_TIPO.setAdapter(adapter_DIREC_P_TIPO);
 
-        ArrayAdapter<CharSequence> adapter_NOV_CARTO = ArrayAdapter.createFromResource(this,
-                R.array.Novedades_cartograficas, android.R.layout.simple_spinner_item);
-        adapter_NOV_CARTO.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerNOV_CARTO.setAdapter(adapter_NOV_CARTO);
-
         ArrayAdapter<CharSequence> adapter_estado_unidad = ArrayAdapter.createFromResource(this,
                 R.array.estado_unidad, android.R.layout.simple_spinner_item);
         adapter_estado_unidad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -288,6 +325,9 @@ public class FormularioUnidad extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(!spinnerDIREC_PREVIA.getSelectedItem().toString().equals("Seleccione...")){
+                    linearBtnNormalizador.setEnabled(true);
+                    linearBtnNormalizador.setBackgroundColor( getResources().getColor(R.color.verde));
+                    tx_label_normalizador.setBackgroundColor( getResources().getColor(R.color.verde));
                     if(spinnerDIREC_PREVIA.getSelectedItem().toString().contains("1"))
                          DIREC_PREVIA = "1";
                     if(spinnerDIREC_PREVIA.getSelectedItem().toString().contains("2"))
@@ -295,7 +335,16 @@ public class FormularioUnidad extends AppCompatActivity {
                     if(spinnerDIREC_PREVIA.getSelectedItem().toString().contains("3"))
                         DIREC_PREVIA = "3";
                 }else{
-                    DIREC_PREVIA = null;
+                    UnidadEconomica unidad= new UnidadEconomica();
+                    unidad=db.getUnidadEconomica(id_manzana,id_edificacion,id_unidad);
+
+                    if(unidad!= null && unidad.getId() != null && !unidad.getId().isEmpty()){
+                        if(!unidad.getId_unidad().equals("1")){
+                            linearBtnNormalizador.setEnabled(false);
+                            linearBtnNormalizador.setBackgroundColor( getResources().getColor(R.color.ms_bottomNavigationButtonTextColor));
+                            tx_label_normalizador.setBackgroundColor( getResources().getColor(R.color.ms_bottomNavigationButtonTextColor));
+                        }
+                    }
                 }
             }
 
@@ -309,6 +358,12 @@ public class FormularioUnidad extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(!spinnerDIREC_P_TIPO.getSelectedItem().toString().equals("Seleccione...")){
+                    if(DIREC_PREVIA!= null){
+                        linearBtnNormalizador.setEnabled(true);
+                        linearBtnNormalizador.setBackgroundColor( getResources().getColor(R.color.verde));
+                        tx_label_normalizador.setBackgroundColor( getResources().getColor(R.color.verde));
+                    }
+
                     if(spinnerDIREC_P_TIPO.getSelectedItem().toString().contains("1"))
                         DIREC_P_TIPO = "1";
                     if(spinnerDIREC_P_TIPO.getSelectedItem().toString().contains("2"))
@@ -316,7 +371,16 @@ public class FormularioUnidad extends AppCompatActivity {
                     if(spinnerDIREC_P_TIPO.getSelectedItem().toString().contains("3"))
                         DIREC_P_TIPO = "3";
                 }else{
-                    DIREC_P_TIPO = null;
+                    UnidadEconomica unidad= new UnidadEconomica();
+                    unidad=db.getUnidadEconomica(id_manzana,id_edificacion,id_unidad);
+
+                    if(unidad!= null && unidad.getId() != null && !unidad.getId().isEmpty()){
+                        if(unidad.getId_unidad().equals("1")){
+                            linearBtnNormalizador.setEnabled(false);
+                            linearBtnNormalizador.setBackgroundColor( getResources().getColor(R.color.ms_bottomNavigationButtonTextColor));
+                            tx_label_normalizador.setBackgroundColor( getResources().getColor(R.color.ms_bottomNavigationButtonTextColor));
+                        }
+                    }
                 }
             }
 
@@ -326,28 +390,6 @@ public class FormularioUnidad extends AppCompatActivity {
             }
         });
 
-        spinnerNOV_CARTO.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(!spinnerNOV_CARTO.getSelectedItem().toString().equals("Seleccione...")){
-                    if(spinnerNOV_CARTO.getSelectedItem().toString().contains("1"))
-                        NOV_CARTO = "1";
-                    if(spinnerNOV_CARTO.getSelectedItem().toString().contains("2"))
-                        NOV_CARTO = "2";
-                    if(spinnerNOV_CARTO.getSelectedItem().toString().contains("3"))
-                        NOV_CARTO = "3";
-                    if(spinnerNOV_CARTO.getSelectedItem().toString().contains("4"))
-                        NOV_CARTO = "4";
-                }else{
-                    NOV_CARTO = null;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                NOV_CARTO = null;
-            }
-        });
 
         //Pregunta 7
         spinnerUnidadObservacion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -359,9 +401,6 @@ public class FormularioUnidad extends AppCompatActivity {
                             spinnerTipoObservacion.setAdapter(arr_unidad_observacion);
                             spinnerTipoVendedor.setAdapter(arrDefault);
                             spinnerSectorEconomico.setAdapter(arrDefault);
-                            TIPO_OBSERVACION = null;
-                            TIPO_VENDEDOR = null;
-                            SECTOR_ECONOMICO = null;
                             UNIDAD_OBSERVACION = "1";
                         }
                         if(spinnerUnidadObservacion.getSelectedItem().toString().contains("2")){
@@ -369,39 +408,23 @@ public class FormularioUnidad extends AppCompatActivity {
                             spinnerTipoVendedor.setAdapter(arrDefault);
                             spinnerSectorEconomico.setAdapter(arrDefault);
                             UNIDAD_OBSERVACION = "2";
-                            TIPO_OBSERVACION = null;
-                            TIPO_VENDEDOR = null;
-                            SECTOR_ECONOMICO = null;
                         }
                         if(spinnerUnidadObservacion.getSelectedItem().toString().contains("3")){
                             spinnerTipoObservacion.setAdapter(arr_unidad_observacion_2);
                             spinnerTipoVendedor.setAdapter(arrDefault);
                             spinnerSectorEconomico.setAdapter(arrDefault);
                             UNIDAD_OBSERVACION = "3";
-                            TIPO_OBSERVACION = null;
-                            TIPO_VENDEDOR = null;
-                            SECTOR_ECONOMICO = null;
                         }
                     }else{
                         spinnerTipoObservacion.setAdapter(arrDefault);
                         spinnerTipoVendedor.setAdapter(arrDefault);
                         spinnerSectorEconomico.setAdapter(arrDefault);
-                        UNIDAD_OBSERVACION = null;
-                        TIPO_OBSERVACION = null;
-                        TIPO_VENDEDOR = null;
-                        SECTOR_ECONOMICO = null;
                     }
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                if(isEdit == 1){
-                    UNIDAD_OBSERVACION = null;
-                    TIPO_OBSERVACION = null;
-                    TIPO_VENDEDOR = null;
-                    SECTOR_ECONOMICO = null;
-                }
             }
         });
 
@@ -420,28 +443,20 @@ public class FormularioUnidad extends AppCompatActivity {
 
                                 if(spinnerTipoObservacion.getSelectedItem().toString().contains("1")){
                                     TIPO_OBSERVACION = "1";
-                                    TIPO_VENDEDOR = null;
-                                    SECTOR_ECONOMICO = null;
                                 }
 
                                 if(spinnerTipoObservacion.getSelectedItem().toString().contains("2")){
                                     TIPO_OBSERVACION = "2";
-                                    TIPO_VENDEDOR = null;
-                                    SECTOR_ECONOMICO = null;
                                 }
 
                                 if(spinnerTipoObservacion.getSelectedItem().toString().contains("4")){
                                     TIPO_OBSERVACION = "4";
-                                    TIPO_VENDEDOR = null;
-                                    SECTOR_ECONOMICO = null;
                                 }
                             }else{
                                 spinnerTipoVendedor.setAdapter(arr_tipo_vendedor);
                                 spinnerSectorEconomico.setAdapter(arrDefault);
                                 linearTipoVendedor.setVisibility(View.VISIBLE);
                                 TIPO_OBSERVACION = "3";
-                                TIPO_VENDEDOR = null;
-                                SECTOR_ECONOMICO = null;
                             }
                         }
 
@@ -450,30 +465,21 @@ public class FormularioUnidad extends AppCompatActivity {
                             linearTipoVendedor.setVisibility(View.GONE);
                             if(spinnerTipoObservacion.getSelectedItem().toString().contains("1")){
                                 TIPO_OBSERVACION = "1";
-                                TIPO_VENDEDOR = null;
-                                SECTOR_ECONOMICO = null;
                             }
                             if(spinnerTipoObservacion.getSelectedItem().toString().contains("2")){
                                 TIPO_OBSERVACION = "2";
-                                TIPO_VENDEDOR = null;
-                                SECTOR_ECONOMICO = null;
                             }
                         }
 
                         if(spinnerUnidadObservacion.getSelectedItem().toString().contains("3")){
                             spinnerSectorEconomico.setAdapter(arr_sector_economico1);
                             linearTipoVendedor.setVisibility(View.GONE);
-                            if(spinnerTipoObservacion.getSelectedItem().toString().contains("1")){
-                                TIPO_OBSERVACION = "1";
-                                TIPO_VENDEDOR = null;
-                                SECTOR_ECONOMICO = null;
+                            if(spinnerTipoObservacion.getSelectedItem().toString().contains("5")){
+                                TIPO_OBSERVACION = "5";
                             }
                         }
                     }else{
                         spinnerTipoVendedor.setAdapter(arrDefault);
-                        TIPO_OBSERVACION = null;
-                        TIPO_VENDEDOR = null;
-                        SECTOR_ECONOMICO = null;
                     }
                 }
 
@@ -481,12 +487,6 @@ public class FormularioUnidad extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                if(isEdit == 1){
-                    TIPO_OBSERVACION = null;
-                    TIPO_VENDEDOR = null;
-                    SECTOR_ECONOMICO = null;
-                }
-
             }
         });
 
@@ -497,12 +497,10 @@ public class FormularioUnidad extends AppCompatActivity {
                     if(!spinnerTipoVendedor.getSelectedItem().toString().equals("Seleccione...")){
                         if(spinnerTipoVendedor.getSelectedItem().toString().contains("1")){
                             TIPO_VENDEDOR = "1";
-                            SECTOR_ECONOMICO = null;
                             spinnerSectorEconomico.setAdapter(arr_sector_economico);
                         }
                         if(spinnerTipoVendedor.getSelectedItem().toString().contains("2")){
                             TIPO_VENDEDOR = "2";
-                            SECTOR_ECONOMICO = null;
                             spinnerSectorEconomico.setAdapter(arr_sector_economico);
                         }
                     }
@@ -511,10 +509,6 @@ public class FormularioUnidad extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                if(isEdit == 1){
-                    TIPO_VENDEDOR = null;
-                    SECTOR_ECONOMICO = null;
-                }
             }
         });
 
@@ -541,13 +535,13 @@ public class FormularioUnidad extends AppCompatActivity {
                             }
                         }
                         if(spinnerUnidadObservacion.getSelectedItem().toString().contains("2")){
-                            if(spinnerSectorEconomico.getSelectedItem().toString().contains("1")){
-                                SECTOR_ECONOMICO = "1";
+                            if(spinnerSectorEconomico.getSelectedItem().toString().contains("6")){
+                                SECTOR_ECONOMICO = "6";
                             }
                         }
                         if(spinnerUnidadObservacion.getSelectedItem().toString().contains("3")){
-                            if(spinnerSectorEconomico.getSelectedItem().toString().contains("1")){
-                                SECTOR_ECONOMICO = "1";
+                            if(spinnerSectorEconomico.getSelectedItem().toString().contains("6")){
+                                SECTOR_ECONOMICO = "6";
                             }
                         }
                     }
@@ -560,17 +554,44 @@ public class FormularioUnidad extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                if(isEdit == 1)
-                    SECTOR_ECONOMICO = null;
             }
         });
 
         linearBtnNormalizador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NormalizadorDireccionDTO diligenciadoNormalizador = db.getNormalizador(id_unidad);
+                NormalizadorDireccionDTO diligenciadoNormalizador = db.getNormalizador(id_manzana,id_edificacion,id_unidad);
 
                 if(diligenciadoNormalizador!= null && diligenciadoNormalizador.getId() != null){
+                    if(Util.stringNullEmptys(diligenciadoNormalizador.getDirecVp()) && diligenciadoNormalizador.getDirecVp().contains("NA")){
+                        linearDIREC_NNOM_VP.setVisibility(View.GONE);
+                        linearDIREC_NUM_VP.setVisibility(View.GONE);
+                        linearDIREC_LET_VP.setVisibility(View.GONE);
+                        linearDIREC_SF_VP.setVisibility(View.GONE);
+                        linearDIREC_LET_SVP.setVisibility(View.GONE);
+                        linearDIREC_CUAD_VP.setVisibility(View.GONE);
+                        linearDIREC_NUM_VG.setVisibility(View.GONE);
+                        linearDIREC_LET_VG.setVisibility(View.GONE);
+                        linearDIREC_SF_VG.setVisibility(View.GONE);
+                        linearDIREC_LET_SVG.setVisibility(View.GONE);
+                        linearDIREC_NUM_PLACA.setVisibility(View.GONE);
+                        linearDIREC_CUAD_VG.setVisibility(View.GONE);
+                        linearDIREC_P_COMP.setVisibility(View.GONE);
+                    }else{
+                        linearDIREC_NNOM_VP.setVisibility(View.VISIBLE);
+                        linearDIREC_NUM_VP.setVisibility(View.VISIBLE);
+                        linearDIREC_LET_VP.setVisibility(View.VISIBLE);
+                        linearDIREC_SF_VP.setVisibility(View.VISIBLE);
+                        linearDIREC_LET_SVP.setVisibility(View.VISIBLE);
+                        linearDIREC_CUAD_VP.setVisibility(View.VISIBLE);
+                        linearDIREC_NUM_VG.setVisibility(View.VISIBLE);
+                        linearDIREC_LET_VG.setVisibility(View.VISIBLE);
+                        linearDIREC_SF_VG.setVisibility(View.VISIBLE);
+                        linearDIREC_LET_SVG.setVisibility(View.VISIBLE);
+                        linearDIREC_NUM_PLACA.setVisibility(View.VISIBLE);
+                        linearDIREC_CUAD_VG.setVisibility(View.VISIBLE);
+                        linearDIREC_P_COMP.setVisibility(View.VISIBLE);
+                    }
                     DIREC_VP=diligenciadoNormalizador.getDirecVp();
                     DIREC_NNOM_VP=diligenciadoNormalizador.getDirecNnomVp();
                     DIREC_NUM_VP=diligenciadoNormalizador.getDirecNumVp();
@@ -607,7 +628,7 @@ public class FormularioUnidad extends AppCompatActivity {
                     editDIREC_NUM_VP.setText(DIREC_NUM_VP);
                     spinnerDIREC_LET_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_LET_VP,DIREC_LET_VP));
                     editDIREC_LET_VP_OTRO.setText(DIREC_LET_VP_OTRO);
-                    if(DIREC_SF_VP.equals("")){
+                    if(Util.stringNullEmptys(DIREC_SF_VP)){
                         spinnerDIREC_SF_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VP,"2"));
                     }else{
                         spinnerDIREC_SF_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VP,DIREC_SF_VP));
@@ -615,7 +636,7 @@ public class FormularioUnidad extends AppCompatActivity {
 
                     spinnerDIREC_LET_SVP.setSelection(getIndexSpinnerContains(spinnerDIREC_LET_SVP,DIREC_LET_SVP));
                     editDIREC_LET_SVP_OTRO.setText(DIREC_LET_SVP_OTRO);
-                    if(DIREC_CUAD_VP.equals("")){
+                    if(Util.stringNullEmptys(DIREC_CUAD_VP)){
                         spinnerDIREC_CUAD_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_CUAD_VP,"1"));
                     }else{
                         spinnerDIREC_CUAD_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_CUAD_VP,DIREC_CUAD_VP));
@@ -625,7 +646,7 @@ public class FormularioUnidad extends AppCompatActivity {
                     spinnerDIREC_LET_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_LET_VG,DIREC_LET_VG));
                     editDIREC_LET_VG_OTRO.setText(DIREC_LET_VG_OTRO);
                     spinnerDIREC_SF_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VG,DIREC_SF_VG));
-                    if(DIREC_SF_VG.equals("")){
+                    if(Util.stringNullEmptys(DIREC_SF_VG)){
                         spinnerDIREC_SF_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VG,"2"));
                     }else{
                         spinnerDIREC_SF_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VG,DIREC_SF_VG));
@@ -659,10 +680,133 @@ public class FormularioUnidad extends AppCompatActivity {
                         }
                     }
 
-                    spinnerDIREC_COMP.setSelection(getIndexSpinnerContains(spinnerDIREC_COMP,DIREC_COMP));
-                    editDIREC_TEX_COM.setText(DIREC_TEX_COM);
+                    lstComplemento = db.getComplementoNormalizador(diligenciadoNormalizador.getId());
+                    recycler_complementos = (RecyclerView) findViewById(R.id.recycler_complementos);
+                    mAdapterComplemento = new ConteoAdapterComplementos(lstComplemento,FormularioUnidad.this);
+                    RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                    recycler_complementos.setLayoutManager(mLayoutManager);
+                    recycler_complementos.setItemAnimator(new DefaultItemAnimator());
+                    recycler_complementos.addItemDecoration(new DividerItemDecoration(v.getContext(), LinearLayoutManager.VERTICAL));
 
+                    recycler_complementos.setAdapter(mAdapterComplemento);
+                    mAdapterComplemento.notifyDataSetChanged();
+                    concatDireccion();
+                }else{
+                    if(id_unidad!= null && !id_unidad.equals("1")){
+                        Integer valor = Integer.valueOf(id_unidad) - 1;
+                        NormalizadorDireccionDTO normalizadorAnterior = db.getNormalizador(id_manzana,id_edificacion,valor.toString());
+                        if(normalizadorAnterior!= null && normalizadorAnterior.getId()!= null){
+                            if(Util.stringNullEmptys(DIREC_PREVIA) &&  DIREC_PREVIA.equals("1")
+                                    || DIREC_PREVIA.equals("2") || DIREC_PREVIA.equals("3")){  // Diligencia de la 1 a la 10
+                                DIREC_VP=normalizadorAnterior.getDirecVp();
+                                DIREC_NNOM_VP=normalizadorAnterior.getDirecNnomVp();
+                                DIREC_NUM_VP=normalizadorAnterior.getDirecNumVp();
+                                DIREC_LET_VP=normalizadorAnterior.getDirecLetVp();
+                                if(DIREC_LET_VP!= null && DIREC_LET_VP.equals("Otros"))
+                                    linearDIREC_LET_VP_OTRO.setVisibility(View.VISIBLE);
 
+                                DIREC_LET_VP_OTRO=normalizadorAnterior.getDirecLetVpOtro();
+                                DIREC_SF_VP=normalizadorAnterior.getDirecSfVp();
+                                DIREC_LET_SVP=normalizadorAnterior.getDirecLetSvp();
+                                if(DIREC_LET_SVP!= null && DIREC_LET_SVP.equals("Otros"))
+                                    linearDIREC_LET_SVP_OTRO.setVisibility(View.VISIBLE);
+
+                                DIREC_LET_SVP_OTRO=normalizadorAnterior.getDirecLetSvpOtro();
+                                DIREC_CUAD_VP=normalizadorAnterior.getDirecCuadVp();
+                                DIREC_NUM_VG=normalizadorAnterior.getDirecNumVg();
+                                DIREC_LET_VG=normalizadorAnterior.getDirecLetVg();
+                                if(DIREC_LET_VG!= null && DIREC_LET_VG.equals("Otros"))
+                                    linearDIREC_LET_VG_OTRO.setVisibility(View.VISIBLE);
+
+                                DIREC_LET_VG_OTRO=normalizadorAnterior.getDirecLetVgOtro();
+                                DIREC_SF_VG=normalizadorAnterior.getDirecSfVg();
+                                DIREC_LET_SVG=normalizadorAnterior.getDirecLetSvg();
+                                if(DIREC_LET_SVG!= null && DIREC_LET_SVG.equals("Otros"))
+                                    linearDIREC_LET_SVG_OTRO.setVisibility(View.VISIBLE);
+
+                                DIREC_LET_SVG_OTRO=normalizadorAnterior.getDirecLetSvgOtro();  //pregunta 10
+
+                                spinnerDIREC_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_VP,DIREC_VP));
+                                editDIREC_NNOM_VP.setText(DIREC_NNOM_VP);
+                                editDIREC_NUM_VP.setText(DIREC_NUM_VP);
+                                spinnerDIREC_LET_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_LET_VP,DIREC_LET_VP));
+                                editDIREC_LET_VP_OTRO.setText(DIREC_LET_VP_OTRO);
+                                if(Util.stringNullEmptys(DIREC_SF_VP)){
+                                    spinnerDIREC_SF_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VP,"2"));
+                                }else{
+                                    spinnerDIREC_SF_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VP,DIREC_SF_VP));
+                                }
+
+                                spinnerDIREC_LET_SVP.setSelection(getIndexSpinnerContains(spinnerDIREC_LET_SVP,DIREC_LET_SVP));
+                                editDIREC_LET_SVP_OTRO.setText(DIREC_LET_SVP_OTRO);
+                                if(Util.stringNullEmptys(DIREC_CUAD_VP)){
+                                    spinnerDIREC_CUAD_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_CUAD_VP,"1"));
+                                }else{
+                                    spinnerDIREC_CUAD_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_CUAD_VP,DIREC_CUAD_VP));
+                                }
+
+                                editDIREC_NUM_VG.setText(DIREC_NUM_VG);
+                                spinnerDIREC_LET_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_LET_VG,DIREC_LET_VG));
+                                editDIREC_LET_VG_OTRO.setText(DIREC_LET_VG_OTRO);
+                                spinnerDIREC_SF_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VG,DIREC_SF_VG));
+                                if(Util.stringNullEmptys(DIREC_SF_VG)){
+                                    spinnerDIREC_SF_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VG,"2"));
+                                }else{
+                                    spinnerDIREC_SF_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VG,DIREC_SF_VG));
+                                }
+
+                                spinnerDIREC_LET_SVG.setSelection(getIndexSpinnerContains(spinnerDIREC_LET_SVG,DIREC_LET_SVG));
+                                editDIREC_LET_SVG_OTRO.setText(DIREC_LET_SVG_OTRO);
+                                concatDireccion();
+                            }
+
+                            if(Util.stringNullEmptys(DIREC_PREVIA) && DIREC_PREVIA.equals("2")|| DIREC_PREVIA.equals("3")){  // Diligencia de la 10 a la 12
+                                DIREC_NUM_PLACA=normalizadorAnterior.getDirecNumPlaca();
+                                DIREC_CUAD_VG=normalizadorAnterior.getDirecCuadVg();
+
+                                editDIREC_NUM_PLACA.setText(DIREC_NUM_PLACA);
+
+                                if(DIREC_CUAD_VG!= null){
+                                    if(DIREC_CUAD_VG.equals("")){
+                                        spinnerDIREC_CUAD_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_CUAD_VG,"1"));
+                                    }else{
+                                        spinnerDIREC_CUAD_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_CUAD_VG,DIREC_CUAD_VG));
+                                    }
+                                }
+                                concatDireccion();
+                            }
+
+                            if(Util.stringNullEmptys(DIREC_PREVIA) && DIREC_PREVIA.equals("3")){  // Diligencia de la 12 a la 15
+                                DIREC_P_COMP=normalizadorAnterior.getDirecPComp();
+                                if(DIREC_P_COMP!= null ){
+                                    if(DIREC_P_COMP.equals("1")){
+                                        id_complemento_si.setChecked(true);
+                                        id_complemento_no.setChecked(false);
+                                        linearComplemento.setVisibility(View.VISIBLE);
+                                        linearComplementoAcomp.setVisibility(View.VISIBLE);
+                                    }
+                                    if(DIREC_P_COMP.equals("2")){
+                                        id_complemento_si.setChecked(false);
+                                        id_complemento_no.setChecked(true);
+                                        linearComplemento.setVisibility(View.GONE);
+                                        linearComplementoAcomp.setVisibility(View.GONE);
+                                    }
+                                }
+
+                                lstComplemento = db.getComplementoNormalizador(normalizadorAnterior.getId());
+                                recycler_complementos = (RecyclerView) findViewById(R.id.recycler_complementos);
+                                mAdapterComplemento = new ConteoAdapterComplementos(lstComplemento,FormularioUnidad.this);
+                                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                                recycler_complementos.setLayoutManager(mLayoutManager);
+                                recycler_complementos.setItemAnimator(new DefaultItemAnimator());
+                                recycler_complementos.addItemDecoration(new DividerItemDecoration(v.getContext(), LinearLayoutManager.VERTICAL));
+
+                                recycler_complementos.setAdapter(mAdapterComplemento);
+                                mAdapterComplemento.notifyDataSetChanged();
+                                concatDireccion();
+                            }
+                        }
+                    }
                 }
 
                 linearNormalizador.setVisibility(View.VISIBLE);
@@ -678,84 +822,91 @@ public class FormularioUnidad extends AppCompatActivity {
             public void onClick(View v) {
                 String retorno = "";
 
-                DIREC_NNOM_VP = editDIREC_NNOM_VP.getText().toString();//No Obligatorio
-                DIREC_NUM_VP = editDIREC_NUM_VP.getText().toString(); //Obligatorio, si pregunta DIREC_NNOM_VP seleccionó NA
-                DIREC_LET_VP_OTRO = editDIREC_LET_VP_OTRO.getText().toString();//Obligatorio si selecciona otro
-                DIREC_LET_SVP_OTRO = editDIREC_LET_SVP_OTRO.getText().toString();//Obligatorio si selecciona otro
-                DIREC_NUM_VG = editDIREC_NUM_VG.getText().toString();//Obligatorio
-                DIREC_LET_VG_OTRO = editDIREC_LET_VG_OTRO.getText().toString();//Obligatorio si selecciona otro
-                DIREC_LET_SVG_OTRO = editDIREC_LET_SVG_OTRO.getText().toString(); //Obligatorio si selecciona otro
-                DIREC_NUM_PLACA = editDIREC_NUM_PLACA.getText().toString();  //Obligatorio
-                DIREC_TEX_COM = editDIREC_TEX_COM.getText().toString(); // no obligatorio
-
-
-                if(DIREC_VP == null) //Obligatorio
-                    retorno = retorno + "Debe seleccionar el tipo de vía.\n";
-
-
-                if(DIREC_NNOM_VP!= null ){// No Obligatorio pero - Longitud > 3 y <= 150 caracteres
-                    if( !DIREC_NNOM_VP.equals("") &&  DIREC_NNOM_VP.length() < 3  && DIREC_NNOM_VP.length() >150){
-                        retorno = retorno + "El nombre común de via principal debe ser entre  3 y <= 150 caracteres.\n";
-                    }
-                    if( !DIREC_NNOM_VP.equals("") &&  DIREC_NNOM_VP.equals("NA")){
-                        if(DIREC_NUM_VP.equals("")){
-                            retorno = retorno + "El número de la via principal  3 y <= 150 caracteres.\n";
+                if(Util.stringNullEmptys(DIREC_VP) && DIREC_VP.equals("(NA)")){
+                    if(DIREC_P_COMP==null){
+                        retorno = retorno + "Seleccionar un tipo de complemento.\n";
+                    }else{
+                        if(DIREC_P_COMP.equals("1")) {
+                           if(lstComplemento.size() == 0){
+                               retorno = retorno + "Agregar por lo menos un complemento de la dirección.\n";
+                           }
                         }
                     }
-                }
-
-                if(DIREC_LET_VP != null && DIREC_LET_VP.equals("Otro")){
-                    if(DIREC_LET_VP_OTRO.equals("")){
-                        retorno = retorno + "Diligenciar Otro en letra via principal.\n";
-                    }
-                }
-
-                if(DIREC_SF_VP == null ){
-                    retorno = retorno + "Seleccionar el sufijo en via principal.\n";
-                }
-
-                if(DIREC_LET_SVP != null && DIREC_LET_SVP.equals("Otro")){
-                    if(DIREC_LET_SVP_OTRO.equals("")){
-                        retorno = retorno + "Diligenciar Otro en Sufijo en letra via principal.\n";
-                    }
-                }
-
-                if(DIREC_NUM_VG.equals("")){
-                    retorno = retorno + "Diligenciar número de la vía generadora, Rango válido >0 y <=999.\n";
-                }
-
-                if(DIREC_LET_VG != null && DIREC_LET_VG.equals("Otro")){
-                    if(DIREC_LET_VG_OTRO.equals("")){
-                        retorno = retorno + "Diligenciar Otro en letra  via generadora.\n";
-                    }
-                }
-
-                if(DIREC_SF_VG == null){
-                    retorno = retorno + "Seleccionar el sufijo de la vía generadora.\n";
-                }
-
-                if(DIREC_LET_SVG != null && DIREC_LET_SVG.equals("Otro")){
-                    if(DIREC_LET_SVG_OTRO.equals("")){
-                        retorno = retorno + "Diligenciar Otro en letra de Sufijo via generadora.\n";
-                    }
-                }
-
-                if(DIREC_NUM_PLACA.equals("")){
-                    retorno = retorno + "Diligenciar el numero de placa, Rango válido >0 y <=999.\n";
-                }
-
-                if(DIREC_P_COMP==null){
-                    retorno = retorno + "Seleccionar un tipo de complemento.\n";
                 }else{
-                    if(DIREC_P_COMP.equals("1")) {
-                        if (DIREC_COMP == null) {
-                            retorno = retorno + "Seleccionar un complemento de la dirección.\n";
+                    DIREC_NNOM_VP = editDIREC_NNOM_VP.getText().toString();//No Obligatorio
+                    DIREC_NUM_VP = editDIREC_NUM_VP.getText().toString(); //Obligatorio, si pregunta DIREC_NNOM_VP seleccionó NA
+                    DIREC_LET_VP_OTRO = editDIREC_LET_VP_OTRO.getText().toString();//Obligatorio si selecciona otro
+                    DIREC_LET_SVP_OTRO = editDIREC_LET_SVP_OTRO.getText().toString();//Obligatorio si selecciona otro
+                    DIREC_NUM_VG = editDIREC_NUM_VG.getText().toString();//Obligatorio
+                    DIREC_LET_VG_OTRO = editDIREC_LET_VG_OTRO.getText().toString();//Obligatorio si selecciona otro
+                    DIREC_LET_SVG_OTRO = editDIREC_LET_SVG_OTRO.getText().toString(); //Obligatorio si selecciona otro
+                    DIREC_NUM_PLACA = editDIREC_NUM_PLACA.getText().toString();  //Obligatorio
+                    DIREC_TEX_COM = editDIREC_TEX_COM.getText().toString(); // no obligatorio
+
+
+                    if(DIREC_VP == null) //Obligatorio
+                        retorno = retorno + "Debe seleccionar el tipo de vía.\n";
+
+
+                    if(DIREC_NNOM_VP!= null ){// No Obligatorio pero - Longitud > 3 y <= 150 caracteres
+                        if( !DIREC_NNOM_VP.equals("") &&  DIREC_NNOM_VP.length() < 3  && DIREC_NNOM_VP.length() >150){
+                            retorno = retorno + "El nombre común de via principal debe ser entre  3 y <= 150 caracteres.\n";
                         }
-                        if (DIREC_TEX_COM.equals("") ) {
-                            retorno = retorno + "Diligenciar un complemento de la dirección.\n";
-                        }else{
-                            if (DIREC_TEX_COM.length() < 2  && DIREC_TEX_COM.length() > 50 ) {
-                                retorno = retorno + "El campo complemento de la dirección debe tener una longitud mínimo 2 y máximo 50 caracteres.\n";
+                        if( !DIREC_NNOM_VP.equals("") &&  DIREC_NNOM_VP.contains("NA")){
+                            if(DIREC_NUM_VP.equals("")){
+                                retorno = retorno + "El número de la via principal  3 y <= 150 caracteres.\n";
+                            }
+                        }
+                    }
+
+                    if(DIREC_LET_VP != null && DIREC_LET_VP.equals("Otro")){
+                        if(DIREC_LET_VP_OTRO.equals("")){
+                            retorno = retorno + "Diligenciar Otro en letra via principal.\n";
+                        }
+                    }
+
+                    if(DIREC_SF_VP == null ){
+                        retorno = retorno + "Seleccionar el sufijo en via principal.\n";
+                    }
+
+                    if(DIREC_LET_SVP != null && DIREC_LET_SVP.equals("Otro")){
+                        if(DIREC_LET_SVP_OTRO.equals("")){
+                            retorno = retorno + "Diligenciar Otro en Sufijo en letra via principal.\n";
+                        }
+                    }
+
+                    if(DIREC_NUM_VG.equals("")){
+                        retorno = retorno + "Diligenciar número de la vía generadora, Rango válido >0 y <=999.\n";
+                    }
+
+                    if(DIREC_LET_VG != null && DIREC_LET_VG.equals("Otro")){
+                        if(DIREC_LET_VG_OTRO.equals("")){
+                            retorno = retorno + "Diligenciar Otro en letra  via generadora.\n";
+                        }
+                    }
+
+                    if(DIREC_SF_VG == null){
+                        retorno = retorno + "Seleccionar el sufijo de la vía generadora.\n";
+                    }
+
+                    if(DIREC_LET_SVG != null && DIREC_LET_SVG.equals("Otro")){
+                        if(DIREC_LET_SVG_OTRO.equals("")){
+                            retorno = retorno + "Diligenciar Otro en letra de Sufijo via generadora.\n";
+                        }
+                    }
+
+                    if(DIREC_NUM_PLACA.equals("")){
+                        retorno = retorno + "Diligenciar el numero de placa, Rango válido >0 y <=999.\n";
+                    }
+
+                    if(DIREC_P_COMP==null){
+                        retorno = retorno + "Seleccionar un tipo de complemento.\n";
+                    }else{
+                        if(DIREC_P_COMP.equals("1")) {
+                            if(DIREC_P_COMP.equals("1")) {
+                                if(lstComplemento.size() == 0){
+                                    retorno = retorno + "Agregar por lo menos un complemento de la dirección.\n";
+                                }
                             }
                         }
                     }
@@ -764,6 +915,7 @@ public class FormularioUnidad extends AppCompatActivity {
                 if(retorno.equals("")){
                     normalizador.setIdManzana(id_manzana);
                     normalizador.setIdUnidadEconomica(id_unidad);
+                    normalizador.setIdEdificacion(id_edificacion);
                     normalizador.setDirecVp(DIREC_VP);
                     normalizador.setDirecNnomVp(DIREC_NNOM_VP);
                     normalizador.setDirecNumVp(DIREC_NUM_VP);
@@ -787,6 +939,14 @@ public class FormularioUnidad extends AppCompatActivity {
                     normalizador.setUsuario(session.getnombre());
                     db.postNormalizador(normalizador);
 
+                    NormalizadorDireccionDTO normalizador = db.getNormalizador(id_manzana,id_edificacion,id_unidad);
+
+                    db.postComplementoNormalizador(null, true);
+                    for (ComplementoNormalizadorDTO lista : lstComplemento) {
+                        lista.setIdNormalizador(normalizador.getId());
+                        db.postComplementoNormalizador(lista, false);
+                    }
+
                     linearNormalizador.setVisibility(View.GONE);
                     linearAdicionarAgregarDireccion.setVisibility(View.GONE);
                     linearPregunta6.setVisibility(View.VISIBLE);
@@ -794,6 +954,34 @@ public class FormularioUnidad extends AppCompatActivity {
                     guardar_formulario.setVisibility(View.VISIBLE);
                 }else{
                     msj.dialogoMensajeError("Error Validación", retorno);
+                }
+            }
+        });
+
+        linearAdicionarComplemento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mensaje = "";
+
+                if(DIREC_COMP == null)
+                    mensaje = mensaje+ "Seleccionar el complemento de la direccion. \n";
+
+                if(editDIREC_TEX_COM.getText().toString().equals(""))
+                    mensaje = mensaje+ "Digitar el complemento de la direccion. \n";
+
+                if(Util.stringNullEmptys(mensaje)){
+                    msj.dialogoMensajeError("Error", mensaje);
+                }else{
+                    ComplementoNormalizadorDTO nuevo = new ComplementoNormalizadorDTO();
+                    nuevo.setDirecTextComp(editDIREC_TEX_COM.getText().toString());
+                    nuevo.setDirecComp(DIREC_COMP);
+                    nuevo.setDirecComplemento((DIREC_COMP + " " + editDIREC_TEX_COM.getText().toString()).trim());
+                    lstComplemento.add(nuevo);
+                    mAdapterComplemento.notifyDataSetChanged();
+                    msj.dialogoMensaje("Success", "Se ha agregado un complemento.");
+                    editDIREC_TEX_COM.setText("");
+                    spinnerDIREC_COMP.setSelection(getIndexSpinnerContains(spinnerDIREC_COMP,"Seleccione..."));
+                    concatDireccion();
                 }
             }
         });
@@ -807,6 +995,7 @@ public class FormularioUnidad extends AppCompatActivity {
                 if(retorno == null){
                     unidad=saveFormulario();
                     unidad.setImei(idDevice);
+                    unidad.setDirecc(concatDireccion());
                     if(db.guardarUnidadEconomica(unidad,id_manzana,id_edificacion,id_unidad)){
                         normalizador.setIdManzana(id_manzana);
                         normalizador.setIdUnidadEconomica(id_unidad);
@@ -826,6 +1015,21 @@ public class FormularioUnidad extends AppCompatActivity {
         if(manzana.getFinalizado().equals("Si")){
             guardar_formulario.setVisibility(View.GONE);
         }
+
+        linearDIREC_NNOM_VP.setVisibility(View.GONE);
+        linearDIREC_NUM_VP.setVisibility(View.GONE);
+        linearDIREC_LET_VP.setVisibility(View.GONE);
+        linearDIREC_SF_VP.setVisibility(View.GONE);
+        linearDIREC_LET_SVP.setVisibility(View.GONE);
+        linearDIREC_CUAD_VP.setVisibility(View.GONE);
+        linearDIREC_NUM_VG.setVisibility(View.GONE);
+        linearDIREC_LET_VG.setVisibility(View.GONE);
+        linearDIREC_SF_VG.setVisibility(View.GONE);
+        linearDIREC_LET_SVG.setVisibility(View.GONE);
+        linearDIREC_NUM_PLACA.setVisibility(View.GONE);
+        linearDIREC_CUAD_VG.setVisibility(View.GONE);
+        linearDIREC_P_COMP.setVisibility(View.GONE);
+
         llenarFormulario();
 
         spinnerDIREC_VP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -833,6 +1037,70 @@ public class FormularioUnidad extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(!spinnerDIREC_VP.getSelectedItem().toString().equals("Seleccione...")){
                    DIREC_VP = Util.getLimpiarAcronimoDireccion(spinnerDIREC_VP.getSelectedItem().toString());
+                   if(DIREC_VP.contains("NA")){
+                       linearDIREC_NNOM_VP.setVisibility(View.GONE);
+                       linearDIREC_NUM_VP.setVisibility(View.GONE);
+                       linearDIREC_LET_VP.setVisibility(View.GONE);
+                       linearDIREC_SF_VP.setVisibility(View.GONE);
+                       linearDIREC_LET_SVP.setVisibility(View.GONE);
+                       linearDIREC_CUAD_VP.setVisibility(View.GONE);
+                       linearDIREC_NUM_VG.setVisibility(View.GONE);
+                       linearDIREC_LET_VG.setVisibility(View.GONE);
+                       linearDIREC_SF_VG.setVisibility(View.GONE);
+                       linearDIREC_LET_SVG.setVisibility(View.GONE);
+                       linearDIREC_NUM_PLACA.setVisibility(View.GONE);
+                       linearDIREC_CUAD_VG.setVisibility(View.GONE);
+                       linearDIREC_P_COMP.setVisibility(View.GONE);
+
+                       editDIREC_NNOM_VP.setText("");
+                       editDIREC_NUM_VP.setText("");
+                       spinnerDIREC_LET_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_LET_VP,"Seleccione..."));
+                       editDIREC_LET_VP_OTRO.setText("");
+                       spinnerDIREC_SF_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VP,"Seleccione..."));
+                       spinnerDIREC_LET_SVP.setSelection(getIndexSpinnerContains(spinnerDIREC_LET_SVP,"Seleccione..."));
+                       editDIREC_LET_SVP_OTRO.setText("");
+                       spinnerDIREC_CUAD_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_CUAD_VP,"Seleccione..."));
+
+
+                       editDIREC_NUM_VG.setText("");
+                       spinnerDIREC_LET_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_LET_VG,"Seleccione..."));
+                       editDIREC_LET_VG_OTRO.setText("");
+                       spinnerDIREC_SF_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VG,"Seleccione..."));
+                       spinnerDIREC_LET_SVG.setSelection(getIndexSpinnerContains(spinnerDIREC_LET_SVG,"Seleccione..."));
+                       editDIREC_LET_SVG_OTRO.setText("");
+                       editDIREC_NUM_PLACA.setText("");
+                       spinnerDIREC_CUAD_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_CUAD_VG,"Seleccione..."));
+
+                       DIREC_NNOM_VP = null;
+                       DIREC_NUM_VP = null;
+                       DIREC_LET_VP = null;
+                       DIREC_SF_VP = null;
+                       DIREC_LET_SVP = null;
+                       DIREC_CUAD_VP = null;
+                       DIREC_NUM_VG = null;
+                       DIREC_LET_VG = null;
+                       DIREC_SF_VG = null;
+                       DIREC_LET_SVG = null;
+                       DIREC_NUM_PLACA = null;
+                       DIREC_CUAD_VG = null;
+                       DIREC_P_COMP = "1";
+
+                       id_complemento_si.setChecked(true);
+                   }else{
+                       linearDIREC_NNOM_VP.setVisibility(View.VISIBLE);
+                       linearDIREC_NUM_VP.setVisibility(View.VISIBLE);
+                       linearDIREC_LET_VP.setVisibility(View.VISIBLE);
+                       linearDIREC_SF_VP.setVisibility(View.VISIBLE);
+                       linearDIREC_LET_SVP.setVisibility(View.VISIBLE);
+                       linearDIREC_CUAD_VP.setVisibility(View.VISIBLE);
+                       linearDIREC_NUM_VG.setVisibility(View.VISIBLE);
+                       linearDIREC_LET_VG.setVisibility(View.VISIBLE);
+                       linearDIREC_SF_VG.setVisibility(View.VISIBLE);
+                       linearDIREC_LET_SVG.setVisibility(View.VISIBLE);
+                       linearDIREC_NUM_PLACA.setVisibility(View.VISIBLE);
+                       linearDIREC_CUAD_VG.setVisibility(View.VISIBLE);
+                       linearDIREC_P_COMP.setVisibility(View.VISIBLE);
+                   }
                 }
                 concatDireccion();
             }
@@ -924,7 +1192,7 @@ public class FormularioUnidad extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(!spinnerDIREC_COMP.getSelectedItem().toString().equals("Seleccione...")){
                     DIREC_COMP = Util.getLimpiarAcronimoDireccion(spinnerDIREC_COMP.getSelectedItem().toString());
-                    if(DIREC_COMP.equals("(NA)")){
+                    if(DIREC_COMP.contains("(NA)")){
                         DIREC_COMP = "";
                     }
                 }
@@ -1076,9 +1344,6 @@ public class FormularioUnidad extends AppCompatActivity {
         if(DIREC_P_TIPO == null )
             retorno = retorno + "Debe seleccionar el tipo dirección.\n";
 
-        if(NOV_CARTO == null )
-            retorno = retorno + "Debe seleccionar ña novedad cartográfica.\n";
-
         if(UNIDAD_OBSERVACION == null )
             retorno = retorno + "Debe seleccionar el estado de la unidad de observación.\n";
 
@@ -1093,8 +1358,10 @@ public class FormularioUnidad extends AppCompatActivity {
         if(SECTOR_ECONOMICO == null )
             retorno = retorno + "Debe seleccionar el sector económico de la unidad.\n";
 
-//        if(DIRECC == null)
-//            retorno = retorno + "Debe agregar la dirección con el normalizador de dirección.\n";
+        NormalizadorDireccionDTO normalizador = db.getNormalizador(id_manzana,id_edificacion, id_unidad);
+        if(normalizador!= null && !Util.stringNullEmptys(normalizador.getId())){
+            retorno = retorno + "Debe agregar la dirección normalizada.\n";
+        }
 
         if(retorno.equals("")) retorno = null;
 
@@ -1170,6 +1437,9 @@ public class FormularioUnidad extends AppCompatActivity {
         retorno.setImei(manzana.getImei());
         retorno.setManzana(manzana.getManzana());
         retorno.setSupervisor(manzana.getSupervisor());
+        retorno.setUc(manzana.getUc());
+        retorno.setObsmz(manzana.getObsmz());
+        retorno.setNov_carto(manzana.getNov_carto());
         return retorno;
     }
 
@@ -1202,7 +1472,6 @@ public class FormularioUnidad extends AppCompatActivity {
         retorno.setDirec_previa(unidad.getDirec_previa());
         retorno.setDirec_p_tipo(unidad.getDirec_p_tipo());
         retorno.setDirecc(unidad.getDirecc());
-        retorno.setNov_carto(unidad.getNov_carto());
         retorno.setEstado_unidad_observacion(unidad.getEstado_unidad_observacion());
         retorno.setTipo_unidad_observacion(unidad.getTipo_unidad_observacion());
         retorno.setTipo_vendedor(unidad.getTipo_vendedor());
@@ -1231,7 +1500,6 @@ public class FormularioUnidad extends AppCompatActivity {
         unidad.setId_unidad(id_unidad);
         unidad.setDirec_previa(DIREC_PREVIA);
         unidad.setDirec_p_tipo(DIREC_P_TIPO);
-        unidad.setNov_carto(NOV_CARTO);
         unidad.setEstado_unidad_observacion(UNIDAD_OBSERVACION);
         unidad.setTipo_unidad_observacion(TIPO_OBSERVACION);
         unidad.setTipo_vendedor(TIPO_VENDEDOR);
@@ -1251,19 +1519,38 @@ public class FormularioUnidad extends AppCompatActivity {
         unidad=db.getUnidadEconomica(id_manzana,id_edificacion,id_unidad);
 
         if(unidad!= null && unidad.getId() != null && !unidad.getId().isEmpty()){
+
+            if(unidad.getId_unidad().equals("1")){
+                spinnerDIREC_PREVIA.setSelection(getIndexSpinnerContains(spinnerDIREC_PREVIA, "4"));
+                DIREC_PREVIA = "4";
+                spinnerDIREC_PREVIA.setEnabled(false);
+                DIREC_P_TIPO = unidad.getDirec_p_tipo();
+                spinnerDIREC_P_TIPO.setSelection(getIndexSpinnerContains(spinnerDIREC_P_TIPO, DIREC_P_TIPO));
+            }else{
+                ArrayAdapter<CharSequence> adapter_DIREC_PREVIA = ArrayAdapter.createFromResource(this,
+                        R.array.direccion_previa2, android.R.layout.simple_spinner_item);
+                adapter_DIREC_PREVIA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerDIREC_PREVIA.setAdapter(adapter_DIREC_PREVIA);
+
+                Integer valor = Integer.valueOf(id_unidad) - 1;
+                UnidadEconomica unidadAnterior = db.getUnidadEconomica(id_manzana,id_edificacion,  valor.toString() );
+                DIREC_P_TIPO = unidadAnterior.getDirec_p_tipo();
+                spinnerDIREC_P_TIPO.setSelection(getIndexSpinnerContains(spinnerDIREC_P_TIPO, DIREC_P_TIPO));
+                spinnerDIREC_P_TIPO.setEnabled(false);
+            }
+
+            if(unidad.getDirec_previa()!= null){
+                DIREC_PREVIA = unidad.getDirec_previa();
+                spinnerDIREC_PREVIA.setSelection(getIndexSpinnerContains(spinnerDIREC_PREVIA, DIREC_PREVIA));
+            }
+
             isEdit = 1;
-            DIREC_PREVIA = unidad.getDirec_previa();
-            DIREC_P_TIPO = unidad.getDirec_p_tipo();
             DIRECC = unidad.getDirecc();
-            NOV_CARTO = unidad.getNov_carto();
             UNIDAD_OBSERVACION = unidad.getEstado_unidad_observacion();
             TIPO_OBSERVACION = unidad.getTipo_unidad_observacion();
             TIPO_VENDEDOR = unidad.getTipo_vendedor();
             SECTOR_ECONOMICO = unidad.getSector_economico();
 
-            spinnerDIREC_PREVIA.setSelection(getIndexSpinnerContains(spinnerDIREC_PREVIA, DIREC_PREVIA));
-            spinnerDIREC_P_TIPO.setSelection(getIndexSpinnerContains(spinnerDIREC_P_TIPO, DIREC_P_TIPO));
-            spinnerNOV_CARTO.setSelection(getIndexSpinnerContains(spinnerNOV_CARTO, NOV_CARTO));
             spinnerUnidadObservacion.setSelection(getIndexSpinnerContains(spinnerUnidadObservacion, UNIDAD_OBSERVACION));
 
             if(UNIDAD_OBSERVACION!= null && UNIDAD_OBSERVACION.equals("1")){
@@ -1434,11 +1721,84 @@ public class FormularioUnidad extends AppCompatActivity {
     private String concatDireccion(){
         String direccion = "";
 
+        if(Util.stringNullEmptys(DIREC_VP) && !DIREC_VP.contains("NA")){
+            direccion = (direccion +" "+ DIREC_VP).trim();
+        }
+        if(Util.stringNullEmptys(editDIREC_NNOM_VP.getText().toString())){
+            direccion = (direccion +" "+ editDIREC_NNOM_VP.getText().toString()).trim();
+        }
+        if(Util.stringNullEmptys(editDIREC_NUM_VP.getText().toString())){
+            direccion = (direccion +" "+ editDIREC_NUM_VP.getText().toString()).trim();
+        }
+        if(Util.stringNullEmptys(DIREC_LET_VP)){
+            if(DIREC_LET_VP.equals("Otros")){
+                direccion = (direccion +" "+ editDIREC_LET_VP_OTRO.getText().toString()).trim();
+            }else{
+                direccion = (direccion +" "+ DIREC_LET_VP).trim();
+            }
+        }
+        if(Util.stringNullEmptys(DIREC_SF_VP) && !DIREC_SF_VP.contains("2")){
+            direccion = (direccion +" "+ DIREC_SF_VP).trim();
+        }
+        if(Util.stringNullEmptys(DIREC_LET_SVP)){
+            if(DIREC_LET_SVP.equals("Otros")){
+                direccion = (direccion +" "+ editDIREC_LET_SVP_OTRO.getText().toString()).trim();
+            }else{
+                direccion = (direccion +" "+ DIREC_LET_SVP).trim();
+            }
+        }
+        if(Util.stringNullEmptys(DIREC_CUAD_VP) && !DIREC_CUAD_VP.contains("1")){
+            direccion = (direccion +" "+ DIREC_CUAD_VP).trim();
+        }
+        if(Util.stringNullEmptys(editDIREC_NUM_VG.getText().toString())){
+            direccion = (direccion +" "+ editDIREC_NUM_VG.getText().toString()).trim();
+        }
+        if(Util.stringNullEmptys(DIREC_LET_VG)){
+            if(DIREC_LET_VG.equals("Otros")){
+                direccion = (direccion +" "+ editDIREC_LET_VG_OTRO.getText().toString()).trim();
+            }else{
+                direccion = (direccion +" "+ DIREC_LET_VG).trim();
+            }
+        }
+        if(Util.stringNullEmptys(DIREC_SF_VG) && !DIREC_SF_VG.contains("2")){
+            direccion = (direccion +" "+ DIREC_SF_VG).trim();
+        }
+        if(Util.stringNullEmptys(DIREC_LET_SVG)){
+            if(DIREC_LET_SVG.equals("Otros")){
+                direccion = (direccion +" "+ editDIREC_LET_SVG_OTRO.getText().toString()).trim();
+            }else{
+                direccion = (direccion +" "+ DIREC_LET_SVG).trim();
+            }
+        }
+        if(Util.stringNullEmptys(editDIREC_NUM_PLACA.getText().toString())){
+            direccion = (direccion +" "+ editDIREC_NUM_PLACA.getText().toString()).trim();
+        }
+        if(Util.stringNullEmptys(DIREC_CUAD_VG) && !DIREC_CUAD_VG.contains("1")){
+            direccion = (direccion +" "+ DIREC_CUAD_VG).trim();
+        }
+        if(Util.stringNullEmptys(DIREC_P_COMP) && DIREC_P_COMP.contains("1")){
+            for (ComplementoNormalizadorDTO lista : lstComplemento) {
+                direccion = (direccion +" "+ lista.getDirecComplemento()).trim();
+            }
+        }
 
-
-
+        editDireccionCompleta.setText(direccion);
 
         return direccion;
+    }
+
+
+    /**
+     * Metodo para borrar el complemnto
+     *
+     * @param position
+     */
+    public void showDialogBorrarComplemneto(final int position ){
+        ComplementoNormalizadorDTO complemento = lstComplemento.get(position);
+        lstComplemento.remove(complemento);
+        mAdapterComplemento.notifyDataSetChanged();
+        msj.dialogoMensaje("Success", "Se ha eliminado el complemento.");
+        concatDireccion();
     }
 
 

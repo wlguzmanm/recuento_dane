@@ -33,7 +33,7 @@
             android:textSize="18dp"
             android:textColor="@color/dane"
             android:fontFamily="sans-serif"
-            android:text="Resumen del Conteo" />
+            android:text="Resumen del Re-Cuento" />
 
 
 
@@ -43,7 +43,15 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:layout_marginBottom="10dp"
-            android:text="A continuación se encuentra el resumen del conteo para la manzana." />
+            android:text="A continuación se encuentra el resumen del re-cuento para la manzana." />
+        <TextView
+            android:id="@+id/tv_resumenManzana"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:layout_marginBottom="10dp"
+            android:text="" />
+
 
     </LinearLayout>
 

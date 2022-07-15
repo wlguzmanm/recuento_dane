@@ -222,7 +222,13 @@ public class MainActivity extends AppCompatActivity
                         offline = db.getOffline("OFFLINE", session.getusename());
                         if(offline!= null && !offline.isActivo()){
                             try{
-                                controlador.getAsignaciones(session.getusename(), new VolleyCallBack() {
+                                //TODO: Se coloca directo.
+                                Intent formulario = new Intent(MainActivity.this, MapsActivityInicial.class);
+                                startActivity(formulario);
+                                MainActivity.this.finish();
+
+                                //TODO: Asignaciones se quita
+                                /*controlador.getAsignaciones(session.getusename(), new VolleyCallBack() {
                                     @Override
                                     public void onSuccess() {
                                         if(!db.getAsignacionManzanaUsuario(session.getusename())){
@@ -234,7 +240,7 @@ public class MainActivity extends AppCompatActivity
                                             MainActivity.this.finish();
                                         }
                                     }
-                                });
+                                });*/
                             }catch (Exception e){
                                 Mensajes mitoast =new Mensajes(MainActivity.this);
                                 mitoast.generarToast("Ocurrio un error en el servicio de asignaciones. Con error "+e.getMessage(),"error");
@@ -401,8 +407,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
-
     /**
      * Metodo que setea valores de manzana
      *
@@ -472,7 +476,6 @@ public class MainActivity extends AppCompatActivity
         retorno.setDirec_previa(unidad.getDirec_previa());
         retorno.setDirec_p_tipo(unidad.getDirec_p_tipo());
         retorno.setDirecc(unidad.getDirecc());
-        retorno.setNov_carto(unidad.getNov_carto());
         retorno.setEstado_unidad_observacion(unidad.getEstado_unidad_observacion());
         retorno.setTipo_unidad_observacion(unidad.getTipo_unidad_observacion());
         retorno.setTipo_vendedor(unidad.getTipo_vendedor());
@@ -654,6 +657,7 @@ public class MainActivity extends AppCompatActivity
                 })
                 .show();
     }
+
 
     public void offline() {
         Intent activity = new Intent(MainActivity.this, ConfiguracionLocal.class);

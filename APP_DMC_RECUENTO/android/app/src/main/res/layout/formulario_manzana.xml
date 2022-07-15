@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="Formulario para el registro del conteo de unidades económicas." />
+            android:text="Formulario para el registro del re-cuento de unidades económicas." />
 
     </LinearLayout>
 
@@ -380,6 +380,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/linearNombreLocalidad"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -411,6 +412,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/linearCentroPoblado"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -442,6 +444,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/linearUnidadCobertura"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -955,6 +958,79 @@
                                 </RadioGroup>
                             </LinearLayout>
                         </LinearLayout>
+
+                        <!-- Pregunta novedades  -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta6_3"  />
+
+                                <Spinner
+                                    android:id="@+id/spinnerNOV_CARTO"
+                                    style="@style/Widget.AppCompat.Spinner"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:background="@drawable/borde_spinner"
+                                    android:dropDownWidth="wrap_content"
+                                    android:dropDownVerticalOffset="30dp"
+                                    android:hapticFeedbackEnabled="false"
+                                    android:paddingBottom="5dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:paddingTop="5dp"
+                                    android:popupBackground="@android:color/white"
+                                    android:popupElevation="0dp"
+                                    android:singleLine="true"
+                                    android:spinnerMode="dialog"
+                                    android:stateListAnimator="@drawable/spinner_sla"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Pregunta  Observacion  -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/titulo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pregunta5_4" />
+
+                                <EditText
+                                    android:id="@+id/editObservacionmz"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:justificationMode="inter_word"
+                                    android:inputType="textMultiLine"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:maxLength="200"
+                                    android:longClickable="false" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
                     </LinearLayout>
                 </LinearLayout>
 

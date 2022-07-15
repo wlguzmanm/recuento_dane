@@ -4,17 +4,17 @@ public class ComplementoNormalizadorDTO {
 
     private String id;
     private String idNormalizador;
-    private String direcPComp;
     private String direcComp;
+    private String direcTextComp;
     private String direcComplemento;
 
     public ComplementoNormalizadorDTO() {
     }
 
-    public ComplementoNormalizadorDTO(String id, String idNormalizador, String direcPComp, String direcComp, String direcComplemento) {
+    public ComplementoNormalizadorDTO(String id, String idNormalizador, String direcComp, String direcTextComp, String direcComplemento) {
         this.id = id;
         this.idNormalizador = idNormalizador;
-        this.direcPComp = direcPComp;
+        this.direcTextComp = direcTextComp;
         this.direcComp = direcComp;
         this.direcComplemento = direcComplemento;
     }
@@ -35,20 +35,20 @@ public class ComplementoNormalizadorDTO {
         this.idNormalizador = idNormalizador;
     }
 
-    public String getDirecPComp() {
-        return direcPComp;
-    }
-
-    public void setDirecPComp(String direcPComp) {
-        this.direcPComp = direcPComp;
-    }
-
     public String getDirecComp() {
         return direcComp;
     }
 
     public void setDirecComp(String direcComp) {
         this.direcComp = direcComp;
+    }
+
+    public String getDirecTextComp() {
+        return direcTextComp;
+    }
+
+    public void setDirecTextComp(String direcTextComp) {
+        this.direcTextComp = direcTextComp;
     }
 
     public String getDirecComplemento() {

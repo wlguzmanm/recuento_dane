@@ -36,7 +36,7 @@ public class Database extends SQLiteOpenHelper {
 
     private Context contexto ;
     public static final int DATABASE_VERSION = 17;
-    public static final String DATABASE_NAME = "Re_ConteoFormularioV_1_0_2.db";
+    public static final String DATABASE_NAME = "Re_ConteoFormularioV_1_0_4.db";
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -66,6 +66,9 @@ public class Database extends SQLiteOpenHelper {
                 + EsquemaManzana.AG + " TEXT, "
                 + EsquemaManzana.ACER + " TEXT, "
                 + EsquemaManzana.DIREC_BARRIO + " TEXT ,"
+                + EsquemaManzana.NOV_CARTO + " TEXT, "
+                + EsquemaManzana.OBSMZ + " TEXT, "
+                + EsquemaManzana.UC + " TEXT, "
                 + EsquemaManzana.EXISTE_UNIDAD + " TEXT, "
                 + EsquemaManzana.TIPO_NOVEDAD + " TEXT, "
                 + EsquemaManzana.MANZANA + " TEXT, "
@@ -109,7 +112,6 @@ public class Database extends SQLiteOpenHelper {
                 + EsquemaUnidadEconomica.DIREC_PREVIA + " TEXT, "
                 + EsquemaUnidadEconomica.DIREC_P_TIPO + " TEXT, "
                 + EsquemaUnidadEconomica.DIRECC + " TEXT, "
-                + EsquemaUnidadEconomica.NOV_CARTO + " TEXT, "
                 + EsquemaUnidadEconomica.ESTADO_UNIDAD_OBSERVACION + " TEXT, "
                 + EsquemaUnidadEconomica.TIPO_UNIDAD_OBSERVACION + " TEXT, "
                 + EsquemaUnidadEconomica.TIPO_VENDEDOR + " TEXT, "
@@ -161,6 +163,7 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + Normalizador.TABLE_NAME + " ("
                 + Normalizador.ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
                 + Normalizador.ID_MANZANA + " TEXT,"
+                + Normalizador.ID_EDIFICACION + " TEXT,"
                 + Normalizador.ID_UNIDAD_ECONOMICA + " TEXT,"
                 + Normalizador.DIREC_VP + " TEXT,"
                 + Normalizador.DIREC_NNOM_VP + " TEXT,"
@@ -186,7 +189,7 @@ public class Database extends SQLiteOpenHelper {
                 + ")");
 
         db.execSQL("CREATE TABLE " + ComplementoNormalizador.TABLE_NAME + " ("
-                + ComplementoNormalizador.ID +" TEXT PRIMARY KEY,"
+                + ComplementoNormalizador.ID +" INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + ComplementoNormalizador.ID_NORMALIZADOR +" TEXT NOT NULL,"
                 + ComplementoNormalizador.DIREC_COMP +" TEXT NOT NULL,"
                 + ComplementoNormalizador.DIREC_TEX_COM +" TEXT NOT NULL,"
@@ -295,6 +298,12 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * Metodo que guarda la manzana
+     * @param manzana
+     * @param id_formulario
+     * @return
+     */
     public Boolean  guardarManzana(Manzana manzana, String id_formulario) {
         try {
             ContentValues values = new ContentValues();
@@ -325,6 +334,10 @@ public class Database extends SQLiteOpenHelper {
             values.put(EsquemaManzana.DIREC_BARRIO, manzana.getBarrio());
             values.put(EsquemaManzana.EXISTE_UNIDAD, manzana.getExisteUnidad());
             values.put(EsquemaManzana.TIPO_NOVEDAD, manzana.getTipoNovedad());
+            values.put(EsquemaManzana.OBSMZ, manzana.getObsmz());
+            values.put(EsquemaManzana.UC, manzana.getUc());
+            values.put(EsquemaManzana.NOV_CARTO, manzana.getNov_carto());
+
             values.put(EsquemaManzana.IMEI, manzana.getImei());
             values.put(EsquemaManzana.FINALIZADO, manzana.getFinalizado());
             values.put(EsquemaManzana.ENCUESTADOR, manzana.getCod_enumerador());
@@ -360,7 +373,6 @@ public class Database extends SQLiteOpenHelper {
             values.put(EsquemaUnidadEconomica.DIREC_PREVIA,unidad.getDirec_previa());
             values.put(EsquemaUnidadEconomica.DIREC_P_TIPO,unidad.getDirec_p_tipo());
             values.put(EsquemaUnidadEconomica.DIRECC,unidad.getDirecc());
-            values.put(EsquemaUnidadEconomica.NOV_CARTO,unidad.getNov_carto());
             values.put(EsquemaUnidadEconomica.ESTADO_UNIDAD_OBSERVACION,unidad.getEstado_unidad_observacion());
             values.put(EsquemaUnidadEconomica.TIPO_UNIDAD_OBSERVACION,unidad.getTipo_unidad_observacion());
             values.put(EsquemaUnidadEconomica.TIPO_VENDEDOR,unidad.getTipo_vendedor());
@@ -776,6 +788,15 @@ public class Database extends SQLiteOpenHelper {
                 index = c.getColumnIndexOrThrow(EsquemaManzana.TIPO_NOVEDAD);
                 manzana.setTipoNovedad(c.getString(index));
 
+
+                index = c.getColumnIndexOrThrow(EsquemaManzana.UC);
+                manzana.setUc(c.getString(index));
+                index = c.getColumnIndexOrThrow(EsquemaManzana.OBSMZ);
+                manzana.setObsmz(c.getString(index));
+                index = c.getColumnIndexOrThrow(EsquemaManzana.NOV_CARTO);
+                manzana.setNov_carto(c.getString(index));
+
+
                 index = c.getColumnIndexOrThrow(EsquemaManzana.MANZANA);
                 manzana.setManzana(c.getString(index));
                 index = c.getColumnIndexOrThrow(EsquemaManzana.EXISTE_UNIDAD);
@@ -874,6 +895,13 @@ public class Database extends SQLiteOpenHelper {
             index = c.getColumnIndexOrThrow(EsquemaManzana.TIPO_NOVEDAD);
             manzana.setTipoNovedad(c.getString(index));
 
+            index = c.getColumnIndexOrThrow(EsquemaManzana.UC);
+            manzana.setUc(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.OBSMZ);
+            manzana.setObsmz(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.NOV_CARTO);
+            manzana.setNov_carto(c.getString(index));
+
             index = c.getColumnIndexOrThrow(EsquemaManzana.MANZANA);
             manzana.setManzana(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaManzana.EXISTE_UNIDAD);
@@ -950,8 +978,6 @@ public class Database extends SQLiteOpenHelper {
             unidad.setDirec_p_tipo(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.DIRECC);
             unidad.setDirecc(c.getString(index));
-            index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.NOV_CARTO);
-            unidad.setNov_carto(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.ESTADO_UNIDAD_OBSERVACION);
             unidad.setEstado_unidad_observacion(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaUnidadEconomica.TIPO_UNIDAD_OBSERVACION);
@@ -1289,6 +1315,13 @@ public class Database extends SQLiteOpenHelper {
             index = c.getColumnIndexOrThrow(EsquemaManzana.TIPO_NOVEDAD);
             manzana.setTipoNovedad(c.getString(index));
 
+            index = c.getColumnIndexOrThrow(EsquemaManzana.UC);
+            manzana.setUc(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.OBSMZ);
+            manzana.setObsmz(c.getString(index));
+            index = c.getColumnIndexOrThrow(EsquemaManzana.NOV_CARTO);
+            manzana.setNov_carto(c.getString(index));
+
             index = c.getColumnIndexOrThrow(EsquemaManzana.MANZANA);
             manzana.setManzana(c.getString(index));
             index = c.getColumnIndexOrThrow(EsquemaManzana.EXISTE_UNIDAD);
@@ -1552,22 +1585,29 @@ public class Database extends SQLiteOpenHelper {
         return listado;
     }
 
+    /**
+     * Resumen por manzana
+     *
+     * @param id_manzana
+     * @return
+     */
     public String getResumen(String id_manzana){
 
         String resumen="";
         SQLiteDatabase db = getWritableDatabase();
 
-        Cursor c =db.rawQuery("select \n" +
-                "\"Total Edificaciones: \" ||\n" +
-                "(select count(cast(id_manzana as integer)) from edificacion where id_manzana=?) || \",\" ||\n" +
-                "\"Total Unidades: \" || (\n" +
-                "sum(cast(estado_ocupado as integer))+\n" +
-                "sum(cast(estado_desocupado as integer))+\n" +
-                "sum(cast(estado_obra as integer))) ||\n" +
-                "\",,Total Ocupados: \" || sum(cast(estado_ocupado as integer)) || \",Total Desocupados: \" ||\n" +
-                "sum(cast(estado_desocupado as integer)) || \",Total Obras: \" ||\n" +
-                "sum(cast(estado_obra as integer))\n" +
-                "from unidad_economica where id_manzana=?", new String[] {id_manzana,id_manzana});
+        String sql = "";
+        sql = "select DISTINCT \"Total Edificaciones: \" ||  (select count(cast(id_manzana as integer)) from edificacion where id_manzana=?) || \",\" ||\n" +
+                "\"Total Unidades: \" || " +
+                "((cast((select count(id) from  unidad_economica where ESTADO_UNIDAD_OBSERVACION= '1') as integer))+" +
+                "(cast((select count(id) from  unidad_economica where ESTADO_UNIDAD_OBSERVACION= '2') as integer))+" +
+                "(cast((select count(id) from  unidad_economica where ESTADO_UNIDAD_OBSERVACION= '3') as integer)))  ||\n" +
+                "\",Total Ocupados: \" || cast((select count(id) from  unidad_economica where ESTADO_UNIDAD_OBSERVACION= '1') as integer) || \n" +
+                "\",Total Desocupados: \" || cast((select count(id) from  unidad_economica where ESTADO_UNIDAD_OBSERVACION= '2') as integer) || \n" +
+                "\",Total Obras: \" || cast((select count(id) from  unidad_economica where ESTADO_UNIDAD_OBSERVACION= '3') as integer) as texto \n" +
+                "from unidad_economica  where id_manzana=?";
+
+        Cursor c =db.rawQuery(sql, new String[] {id_manzana,id_manzana});
 
 
         while (c.moveToNext()) {
@@ -1888,6 +1928,9 @@ public class Database extends SQLiteOpenHelper {
         retorno.setDirec_barrio(manzana.getBarrio());
         retorno.setExiste_unidad(manzana.getExisteUnidad());
         retorno.setTipo_novedad(manzana.getTipoNovedad());
+        retorno.setUc(manzana.getUc());
+        retorno.setObsmz(manzana.getObsmz());
+        retorno.setNov_carto(manzana.getNov_carto());
 
         retorno.setFechaConteo(manzana.getFecha());
         retorno.setFechaModificacion(manzana.getFechaModificacion());
@@ -1928,7 +1971,6 @@ public class Database extends SQLiteOpenHelper {
         retorno.setDirec_previa(unidad.getDirec_previa());
         retorno.setDirec_p_tipo(unidad.getDirec_p_tipo());
         retorno.setDirecc(unidad.getDirecc());
-        retorno.setNov_carto(unidad.getNov_carto());
         retorno.setEstado_unidad_observacion(unidad.getEstado_unidad_observacion());
         retorno.setTipo_unidad_observacion(unidad.getTipo_unidad_observacion());
         retorno.setTipo_vendedor(unidad.getTipo_vendedor());
@@ -2459,20 +2501,22 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-
-
     /**
      * Metodo de consulta la informacion Normalizador - Consulta
+     *
+     * @param idManzana
+     * @param idEdificacion
      * @param idUnidadEconomica
      * @return
      */
-    public synchronized NormalizadorDireccionDTO getNormalizador(String idUnidadEconomica) {
+    public synchronized NormalizadorDireccionDTO getNormalizador(String idManzana, String idEdificacion,String idUnidadEconomica) {
         NormalizadorDireccionDTO consulta = null;
         try {
             SQLiteDatabase db = getReadableDatabase();
             Cursor cursor = db.rawQuery("select " +
                     "ID,  " +
                     "ID_MANZANA, " +
+                    "ID_EDIFICACION, " +
                     "ID_UNIDAD_ECONOMICA, " +
                     "DIREC_VP, " +
                     "DIREC_NNOM_VP, " +
@@ -2496,7 +2540,7 @@ public class Database extends SQLiteOpenHelper {
                     "USUARIO, " +
                     "FECHA_CREACION " +
                     "from NORMALIZADOR " +
-                    "where ID_UNIDAD_ECONOMICA = '"+idUnidadEconomica+"'", null);
+                    "where ID_UNIDAD_ECONOMICA = '"+idUnidadEconomica+"' AND ID_EDIFICACION = '"+idEdificacion+"'  AND ID_MANZANA = '"+idManzana+"' " , null);
             int i = 0;
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -2504,28 +2548,29 @@ public class Database extends SQLiteOpenHelper {
                     consulta =  new NormalizadorDireccionDTO(
                             cursor.isNull(0) ? null : cursor.getString(0), // id
                             cursor.isNull(1) ? null : cursor.getString(1), // ID_MANZANA
-                            cursor.isNull(2) ? null : cursor.getString(2), // ID_UNIDAD_ECONOMICA
-                            cursor.isNull(3) ? null : cursor.getString(3), // direcVp
-                            cursor.isNull(4) ? null : cursor.getString(4), // direcNnomVp
-                            cursor.isNull(5) ? null : cursor.getString(5), // DIREC_NUM_VP
-                            cursor.isNull(6) ? null : cursor.getString(6), // direcLetVp
-                            cursor.getString(7), // direcLetVpOtro
-                            cursor.getString(8), // direcSfVp
-                            cursor.getString(9), // direcLetSvp
-                            cursor.getString(10), // direcLetSvpOtro
-                            cursor.getString(11), // direcCuadVp
-                            cursor.isNull(12) ? null : cursor.getString(12), // direcNumVg
-                            cursor.isNull(13) ? null : cursor.getString(13), // direcLetVg
-                            cursor.getString(14), // direcLetVgOtro
-                            cursor.isNull(15) ? null : cursor.getString(15), // direcSfVg
-                            cursor.isNull(16) ? null : cursor.getString(16), // direcLetSvg
-                            cursor.getString(17), // direcLetSvgOtro
-                            cursor.isNull(18) ? null : cursor.getString(18), // direcNumPlaca
-                            cursor.getString(19), // direcCuadVg
-                            cursor.isNull(20) ? null : cursor.getString(20), // direcPComp
-                            cursor.isNull(21) ? null : cursor.getString(21), // imei
-                            cursor.isNull(22) ? null : cursor.getString(22), // usuario
-                            cursor.isNull(23) ? null : cursor.getString(23) // fechaCreacion
+                            cursor.isNull(2) ? null : cursor.getString(2), // ID_EDIFICACION
+                            cursor.isNull(3) ? null : cursor.getString(3), // ID_UNIDAD_ECONOMICA
+                            cursor.isNull(4) ? null : cursor.getString(4), // direcVp
+                            cursor.isNull(5) ? null : cursor.getString(5), // direcNnomVp
+                            cursor.isNull(6) ? null : cursor.getString(6), // DIREC_NUM_VP
+                            cursor.isNull(7) ? null : cursor.getString(7), // direcLetVp
+                            cursor.getString(8), // direcLetVpOtro
+                            cursor.getString(9), // direcSfVp
+                            cursor.getString(10), // direcLetSvp
+                            cursor.getString(11), // direcLetSvpOtro
+                            cursor.getString(12), // direcCuadVp
+                            cursor.isNull(13) ? null : cursor.getString(13), // direcNumVg
+                            cursor.isNull(14) ? null : cursor.getString(14), // direcLetVg
+                            cursor.getString(15), // direcLetVgOtro
+                            cursor.isNull(16) ? null : cursor.getString(16), // direcSfVg
+                            cursor.isNull(17) ? null : cursor.getString(17), // direcLetSvg
+                            cursor.getString(18), // direcLetSvgOtro
+                            cursor.isNull(19) ? null : cursor.getString(19), // direcNumPlaca
+                            cursor.getString(20), // direcCuadVg
+                            cursor.isNull(21) ? null : cursor.getString(21), // direcPComp
+                            cursor.isNull(22) ? null : cursor.getString(22), // imei
+                            cursor.isNull(23) ? null : cursor.getString(23), // usuario
+                            cursor.isNull(24) ? null : cursor.getString(24) // fechaCreacion
                     );
                 } while (cursor.moveToNext());
             }else{
@@ -2552,6 +2597,7 @@ public class Database extends SQLiteOpenHelper {
             //Normalizador
             values.put(Normalizador.ID_MANZANA,objeto.getIdManzana());
             values.put(Normalizador.ID_UNIDAD_ECONOMICA,objeto.getIdUnidadEconomica());
+            values.put(Normalizador.ID_EDIFICACION,objeto.getIdEdificacion());
             values.put(Normalizador.USUARIO,objeto.getUsuario());
             values.put(Normalizador.DIREC_VP,objeto.getDirecVp());
             values.put(Normalizador.DIREC_NNOM_VP,objeto.getDirecNnomVp());
@@ -2575,7 +2621,7 @@ public class Database extends SQLiteOpenHelper {
             values.put(Normalizador.USUARIO, objeto.getUsuario());
             values.put(Normalizador.FECHA_CREACION, objeto.getFechaCreacion());
 
-            NormalizadorDireccionDTO existe = getNormalizador(objeto.getIdUnidadEconomica());
+            NormalizadorDireccionDTO existe = getNormalizador(objeto.getIdManzana(),objeto.getIdEdificacion(),objeto.getIdUnidadEconomica());
             if(Util.stringNullEmptys(existe.getIdUnidadEconomica())){
                 String[] args = new String[]{ objeto.getIdUnidadEconomica()};
                 boolean valor = (db.update(Normalizador.TABLE_NAME,values ," ID_UNIDAD_ECONOMICA=? ",args)) >0;
@@ -2597,8 +2643,8 @@ public class Database extends SQLiteOpenHelper {
      * @param idNormalizador
      * @return
      */
-    public synchronized ComplementoNormalizadorDTO getComplementoNormalizador(String idNormalizador) {
-        ComplementoNormalizadorDTO consulta = null;
+    public synchronized List<ComplementoNormalizadorDTO>  getComplementoNormalizador(String idNormalizador) {
+        List<ComplementoNormalizadorDTO> consulta = new ArrayList<>();
         try {
             SQLiteDatabase db = getReadableDatabase();
             Cursor cursor = db.rawQuery("select " +
@@ -2613,16 +2659,16 @@ public class Database extends SQLiteOpenHelper {
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 do {
-                    consulta =  new ComplementoNormalizadorDTO(
+                    ComplementoNormalizadorDTO encontro =  new ComplementoNormalizadorDTO(
                             cursor.isNull(0) ? null : cursor.getString(0), // id
                             cursor.isNull(1) ? null : cursor.getString(1), // idNormalizador
-                            cursor.isNull(2) ? null : cursor.getString(2), // direcPComp
-                            cursor.isNull(3) ? null : cursor.getString(3), // direcComp
+                            cursor.isNull(2) ? null : cursor.getString(2), // direcComp
+                            cursor.isNull(3) ? null : cursor.getString(3), // direcTextComp
                             cursor.isNull(4) ? null : cursor.getString(4) // direcComplemento
                     );
+
+                    consulta.add(encontro);
                 } while (cursor.moveToNext());
-            }else{
-                consulta = new ComplementoNormalizadorDTO();
             }
             cursor.close();
         } catch (Exception e) {
@@ -2633,10 +2679,11 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-
     /**
      * Metodo que realiza el guardado el Complementa del Normalizador
+     *
      * @param objeto
+     * @param validarEliminacion
      * @return
      */
     public Boolean postComplementoNormalizador(ComplementoNormalizadorDTO objeto, Boolean validarEliminacion){
@@ -2651,13 +2698,12 @@ public class Database extends SQLiteOpenHelper {
                 return valor;
             }else{
                 //Normalizador Complemento
-                values.put(ComplementoNormalizador.ID,objeto.getId());
                 values.put(ComplementoNormalizador.ID_NORMALIZADOR,objeto.getIdNormalizador());
                 values.put(ComplementoNormalizador.DIREC_COMP,objeto.getDirecComp());
-                values.put(ComplementoNormalizador.DIREC_TEX_COM,objeto.getDirecPComp());
+                values.put(ComplementoNormalizador.DIREC_TEX_COM,objeto.getDirecTextComp());
                 values.put(ComplementoNormalizador.DIREC_COMPLEMENTO,objeto.getDirecComplemento());
 
-                boolean valor = (db.insert(Normalizador.TABLE_NAME, null, values)) >0;
+                boolean valor = (db.insert(ComplementoNormalizador.TABLE_NAME, null, values)) >0;
                 db.close();
                 return valor;
             }

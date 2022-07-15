@@ -4,6 +4,7 @@ public class Normalizador {
     public static final String TABLE_NAME ="NORMALIZADOR";
     public static final String ID= "ID";
     public static final String ID_MANZANA= "ID_MANZANA";
+    public static final String ID_EDIFICACION= "ID_EDIFICACION";
     public static final String ID_UNIDAD_ECONOMICA= "ID_UNIDAD_ECONOMICA";
     public static final String DIREC_VP= "DIREC_VP";
     public static final String DIREC_NNOM_VP= "DIREC_NNOM_VP";

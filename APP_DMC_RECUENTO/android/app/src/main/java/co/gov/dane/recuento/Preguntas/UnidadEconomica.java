@@ -10,7 +10,6 @@ public class UnidadEconomica {
     private String direc_previa;
     private String direc_p_tipo;
     private String direcc;
-    private String nov_carto;
     private String estado_unidad_observacion;
     private String tipo_unidad_observacion;
     private String tipo_vendedor;
@@ -51,14 +50,6 @@ public class UnidadEconomica {
 
     public void setDirecc(String direcc) {
         this.direcc = direcc;
-    }
-
-    public String getNov_carto() {
-        return nov_carto;
-    }
-
-    public void setNov_carto(String nov_carto) {
-        this.nov_carto = nov_carto;
     }
 
     public String getEstado_unidad_observacion() {

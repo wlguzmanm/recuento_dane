@@ -34,6 +34,10 @@ public class Manzana {
     private String fechaModificacion;
     private Boolean validar;
 
+    private String uc;
+    private String obsmz;
+    private String nov_carto;
+
     private String cod_enumerador;
     private String supervisor;
     private String finalizado;
@@ -332,6 +336,30 @@ public class Manzana {
 
     public void setUnidad_cobertura(String unidad_cobertura) {
         this.unidad_cobertura = unidad_cobertura;
+    }
+
+    public String getUc() {
+        return uc;
+    }
+
+    public void setUc(String uc) {
+        this.uc = uc;
+    }
+
+    public String getObsmz() {
+        return obsmz;
+    }
+
+    public void setObsmz(String obsmz) {
+        this.obsmz = obsmz;
+    }
+
+    public String getNov_carto() {
+        return nov_carto;
+    }
+
+    public void setNov_carto(String nov_carto) {
+        this.nov_carto = nov_carto;
     }
 }
 
