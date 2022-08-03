@@ -46,6 +46,13 @@
                 android:text="aaa" />
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/editar_item_complemento"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:tint="@color/raton"
+            app:srcCompat="@drawable/ic_edit" />
 
         <ImageView
             android:id="@+id/eliminar_item_complemento"

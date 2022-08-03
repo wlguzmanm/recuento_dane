@@ -1,5 +1,7 @@
 package co.gov.dane.recuento.dtos;
 
+import java.util.List;
+
 public class NormalizadorDireccionDTO {
 
     private String id;
@@ -28,7 +30,7 @@ public class NormalizadorDireccionDTO {
     private String usuario;
     private String fechaCreacion;
 
-    private ComplementoNormalizadorDTO complememnto;
+    private List<ComplementoNormalizadorDTO> complememnto;
 
     public NormalizadorDireccionDTO() {
     }
@@ -256,19 +258,19 @@ public class NormalizadorDireccionDTO {
         this.direcLetSvgOtro = direcLetSvgOtro;
     }
 
-    public ComplementoNormalizadorDTO getComplememnto() {
-        return complememnto;
-    }
-
-    public void setComplememnto(ComplementoNormalizadorDTO complememnto) {
-        this.complememnto = complememnto;
-    }
-
     public String getIdEdificacion() {
         return idEdificacion;
     }
 
     public void setIdEdificacion(String idEdificacion) {
         this.idEdificacion = idEdificacion;
+    }
+
+    public List<ComplementoNormalizadorDTO> getComplememnto() {
+        return complememnto;
+    }
+
+    public void setComplememnto(List<ComplementoNormalizadorDTO> complememnto) {
+        this.complememnto = complememnto;
     }
 }

@@ -36,7 +36,7 @@ public class Database extends SQLiteOpenHelper {
 
     private Context contexto ;
     public static final int DATABASE_VERSION = 17;
-    public static final String DATABASE_NAME = "Re_ConteoFormularioV_1_0_4.db";
+    public static final String DATABASE_NAME = "Re_ConteoFormularioV_1_0_6.db";
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -1599,15 +1599,13 @@ public class Database extends SQLiteOpenHelper {
         String sql = "";
         sql = "select DISTINCT \"Total Edificaciones: \" ||  (select count(cast(id_manzana as integer)) from edificacion where id_manzana=?) || \",\" ||\n" +
                 "\"Total Unidades: \" || " +
-                "((cast((select count(id) from  unidad_economica where ESTADO_UNIDAD_OBSERVACION= '1') as integer))+" +
-                "(cast((select count(id) from  unidad_economica where ESTADO_UNIDAD_OBSERVACION= '2') as integer))+" +
-                "(cast((select count(id) from  unidad_economica where ESTADO_UNIDAD_OBSERVACION= '3') as integer)))  ||\n" +
-                "\",Total Ocupados: \" || cast((select count(id) from  unidad_economica where ESTADO_UNIDAD_OBSERVACION= '1') as integer) || \n" +
-                "\",Total Desocupados: \" || cast((select count(id) from  unidad_economica where ESTADO_UNIDAD_OBSERVACION= '2') as integer) || \n" +
-                "\",Total Obras: \" || cast((select count(id) from  unidad_economica where ESTADO_UNIDAD_OBSERVACION= '3') as integer) as texto \n" +
+                "((cast((select count(id) from  unidad_economica where id_manzana =  ? ) as integer)))  ||\n" +
+                "\",Total Ocupados: \" || cast((select count(id) from  unidad_economica where ESTADO_UNIDAD_OBSERVACION= '1'and id_manzana=? ) as integer) || \n" +
+                "\",Total Desocupados: \" || cast((select count(id) from  unidad_economica where ESTADO_UNIDAD_OBSERVACION= '2'and id_manzana=? ) as integer) || \n" +
+                "\",Total Obras: \" || cast((select count(id) from  unidad_economica where ESTADO_UNIDAD_OBSERVACION= '3' and id_manzana=? ) as integer) as texto \n" +
                 "from unidad_economica  where id_manzana=?";
 
-        Cursor c =db.rawQuery(sql, new String[] {id_manzana,id_manzana});
+        Cursor c =db.rawQuery(sql, new String[] {id_manzana,id_manzana,id_manzana,id_manzana,id_manzana,id_manzana});
 
 
         while (c.moveToNext()) {
@@ -2692,6 +2690,8 @@ public class Database extends SQLiteOpenHelper {
             ContentValues values = new ContentValues();
 
             if(validarEliminacion){
+                /*db.execSQL("DELETE FROM "+ComplementoNormalizador.TABLE_NAME+ " WHERE ID_NORMALIZADOR = '"+objeto.getIdNormalizador()+"'");
+                db.close();*/
                 boolean valor =  (db.delete(ComplementoNormalizador.TABLE_NAME, ComplementoNormalizador.ID_NORMALIZADOR + "=? ",
                         new String[]{objeto.getIdNormalizador()})) >0 ;
                 db.close();
@@ -2707,9 +2707,6 @@ public class Database extends SQLiteOpenHelper {
                 db.close();
                 return valor;
             }
-
-
-
         }catch (Exception e){
             return false;
         }

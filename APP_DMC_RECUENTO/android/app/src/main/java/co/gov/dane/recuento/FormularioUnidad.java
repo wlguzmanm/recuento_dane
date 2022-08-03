@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,6 +23,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -49,11 +51,13 @@ public class FormularioUnidad extends AppCompatActivity {
     private Spinner spinnerDIREC_PREVIA,spinnerDIREC_P_TIPO,
             spinnerUnidadObservacion, spinnerTipoObservacion, spinnerTipoVendedor, spinnerSectorEconomico,
             spinnerDIREC_VP, spinnerDIREC_LET_VP, spinnerDIREC_SF_VP, spinnerDIREC_LET_SVP, spinnerDIREC_CUAD_VP,
-            spinnerDIREC_LET_VG, spinnerDIREC_SF_VG, spinnerDIREC_LET_SVG, spinnerDIREC_CUAD_VG, spinnerDIREC_COMP ;
+            spinnerDIREC_LET_VG, spinnerDIREC_SF_VG, spinnerDIREC_LET_SVG, spinnerDIREC_CUAD_VG ;
+
+    private AutoCompleteTextView spinnerDIREC_COMP;
 
     private EditText editUnidadObservacion, editObservacionUnidad,
             editDIREC_NNOM_VP, editDIREC_NUM_VP, editDIREC_NUM_VG, editDIREC_NUM_PLACA, editDIREC_TEX_COM, editDireccionCompleta,
-            editDIREC_LET_VP_OTRO, editDIREC_LET_SVP_OTRO, editDIREC_LET_VG_OTRO, editDIREC_LET_SVG_OTRO;
+            editDIREC_LET_VP_OTRO, editDIREC_LET_SVP_OTRO, editDIREC_LET_VG_OTRO, editDIREC_LET_SVG_OTRO, editDireccion;
 
     private RadioGroup radioDIREC_P_COMP;
 
@@ -67,13 +71,13 @@ public class FormularioUnidad extends AppCompatActivity {
     private LinearLayout linearCabecera, linearPregunta6, linearPregunta7, linearNormalizador, guardar_formulario, linearComplemento,
             linearComplementoAcomp, linearAdicionarComplemento, linearAdicionarAgregarDireccion, linearTipoVendedor, linearBtnNormalizador,
             linearDIREC_LET_VP_OTRO, linearDIREC_LET_SVP_OTRO, linearDIREC_LET_VG_OTRO,  linearDIREC_LET_SVG_OTRO,
+            linearDIREC_VP,
             linearDIREC_NNOM_VP, linearDIREC_NUM_VP, linearDIREC_LET_VP, linearDIREC_SF_VP, linearDIREC_LET_SVP,
             linearDIREC_CUAD_VP, linearDIREC_NUM_VG, linearDIREC_LET_VG, linearDIREC_SF_VG, linearDIREC_LET_SVG,
-            linearDIREC_NUM_PLACA, linearDIREC_CUAD_VG, linearDIREC_P_COMP
+            linearDIREC_NUM_PLACA, linearDIREC_CUAD_VG, linearDIREC_P_COMP,
+            linearDireccion;
 
-
-    ;
-    private TextView textUnidadEconomica, tx_label_normalizador;
+    private TextView textUnidadEconomica, tx_label_normalizador, tv_adicionarComplemento;
     private String idDevice, DIREC_PREVIA,  DIREC_P_TIPO, DIRECC, UNIDAD_OBSERVACION, TIPO_OBSERVACION, TIPO_VENDEDOR, SECTOR_ECONOMICO,
             DIREC_VP,
             DIREC_NNOM_VP,
@@ -111,6 +115,9 @@ public class FormularioUnidad extends AppCompatActivity {
     ArrayAdapter<CharSequence> arr_sector_economico;
     ArrayAdapter<CharSequence> arr_sector_economico1;
     ArrayAdapter<CharSequence> arr_sector_economico2;
+
+    private Boolean isEditarComplemento = false, cambiosPendientes = false;
+    private ComplementoNormalizadorDTO complemento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +158,7 @@ public class FormularioUnidad extends AppCompatActivity {
         linearDIREC_LET_VG_OTRO = (LinearLayout) findViewById(R.id.linearDIREC_LET_VG_OTRO);
         linearDIREC_LET_SVG_OTRO = (LinearLayout) findViewById(R.id.linearDIREC_LET_SVG_OTRO);
 
+        linearDIREC_VP = (LinearLayout) findViewById(R.id.linearDIREC_VP);
         linearDIREC_NNOM_VP = (LinearLayout) findViewById(R.id.linearDIREC_NNOM_VP);
         linearDIREC_NUM_VP = (LinearLayout) findViewById(R.id.linearDIREC_NUM_VP);
         linearDIREC_LET_VP = (LinearLayout) findViewById(R.id.linearDIREC_LET_VP);
@@ -164,9 +172,11 @@ public class FormularioUnidad extends AppCompatActivity {
         linearDIREC_NUM_PLACA = (LinearLayout) findViewById(R.id.linearDIREC_NUM_PLACA);
         linearDIREC_CUAD_VG = (LinearLayout) findViewById(R.id.linearDIREC_CUAD_VG);
         linearDIREC_P_COMP = (LinearLayout) findViewById(R.id.linearDIREC_P_COMP);
+        linearDireccion = (LinearLayout) findViewById(R.id.linearDireccion);
 
 
         linearNormalizador.setVisibility(View.GONE);
+        linearDireccion.setVisibility(View.GONE);
 
         spinnerDIREC_PREVIA = (Spinner) findViewById(R.id.spinnerDIREC_PREVIA);
         spinnerDIREC_P_TIPO = (Spinner) findViewById(R.id.spinnerDIREC_P_TIPO);
@@ -183,7 +193,7 @@ public class FormularioUnidad extends AppCompatActivity {
         spinnerDIREC_SF_VG = (Spinner) findViewById(R.id.spinnerDIREC_SF_VG);
         spinnerDIREC_LET_SVG = (Spinner) findViewById(R.id.spinnerDIREC_LET_SVG);
         spinnerDIREC_CUAD_VG = (Spinner) findViewById(R.id.spinnerDIREC_CUAD_VG);
-        spinnerDIREC_COMP = (Spinner) findViewById(R.id.spinnerDIREC_COMP);
+        spinnerDIREC_COMP = (AutoCompleteTextView) findViewById(R.id.spinnerDIREC_COMP);
 
         editUnidadObservacion = (EditText) findViewById(R.id.editUnidadObservacion);
         editObservacionUnidad = (EditText) findViewById(R.id.editObservacionUnidad);
@@ -197,7 +207,9 @@ public class FormularioUnidad extends AppCompatActivity {
         editDIREC_LET_SVP_OTRO = (EditText) findViewById(R.id.editDIREC_LET_SVP_OTRO);
         editDIREC_LET_VG_OTRO = (EditText) findViewById(R.id.editDIREC_LET_VG_OTRO);
         editDIREC_LET_SVG_OTRO = (EditText) findViewById(R.id.editDIREC_LET_SVG_OTRO);
+        editDireccion = (EditText) findViewById(R.id.editDireccion);
         tx_label_normalizador = (TextView) findViewById(R.id.tx_label_normalizador);
+        tv_adicionarComplemento = (TextView) findViewById(R.id.tv_adicionarComplemento);
 
         textUnidadEconomica = (TextView) findViewById(R.id.textUnidadEconomica);
 
@@ -390,6 +402,7 @@ public class FormularioUnidad extends AppCompatActivity {
             }
         });
 
+        editDIREC_NNOM_VP.addTextChangedListener(new TextWatcher() { @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {} @Override public void onTextChanged(CharSequence s, int start, int before, int count) {} @Override public void afterTextChanged(Editable s) { getValidarTextoPregunta2(editDIREC_NNOM_VP); } });
 
         //Pregunta 7
         spinnerUnidadObservacion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -402,18 +415,22 @@ public class FormularioUnidad extends AppCompatActivity {
                             spinnerTipoVendedor.setAdapter(arrDefault);
                             spinnerSectorEconomico.setAdapter(arrDefault);
                             UNIDAD_OBSERVACION = "1";
+                            editUnidadObservacion.setEnabled(true);
                         }
                         if(spinnerUnidadObservacion.getSelectedItem().toString().contains("2")){
                             spinnerTipoObservacion.setAdapter(arr_unidad_observacion_1);
                             spinnerTipoVendedor.setAdapter(arrDefault);
                             spinnerSectorEconomico.setAdapter(arrDefault);
                             UNIDAD_OBSERVACION = "2";
+                            editUnidadObservacion.setEnabled(false);
+                            editUnidadObservacion.setText("");
                         }
                         if(spinnerUnidadObservacion.getSelectedItem().toString().contains("3")){
                             spinnerTipoObservacion.setAdapter(arr_unidad_observacion_2);
                             spinnerTipoVendedor.setAdapter(arrDefault);
                             spinnerSectorEconomico.setAdapter(arrDefault);
                             UNIDAD_OBSERVACION = "3";
+                            editUnidadObservacion.setEnabled(true);
                         }
                     }else{
                         spinnerTipoObservacion.setAdapter(arrDefault);
@@ -563,6 +580,7 @@ public class FormularioUnidad extends AppCompatActivity {
                 NormalizadorDireccionDTO diligenciadoNormalizador = db.getNormalizador(id_manzana,id_edificacion,id_unidad);
 
                 if(diligenciadoNormalizador!= null && diligenciadoNormalizador.getId() != null){
+                    msj.dialogoMensaje("Informativo", "El sistema detectó una dirección ingresada anteriormente.");
                     if(Util.stringNullEmptys(diligenciadoNormalizador.getDirecVp()) && diligenciadoNormalizador.getDirecVp().contains("NA")){
                         linearDIREC_NNOM_VP.setVisibility(View.GONE);
                         linearDIREC_NUM_VP.setVisibility(View.GONE);
@@ -592,6 +610,7 @@ public class FormularioUnidad extends AppCompatActivity {
                         linearDIREC_CUAD_VG.setVisibility(View.VISIBLE);
                         linearDIREC_P_COMP.setVisibility(View.VISIBLE);
                     }
+                    linearDIREC_NNOM_VP.setVisibility(View.VISIBLE);
                     DIREC_VP=diligenciadoNormalizador.getDirecVp();
                     DIREC_NNOM_VP=diligenciadoNormalizador.getDirecNnomVp();
                     DIREC_NUM_VP=diligenciadoNormalizador.getDirecNumVp();
@@ -628,7 +647,7 @@ public class FormularioUnidad extends AppCompatActivity {
                     editDIREC_NUM_VP.setText(DIREC_NUM_VP);
                     spinnerDIREC_LET_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_LET_VP,DIREC_LET_VP));
                     editDIREC_LET_VP_OTRO.setText(DIREC_LET_VP_OTRO);
-                    if(Util.stringNullEmptys(DIREC_SF_VP)){
+                    if(!Util.stringNullEmptys(DIREC_SF_VP)){
                         spinnerDIREC_SF_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VP,"2"));
                     }else{
                         spinnerDIREC_SF_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VP,DIREC_SF_VP));
@@ -636,7 +655,7 @@ public class FormularioUnidad extends AppCompatActivity {
 
                     spinnerDIREC_LET_SVP.setSelection(getIndexSpinnerContains(spinnerDIREC_LET_SVP,DIREC_LET_SVP));
                     editDIREC_LET_SVP_OTRO.setText(DIREC_LET_SVP_OTRO);
-                    if(Util.stringNullEmptys(DIREC_CUAD_VP)){
+                    if(!Util.stringNullEmptys(DIREC_CUAD_VP)){
                         spinnerDIREC_CUAD_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_CUAD_VP,"1"));
                     }else{
                         spinnerDIREC_CUAD_VP.setSelection(getIndexSpinnerContains(spinnerDIREC_CUAD_VP,DIREC_CUAD_VP));
@@ -646,7 +665,7 @@ public class FormularioUnidad extends AppCompatActivity {
                     spinnerDIREC_LET_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_LET_VG,DIREC_LET_VG));
                     editDIREC_LET_VG_OTRO.setText(DIREC_LET_VG_OTRO);
                     spinnerDIREC_SF_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VG,DIREC_SF_VG));
-                    if(Util.stringNullEmptys(DIREC_SF_VG)){
+                    if(!Util.stringNullEmptys(DIREC_SF_VG)){
                         spinnerDIREC_SF_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VG,"2"));
                     }else{
                         spinnerDIREC_SF_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_SF_VG,DIREC_SF_VG));
@@ -691,6 +710,7 @@ public class FormularioUnidad extends AppCompatActivity {
                     recycler_complementos.setAdapter(mAdapterComplemento);
                     mAdapterComplemento.notifyDataSetChanged();
                     concatDireccion();
+
                 }else{
                     if(id_unidad!= null && !id_unidad.equals("1")){
                         Integer valor = Integer.valueOf(id_unidad) - 1;
@@ -757,10 +777,14 @@ public class FormularioUnidad extends AppCompatActivity {
 
                                 spinnerDIREC_LET_SVG.setSelection(getIndexSpinnerContains(spinnerDIREC_LET_SVG,DIREC_LET_SVG));
                                 editDIREC_LET_SVG_OTRO.setText(DIREC_LET_SVG_OTRO);
+                                lstComplemento = new ArrayList<>();
+                                linearComplemento.setVisibility(View.GONE);
+                                linearComplementoAcomp.setVisibility(View.GONE);
+                                recargarListadoComplementos();
                                 concatDireccion();
                             }
 
-                            if(Util.stringNullEmptys(DIREC_PREVIA) && DIREC_PREVIA.equals("2")|| DIREC_PREVIA.equals("3")){  // Diligencia de la 10 a la 12
+                            if(Util.stringNullEmptys(DIREC_PREVIA) && ( DIREC_PREVIA.equals("2")|| DIREC_PREVIA.equals("3"))){  // Diligencia de la 10 a la 12
                                 DIREC_NUM_PLACA=normalizadorAnterior.getDirecNumPlaca();
                                 DIREC_CUAD_VG=normalizadorAnterior.getDirecCuadVg();
 
@@ -773,6 +797,10 @@ public class FormularioUnidad extends AppCompatActivity {
                                         spinnerDIREC_CUAD_VG.setSelection(getIndexSpinnerContains(spinnerDIREC_CUAD_VG,DIREC_CUAD_VG));
                                     }
                                 }
+                                lstComplemento = new ArrayList<>();
+                                linearComplemento.setVisibility(View.GONE);
+                                linearComplementoAcomp.setVisibility(View.GONE);
+                                recargarListadoComplementos();
                                 concatDireccion();
                             }
 
@@ -794,15 +822,7 @@ public class FormularioUnidad extends AppCompatActivity {
                                 }
 
                                 lstComplemento = db.getComplementoNormalizador(normalizadorAnterior.getId());
-                                recycler_complementos = (RecyclerView) findViewById(R.id.recycler_complementos);
-                                mAdapterComplemento = new ConteoAdapterComplementos(lstComplemento,FormularioUnidad.this);
-                                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                                recycler_complementos.setLayoutManager(mLayoutManager);
-                                recycler_complementos.setItemAnimator(new DefaultItemAnimator());
-                                recycler_complementos.addItemDecoration(new DividerItemDecoration(v.getContext(), LinearLayoutManager.VERTICAL));
-
-                                recycler_complementos.setAdapter(mAdapterComplemento);
-                                mAdapterComplemento.notifyDataSetChanged();
+                                recargarListadoComplementos();
                                 concatDireccion();
                             }
                         }
@@ -814,6 +834,8 @@ public class FormularioUnidad extends AppCompatActivity {
                 linearPregunta6.setVisibility(View.GONE);
                 linearPregunta7.setVisibility(View.GONE);
                 guardar_formulario.setVisibility(View.GONE);
+
+                getCargarTipoDireccion();
             }
         });
 
@@ -822,97 +844,104 @@ public class FormularioUnidad extends AppCompatActivity {
             public void onClick(View v) {
                 String retorno = "";
 
-                if(Util.stringNullEmptys(DIREC_VP) && DIREC_VP.equals("(NA)")){
-                    if(DIREC_P_COMP==null){
-                        retorno = retorno + "Seleccionar un tipo de complemento.\n";
-                    }else{
-                        if(DIREC_P_COMP.equals("1")) {
-                           if(lstComplemento.size() == 0){
-                               retorno = retorno + "Agregar por lo menos un complemento de la dirección.\n";
-                           }
-                        }
-                    }
-                }else{
-                    DIREC_NNOM_VP = editDIREC_NNOM_VP.getText().toString();//No Obligatorio
-                    DIREC_NUM_VP = editDIREC_NUM_VP.getText().toString(); //Obligatorio, si pregunta DIREC_NNOM_VP seleccionó NA
-                    DIREC_LET_VP_OTRO = editDIREC_LET_VP_OTRO.getText().toString();//Obligatorio si selecciona otro
-                    DIREC_LET_SVP_OTRO = editDIREC_LET_SVP_OTRO.getText().toString();//Obligatorio si selecciona otro
-                    DIREC_NUM_VG = editDIREC_NUM_VG.getText().toString();//Obligatorio
-                    DIREC_LET_VG_OTRO = editDIREC_LET_VG_OTRO.getText().toString();//Obligatorio si selecciona otro
-                    DIREC_LET_SVG_OTRO = editDIREC_LET_SVG_OTRO.getText().toString(); //Obligatorio si selecciona otro
-                    DIREC_NUM_PLACA = editDIREC_NUM_PLACA.getText().toString();  //Obligatorio
-                    DIREC_TEX_COM = editDIREC_TEX_COM.getText().toString(); // no obligatorio
-
-
-                    if(DIREC_VP == null) //Obligatorio
-                        retorno = retorno + "Debe seleccionar el tipo de vía.\n";
-
-
-                    if(DIREC_NNOM_VP!= null ){// No Obligatorio pero - Longitud > 3 y <= 150 caracteres
-                        if( !DIREC_NNOM_VP.equals("") &&  DIREC_NNOM_VP.length() < 3  && DIREC_NNOM_VP.length() >150){
-                            retorno = retorno + "El nombre común de via principal debe ser entre  3 y <= 150 caracteres.\n";
-                        }
-                        if( !DIREC_NNOM_VP.equals("") &&  DIREC_NNOM_VP.contains("NA")){
-                            if(DIREC_NUM_VP.equals("")){
-                                retorno = retorno + "El número de la via principal  3 y <= 150 caracteres.\n";
-                            }
-                        }
-                    }
-
-                    if(DIREC_LET_VP != null && DIREC_LET_VP.equals("Otro")){
-                        if(DIREC_LET_VP_OTRO.equals("")){
-                            retorno = retorno + "Diligenciar Otro en letra via principal.\n";
-                        }
-                    }
-
-                    if(DIREC_SF_VP == null ){
-                        retorno = retorno + "Seleccionar el sufijo en via principal.\n";
-                    }
-
-                    if(DIREC_LET_SVP != null && DIREC_LET_SVP.equals("Otro")){
-                        if(DIREC_LET_SVP_OTRO.equals("")){
-                            retorno = retorno + "Diligenciar Otro en Sufijo en letra via principal.\n";
-                        }
-                    }
-
-                    if(DIREC_NUM_VG.equals("")){
-                        retorno = retorno + "Diligenciar número de la vía generadora, Rango válido >0 y <=999.\n";
-                    }
-
-                    if(DIREC_LET_VG != null && DIREC_LET_VG.equals("Otro")){
-                        if(DIREC_LET_VG_OTRO.equals("")){
-                            retorno = retorno + "Diligenciar Otro en letra  via generadora.\n";
-                        }
-                    }
-
-                    if(DIREC_SF_VG == null){
-                        retorno = retorno + "Seleccionar el sufijo de la vía generadora.\n";
-                    }
-
-                    if(DIREC_LET_SVG != null && DIREC_LET_SVG.equals("Otro")){
-                        if(DIREC_LET_SVG_OTRO.equals("")){
-                            retorno = retorno + "Diligenciar Otro en letra de Sufijo via generadora.\n";
-                        }
-                    }
-
-                    if(DIREC_NUM_PLACA.equals("")){
-                        retorno = retorno + "Diligenciar el numero de placa, Rango válido >0 y <=999.\n";
-                    }
-
-                    if(DIREC_P_COMP==null){
-                        retorno = retorno + "Seleccionar un tipo de complemento.\n";
-                    }else{
-                        if(DIREC_P_COMP.equals("1")) {
+                if(Util.stringNullEmptys(DIREC_P_TIPO) && DIREC_P_TIPO.equals("1") ){
+                    if(Util.stringNullEmptys(DIREC_VP) && DIREC_VP.contains("NA")){
+                        if(DIREC_P_COMP==null){
+                            retorno = retorno + "Seleccionar un tipo de complemento.\n";
+                        }else{
                             if(DIREC_P_COMP.equals("1")) {
                                 if(lstComplemento.size() == 0){
                                     retorno = retorno + "Agregar por lo menos un complemento de la dirección.\n";
                                 }
                             }
                         }
+                    }else{
+                        DIREC_NNOM_VP = editDIREC_NNOM_VP.getText().toString();//No Obligatorio
+                        DIREC_NUM_VP = editDIREC_NUM_VP.getText().toString(); //Obligatorio, si pregunta DIREC_NNOM_VP seleccionó NA
+                        DIREC_LET_VP_OTRO = editDIREC_LET_VP_OTRO.getText().toString();//Obligatorio si selecciona otro
+                        DIREC_LET_SVP_OTRO = editDIREC_LET_SVP_OTRO.getText().toString();//Obligatorio si selecciona otro
+                        DIREC_NUM_VG = editDIREC_NUM_VG.getText().toString();//Obligatorio
+                        DIREC_LET_VG_OTRO = editDIREC_LET_VG_OTRO.getText().toString();//Obligatorio si selecciona otro
+                        DIREC_LET_SVG_OTRO = editDIREC_LET_SVG_OTRO.getText().toString(); //Obligatorio si selecciona otro
+                        DIREC_NUM_PLACA = editDIREC_NUM_PLACA.getText().toString();  //Obligatorio
+                        DIREC_TEX_COM = editDIREC_TEX_COM.getText().toString(); // no obligatorio
+
+
+                        if(DIREC_VP == null) //Obligatorio
+                            retorno = retorno + "Debe seleccionar el tipo de vía.\n";
+
+
+                        if(DIREC_NNOM_VP!= null ){// No Obligatorio pero - Longitud > 3 y <= 150 caracteres
+                            if( !DIREC_NNOM_VP.equals("") && !DIREC_NNOM_VP.toUpperCase().equals("NA") &&  DIREC_NNOM_VP.length() < 3 ){
+                                retorno = retorno + "El nombre común de via principal debe ser entre 3 y <= 150 caracteres.\n";
+                            }
+                            if( !DIREC_NNOM_VP.equals("") &&  DIREC_NNOM_VP.toUpperCase().contains("NA")){
+                                if(DIREC_NUM_VP.equals("") && DIREC_NUM_VP.length() < 1){
+                                    retorno = retorno + "El número de la via principal debete tener el rango válido >0 y <=999.\n";
+                                }
+                            }
+                        }
+
+                        if(DIREC_LET_VP != null && DIREC_LET_VP.equals("Otro")){
+                            if(DIREC_LET_VP_OTRO.equals("")){
+                                retorno = retorno + "Diligenciar Otro en letra via principal.\n";
+                            }
+                        }
+
+                        if(DIREC_SF_VP == null || DIREC_SF_VP.equals("-1")){
+                            retorno = retorno + "Seleccionar el sufijo en via principal.\n";
+                        }
+
+                        if(DIREC_LET_SVP != null && DIREC_LET_SVP.equals("Otro")){
+                            if(DIREC_LET_SVP_OTRO.equals("")){
+                                retorno = retorno + "Diligenciar Otro en Sufijo en letra via principal.\n";
+                            }
+                        }
+
+                        if(DIREC_NUM_VG.equals("")){
+                            retorno = retorno + "Diligenciar número de la vía generadora, Rango válido >0 y <=999.\n";
+                        }
+
+                        if(DIREC_LET_VG != null && DIREC_LET_VG.equals("Otro")){
+                            if(DIREC_LET_VG_OTRO.equals("")){
+                                retorno = retorno + "Diligenciar Otro en letra  via generadora.\n";
+                            }
+                        }
+
+                        if(DIREC_SF_VG == null || DIREC_SF_VG.equals("-1")){
+                            retorno = retorno + "Seleccionar el sufijo de la vía generadora.\n";
+                        }
+
+                        if(DIREC_LET_SVG != null && DIREC_LET_SVG.equals("Otro")){
+                            if(DIREC_LET_SVG_OTRO.equals("")){
+                                retorno = retorno + "Diligenciar Otro en letra de Sufijo via generadora.\n";
+                            }
+                        }
+
+                        if(DIREC_NUM_PLACA.equals("")){
+                            retorno = retorno + "Diligenciar el numero de placa, Rango válido >0 y <=999.\n";
+                        }
+
+                        if(DIREC_P_COMP==null){
+                            retorno = retorno + "Seleccionar un tipo de complemento.\n";
+                        }else{
+                            if(DIREC_P_COMP.equals("1")) {
+                                if(DIREC_P_COMP.equals("1")) {
+                                    if(lstComplemento.size() == 0){
+                                        retorno = retorno + "Agregar por lo menos un complemento de la dirección.\n";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }else{
+                    if(lstComplemento.size() == 0){
+                        retorno = retorno + "Agregar por lo menos un complemento de la dirección.\n";
                     }
                 }
 
                 if(retorno.equals("")){
+                    linearDireccion.setVisibility(View.VISIBLE);
                     normalizador.setIdManzana(id_manzana);
                     normalizador.setIdUnidadEconomica(id_unidad);
                     normalizador.setIdEdificacion(id_edificacion);
@@ -938,12 +967,18 @@ public class FormularioUnidad extends AppCompatActivity {
                     normalizador.setFechaCreacion(util.getFechaActual());
                     normalizador.setUsuario(session.getnombre());
                     db.postNormalizador(normalizador);
+                    cambiosPendientes = false;
+                    complemento = null;
 
                     NormalizadorDireccionDTO normalizador = db.getNormalizador(id_manzana,id_edificacion,id_unidad);
 
-                    db.postComplementoNormalizador(null, true);
+                    ComplementoNormalizadorDTO complemnetoCargado = new ComplementoNormalizadorDTO();
+                    complemnetoCargado.setIdNormalizador(normalizador.getId());
+
+                    db.postComplementoNormalizador(complemnetoCargado, true);
                     for (ComplementoNormalizadorDTO lista : lstComplemento) {
                         lista.setIdNormalizador(normalizador.getId());
+                        lista.setId(null);
                         db.postComplementoNormalizador(lista, false);
                     }
 
@@ -972,16 +1007,39 @@ public class FormularioUnidad extends AppCompatActivity {
                 if(Util.stringNullEmptys(mensaje)){
                     msj.dialogoMensajeError("Error", mensaje);
                 }else{
-                    ComplementoNormalizadorDTO nuevo = new ComplementoNormalizadorDTO();
-                    nuevo.setDirecTextComp(editDIREC_TEX_COM.getText().toString());
-                    nuevo.setDirecComp(DIREC_COMP);
-                    nuevo.setDirecComplemento((DIREC_COMP + " " + editDIREC_TEX_COM.getText().toString()).trim());
-                    lstComplemento.add(nuevo);
-                    mAdapterComplemento.notifyDataSetChanged();
-                    msj.dialogoMensaje("Success", "Se ha agregado un complemento.");
-                    editDIREC_TEX_COM.setText("");
-                    spinnerDIREC_COMP.setSelection(getIndexSpinnerContains(spinnerDIREC_COMP,"Seleccione..."));
-                    concatDireccion();
+                    if(isEditarComplemento){
+                        tv_adicionarComplemento.setText(getString(R.string.text_pregunta6_3_5));
+                        isEditarComplemento = false;
+                        for(ComplementoNormalizadorDTO listado : lstComplemento){
+                            if(listado.getId().equals(complemento.getId())){
+                                listado.setDirecComp(DIREC_COMP);
+                                listado.setDirecTextComp(editDIREC_TEX_COM.getText().toString());
+                                listado.setDirecComplemento((DIREC_COMP + " " + editDIREC_TEX_COM.getText().toString()).trim());
+                                mAdapterComplemento.notifyDataSetChanged();
+                                msj.dialogoMensaje("Success", "Se ha editado un complemento. Cambios pendientes en guardar en el Normalizador.");
+                                editDIREC_TEX_COM.setText("");
+                                spinnerDIREC_COMP.setText(getIndexAutoComplet(Arrays.asList(getResources().getStringArray(R.array.complemento)), "Seleccione..."),false);
+                                DIREC_COMP = null;
+                                concatDireccion();
+                                cambiosPendientes  = true;
+                                complemento = null;
+                                break;
+                            }
+                        }
+                    }else{
+                        ComplementoNormalizadorDTO nuevo = new ComplementoNormalizadorDTO();
+                        nuevo.setDirecTextComp(editDIREC_TEX_COM.getText().toString());
+                        nuevo.setDirecComp(DIREC_COMP);
+                        nuevo.setDirecComplemento((DIREC_COMP + " " + editDIREC_TEX_COM.getText().toString()).trim());
+                        lstComplemento.add(nuevo);
+                        mAdapterComplemento.notifyDataSetChanged();
+                        msj.dialogoMensaje("Success", "Se ha agregado un complemento.");
+                        editDIREC_TEX_COM.setText("");
+                        spinnerDIREC_COMP.setText(getIndexAutoComplet(Arrays.asList(getResources().getStringArray(R.array.complemento)), "Seleccione..."),false);
+                        DIREC_COMP = null;
+                        concatDireccion();
+                    }
+
                 }
             }
         });
@@ -994,8 +1052,7 @@ public class FormularioUnidad extends AppCompatActivity {
                 String retorno = validarFormulario();
                 if(retorno == null){
                     unidad=saveFormulario();
-                    unidad.setImei(idDevice);
-                    unidad.setDirecc(concatDireccion());
+
                     if(db.guardarUnidadEconomica(unidad,id_manzana,id_edificacion,id_unidad)){
                         normalizador.setIdManzana(id_manzana);
                         normalizador.setIdUnidadEconomica(id_unidad);
@@ -1121,6 +1178,8 @@ public class FormularioUnidad extends AppCompatActivity {
                     if(spinnerDIREC_SF_VP.getSelectedItem().toString().contains("Sin sufijo")){
                         DIREC_SF_VP = "";
                     }
+                }else{
+                    DIREC_SF_VP = "-1";
                 }
                 concatDireccion();
             }
@@ -1159,6 +1218,8 @@ public class FormularioUnidad extends AppCompatActivity {
                     if(spinnerDIREC_SF_VG.getSelectedItem().toString().contains("Sin sufijo")){
                         DIREC_SF_VG = "";
                     }
+                }else{
+                    DIREC_SF_VG = "-1";
                 }
                 concatDireccion();
             }
@@ -1187,21 +1248,17 @@ public class FormularioUnidad extends AppCompatActivity {
             }
         });
 
-        spinnerDIREC_COMP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerDIREC_COMP.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(!spinnerDIREC_COMP.getSelectedItem().toString().equals("Seleccione...")){
-                    DIREC_COMP = Util.getLimpiarAcronimoDireccion(spinnerDIREC_COMP.getSelectedItem().toString());
-                    if(DIREC_COMP.contains("(NA)")){
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                if(!item.equals("Seleccione...") && !item.equals("")){
+                    DIREC_COMP = Util.getLimpiarAcronimoDireccion(item);
+                    if(DIREC_COMP.contains("NA")){
                         DIREC_COMP = "";
                     }
                 }
                 concatDireccion();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
@@ -1306,27 +1363,107 @@ public class FormularioUnidad extends AppCompatActivity {
                         DIREC_P_COMP = null;
                         linearComplemento.setVisibility(View.GONE);
                         linearComplementoAcomp.setVisibility(View.GONE);
-                        spinnerDIREC_COMP.setSelection(getIndexSpinner(spinnerDIREC_COMP, "Seleccione..."));
+                        spinnerDIREC_COMP.setText(getIndexAutoComplet(Arrays.asList(getResources().getStringArray(R.array.complemento)), "Seleccione..."),false);
                         editDIREC_TEX_COM.setText("");
                         break;
                     case R.id.id_complemento_si:
                         DIREC_P_COMP = "1";
                         linearComplemento.setVisibility(View.VISIBLE);
                         linearComplementoAcomp.setVisibility(View.VISIBLE);
-                        spinnerDIREC_COMP.setSelection(getIndexSpinner(spinnerDIREC_COMP, "Seleccione..."));
+                        spinnerDIREC_COMP.setText(getIndexAutoComplet(Arrays.asList(getResources().getStringArray(R.array.complemento)), "Seleccione..."),false);
                         editDIREC_TEX_COM.setText("");
                         break;
                     case R.id.id_complemento_no:
                         DIREC_P_COMP = "2";
                         linearComplemento.setVisibility(View.GONE);
                         linearComplementoAcomp.setVisibility(View.GONE);
-                        spinnerDIREC_COMP.setSelection(getIndexSpinner(spinnerDIREC_COMP, "Seleccione..."));
+                        spinnerDIREC_COMP.setText(getIndexAutoComplet(Arrays.asList(getResources().getStringArray(R.array.complemento)), "Seleccione..."),false);
                         editDIREC_TEX_COM.setText("");
                         break;
                 }
                 concatDireccion();
             }
         });
+
+    }
+
+    /**
+     * Metodo que calcula el total de hombre
+     */
+    private void getValidarTextoPregunta2(EditText edit) {
+        String text = edit.getText().toString();
+        linearDIREC_NNOM_VP.setVisibility(View.VISIBLE);
+        if(Util.stringNullEmptys(text) && (text.toUpperCase().equals("NA"))){
+            linearDIREC_NUM_VP.setVisibility(View.VISIBLE);
+            editDIREC_NUM_VP.setText("");
+        }else{
+            editDIREC_NUM_VP.setText("");
+            linearDIREC_NUM_VP.setVisibility(View.GONE);
+        }
+        concatDireccion();
+    }
+
+    /**
+     * Metodo que recarga la lista de los complementos
+     */
+    private void recargarListadoComplementos() {
+        recycler_complementos = (RecyclerView) findViewById(R.id.recycler_complementos);
+        mAdapterComplemento = new ConteoAdapterComplementos(lstComplemento,FormularioUnidad.this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recycler_complementos.setLayoutManager(mLayoutManager);
+        recycler_complementos.setItemAnimator(new DefaultItemAnimator());
+        recycler_complementos.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
+        recycler_complementos.setAdapter(mAdapterComplemento);
+        mAdapterComplemento.notifyDataSetChanged();
+    }
+
+    /**
+     * Metodoq ue habiilita o deshabilita
+     */
+    private void getCargarTipoDireccion(){
+
+        if(Util.stringNullEmptys(DIREC_P_TIPO) && DIREC_P_TIPO.equals("1") ){
+            linearDIREC_VP.setVisibility(View.VISIBLE);
+            linearDIREC_NNOM_VP.setVisibility(View.GONE);
+            linearDIREC_NUM_VP.setVisibility(View.VISIBLE);
+            linearDIREC_LET_VP.setVisibility(View.VISIBLE);
+            linearDIREC_SF_VP.setVisibility(View.VISIBLE);
+            linearDIREC_LET_SVP.setVisibility(View.VISIBLE);
+            linearDIREC_CUAD_VP.setVisibility(View.VISIBLE);
+            linearDIREC_NUM_VG.setVisibility(View.VISIBLE);
+            linearDIREC_LET_VG.setVisibility(View.VISIBLE);
+            linearDIREC_SF_VG.setVisibility(View.VISIBLE);
+            linearDIREC_LET_SVG.setVisibility(View.VISIBLE);
+            linearDIREC_NUM_PLACA.setVisibility(View.VISIBLE);
+            linearDIREC_CUAD_VG.setVisibility(View.VISIBLE);
+            linearDIREC_P_COMP.setVisibility(View.VISIBLE);
+            //linearComplemento.setVisibility(View.VISIBLE);
+            //linearComplementoAcomp.setVisibility(View.VISIBLE);
+        }
+
+
+
+        if(Util.stringNullEmptys(DIREC_P_TIPO) && (DIREC_P_TIPO.equals("2") || DIREC_P_TIPO.equals("3")) ){
+            linearDIREC_VP.setVisibility(View.GONE);
+            linearDIREC_NNOM_VP.setVisibility(View.GONE);
+            linearDIREC_NUM_VP.setVisibility(View.GONE);
+            linearDIREC_LET_VP.setVisibility(View.GONE);
+            linearDIREC_SF_VP.setVisibility(View.GONE);
+            linearDIREC_LET_SVP.setVisibility(View.GONE);
+            linearDIREC_CUAD_VP.setVisibility(View.GONE);
+            linearDIREC_NUM_VG.setVisibility(View.GONE);
+            linearDIREC_LET_VG.setVisibility(View.GONE);
+            linearDIREC_SF_VG.setVisibility(View.GONE);
+            linearDIREC_LET_SVG.setVisibility(View.GONE);
+            linearDIREC_NUM_PLACA.setVisibility(View.GONE);
+            linearDIREC_CUAD_VG.setVisibility(View.GONE);
+            linearDIREC_P_COMP.setVisibility(View.GONE);
+            linearComplemento.setVisibility(View.VISIBLE);
+            linearComplementoAcomp.setVisibility(View.VISIBLE);
+        }
+
+
 
     }
 
@@ -1506,6 +1643,8 @@ public class FormularioUnidad extends AppCompatActivity {
         unidad.setSector_economico(SECTOR_ECONOMICO);
         unidad.setUnidad_observacion(editUnidadObservacion.getText().toString());
         unidad.setObservacion(editObservacionUnidad.getText().toString());
+        unidad.setImei(idDevice);
+        unidad.setDirecc(concatDireccion());
 
         return unidad;
     }
@@ -1546,6 +1685,12 @@ public class FormularioUnidad extends AppCompatActivity {
 
             isEdit = 1;
             DIRECC = unidad.getDirecc();
+            if(Util.stringNullEmptys(DIRECC)){
+                linearDireccion.setVisibility(View.VISIBLE);
+                editDireccion.setText(DIRECC.replace("(","").replace(")",""));
+            }else{
+                linearDireccion.setVisibility(View.GONE);
+            }
             UNIDAD_OBSERVACION = unidad.getEstado_unidad_observacion();
             TIPO_OBSERVACION = unidad.getTipo_unidad_observacion();
             TIPO_VENDEDOR = unidad.getTipo_vendedor();
@@ -1582,6 +1727,8 @@ public class FormularioUnidad extends AppCompatActivity {
             }
             if(UNIDAD_OBSERVACION!= null && UNIDAD_OBSERVACION.equals("2")){
                 isEdit = 100;
+                editUnidadObservacion.setEnabled(false);
+                editUnidadObservacion.setText("");
                 spinnerTipoObservacion.setAdapter(arr_unidad_observacion_1);
                 if(TIPO_OBSERVACION!= null && TIPO_OBSERVACION.equals("1")){
                     spinnerSectorEconomico.setAdapter(arr_sector_economico2);
@@ -1606,7 +1753,6 @@ public class FormularioUnidad extends AppCompatActivity {
             }
             editObservacionUnidad.setText(unidad.getObservacion());
             editUnidadObservacion.setText(unidad.getUnidad_observacion());
-            concatDireccion();
         }else{
             isEdit = 1;
         }
@@ -1650,39 +1796,63 @@ public class FormularioUnidad extends AppCompatActivity {
         return index;
     }
 
+    /**
+     * Metodo que carga el valor
+     *
+     * @param listado
+     * @param myString
+     * @return
+     */
+    private String getIndexAutoComplet(List listado, String myString){
+        String retorno = "";
+        if(Util.stringNullEmptys(myString)){
+            for (int i=0;i<listado.size();i++){
+                String valor = Util.stringNullEmptys(listado.get(i).toString()) ? listado.get(i).toString(): "";
+                if (valor.contains(myString)){;
+                    retorno = valor;
+                    break;
+                }
+            }
+        }
+        return retorno;
+    }
 
     /**
      * Metodo para retornar
      */
     public void retornar(){
 
-        if(db.getFinalizadaManzana(id_manzana)){
-            FormularioUnidad.this.finish();
+        if(cambiosPendientes){
+            msj.dialogoMensaje("Success", "Tiene cambios pendiente; por favor guardar primero en el boton Agregar Dirección.");
         }else{
-            if(linearNormalizador.getVisibility() == View.VISIBLE){
-                linearNormalizador.setVisibility(View.GONE);
-                linearAdicionarAgregarDireccion.setVisibility(View.GONE);
-                linearPregunta6.setVisibility(View.VISIBLE);
-                linearPregunta7.setVisibility(View.VISIBLE);
-                guardar_formulario.setVisibility(View.VISIBLE);
+            if(db.getFinalizadaManzana(id_manzana)){
+                FormularioUnidad.this.finish();
             }else{
-                AlertDialog.Builder builder = new AlertDialog.Builder(FormularioUnidad.this);
-                builder.setTitle("Confirmación");
-                builder.setMessage("Ya guardo la información?");
-                builder.setIcon(R.drawable.ic_menu_salir);
-                builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                        FormularioUnidad.this.finish();
-                    }
-                });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                });
-                AlertDialog alert = builder.create();
-                alert.show();
+                if(linearNormalizador.getVisibility() == View.VISIBLE){
+                    linearNormalizador.setVisibility(View.GONE);
+                    linearAdicionarAgregarDireccion.setVisibility(View.GONE);
+                    linearPregunta6.setVisibility(View.VISIBLE);
+                    linearPregunta7.setVisibility(View.VISIBLE);
+                    guardar_formulario.setVisibility(View.VISIBLE);
+                }else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(FormularioUnidad.this);
+                    builder.setTitle("Confirmación");
+                    builder.setMessage("Ya guardo la información?");
+                    builder.setIcon(R.drawable.ic_menu_salir);
+                    builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                            FormularioUnidad.this.finish();
+                        }
+                    });
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
             }
         }
     }
@@ -1724,9 +1894,14 @@ public class FormularioUnidad extends AppCompatActivity {
         if(Util.stringNullEmptys(DIREC_VP) && !DIREC_VP.contains("NA")){
             direccion = (direccion +" "+ DIREC_VP).trim();
         }
-        if(Util.stringNullEmptys(editDIREC_NNOM_VP.getText().toString())){
+        if(Util.stringNullEmptys(editDIREC_NNOM_VP.getText().toString()) && !editDIREC_NNOM_VP.getText().toString().toUpperCase().equals("NA") ){
             direccion = (direccion +" "+ editDIREC_NNOM_VP.getText().toString()).trim();
+        }else{
+            if(Util.stringNullEmptys(editDIREC_NUM_VP.getText().toString())){
+                direccion = (direccion +" "+ editDIREC_NUM_VP.getText().toString()).trim();
+            }
         }
+
         if(Util.stringNullEmptys(editDIREC_NUM_VP.getText().toString())){
             direccion = (direccion +" "+ editDIREC_NUM_VP.getText().toString()).trim();
         }
@@ -1776,12 +1951,26 @@ public class FormularioUnidad extends AppCompatActivity {
         if(Util.stringNullEmptys(DIREC_CUAD_VG) && !DIREC_CUAD_VG.contains("1")){
             direccion = (direccion +" "+ DIREC_CUAD_VG).trim();
         }
-        if(Util.stringNullEmptys(DIREC_P_COMP) && DIREC_P_COMP.contains("1")){
+
+        if(Util.stringNullEmptys(DIREC_P_TIPO) && DIREC_P_TIPO.equals("1") ){
+            if(Util.stringNullEmptys(DIREC_P_COMP) && DIREC_P_COMP.contains("1")){
+                for (ComplementoNormalizadorDTO lista : lstComplemento) {
+                    direccion = (direccion +" "+ lista.getDirecComplemento()).trim();
+                }
+            }
+        }else{
             for (ComplementoNormalizadorDTO lista : lstComplemento) {
                 direccion = (direccion +" "+ lista.getDirecComplemento()).trim();
             }
         }
 
+        direccion = direccion.replace("(","").replace(")","");
+        if(Util.stringNullEmptys(direccion)){
+            linearDireccion.setVisibility(View.VISIBLE);
+            editDireccion.setText(direccion);
+        }else{
+            linearDireccion.setVisibility(View.GONE);
+        }
         editDireccionCompleta.setText(direccion);
 
         return direccion;
@@ -1799,6 +1988,21 @@ public class FormularioUnidad extends AppCompatActivity {
         mAdapterComplemento.notifyDataSetChanged();
         msj.dialogoMensaje("Success", "Se ha eliminado el complemento.");
         concatDireccion();
+    }
+
+    /**
+     * Metodo que carga el editar
+     * @param position
+     */
+    public void showDialogEditarComplemneto(final int position ){
+        ComplementoNormalizadorDTO complementoEditar = lstComplemento.get(position);
+        spinnerDIREC_COMP.setText(getIndexAutoComplet(Arrays.asList(getResources().getStringArray(R.array.complemento)), complementoEditar.getDirecComp()),false);
+        editDIREC_TEX_COM.setText(complementoEditar.getDirecTextComp());
+        DIREC_COMP = Util.getLimpiarAcronimoDireccion(complementoEditar.getDirecComp());
+        tv_adicionarComplemento.setText(getString(R.string.text_pregunta6_3_5_guardar));
+        isEditarComplemento = true;
+        complemento = complementoEditar;
+
     }
 
 

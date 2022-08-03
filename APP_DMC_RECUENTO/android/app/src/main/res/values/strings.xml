@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Re-Cuento</string>
-    <string name="version_app">Versión 1.0.4 - PRUEBAS</string>
+    <string name="version_app">Versión 1.0.6 - PRUEBAS</string>
     <string name="copyright_app">© 2022 - DANE, Colombia</string>
 
     <string-array name="direccion_previa">
@@ -316,26 +316,26 @@
     <string name="text_pregunta6_normalizador">Normalizador de Dirección</string>
     <string name="text_pregunta6_1.0">6.1 Normalizador de Dirección</string>
     <string name="text_pregunta6_1_1">Via Principal:</string>
-    <string name="text_pregunta6_1_2">Seleccione el tipo de vía Principal - VIP:</string>
-    <string name="text_pregunta6_1_3">Escriba el nombre común de vía principal:</string>
-    <string name="text_pregunta6_1_4">Escriba el número de vía principal:</string>
+    <string name="text_pregunta6_1_2">Seleccione el tipo de vía Principal - VIP: *</string>
+    <string name="text_pregunta6_1_3">Escriba el nombre común de vía principal: *</string>
+    <string name="text_pregunta6_1_4">Escriba el número de vía principal: *</string>
     <string name="text_pregunta6_1_5">Escriba la letra, letra-letra o letra número que acompaña la vía principal:</string>
-    <string name="text_pregunta6_1_5_Otro">Otro</string>
-    <string name="text_pregunta6_1_6">Seleccione sufijo de la vía principal:</string>
+    <string name="text_pregunta6_1_5_Otro">Otro *</string>
+    <string name="text_pregunta6_1_6">Seleccione sufijo de la vía principal: *</string>
     <string name="text_pregunta6_1_7">Escriba la letra, letra-letra o número-letra que acompaña el sufijo de VP: </string>
-    <string name="text_pregunta6_1_7_Otro">Otro </string>
+    <string name="text_pregunta6_1_7_Otro">Otro  *</string>
     <string name="text_pregunta6_1_8">Seleccione el cuadrante de la vía principal:</string>
 
     <string name="text_pregunta6_2_1">Via Generadora:</string>
-    <string name="text_pregunta6_2_2">Escriba el número de la vía generadora:</string>
+    <string name="text_pregunta6_2_2">Escriba el número de la vía generadora: *</string>
     <string name="text_pregunta6_2_3">Escriba la letra, letra-letra o letra - número que acompaña la via generadora:</string>
     <string name="text_pregunta6_2_3_Otro">Otro</string>
-    <string name="text_pregunta6_2_4">Selecione sufijo de la vía generadora:</string>
+    <string name="text_pregunta6_2_4">Selecione sufijo de la vía generadora: *</string>
     <string name="text_pregunta6_2_5">Escriba la letra, letra-letrao número-letra que acompaña el sufijo de VG:</string>
     <string name="text_pregunta6_2_5_Otro">Otro</string>
-    <string name="text_pregunta6_2_6">Ingrese el número de la placa:</string>
+    <string name="text_pregunta6_2_6">Ingrese el número de la placa: *</string>
     <string name="text_pregunta6_2_7">Seleccione el cuadrante de la vía generadora:</string>
-    <string name="text_pregunta6_2_8">¿Desea añadir el complemento de la dirección?</string>
+    <string name="text_pregunta6_2_8">¿Desea añadir el complemento de la dirección? *</string>
     <string name="text_pregunta6_2_8_Si">1. Si</string>
     <string name="text_pregunta6_2_8_No">2. No</string>
 
@@ -344,6 +344,7 @@
     <string name="text_pregunta6_3_3">Escriba el texto que acompaña el complemento:</string>
     <string name="text_pregunta6_3_4">Dirección Completa</string>
     <string name="text_pregunta6_3_5">Adicionar Complemento</string>
+    <string name="text_pregunta6_3_5_guardar">Guardar Complemento</string>
 
     <string name="text_pregunta7">7. Cantidad de unidades según</string>
     <string name="text_pregunta7_1">Seleccione el estado de la unidad de observación:</string>

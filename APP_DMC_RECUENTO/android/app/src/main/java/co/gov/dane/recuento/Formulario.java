@@ -173,7 +173,7 @@ public class Formulario extends AppCompatActivity {
         linearEliminarFormulario.setVisibility(View.GONE);
         linearHabilitarFormulario.setVisibility(View.GONE);
         linearExisteEdificaciones.setVisibility(View.GONE);
-        linearFinalizarFormulario.setVisibility(View.GONE);
+        linearFinalizarFormulario.setVisibility(View.VISIBLE);
         linearAgregarEdificacion.setVisibility(View.VISIBLE);
         linearNombreLocalidad.setVisibility(View.GONE);
         linearCentroPoblado.setVisibility(View.GONE);
@@ -215,7 +215,7 @@ public class Formulario extends AppCompatActivity {
         Manzana manzana_calculado=new Manzana();
         manzana_calculado=sp.getDatosCalculados(id_manzana);
         //Cargue de los resguardoIndigena
-        List<String> resguardoIndigena = db.getResguardoIndigena(manzana_calculado.getDepartamento(), manzana_calculado.getMunicipio());
+        List<String> resguardoIndigena = db.getResguardoIndigena(manzana_calculado.getDepartamento(),manzana_calculado.getDepartamento()+manzana_calculado.getMunicipio());
         //List<String> resguardoIndigena = db.getResguardoIndigena("76", "76275"); //TODO: PRUEBA
         ArrayAdapter<String> adapterResguardoIndigena = new ArrayAdapter<String>(this, R.layout.simple_spinner_item, resguardoIndigena);
         adapterResguardoIndigena.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
@@ -226,7 +226,7 @@ public class Formulario extends AppCompatActivity {
         }
 
         //Cargue de los comunidadNegra
-        List<String> comunidadNegra = db.getComunidadNegra(manzana_calculado.getDepartamento(), manzana_calculado.getMunicipio());
+        List<String> comunidadNegra = db.getComunidadNegra(manzana_calculado.getDepartamento(), manzana_calculado.getDepartamento()+manzana_calculado.getMunicipio());
         //List<String> comunidadNegra = db.getComunidadNegra("05", "05475");  //TODO: PRUEBA
         ArrayAdapter<String> adapterComunidad = new ArrayAdapter<String>(this, R.layout.simple_spinner_item, comunidadNegra);
         adapterComunidad.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
@@ -234,6 +234,20 @@ public class Formulario extends AppCompatActivity {
 
         prepararDatos(id_manzana);
         llenarFormulario();
+
+        if((resguardoIndigena!= null && resguardoIndigena.size() > 1)|| (comunidadNegra!= null && comunidadNegra.size() > 1)  ){
+            linearUnidadCobertura.setVisibility(View.VISIBLE);
+        }else{
+            linearUnidadCobertura.setVisibility(View.GONE);
+        }
+        List<ConteoEdificacion> edificacionesExistentes = db.getAcordeonEdificacion(id_manzana);
+        if(edificacionesExistentes.size() > 0){
+            id_pregunta5_2_si.setEnabled(false);
+            id_pregunta5_2_no.setEnabled(false);
+        }else{
+            id_pregunta5_2_si.setEnabled(true);
+            id_pregunta5_2_no.setEnabled(true);
+        }
 
         spinnerNOV_CARTO.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -356,36 +370,7 @@ public class Formulario extends AppCompatActivity {
                 LinearLayout dialog_finalizar_si= (LinearLayout) mView.findViewById(R.id.dialog_finalizar_si);
                 LinearLayout dialog_finalizar_no= (LinearLayout) mView.findViewById(R.id.dialog_finalizar_no);
 
-                if(TERRITORIO_ETNICO.toString().contains("2")){
-                  if(db.tieneEdificaciones(id_manzana)){
-                       validacionExxistencia = false;
-                        AlertDialog.Builder builder = new AlertDialog.Builder(Formulario.this);
-                        builder.setTitle("Confirmación");
-                        builder.setMessage("Confirme para eliminar la información de Edificacion(es) y Unidad Económica(s) asociadas.");
-                        builder.setIcon(R.drawable.ic_menu_salir);
-                        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.dismiss();
-                                if(!validaExistenciaAlguna(id_manzana)){
-                                    db.eliminarEdificacionesUnidades(id_manzana);
-                                }
-                                validacionExxistencia = true;
-                            }
-                        });
-                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.dismiss();
-                                validacionExxistencia = false;
-                            }
-                        });
-                        AlertDialog alert = builder.create();
-                        alert.show();
-                    }else{
-                      validacionExxistencia = true;
-                    }
-                }
-
-                if(validarFormulario() && validacionExxistencia){
+                if(validarFormulario()){
                     dialog_finalizar_si.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -415,13 +400,7 @@ public class Formulario extends AppCompatActivity {
                     dialog.show();
                     dialog.setCanceledOnTouchOutside(false);
                 }else{
-                    if(!validacionExxistencia){
-                        msj.generarToast("Debe eliminar la información inconsistente ya que seleccionó (No/No se logró realizar el conteo)","error");
-                    }else{
-                        msj.generarToast("Debe agregar todos los campos requeridos en la Manzana, la(s) Edificacion(es) y en la(s) Unidad(es) Económica(s).","error");
-                    }
-
-
+                    msj.dialogoMensajeError("Error en la Finalización","Debe agregar todos los campos requeridos en la Unidad de Cobertura, la(s) Edificacion(es) y en la(s) Unidad(es) Económica(s).");
                 }
             }
         });
@@ -475,6 +454,16 @@ public class Formulario extends AppCompatActivity {
                     lstEdificaciones.clear();
                     lstEdificaciones.addAll(db.getAcordeonEdificacion(id_manzana));
                     mAdapterEdificacion.notifyDataSetChanged();
+
+                    List<ConteoEdificacion> edificacionesExistentes = db.getAcordeonEdificacion(id_manzana);
+                    if(edificacionesExistentes.size() > 0){
+                        id_pregunta5_2_si.setEnabled(false);
+                        id_pregunta5_2_no.setEnabled(false);
+                    }else{
+                        id_pregunta5_2_si.setEnabled(true);
+                        id_pregunta5_2_no.setEnabled(true);
+                    }
+
                 }else{
                     msj.dialogoMensajeError("Error","Guarde el formulario");
                 }
@@ -744,25 +733,14 @@ public class Formulario extends AppCompatActivity {
         EsquemaManzanaEnvioViewModel validar = getFormulario();
 
         if((validar.getDirec_barrio()!=null && !validar.getDirec_barrio().equals(""))
-                || (validar.getTerritorio_etnico()!=null && !validar.getTerritorio_etnico().equals(""))
                 || (validar.getClase()!=null && !validar.getClase().equals(""))
                 || (validar.getFechaConteo()!=null && !validar.getFechaConteo().equals(""))
                 || (validar.getManzana()!=null && !validar.getManzana().equals(""))
                 || (validar.getNov_carto()!= null && !validar.getNov_carto().equals(""))
                 || (validar.getImei()!=null && !validar.getImei().equals(""))){
 
-            if(validar.getTerritorio_etnico().equals("1") && validar.getSel_terr_etnico()!= null && !validar.getSel_terr_etnico().equals("")){
-                if(validar.getSel_terr_etnico().equals("1") && validar.getCod_resg_etnico()!= null && !validar.getCod_resg_etnico().equals("") ){
-                    retorno = true;
-                }else{
-                    if(validar.getSel_terr_etnico().equals("2") && validar.getCod_comun_etnico()!= null && !validar.getCod_comun_etnico().equals("") ){
-                        retorno = true;
-                    }
-                }
-            }
-
             if(validar.getExiste_unidad()!= null && !validar.getExiste_unidad().equals("")){
-                if(validar.getExiste_unidad().equals("2") && validar.getTipo_novedad()!= null && !validar.getTipo_novedad().equals("")){
+                if(validar.getExiste_unidad().equals("2")){
                     retorno = true;
                 }
             }else{
@@ -1391,6 +1369,16 @@ public class Formulario extends AppCompatActivity {
                                 lstEdificaciones.remove(edificacion);
                                 mAdapterEdificacion.notifyDataSetChanged();
                                 msj.generarToast("Edificación borrada");
+
+                                List<ConteoEdificacion> edificacionesExistentes = db.getAcordeonEdificacion(id_manzana);
+                                if(edificacionesExistentes.size() > 0){
+                                    id_pregunta5_2_si.setEnabled(false);
+                                    id_pregunta5_2_no.setEnabled(false);
+                                }else{
+                                    id_pregunta5_2_si.setEnabled(true);
+                                    id_pregunta5_2_no.setEnabled(true);
+                                }
+
                             }
                             dialog.dismiss();
                         }

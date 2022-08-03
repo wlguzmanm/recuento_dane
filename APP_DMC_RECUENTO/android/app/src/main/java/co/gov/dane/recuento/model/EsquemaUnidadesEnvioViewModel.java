@@ -1,5 +1,8 @@
 package co.gov.dane.recuento.model;
 
+import java.util.List;
+
+import co.gov.dane.recuento.dtos.ComplementoNormalizadorDTO;
 import co.gov.dane.recuento.dtos.NormalizadorDireccionDTO;
 
 public class EsquemaUnidadesEnvioViewModel {
@@ -20,6 +23,7 @@ public class EsquemaUnidadesEnvioViewModel {
 
     private String fecha_modificacion;
     private String id_manzana_edificio_unidad;
+
     private NormalizadorDireccionDTO direccionNormalizada;
 
     public EsquemaUnidadesEnvioViewModel() {

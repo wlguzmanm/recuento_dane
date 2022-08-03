@@ -42,7 +42,7 @@ public class ConteoAdapterComplementos extends RecyclerView.Adapter<ConteoAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
         public TextView id, tvTexComplemento, tvComplemento;
-        public ImageView eliminar_item;
+        public ImageView eliminar_item, editar_item;
         public LinearLayout contenedor;
         public MyViewHolder(View view) {
             super(view);
@@ -50,6 +50,7 @@ public class ConteoAdapterComplementos extends RecyclerView.Adapter<ConteoAdapte
             tvComplemento = (TextView) view.findViewById(R.id.direcComp);
             tvTexComplemento = (TextView) view.findViewById(R.id.direcTextComp);
             eliminar_item = view.findViewById(R.id.eliminar_item_complemento);
+            editar_item = view.findViewById(R.id.editar_item_complemento);
             contenedor = (LinearLayout) view.findViewById(R.id.contenedorComplemento);
 
         }
@@ -78,12 +79,24 @@ public class ConteoAdapterComplementos extends RecyclerView.Adapter<ConteoAdapte
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final ComplementoNormalizadorDTO comple = complemento.get(position);
         holder.id.setText(comple.getId());
+        if(comple.getId()== null){
+            holder.editar_item.setVisibility(View.GONE);
+        }else{
+            holder.editar_item.setVisibility(View.VISIBLE);
+        }
         holder.tvComplemento.setText(comple.getDirecComp());
         holder.tvTexComplemento.setText(comple.getDirecTextComp());
         holder.eliminar_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 form.showDialogBorrarComplemneto(position);
+            }
+        });
+
+        holder.editar_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                form.showDialogEditarComplemneto(position);
             }
         });
 

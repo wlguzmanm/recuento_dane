@@ -67,6 +67,8 @@ import co.gov.dane.recuento.Preguntas.UnidadEconomica;
 import co.gov.dane.recuento.adapter.ConteoAdapterManzana;
 import co.gov.dane.recuento.backend.Database;
 import co.gov.dane.recuento.backend.EsquemaMapa;
+import co.gov.dane.recuento.dtos.ComplementoNormalizadorDTO;
+import co.gov.dane.recuento.dtos.NormalizadorDireccionDTO;
 import co.gov.dane.recuento.interfaces.IAuthentication;
 import co.gov.dane.recuento.model.ConteoManzana;
 import co.gov.dane.recuento.model.EnvioFormularioViewModel;
@@ -392,6 +394,14 @@ public class MainActivity extends AppCompatActivity
                     EsquemaUnidadesEnvioViewModel objetoUnidad = new EsquemaUnidadesEnvioViewModel();
                     UnidadEconomica unidad = db.getUnidadEconomica(manzana.getId_manzana(), edificacion.getId_edificacion(),unidadEconomica.getId_unidad());
                     objetoUnidad = getUnidadEconomica(unidad);
+                    NormalizadorDireccionDTO normalizador = db.getNormalizador(manzana.getId_manzana(), edificacion.getId_edificacion(), unidadEconomica.getId_unidad());
+
+                    if(normalizador!= null && normalizador.getId()!= null){
+                        List<ComplementoNormalizadorDTO> complementos = db.getComplementoNormalizador(normalizador.getId());
+                        normalizador.setComplememnto(complementos);
+                    }
+
+                    objetoUnidad.setDireccionNormalizada(normalizador);
                     lstUnidadEconomica.add(objetoUnidad);
                 }
                 objetoEdifi.setUnidades(lstUnidadEconomica);
@@ -402,6 +412,8 @@ public class MainActivity extends AppCompatActivity
 
         }
         envio.setEsquemaManzana(lstManzana);
+        Gson gson = new GsonBuilder().create();
+        String json = gson.toJson(envio);
 
         return envio;
     }
