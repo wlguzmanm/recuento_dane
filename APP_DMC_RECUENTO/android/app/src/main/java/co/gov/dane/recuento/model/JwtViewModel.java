@@ -1,10 +1,14 @@
 package co.gov.dane.recuento.model;
 
+import java.util.List;
+
 public class JwtViewModel {
     private String iss;
     private String iat;
     private String exp;
     private String sub;
+    private String uuid;
+    private String[] authorities;
 
     public String getIss() {
         return iss;
@@ -36,5 +40,21 @@ public class JwtViewModel {
 
     public void setSub(String sub) {
         this.sub = sub;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String[] getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(String[] authorities) {
+        this.authorities = authorities;
     }
 }

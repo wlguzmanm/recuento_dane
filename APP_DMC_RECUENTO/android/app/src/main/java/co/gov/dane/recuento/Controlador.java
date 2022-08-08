@@ -58,7 +58,7 @@ public class Controlador {
 
         db=new Database(context);
 
-        Boolean hay_internet=isNetworkAvailable();
+         Boolean hay_internet=isNetworkAvailable();
         if(hay_internet){
             Session session=new Session(context);
             final String usuario = session.getusename();
@@ -105,6 +105,8 @@ public class Controlador {
                         @Override
                         public void onFailure(Call<ResponseEnvioManzanaViewModel> call, Throwable t) {
                             Log.d("Error:", t.getMessage());
+                            Mensajes mitoast =new Mensajes(context);
+                            mitoast.dialogoMensajeError("Error","Error al subir información: "+t.getMessage());
                             callBack.onSuccess();
                         }
                     });

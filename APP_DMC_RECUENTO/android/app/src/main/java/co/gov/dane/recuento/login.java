@@ -1,30 +1,44 @@
 package co.gov.dane.recuento;
 
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.provider.Settings;
+import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.provider.Settings;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import com.auth0.android.jwt.Claim;
-import com.auth0.android.jwt.JWT;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
+import co.gov.dane.recuento.Helper.RetrofitClientInstance;
 import co.gov.dane.recuento.assets.utilidades.ViewComponent;
 import co.gov.dane.recuento.backend.Database;
+import co.gov.dane.recuento.backend.Usuario;
+import co.gov.dane.recuento.interfaces.IAuthentication;
 import co.gov.dane.recuento.model.JwtViewModel;
 import co.gov.dane.recuento.model.Offline;
+import co.gov.dane.recuento.model.RequestAuthentication;
+import co.gov.dane.recuento.model.ResponseToken;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class login extends AppCompatActivity {
 
@@ -65,19 +79,21 @@ public class login extends AppCompatActivity {
         //password.setText("123456");
         //username.setText("jezorah");
         //password.setText("123456")
-        username.setText("asrodriguezb");
-        password.setText("52157679");
+        //username.setText("asrodriguezb");
+        //password.setText("52157679");
         //username.setText("ymenesesr");
         //password.setText("34340581");
         //username.setText("yvalderrama");
         //password.setText("1128024471");
+        //username.setText("wlguzmanm@dane.gov.co");
+        //password.setText("Junior100*");
 
         //username.setText("mduranq");
         //password.setText("43831884");
 
         Button btn_login= (Button) findViewById(R.id.btn_login);
 
-        btn_login.setOnClickListener(new View.OnClickListener() {
+         /*btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzI0OTc1NDIsImlhdCI6MTYzMDQ2NTU0MiwianRpIjoiMjk4N2Q0ODktMzk2Yi00ZTY4LTk1YWUtZWQ4NzYxYzljZTYwIiwiaXNzIjoiaHR0cDovL2FwcHMuZGFuZS5nb3YuY28vYXV0aC9yZWFsbXMvQXBwTW9uaXRvcmVvIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjdjMDA1OWMyLTYyOGMtNGYwYi05MWE4LWM2Mzg4ODM2MjEwMCIsInR5cCI6IkJlYXJlciIsImF6cCI6ImRhbmVtb25pdG9yZW8iLCJzZXNzaW9uX3N0YXRlIjoiYTI0OTgyZmQtZDI3ZC00ZGZjLTg1ODctZjk2MTFmNWYxNTExIiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyIqIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiZGVmYXVsdC1yb2xlcy1hcHBtb25pdG9yZW8iXX0sInJlc291cmNlX2FjY2VzcyI6eyJkYW5lbW9uaXRvcmVvIjp7InJvbGVzIjpbIlN1cGVydmlzb3IiXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJKRUZFSUQiOjMsIm5hbWUiOiJQRVBJVE8gUEVSRVoiLCJKRUZFIjoiSlVBTiBEQVZJRCBNQVJUSU5FWiBNT1JBTEVTIiwicHJlZmVycmVkX3VzZXJuYW1lIjoicGdhcmNpYSIsImdpdmVuX25hbWUiOiJQRVBJVE8iLCJmYW1pbHlfbmFtZSI6IlBFUkVaIEdBUkNJQSIsImVtYWlsIjoicGdhcmNpYUBkYW5lLmdvdi5jbyJ9.DR4wlzg4x-eig9CQtgD6qjEo5FxbLTQZeADpH5MY7_Y";
@@ -116,9 +132,9 @@ public class login extends AppCompatActivity {
                 login.this.finish();
                 viewComponent.progressBarProcess(R.id.loading,false);
             }
-        });
+        });*/
 
-        /*
+
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -235,14 +251,14 @@ public class login extends AppCompatActivity {
                                                     }
 
                                                     JwtViewModel jwtViewModel =  getDecodedJwt(response.body().getToken());
-                                                    values.put(Usuario.ID, response.body().getUsuario().getId());
-                                                    values.put(Usuario.USUARIO, response.body().getUsuario().getUsuario());
+                                                    values.put(Usuario.ID, jwtViewModel.getUuid());
+                                                    values.put(Usuario.USUARIO, jwtViewModel.getSub());
                                                     values.put(Usuario.CLAVE, password.getText().toString());
-                                                    values.put(Usuario.NOMBRE, response.body().getUsuario().getNombre());
+                                                    values.put(Usuario.NOMBRE, jwtViewModel.getSub());
                                                     values.put(Usuario.IMEI, idDevice);
-                                                    values.put(Usuario.ROL, response.body().getUsuario().getRol());
+                                                    values.put(Usuario.ROL, contieneRol(jwtViewModel.getAuthorities()));
                                                     values.put(Usuario.VIGENCIA, jwtViewModel.getExp()+"000");
-                                                    values.put(Usuario.ID_SUPERVISOR, response.body().getUsuario().getId_supervisor());
+                                                    values.put(Usuario.ID_SUPERVISOR, "null");
                                                     values.put(Usuario.TOKEN, response.body().getToken());
 
                                                     sp.insert(Usuario.TABLE_NAME, null, values);
@@ -256,19 +272,19 @@ public class login extends AppCompatActivity {
                                                         try{
                                                             JwtViewModel jwtViewModel =  getDecodedJwt(response.body().getToken());
                                                             session = new Session(login.this);
-                                                            session.setusename(username.getText().toString(),response.body().getUsuario().getNombre(),
-                                                                    response.body().getUsuario().getRol(),response.body().getToken(), password.getText().toString(),
+                                                            session.setusename(username.getText().toString(),jwtViewModel.getSub(),
+                                                                    contieneRol(jwtViewModel.getAuthorities()),response.body().getToken(), password.getText().toString(),
                                                                     jwtViewModel.getExp()+"000");
 
-                                                            controlador.getAsignaciones(response.body().getUsuario().getUsuario(), new VolleyCallBack() {
+                                                            /*controlador.getAsignaciones(response.body().getUsuario().getUsuario(), new VolleyCallBack() {
                                                                 @Override
-                                                                public void onSuccess() {
+                                                                public void onSuccess() {*/
                                                                     Intent mainIntent = new Intent(login.this,Entrada.class);
                                                                     login.this.startActivity(mainIntent);
                                                                     login.this.finish();
                                                                     viewComponent.progressBarProcess(R.id.loading,false);
-                                                                }
-                                                            });
+                                                                /*}
+                                                            });*/
                                                         }catch (Exception e){
                                                         }
                                                     }
@@ -330,14 +346,14 @@ public class login extends AppCompatActivity {
                                                 }
 
                                                 JwtViewModel jwtViewModel =  getDecodedJwt(response.body().getToken());
-                                                values.put(Usuario.ID, response.body().getUsuario().getId());
-                                                values.put(Usuario.USUARIO, response.body().getUsuario().getUsuario());
+                                                values.put(Usuario.ID, jwtViewModel.getUuid());
+                                                values.put(Usuario.USUARIO, jwtViewModel.getSub());
                                                 values.put(Usuario.CLAVE, password.getText().toString());
-                                                values.put(Usuario.NOMBRE, response.body().getUsuario().getNombre());
+                                                values.put(Usuario.NOMBRE, jwtViewModel.getSub());
                                                 values.put(Usuario.IMEI, idDevice);
-                                                values.put(Usuario.ROL, response.body().getUsuario().getRol());
+                                                values.put(Usuario.ROL, contieneRol(jwtViewModel.getAuthorities()));
                                                 values.put(Usuario.VIGENCIA, jwtViewModel.getExp()+"000");
-                                                values.put(Usuario.ID_SUPERVISOR, response.body().getUsuario().getId_supervisor());
+                                                values.put(Usuario.ID_SUPERVISOR, "null");
                                                 values.put(Usuario.TOKEN, response.body().getToken());
 
                                                 sp.insert(Usuario.TABLE_NAME, null, values);
@@ -352,20 +368,20 @@ public class login extends AppCompatActivity {
                                                     try{
                                                         JwtViewModel jwtViewModel =  getDecodedJwt(response.body().getToken());
                                                         session = new Session(login.this);
-                                                        session.setusename(username.getText().toString(),response.body().getUsuario().getNombre(),
-                                                                response.body().getUsuario().getRol(),response.body().getToken(), password.getText().toString(),
+                                                        session.setusename(username.getText().toString(),jwtViewModel.getSub(),
+                                                                contieneRol(jwtViewModel.getAuthorities()),response.body().getToken(), password.getText().toString(),
                                                                 jwtViewModel.getExp()+"000");
 
                                                         if(offline!= null && !offline.isActivo()){  //MODO OFFLINE ACTIVO
-                                                            controlador.getAsignaciones(response.body().getUsuario().getUsuario(), new VolleyCallBack() {
+                                                            /*controlador.getAsignaciones(response.body().getUsuario().getUsuario(), new VolleyCallBack() {
                                                                 @Override
-                                                                public void onSuccess() {
+                                                                public void onSuccess() {*/
                                                                     Intent mainIntent = new Intent(login.this,Entrada.class);
                                                                     login.this.startActivity(mainIntent);
                                                                     login.this.finish();
                                                                     viewComponent.progressBarProcess(R.id.loading,false);
-                                                                }
-                                                            });
+                                                              /*  }
+                                                            });*/
                                                         }else{
                                                             Intent mainIntent = new Intent(login.this,Entrada.class);
                                                             login.this.startActivity(mainIntent);
@@ -460,9 +476,19 @@ public class login extends AppCompatActivity {
                 }
             }
         });
-        */
+    }
 
+    private String contieneRol(String[] authorities) {
+        String retorno = null;
+        for (int x=0;x<authorities.length;x++){
+            System.out.println(authorities[x]);
+            if(authorities[x].equals("APP_CONTEO_RECOLECTOR")){
+                retorno = authorities[x];
+                break;
+            }
+        }
 
+        return retorno ;
     }
 
 

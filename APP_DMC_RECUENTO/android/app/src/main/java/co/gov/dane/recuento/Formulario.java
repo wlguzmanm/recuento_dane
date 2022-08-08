@@ -233,6 +233,7 @@ public class Formulario extends AppCompatActivity {
         spinnerCOD_COMUN_ETNICO.setAdapter(adapterComunidad);
 
         prepararDatos(id_manzana);
+        linearFinalizarFormulario.setVisibility(View.GONE);
         llenarFormulario();
 
         if((resguardoIndigena!= null && resguardoIndigena.size() > 1)|| (comunidadNegra!= null && comunidadNegra.size() > 1)  ){
@@ -244,9 +245,11 @@ public class Formulario extends AppCompatActivity {
         if(edificacionesExistentes.size() > 0){
             id_pregunta5_2_si.setEnabled(false);
             id_pregunta5_2_no.setEnabled(false);
+            linearFinalizarFormulario.setVisibility(View.VISIBLE);
         }else{
             id_pregunta5_2_si.setEnabled(true);
             id_pregunta5_2_no.setEnabled(true);
+            linearFinalizarFormulario.setVisibility(View.GONE);
         }
 
         spinnerNOV_CARTO.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -357,6 +360,7 @@ public class Formulario extends AppCompatActivity {
             }
         });
 
+
         linearFinalizarFormulario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -446,6 +450,7 @@ public class Formulario extends AppCompatActivity {
         linearAgregarEdificacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                linearFinalizarFormulario.setVisibility(View.VISIBLE);
                 if(click==1){
                     int siguiente=db.getMaxEdificacion(id_manzana)+1;
                     Log.d("siguiente", String.valueOf(siguiente));

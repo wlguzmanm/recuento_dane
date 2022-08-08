@@ -20,14 +20,14 @@ public interface IAuthentication {
             @Body RequestAuthentication body
     );
 
-    @POST("javainuse-rabbitmq/consulta-status")
+    @POST("transmision_barrido/send/consulta-status")
     Call<NotificacionesViewModel> consultaStatus(
             @Header("Content-Type") String content_type,
             @Header("Authorization") String token,
             @Body NotificacionesViewModel body
     );
 
-    @POST("javainuse-rabbitmq/formulario")
+    @POST("transmision_barrido/send/formulario")
     Call<ResponseEnvioManzanaViewModel> sincronizarFormulario(
             @Header("Content-Type") String content_type,
             @Header("Authorization") String token,

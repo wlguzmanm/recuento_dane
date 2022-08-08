@@ -36,7 +36,7 @@ public class Database extends SQLiteOpenHelper {
 
     private Context contexto ;
     public static final int DATABASE_VERSION = 17;
-    public static final String DATABASE_NAME = "Re_ConteoFormularioV_1_0_6.db";
+    public static final String DATABASE_NAME = "Re_ConteoFormularioV_1_0_7.db";
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

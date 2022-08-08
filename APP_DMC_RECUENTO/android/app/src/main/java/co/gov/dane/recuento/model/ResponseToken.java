@@ -19,4 +19,5 @@ public class ResponseToken {
     public void setUsuario(UserTokenViewModel usuario) {
         this.usuario = usuario;
     }
+
 }

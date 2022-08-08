@@ -76,10 +76,10 @@ public class Entrada extends AppCompatActivity {
 
                     int resta = Long.valueOf(fechaFin).intValue() - Long.valueOf(fechaInicio).intValue();
                     if(resta > 0 && resta <= 3 ){
-                        mitoast.dialogoMensajeError("Error Acceso","El sistema ha detectado que el Token que esta usando, debe ser renovado por uno nuevo, por favor, cambiar la configuración local a Internet, cerrar la sesión y garantizar que el dispositivo tenga acceso a Internet, para la renovación del Token.");
+                        mitoast.dialogoMensajeError("Error Acceso","El sistema ha detectado que el Token que esta usando, debe ser renovado por uno nuevo prontamente, por favor, cambiar la configuración local a Internet, cerrar la sesión y garantizar que el dispositivo tenga acceso a Internet, para la renovación del Token.");
                     }
 
-                    if(resta == 0 ){
+                    if(resta <= 0 ){
                         mitoast.dialogoMensajeError("Error Acceso", "El Token se encuentra vencido. Por favor,  cambiar la configuración local a Internet, cerrar la sesión y garantizar que el dispositivo tenga acceso a Internet, para la renovación del Token. ");
                         //mitoast.dialogoMensajeError("Error Acceso", "El sistema no lo dejara avanzar hasta que actualice el token.");
                     }
