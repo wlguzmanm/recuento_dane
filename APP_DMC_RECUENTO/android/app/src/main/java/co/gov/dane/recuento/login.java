@@ -87,6 +87,8 @@ public class login extends AppCompatActivity {
         //password.setText("1128024471");
         //username.setText("wlguzmanm@dane.gov.co");
         //password.setText("Junior100*");
+        //username.setText("rjguzmanm@dane.gov.co");
+        //password.setText("123");
 
         //username.setText("mduranq");
         //password.setText("43831884");
@@ -141,6 +143,14 @@ public class login extends AppCompatActivity {
                 usernameStr = username.getText().toString();
                 passwordStr =  password.getText().toString();
                 Mensajes mitoast =new Mensajes(controlador.context);
+
+                // Temporal
+//                session = new Session(login.this);
+//                session.setusename(usuario,nombre,rol,token, clave, exp);
+//                Intent mainIntent = new Intent(login.this,Entrada.class);
+//                login.this.startActivity(mainIntent);
+//                login.this.finish();
+//                viewComponent.progressBarProcess(R.id.loading,false);
 
                 if(usernameStr.equals("") || passwordStr.equals("")){
                     Toast.makeText(login.this, "Digitar los datos de Usuario y Contraseña", Toast.LENGTH_LONG).show();
@@ -223,6 +233,8 @@ public class login extends AppCompatActivity {
                                     RequestAuthentication authentication = new RequestAuthentication();
                                     authentication.setUsername(usernameStr);
                                     authentication.setPassword(passwordStr);
+                                    authentication.setApp_name("SMC_BARRIDO");
+
 
                                     IAuthentication service = RetrofitClientInstance.getRetrofitInstance().create(IAuthentication.class);
                                     Call<ResponseToken> call = service.login("application/json",authentication);
@@ -279,10 +291,10 @@ public class login extends AppCompatActivity {
                                                             /*controlador.getAsignaciones(response.body().getUsuario().getUsuario(), new VolleyCallBack() {
                                                                 @Override
                                                                 public void onSuccess() {*/
-                                                                    Intent mainIntent = new Intent(login.this,Entrada.class);
-                                                                    login.this.startActivity(mainIntent);
-                                                                    login.this.finish();
-                                                                    viewComponent.progressBarProcess(R.id.loading,false);
+		                                                            Intent mainIntent = new Intent(login.this,Entrada.class);
+		                                                            login.this.startActivity(mainIntent);
+		                                                            login.this.finish();
+		                                                            viewComponent.progressBarProcess(R.id.loading,false);
                                                                 /*}
                                                             });*/
                                                         }catch (Exception e){
@@ -318,6 +330,7 @@ public class login extends AppCompatActivity {
                                 RequestAuthentication authentication = new RequestAuthentication();
                                 authentication.setUsername(usernameStr);
                                 authentication.setPassword(passwordStr);
+                                authentication.setApp_name("SMC_BARRIDO");
 
                                 IAuthentication service = RetrofitClientInstance.getRetrofitInstance().create(IAuthentication.class);
                                 Call<ResponseToken> call = service.login("application/json",authentication);
@@ -376,10 +389,10 @@ public class login extends AppCompatActivity {
                                                             /*controlador.getAsignaciones(response.body().getUsuario().getUsuario(), new VolleyCallBack() {
                                                                 @Override
                                                                 public void onSuccess() {*/
-                                                                    Intent mainIntent = new Intent(login.this,Entrada.class);
-                                                                    login.this.startActivity(mainIntent);
-                                                                    login.this.finish();
-                                                                    viewComponent.progressBarProcess(R.id.loading,false);
+		                                                            Intent mainIntent = new Intent(login.this,Entrada.class);
+		                                                            login.this.startActivity(mainIntent);
+		                                                            login.this.finish();
+		                                                            viewComponent.progressBarProcess(R.id.loading,false);
                                                               /*  }
                                                             });*/
                                                         }else{

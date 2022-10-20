@@ -130,6 +130,7 @@ public class NotificationService extends Service {
                         RequestAuthentication authentication = new RequestAuthentication();
                         authentication.setUsername(session.getusename());
                         authentication.setPassword(session.getPassword());
+                        authentication.setApp_name("SMC_BARRIDO");
 
                         IAuthentication service = RetrofitClientInstance.getRetrofitInstance().create(IAuthentication.class);
                         Call<ResponseToken> call = service.login("application/json",authentication);

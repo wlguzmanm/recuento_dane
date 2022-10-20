@@ -36,7 +36,7 @@ public class Database extends SQLiteOpenHelper {
 
     private Context contexto ;
     public static final int DATABASE_VERSION = 17;
-    public static final String DATABASE_NAME = "Re_ConteoFormularioV_1_0_7.db";
+    public static final String DATABASE_NAME = "Re_ConteoFormularioV_1_0_11.db";
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -122,7 +122,7 @@ public class Database extends SQLiteOpenHelper {
                 + ")");
 
         db.execSQL("CREATE TABLE " + Usuario.TABLE_NAME + " ("
-                + Usuario.ID +" INTEGER PRIMARY KEY,"
+                + Usuario.ID +" TEXT PRIMARY KEY,"
                 + Usuario.USUARIO + " TEXT NOT NULL,"
                 + Usuario.CLAVE + " TEXT NOT NULL,"
                 + Usuario.IMEI + " TEXT NOT NULL,"
@@ -130,8 +130,8 @@ public class Database extends SQLiteOpenHelper {
                 + Usuario.CORREO + " TEXT ,"
                 + Usuario.VIGENCIA + " TEXT ,"
                 + Usuario.TOKEN + " TEXT ,"
-                + Usuario.ROL + " INTEGER,"
-                + Usuario.ID_SUPERVISOR + " INTEGER"
+                + Usuario.ROL + " TEXT,"
+                + Usuario.ID_SUPERVISOR + " TEXT"
                 + ")");
 
         db.execSQL("CREATE TABLE " + EsquemaAsignacion.TABLE_NAME + " ("
@@ -2444,7 +2444,7 @@ public class Database extends SQLiteOpenHelper {
      * Metodo de consulta la informacion de una localidad
      * @return
      */
-    public synchronized String getLocalidad(String codigo) {
+    public synchronized String getLocalidad(String municipio, String codigo) {
         String objeto = null;
 
         try {
@@ -2452,7 +2452,7 @@ public class Database extends SQLiteOpenHelper {
             Cursor cursor = db.rawQuery("SELECT DISTINCT  " +
                     "NOM_LOCALIDAD  " +
                     "FROM DATOS_COMUNAS_LOCALIDADES " +
-                    "WHERE COD_LOCALIDAD = '"+codigo+"'", null);
+                    "WHERE COD_MPIO = '" + municipio + "' and COD_LOCALIDAD = '"+codigo+"'", null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 do {

@@ -414,11 +414,11 @@
                         <LinearLayout
                             android:id="@+id/linearCentroPoblado"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:orientation="vertical">
                                 <TextView
                                     style="@style/titulo"
@@ -435,7 +435,7 @@
                                     android:layout_marginRight="10dp"
                                     android:ems="20"
                                     android:clickable="false"
-                                    android:inputType="text"
+                                    android:inputType="textMultiLine"
                                     android:enabled="false"
                                     android:backgroundTintMode="src_in"
                                     android:backgroundTint="@color/gris_oscuro"

@@ -15,11 +15,17 @@
 
     <item android:title="Reportes" >
         <menu>
-            <item
+            <!--item
                 android:id="@+id/nav_resumen"
                 android:icon="?attr/actionModePasteDrawable"
                 android:iconTint="@color/dane"
-                android:title="Resumen PDF" />
+                android:title="Resumen PDF" /-->
+
+            <item
+                android:id="@+id/nav_resumen_xls"
+                android:icon="@drawable/ic_baseline_list_alt_24"
+                android:iconTint="@color/dane"
+                android:title="Reporte Excel" />
         </menu>
     </item>
 

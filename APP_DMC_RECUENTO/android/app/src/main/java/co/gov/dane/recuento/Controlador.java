@@ -74,7 +74,7 @@ public class Controlador {
                     String json = gson.toJson(envio);
                     Log.d("json:", json);
                     IAuthentication service = RetrofitClientInstance.getRetrofitInstance().create(IAuthentication.class);
-                    Call<ResponseEnvioManzanaViewModel> call = service.sincronizarFormulario("application/json;charset=UTF-8","Bearer  "+session.getToken(), envio);
+                    Call<ResponseEnvioManzanaViewModel> call = service.sincronizarFormulario("application/json;charset=UTF-8","Bearer "+session.getToken(), envio);
                     call.enqueue(new Callback<ResponseEnvioManzanaViewModel>() {
                         @Override
                         public void onResponse(Call<ResponseEnvioManzanaViewModel> call, retrofit2.Response<ResponseEnvioManzanaViewModel> response) {

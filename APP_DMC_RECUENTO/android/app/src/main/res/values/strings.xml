@@ -1,12 +1,18 @@
 <resources>
     <string name="app_name">Re-Cuento</string>
-    <string name="version_app">Versión 1.0.7 - PRUEBAS</string>
+    <string name="version_app">Versión 1.0.0 - PROD</string>
     <string name="copyright_app">© 2022 - DANE, Colombia</string>
 
     <string-array name="direccion_previa">
         <item>Seleccione...</item>
         <item>1. Dirección antes de placa.</item>
         <item>2. Dirección antes de complemento.</item>
+        <item>3. Dirección hasta complemento.</item>
+        <item>4. Sin dirección previa.</item>
+    </string-array>
+
+    <string-array name="direccion_previa_no_estandar">
+        <item>Seleccione...</item>
         <item>3. Dirección hasta complemento.</item>
         <item>4. Sin dirección previa.</item>
     </string-array>
@@ -72,7 +78,7 @@
     </string-array>
 
     <string-array name="complemento">
-        <item>Seleccione...</item>
+<!--        <item>Seleccione...</item>-->
         <item>(ALM) Almacén</item>
         <item>(BG) Bodega</item>
         <item>(OF) Oficina</item>
@@ -351,7 +357,7 @@
     <string name="text_pregunta7_2">Seleccione el tipo de unidad de observación:</string>
     <string name="text_pregunta7_3">Tipo de vendedor de calle:</string>
     <string name="text_pregunta7_4">Seleccione el sector económico de la unidad:</string>
-    <string name="text_pregunta7_5">Nombre de la unidad de oservación:</string>
+    <string name="text_pregunta7_5">Nombre de la unidad de observación:</string>
     <string name="text_pregunta7_6">Observacion para la unidad:</string>
 
     <string name="text_btn_agregar_direccion">Agregar Dirección</string>

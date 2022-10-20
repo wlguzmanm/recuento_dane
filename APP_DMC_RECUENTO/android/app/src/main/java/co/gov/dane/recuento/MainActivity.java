@@ -454,6 +454,8 @@ public class MainActivity extends AppCompatActivity
         retorno.setImei(manzana.getImei());
         retorno.setManzana(manzana.getManzana());
         retorno.setSupervisor(manzana.getSupervisor());
+        retorno.setNov_carto(manzana.getNov_carto());
+        retorno.setObsmz(manzana.getObsmz());
 
         return retorno;
     }
@@ -550,13 +552,18 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        if (id == R.id.nav_resumen) {
+        /*if (id == R.id.nav_resumen) {
             offline = db.getOffline("OFFLINE", session.getusename());
             if(offline!= null && !offline.isActivo()){
                 resumenPdf();
             }else{
                 msg.generarToast("Aplicación esta en modo Fuera de Linea y esta funcionalidad necesita estan en linea para la conexión con Internet");
             }
+        } else */if (id == R.id.nav_resumen_xls) {
+            envio = new EnvioFormularioViewModel();
+            envio = getEnvio(db.getListadofinalizados());
+            ReporteXLS reporte = new ReporteXLS(this,envio);
+            reporte.generateReport();
         } else if (id == R.id.nav_mapa) {
             mapas();
         } else if (id == R.id.nav_backup) {
@@ -631,7 +638,7 @@ public class MainActivity extends AppCompatActivity
                         Gson gson = new GsonBuilder().create();
                         String json = gson.toJson(envio);
                         IAuthentication service = RetrofitClientInstance.getRetrofitInstance().create(IAuthentication.class);
-                        Call<ResponseFile> call = service.descargarReporte("application/json;charset=UTF-8","Bearer  "+session.getToken(), envio);
+                        Call<ResponseFile> call = service.descargarReporte("application/json;charset=UTF-8","Bearer "+session.getToken(), envio);
                         call.enqueue(new Callback<ResponseFile>() {
                             @Override
                             public void onResponse(Call<ResponseFile> call, retrofit2.Response<ResponseFile> response) {

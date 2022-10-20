@@ -620,7 +620,7 @@
                                 android:layout_marginRight="10dp"
                                 android:background="@drawable/edit_text_design"
                                 android:inputType="textCapCharacters"
-                                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+                                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 "
                                 android:maxLength="150" />
                         </LinearLayout>
                     </LinearLayout>
@@ -1237,18 +1237,20 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/text_pregunta6_3_2" />
+
                             <AutoCompleteTextView
                                 android:id="@+id/spinnerDIREC_COMP"
-                                android:background="@drawable/edit_text_design"
                                 android:layout_width="190dp"
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
                                 android:layout_marginTop="10dp"
-                                android:maxLength="25"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/edit_text_design"
                                 android:completionThreshold="2"
+                                android:hint="Digite complemento..."
                                 android:imeOptions="actionDone"
-                                android:inputType="text"  />
+                                android:inputType="text"
+                                android:maxLength="25" />
 
                         </LinearLayout>
                     </LinearLayout>
