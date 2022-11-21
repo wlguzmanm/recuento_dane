@@ -36,7 +36,7 @@ public class Database extends SQLiteOpenHelper {
 
     private Context contexto ;
     public static final int DATABASE_VERSION = 17;
-    public static final String DATABASE_NAME = "Re_ConteoFormularioV_1_0_11.db";
+    public static final String DATABASE_NAME = "Re_ConteoFormularioV_1_0_0_PROD.db";
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -2621,8 +2621,8 @@ public class Database extends SQLiteOpenHelper {
 
             NormalizadorDireccionDTO existe = getNormalizador(objeto.getIdManzana(),objeto.getIdEdificacion(),objeto.getIdUnidadEconomica());
             if(Util.stringNullEmptys(existe.getIdUnidadEconomica())){
-                String[] args = new String[]{ objeto.getIdUnidadEconomica()};
-                boolean valor = (db.update(Normalizador.TABLE_NAME,values ," ID_UNIDAD_ECONOMICA=? ",args)) >0;
+                String[] args = new String[]{ objeto.getIdManzana(), objeto.getIdEdificacion(), objeto.getIdUnidadEconomica()};
+                boolean valor = (db.update(Normalizador.TABLE_NAME,values ,"ID_MANZANA = ? AND ID_EDIFICACION = ? AND ID_UNIDAD_ECONOMICA = ? ",args)) >0;
                 db.close();
                 return valor;
             }else{

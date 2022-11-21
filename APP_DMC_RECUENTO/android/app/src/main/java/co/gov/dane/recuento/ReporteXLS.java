@@ -350,8 +350,8 @@ public class ReporteXLS {
                         llenarCampo(addRow(total, countRow), String.valueOf(i), sh);
                         llenarCampo(addRow(codRecuentista, countRow), mz.getCod_enumerador(), sh);
                         llenarCampo(addRow(codSupervisor, countRow), mz.getSupervisor(), sh);
-                        llenarCampo(addRow(barrioRecuento, countRow), mz.getObsmz(), sh);
-                        llenarCampo(addRow(observacionRecuento, countRow), mz.getDirec_barrio(), sh);
+                        llenarCampo(addRow(barrioRecuento, countRow), mz.getDirec_barrio(), sh);
+                        llenarCampo(addRow(observacionRecuento, countRow), mz.getObsmz(), sh);
                         llenarCampo(addRow(id_dmc, countRow), mz.getImei(), sh);
                         llenarCampo(addRow(longitude, countRow), mz.getPto_lon_gps(), sh);
                         llenarCampo(addRow(latitude, countRow), mz.getPto_lat_gps(), sh);
